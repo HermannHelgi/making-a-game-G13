@@ -75,14 +75,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6185600570348772279}
   walkingSpeed: 3
-  sprintSpeed: 24
+  sprintSpeed: 6
   fallSpeed: -19.62
   jumpHight: 2
+  sprintKey: 304
   GroundCheck: {fileID: 5470206184232907666}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   isGrounded: 0
+  isSprinting: 0
 --- !u!1 &2415510433500774258
 GameObject:
   m_ObjectHideFlags: 0
