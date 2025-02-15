@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2ef3b89bd5001e5449fdbc157f65381e
+timeCreated: 1502478007
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98014
+  packageName: Cabin Environment
+  packageVersion: 1.0
+  assetPath: Assets/Cabin/Models/Materials/Door.mat
+  uploadId: 195923

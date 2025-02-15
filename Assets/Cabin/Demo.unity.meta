@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 87f6424a65482154da4cd74381650bd3
+timeCreated: 1502142886
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98014
+  packageName: Cabin Environment
+  packageVersion: 1.0
+  assetPath: Assets/Cabin/Demo.unity
+  uploadId: 195923

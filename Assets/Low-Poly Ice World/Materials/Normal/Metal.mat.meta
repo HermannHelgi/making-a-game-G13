@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1e55550368fb5094ebdface44d966ac4
+timeCreated: 1487605275
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 83909
+  packageName: Low-Poly Ice World
+  packageVersion: 1.0
+  assetPath: Assets/Low-Poly Ice World/Materials/Normal/Metal.mat
+  uploadId: 168609
