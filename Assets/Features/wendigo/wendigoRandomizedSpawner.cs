@@ -9,7 +9,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 {
     public Transform player;
     public GameObject wendigoPrefab;
-    public float spawnRadius = 50f;
+    public float spawnRadius = 60f;
     // public float minSpawnDistance = 10f;
     public float spawnInterval = 10f;
     public LayerMask groundLayer;
