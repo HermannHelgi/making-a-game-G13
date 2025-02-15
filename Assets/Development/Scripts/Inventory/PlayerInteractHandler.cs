@@ -30,6 +30,10 @@ public class PlayerInteractHandler : MonoBehaviour
     public GameObject inventoryoverlay;
     [Tooltip("The player, needed to measure distance from the witch and the player.")]
     public GameObject playerobject;    
+    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
+    public TextMeshProUGUI nameofitemincanvastextmesh;
+    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
+    public TextMeshProUGUI ingredientslisttextmesh;
 
 
     void Start()
@@ -94,7 +98,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 var witchscript = hit.transform.GetComponent<WitchTradeScript>();
                 if (witchscript != null)
                 {
-                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject);
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh);
                 }
                 // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             }

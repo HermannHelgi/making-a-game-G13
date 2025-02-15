@@ -116,6 +116,38 @@ public class PlayerInventory : MonoBehaviour
         return true;
     }
 
+    // This is meant to be used by the witch trading script. Due to this, it doesn't update the hotbar whatsoever, as resetHotbarItems will do it for it.
+    public bool removeItemFromHotbar(ItemScript item)
+    // Removes a specific item from the hotbar, return false if it does not exist
+    {
+        for (int i = 0; i < maxhotbarsize; i++)
+        {
+            if (hotbarinventory[i] == item)
+            {
+                hotbarinventory[i] = null; 
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Used by the Witch Trade Script
+    public bool hasItem(ItemScript itemCheck, int count)
+    {
+        for (int i = 0; i < maxhotbarsize; i++)
+        {
+            if (hotbarinventory[i] == itemCheck)
+            {
+                count--;
+                if (count == 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     public void deleteHeldObjects()
     // Deletes held objects which are loaded in the scene

@@ -8,4 +8,5 @@ public class ItemScript : ScriptableObject
     public Sprite icon;
     public GameObject model;
     public ItemScript[] craftingrecipe;
+    public bool structureitem;
 }
