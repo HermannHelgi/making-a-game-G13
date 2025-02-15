@@ -11,7 +11,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     public GameObject wendigoPrefab;
     public float spawnRadius = 60f;
     // public float minSpawnDistance = 10f;
-    public float spawnInterval = 10f;
+    public float spawnInterval = 20f;
     public LayerMask groundLayer;
     public LayerMask obstacleLayer;
     public playerLineofSight playerLineOfSight;
@@ -47,16 +47,27 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     private bool IsVisibleToPlayer()
     {
-        if (playerLineOfSight.isLookingAtWendigo == true)
-        {
-            playerSightings++;
-            return false;
-        }
-        else
-        {   
-            
-            return true;
-        }
+        if (playerLineOfSight == null) return false;
+        if(playerLineOfSight.isLookingAtWendigo) return playerLineOfSight.isLookingAtWendigo;
+        return playerLineOfSight.isLookingAtWendigo;
 
     }
+
+    void Spawn()
+    {
+        Debug.Log("Spawning Wendigo");
+        Vector3 spawnPosition = player.position + Random.insideUnitSphere * spawnRadius;
+        RaycastHit hit;
+        if (Physics.Raycast(spawnPosition, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+        {
+            spawnPosition = hit.point;
+        }
+        else
+        {
+            Debug.Log("Failed to spawn Wendigo");
+            return;
+        }
+    }
+
+
 }

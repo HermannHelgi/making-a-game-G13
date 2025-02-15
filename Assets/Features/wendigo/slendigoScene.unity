@@ -790,6 +790,8 @@ GameObject:
   - component: {fileID: 343426812}
   - component: {fileID: 343426817}
   - component: {fileID: 343426818}
+  - component: {fileID: 343426820}
+  - component: {fileID: 343426819}
   m_Layer: 0
   m_Name: Wendigo
   m_TagString: Untagged
@@ -922,6 +924,44 @@ MonoBehaviour:
   detected: 0
   maxDistance: 50
   offset: {x: 0, y: 1.5, z: 0}
+--- !u!114 &343426819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343426810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca0a1a19262b24428b9b18b09a50862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1404086620}
+  wendigoPrefab: {fileID: 343426810}
+  spawnRadius: 60
+  spawnInterval: 20
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  playerLineOfSight: {fileID: 1178685482}
+  spawnTimer: 0
+  playerSightings: 0
+  maxPlayerSightings: 3
+--- !u!114 &343426820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343426810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5813eb8c713a21f4e9f30b7c2bade6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1816,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1178685489}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+--- !u!4 &1404086620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 1404086619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1552591558
 GameObject:
   m_ObjectHideFlags: 0
