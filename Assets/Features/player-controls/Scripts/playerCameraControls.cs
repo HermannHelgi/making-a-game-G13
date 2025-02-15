@@ -1,7 +1,7 @@
-using Unity.Mathematics;
+// using Unity.Mathematics;
 using UnityEngine;
 
-public class playerCameraControls : MonoBehaviour
+public class playerCameraControl : MonoBehaviour
 {
 
     public float sensitivity = 100f;
