@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eb52d162560b0f14688f570cb75a6b32
+timeCreated: 1487580834
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 83909
+  packageName: Low-Poly Ice World
+  packageVersion: 1.0
+  assetPath: Assets/Low-Poly Ice World/Materials/Normal/Ice_Opaque.mat
+  uploadId: 168609

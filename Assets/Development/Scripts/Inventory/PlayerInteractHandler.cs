@@ -21,6 +21,21 @@ public class PlayerInteractHandler : MonoBehaviour
     // The clock variable is the actual timer which is manipulated, maxtimer is the value it resets to
     private float inventoryfullclock = 0;
 
+    [Header("Witch in the Wall variables")]
+    [Tooltip("The canvas for which the trade overlay appears.")]
+    public GameObject witchtradeoverlay;
+    [Tooltip("The grid which will be used to spawn the crafting recipes inside.")]
+    public GameObject witchrecipegridspawn;
+    [Tooltip("The players normal overlay, meant to be turned off when trading starts.")]
+    public GameObject inventoryoverlay;
+    [Tooltip("The player, needed to measure distance from the witch and the player.")]
+    public GameObject playerobject;    
+    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
+    public TextMeshProUGUI nameofitemincanvastextmesh;
+    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
+    public TextMeshProUGUI ingredientslisttextmesh;
+
+
     void Start()
     {
         popuptext.gameObject.SetActive(false);
@@ -40,7 +55,10 @@ public class PlayerInteractHandler : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
         { 
             var script = hit.transform.GetComponent<InteractableItem>();
-            if (script != null)
+            // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
+            var witchscript = hit.transform.GetComponent<WitchTradeScript>();
+            if (script != null || witchscript != null)
+            // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             {
                 popuptext.gameObject.SetActive(true);
             }
@@ -74,6 +92,15 @@ public class PlayerInteractHandler : MonoBehaviour
                         inventoryfullclock = inventoryfullmaxtimer;
                     }
                 }
+
+                // Additional check for if it has the witchTradeScript
+                // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
+                var witchscript = hit.transform.GetComponent<WitchTradeScript>();
+                if (witchscript != null)
+                {
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh);
+                }
+                // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             }
         }
 

@@ -49,7 +49,7 @@ public class InteractableItem : MonoBehaviour
                         Destroy(gameObject);
                     }
                 }
-
+                GameManager.instance.discovereditems[pickupitem.index] = true;
                 return true;
             }
         }

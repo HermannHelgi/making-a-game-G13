@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 38210ece1d441bf4ca9ba19ef3f37977
+timeCreated: 1487589736
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 83909
+  packageName: Low-Poly Ice World
+  packageVersion: 1.0
+  assetPath: Assets/Low-Poly Ice World/Materials/Particles/Smoke.mat
+  uploadId: 168609

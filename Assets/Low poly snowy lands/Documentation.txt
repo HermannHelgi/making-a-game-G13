@@ -1,0 +1,4 @@
+Low poly snowy lands
+Package suports standart render pipeline and Lightweight render pipeline
+Package includes 2 example scenes.
+Post-processing effects are not included in this package.
