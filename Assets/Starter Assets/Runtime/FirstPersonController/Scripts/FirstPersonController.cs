@@ -33,6 +33,17 @@ namespace StarterAssets
 		[Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
 		public float FallTimeout = 0.15f;
 
+		[Space(10)]
+		[Tooltip("The number of units the stamina bar recovers by")]
+		public float SprintRecoverTime = 0.15f;
+		[Tooltip("The number of units stamina bar drops off by")]
+
+		public float SprintDropOff = 0.5f;
+		[Tooltip("Time from start of sprint to stop sprinting. The size of the sprint bar")]
+		public float SprintTime = 5.0f;
+		[Tooltip("The minimum the sprint bar needs to be before being able to sprint again")]
+		public float minimumSprintRecovery = 1.5f;
+
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
 		public bool Grounded = true;
@@ -63,6 +74,9 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+
+		private float _currentSprintBarStatus;
+		private bool _sprintRecovered;
 
 	
 #if ENABLE_INPUT_SYSTEM
@@ -108,6 +122,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+			_currentSprintBarStatus = SprintTime;
+			_sprintRecovered = true;
 		}
 
 		private void Update()
@@ -153,8 +169,33 @@ namespace StarterAssets
 
 		private void Move()
 		{
+			
+
+			if(_currentSprintBarStatus <= 0)
+			{
+				_sprintRecovered = false;
+			}
+			
 			// set target speed based on move speed, sprint speed and if sprint is pressed
-			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+			float targetSpeed;
+			if(_input.sprint && _sprintRecovered)
+			{
+				targetSpeed = SprintSpeed;
+				_currentSprintBarStatus -= SprintDropOff * Time.deltaTime;
+			}
+			else
+			{
+				targetSpeed = MoveSpeed;
+				if(_currentSprintBarStatus < SprintTime)
+				{
+					_currentSprintBarStatus += SprintRecoverTime * Time.deltaTime;
+					if(_currentSprintBarStatus >= minimumSprintRecovery)
+					{
+						_sprintRecovered = true;
+					}
+				}
+			}
+
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
