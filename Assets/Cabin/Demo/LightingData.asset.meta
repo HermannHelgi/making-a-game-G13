@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 035b2abdcdd19974dbeba7afd5624eb9
+timeCreated: 1502835376
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98014
+  packageName: Cabin Environment
+  packageVersion: 1.0
+  assetPath: Assets/Cabin/Demo/LightingData.asset
+  uploadId: 195923

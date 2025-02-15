@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e40605717bf1e7047ac99751212cd9b6
+timeCreated: 1475521212
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 65306
+  packageName: 'Low Poly: Woods Lifestyle'
+  packageVersion: 1.1
+  assetPath: Assets/WoodsLifestyle/Prefabs/Buildings/WaterTower_02.prefab
+  uploadId: 140200

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c6dfbb4345d96f24386c01c4781bc163
+timeCreated: 1502737570
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98014
+  packageName: Cabin Environment
+  packageVersion: 1.0
+  assetPath: Assets/Cabin/Models/Materials/Candle.mat
+  uploadId: 195923
