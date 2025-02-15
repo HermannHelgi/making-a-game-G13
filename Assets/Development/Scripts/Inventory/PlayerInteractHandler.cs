@@ -34,6 +34,8 @@ public class PlayerInteractHandler : MonoBehaviour
     public TextMeshProUGUI nameofitemincanvastextmesh;
     [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
     public TextMeshProUGUI ingredientslisttextmesh;
+    [Tooltip("The text mesh component within the InventoryCanvas which should be updated on new dialogue.")]
+    public GameObject subtitletextmesh;
 
 
     void Start()
@@ -98,7 +100,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 var witchscript = hit.transform.GetComponent<WitchTradeScript>();
                 if (witchscript != null)
                 {
-                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh);
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh);
                 }
                 // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             }
