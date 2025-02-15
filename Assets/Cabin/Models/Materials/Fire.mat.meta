@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3754a8dd9fb855f4292e7e4cd39bd442
+timeCreated: 1502640021
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98014
+  packageName: Cabin Environment
+  packageVersion: 1.0
+  assetPath: Assets/Cabin/Models/Materials/Fire.mat
+  uploadId: 195923

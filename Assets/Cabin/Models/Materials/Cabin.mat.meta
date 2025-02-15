@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 21ba00c050a978c479ce3d7ac9fc0174
+timeCreated: 1502478071
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98014
+  packageName: Cabin Environment
+  packageVersion: 1.0
+  assetPath: Assets/Cabin/Models/Materials/Cabin.mat
+  uploadId: 195923
