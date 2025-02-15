@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 23af7140faccf3c4d8212bf4b39f9d05
+timeCreated: 1487772178
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 83909
+  packageName: Low-Poly Ice World
+  packageVersion: 1.0
+  assetPath: Assets/Low-Poly Ice World/Materials/Skyboxes/IceWorld_Skybox_Night.mat
+  uploadId: 168609
