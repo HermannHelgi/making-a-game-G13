@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 9005220659476430820}
   - component: {fileID: 9018249871969862650}
   - component: {fileID: 6649558419134552556}
+  - component: {fileID: 4172148587224761278}
+  - component: {fileID: 2015100841539341112}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -27,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9005220659476430823}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.20000005, y: 1.375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &9005220659476430821
 Camera:
@@ -67,10 +69,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.2
-  far clip plane: 5000
+  far clip plane: 500
   field of view: 40
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -106,28 +108,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
+  ShowDebugText: 0
+  ShowCameraFrustum: 1
+  IgnoreTimeScale: 0
+  WorldUpOverride: {fileID: 0}
+  ChannelMask: -1
+  UpdateMethod: 2
+  BlendUpdateMethod: 1
+  LensModeOverride:
+    Enabled: 0
+    DefaultMode: 2
+  DefaultBlend:
+    Style: 1
+    Time: 2
+    CustomCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  CustomBlends: {fileID: 0}
 --- !u!114 &6649558419134552556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,9 +166,53 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+--- !u!114 &4172148587224761278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9005220659476430823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bd1f5ee82a9854792589dc869efc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastlength: 3
+  playerinventoryobject: {fileID: 9005220659476430823}
+  popuptext: {fileID: 0}
+  inventoryfulltext: {fileID: 0}
+  inventoryfullmaxtimer: 3
+  witchtradeoverlay: {fileID: 0}
+  witchrecipegridspawn: {fileID: 0}
+  inventoryoverlay: {fileID: 0}
+  playerobject: {fileID: 0}
+  nameofitemincanvastextmesh: {fileID: 0}
+  ingredientslisttextmesh: {fileID: 0}
+--- !u!114 &2015100841539341112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9005220659476430823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7252851b3121f4e87fc271b1cfefa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhotbarsize: 6
+  emptyhotbar: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
+  hotbarslotprefab: {fileID: 366402262393867716, guid: 995790105ab49ac4dab563cfe9a8096e, type: 3}
+  hotbarslotgrid: {fileID: 0}
+  selectedhotbarcolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
+  deselectedhotbarcolor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+  selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
+  deselectedspritecolor: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
+  spawnlocation: {fileID: 0}
