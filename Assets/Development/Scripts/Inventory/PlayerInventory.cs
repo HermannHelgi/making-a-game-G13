@@ -116,7 +116,40 @@ public class PlayerInventory : MonoBehaviour
         return true;
     }
 
-    private void deleteHeldObjects()
+    // This is meant to be used by the witch trading script. Due to this, it doesn't update the hotbar whatsoever, as resetHotbarItems will do it for it.
+    public bool removeItemFromHotbar(ItemScript item)
+    // Removes a specific item from the hotbar, return false if it does not exist
+    {
+        for (int i = 0; i < maxhotbarsize; i++)
+        {
+            if (hotbarinventory[i] == item)
+            {
+                hotbarinventory[i] = null; 
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Used by the Witch Trade Script
+    public bool hasItem(ItemScript itemCheck, int count)
+    {
+        for (int i = 0; i < maxhotbarsize; i++)
+        {
+            if (hotbarinventory[i] == itemCheck)
+            {
+                count--;
+                if (count == 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public void deleteHeldObjects()
     // Deletes held objects which are loaded in the scene
     {
         // DO NOT CHANGE! Childcount is not updated until next frame, if this were to be turned into a while loop it will ***crash the game.***
@@ -124,6 +157,32 @@ public class PlayerInventory : MonoBehaviour
         {
             Destroy(spawnlocation.transform.GetChild(i).gameObject);
         }
+    }
+
+    // This exists purely for the witch trading script. Its called when trades are over to update any sprites which exist within the hotbar if any trades occur.
+    public void resetHotbarItems()
+    {
+        // I first remove all pictures that may be in the hotbar
+        int index = 0;
+        while (index < maxhotbarsize)
+        {
+            hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = emptyhotbar;
+            index++;
+        }
+
+        // Then add back in those which exist
+        index = 0;
+        while (index < maxhotbarsize)
+        {
+            if (hotbarinventory[index] != null)
+            {
+                hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = hotbarinventory[index].icon;
+            }
+            index++;
+        }
+
+        // And select hotbar slot 0, to reset anything that is being held
+        selectHotbar(0);
     }
 
     void Update()

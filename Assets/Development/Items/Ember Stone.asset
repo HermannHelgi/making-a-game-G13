@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d618190bdca7ee848b9e91defcc2c51f, type: 3}
-  m_Name: StickDEMO
+  m_Name: Ember Stone
   m_EditorClassIdentifier: 
-  itemname: STICKDEMO
-  index: 0
-  icon: {fileID: 21300000, guid: e2316f409e086fd4e9761b423a34632f, type: 3}
-  model: {fileID: 8726248587738542157, guid: 3bb49997a838a594190c04c17d7fbada, type: 3}
-  craftingrecipe: []
+  itemname: EMBER STONE
+  index: 14
+  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
+  model: {fileID: 0}
+  craftingrecipe:
+  - {fileID: 11400000, guid: 8b14aa1ae2305054b8c3aa6c70e235d7, type: 2}
+  - {fileID: 11400000, guid: 4aa806401e7e3ac4cbf5ed6a57e7ea36, type: 2}
