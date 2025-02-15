@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("An item array for all the possible items in the game, ocne set to true the item is discovered.")]
     public bool[] discovereditems = new bool[18];
 
+    [Header("Day and night variables.")]
+    [Tooltip("A bool which says whether the game is day or night.")]
+    public bool isNight = false;
 
     void Start()
     {
