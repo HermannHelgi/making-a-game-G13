@@ -63,17 +63,18 @@ public class wendigoRaycast : MonoBehaviour
 
         if (Physics.Raycast(startPos, direction, out hit, maxDistance, mask))
         {
-            Debug.DrawLine(startPos, hit.point, Color.red, 0.1f);
+            Debug.DrawLine(startPos, hit.point, Color.red, 1f);
             
             if (hit.transform.CompareTag("Player"))
             {
                 detected = true;
-                Debug.Log("Player Detected");
+                // Debug.Log("Player Detected");
+
             }
             else
             {
                 detected = false;
-                Debug.Log("Player Not Detected");
+                // Debug.Log("Player Not Detected");
             }
         }
     }
