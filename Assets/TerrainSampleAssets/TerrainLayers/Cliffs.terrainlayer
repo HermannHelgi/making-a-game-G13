@@ -6,18 +6,18 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snow_TerrainLayer
-  m_DiffuseTexture: {fileID: 2800000, guid: ffa01093856b873448237de84289ee85, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: baca4d94b1d1d8046ab52ce1570a24c7, type: 3}
-  m_MaskMapTexture: {fileID: 2800000, guid: 5d46f74cdeedd7941ba8cd7cb7ebb40c, type: 3}
-  m_TileSize: {x: 9.62, y: 6.87}
+  m_Name: Cliffs
+  m_DiffuseTexture: {fileID: 2800000, guid: 9ba08a8ea64821449926bb415f83b62a, type: 3}
+  m_NormalMapTexture: {fileID: 0}
+  m_MaskMapTexture: {fileID: 0}
+  m_TileSize: {x: 16.48, y: 16.11}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
   m_Smoothness: 0
-  m_NormalScale: 0
+  m_NormalScale: 1
   m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
-  m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}
+  m_DiffuseRemapMax: {x: 0.5, y: 0.5, z: 0.5, w: 1}
   m_MaskMapRemapMin: {x: 0, y: 0, z: 0, w: 0}
   m_MaskMapRemapMax: {x: 1, y: 1, z: 1, w: 1}
   m_SmoothnessSource: 1
