@@ -302,10 +302,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3726842457047018845}
     m_Modifications:
-    - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 2015100841539341112, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: spawnlocation
+      value: 
+      objectReference: {fileID: 317712616228103239}
+    - target: {fileID: 2015100841539341112, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: hotbarslotgrid
+      value: 
+      objectReference: {fileID: 8044332539659597579}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: popuptext
+      value: 
+      objectReference: {fileID: 5011321737350978935}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: playerobject
+      value: 
+      objectReference: {fileID: 8709562959268111755}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: inventoryoverlay
+      value: 
+      objectReference: {fileID: 2773670256373526545}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: inventoryfulltext
+      value: 
+      objectReference: {fileID: 3991975613888055429}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: witchtradeoverlay
+      value: 
+      objectReference: {fileID: 2856906899735666337}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: witchrecipegridspawn
+      value: 
+      objectReference: {fileID: 2282215246583876797}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: ingredientslisttextmesh
+      value: 
+      objectReference: {fileID: 5977546435262059695}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: nameofitemincanvastextmesh
+      value: 
+      objectReference: {fileID: 4191217872535388563}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.81714
@@ -346,14 +382,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
-      propertyPath: far clip plane
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -361,68 +389,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 192363378594046801}
-    - targetCorrespondingSourceObject: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8574085403151931912}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
 --- !u!4 &6307968128774350139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
   m_PrefabInstance: {fileID: 3130740535360051929}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6307968128774350142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
-  m_PrefabInstance: {fileID: 3130740535360051929}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &192363378594046801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6307968128774350142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9bd1f5ee82a9854792589dc869efc14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastlength: 3
-  playerinventoryobject: {fileID: 6307968128774350142}
-  popuptext: {fileID: 5011321737350978935}
-  inventoryfulltext: {fileID: 3991975613888055429}
-  inventoryfullmaxtimer: 3
-  witchtradeoverlay: {fileID: 2856906899735666337}
-  witchrecipegridspawn: {fileID: 2282215246583876797}
-  inventoryoverlay: {fileID: 2773670256373526545}
-  playerobject: {fileID: 8709562959268111755}
-  nameofitemincanvastextmesh: {fileID: 4191217872535388563}
-  ingredientslisttextmesh: {fileID: 5977546435262059695}
---- !u!114 &8574085403151931912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6307968128774350142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7252851b3121f4e87fc271b1cfefa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxhotbarsize: 6
-  emptyhotbar: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  hotbarslotprefab: {fileID: 366402262393867716, guid: 995790105ab49ac4dab563cfe9a8096e, type: 3}
-  hotbarslotgrid: {fileID: 8044332539659597579}
-  selectedhotbarcolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
-  deselectedhotbarcolor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
-  selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
-  deselectedspritecolor: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-  spawnlocation: {fileID: 317712616228103239}
 --- !u!1001 &8909877611622594424
 PrefabInstance:
   m_ObjectHideFlags: 0
