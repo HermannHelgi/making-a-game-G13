@@ -26,6 +26,14 @@ public class wendigoStateMachine : MonoBehaviour
     void Start()
     {
         currentState = State.Resting;
+        if(playerLineOfSight == null)
+        {
+            playerLineOfSight = GetComponent<playerLineofSight>();
+        }
+        if(wendigoRaycast == null)
+        {
+            wendigoRaycast = GetComponent<wendigoRaycast>();
+        }
     }
 
     void Update()
@@ -56,7 +64,8 @@ public class wendigoStateMachine : MonoBehaviour
     }
 
     private void Teleporting()
-    {
+    {   
+        wendigoRandomizedSpawner.SpawnWendigo();
         // Teleporting state logic
     }
 
@@ -75,6 +84,7 @@ public class wendigoStateMachine : MonoBehaviour
     {
         // AttackPlayer state logic
     }
+
 
     private bool IsPlayerVisible()
     {

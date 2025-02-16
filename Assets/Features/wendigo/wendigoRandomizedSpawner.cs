@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting.FullSerializer;
 
 public class wendigoRandomizedSpawner : MonoBehaviour
 {
@@ -22,16 +23,22 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawnSlenderman();
+        SpawnWendigo();
     }
 
 
-    public void SpawnSlenderman()
-    {
-        if(!IsVisibleToPlayer())
+    public void SpawnWendigo()
+    {   
+        if (wendigoInstance != null) return;
+        if (player == null) return;
+
+        Vector3 spawnpoint = FindValidSpawnPosition();
+
+        if (spawnpoint != Vector3.zero)
         {
-            wendigoInstance = Instantiate(wendigoPrefab, FindValidSpawnPosition(), Quaternion.identity);
+            wendigoInstance = Instantiate(wendigoPrefab,spawnpoint,Quaternion.identity);
         }
+        
 
     }
 
@@ -41,33 +48,43 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
         Vector3 spawnPosition = Vector3.zero;
         Vector3 playerPosition = player.position;
+        const int maxAttempts = 20;
+        for(int i = 0; i < maxAttempts; i++)
+        {
+            Vector2 randomCircle = Random.insideUnitCircle.normalized * spawnRadius;
+            spawnPosition = new Vector3(randomCircle.x, 0, randomCircle.y) + playerPosition;
+            if(IsPositionVisibleToPlayer())
+            {
+                continue;
+    
+            }
+            else
+            {
+                RaycastHit hit;
+                if(Physics.Raycast(spawnPosition,Vector3.down,out hit,Mathf.Infinity,groundLayer))
+                {
+                    if(hit.collider != null)
+                    {
+                        if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                        {
+                            return hit.point;
+                        }
+                    }
+                }
+            }
+        }
+
 
         return spawnPosition;
     }
 
-    private bool IsVisibleToPlayer()
+    private bool IsPositionVisibleToPlayer()
     {
         if (playerLineOfSight == null) return false;
-        if(playerLineOfSight.isLookingAtWendigo) return playerLineOfSight.isLookingAtWendigo;
-        return playerLineOfSight.isLookingAtWendigo;
+        return playerLineOfSight.IsLookingAtWendigo(wendigoInstance.transform.position, player.position);
 
     }
 
-    void Spawn()
-    {
-        Debug.Log("Spawning Wendigo");
-        Vector3 spawnPosition = player.position + Random.insideUnitSphere * spawnRadius;
-        RaycastHit hit;
-        if (Physics.Raycast(spawnPosition, Vector3.down, out hit, Mathf.Infinity, groundLayer))
-        {
-            spawnPosition = hit.point;
-        }
-        else
-        {
-            Debug.Log("Failed to spawn Wendigo");
-            return;
-        }
-    }
 
 
 }

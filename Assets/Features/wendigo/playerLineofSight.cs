@@ -12,7 +12,7 @@ public class playerLineofSight : MonoBehaviour
 
     public float audioIncreaseRate, audioDecreaseRate, audioMaxVolume;
 
-    public bool isLookingAtWendigo;
+    public bool isLooking;
 
     public AudioSource staticSound;
 
@@ -38,47 +38,47 @@ public class playerLineofSight : MonoBehaviour
 
     void PlayMusic()
     {
-        if(isLookingAtWendigo)
+        if(isLooking)
         {
             staticSound.Play();
-            while(staticSound.volume < audioMaxVolume)
-            {
-                staticSound.volume = Mathf.MoveTowards(staticSound.volume, audioMaxVolume, audioIncreaseRate * Time.deltaTime);
-            }
-            if(staticSound.volume >= audioMaxVolume)
-            {
-                staticSound.volume = audioMaxVolume;
-            }
+
         }
     }
 
     void StopMusic()
     {
-        if(!isLookingAtWendigo)
-        {
-            while(staticSound.volume > 0)
-            {
-                staticSound.volume = Mathf.MoveTowards(staticSound.volume, 0, audioDecreaseRate * Time.deltaTime);
-                staticSound.Stop();
-            }
-            if(staticSound.volume == 0)
-            {
-                staticSound.Stop();
-            }
-        }
+
+        staticSound.Stop();
+
+        
     }
 
 
     void Update()
 
     {
-
-        if (playerCamera == null || wendigo == null)
+        if (wendigo == null || playerCamera == null)
         {
             return;
         }
+        if(IsLookingAtWendigo(wendigo.transform.position, playerCamera.transform.position))
+        {
+            Debug.Log("Player is looking at Wendigo");
+        }
+        else
+        {
+            Debug.Log("Player is not looking at Wendigo");
+        }
 
-        Vector3 direction = wendigo.transform.position - playerCamera.transform.position;
+        AdjustAudio();
+
+    }
+
+    public bool IsLookingAtWendigo(Vector3 wendigoPosition, Vector3 playerPosition)
+    {
+
+
+        Vector3 direction = wendigoPosition - playerPosition;
         RaycastHit hit;
 
         if (Physics.Raycast(playerCamera.transform.position, direction.normalized, out hit))
@@ -86,35 +86,37 @@ public class playerLineofSight : MonoBehaviour
             Debug.DrawLine(playerCamera.transform.position, hit.point, Color.red, Mathf.Infinity);
             if (hit.transform == wendigo.transform && hit.distance <= detectionDistance)
             {   
-                if(!isLookingAtWendigo)
+                if(!isLooking)
                 {
                     Debug.Log("Player is looking at Wendigo");
-                    isLookingAtWendigo = true;
+                    isLooking = true;
+                
 
                 }
             }
             else
             {
                 Debug.Log("Player is not looking at Wendigo");
-                isLookingAtWendigo = false;
+                isLooking = false;
+                
 
             }
         }
         else
         {
-            isLookingAtWendigo = false;
+            isLooking = false;
+            
         }
-        AdjustAudio();
-
+        return isLooking;
     }
     void AdjustAudio()
     {
-        if (isLookingAtWendigo)
+        if (isLooking)
         {
             // Play only if it's not already playing
             if (!staticSound.isPlaying)
             {
-                staticSound.Play();
+                PlayMusic();
             }
 
             // Increase volume smoothly
@@ -128,7 +130,7 @@ public class playerLineofSight : MonoBehaviour
             // Stop audio when volume reaches 0
             if (staticSound.volume == 0 && staticSound.isPlaying)
             {
-                staticSound.Stop();
+                StopMusic();
             }
         }
     }
