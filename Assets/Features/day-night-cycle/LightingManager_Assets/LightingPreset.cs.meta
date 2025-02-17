@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f148cea7163d82545b94f9f350af759e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258318
+  packageName: Day-Night System with Events and Custom Lighting
+  packageVersion: 1.0
+  assetPath: Assets/LightingManager_Assets/LightingPreset.cs
+  uploadId: 594394

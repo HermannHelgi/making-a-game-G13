@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 44c741a78e4fe4f4fb3512105e632a1c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258318
+  packageName: Day-Night System with Events and Custom Lighting
+  packageVersion: 1.0
+  assetPath: Assets/LightingManager_Assets/ExampleScene/Skybox_procedural.mat
+  uploadId: 594394
