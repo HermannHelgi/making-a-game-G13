@@ -10,7 +10,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 {
     public Transform player;
     public GameObject wendigoPrefab;
-    public float spawnRadius = 60f;
+    public float spawnRadius = 50f;
     // public float minSpawnDistance = 10f;
     public float spawnInterval = 30f;
     public LayerMask groundLayer;
@@ -46,12 +46,12 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     public void DespawnWendigo()
     {
-        if (wendigoInstance != null)
+        while (wendigoInstance != null)
         {
             Debug.Log("Despawning Wendigo.");
             Destroy(wendigoInstance);
-            wendigoInstance = null; //  Ensure reference is cleared
         }
+            // wendigoInstance = null; //  Ensure reference is cleared
     }
 
 
@@ -64,8 +64,8 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         const int maxAttempts = 20;
         for(int i = 0; i < maxAttempts; i++)
         {
-            Vector2 randomCircle = Random.insideUnitCircle.normalized * spawnRadius;
-            spawnPosition = new Vector3(randomCircle.x, 0, randomCircle.y) + playerPosition;
+            //find valid random spawn position
+            spawnPosition = playerPosition * Random.Range(spawnRadius,spawnRadius * 2);
             if(IsPositionVisibleToPlayer(spawnPosition))
             {
                 continue;

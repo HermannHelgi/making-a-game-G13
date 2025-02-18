@@ -946,6 +946,7 @@ MonoBehaviour:
   wendigoRaycasts: {fileID: 343426819}
   wendigoRandomizedSpawner: {fileID: 343426818}
   playerLineOfSight: {fileID: 1670098627}
+  respawnTimer: 20
   gameManager: {fileID: 493363471}
 --- !u!1 &410087039
 GameObject:
