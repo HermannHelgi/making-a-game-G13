@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 32a933d89d2f3bd4586e5df9ac0b4287
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258318
+  packageName: Day-Night System with Events and Custom Lighting
+  packageVersion: 1.0
+  assetPath: Assets/LightingManager_Assets/Skyboxes/Shaders/Skybox_Test.shadergraph
+  uploadId: 594394

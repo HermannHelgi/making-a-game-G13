@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7811858979573194740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3697459572041942409}
+  - component: {fileID: 3188569507601735953}
+  m_Layer: 0
+  m_Name: LightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3697459572041942409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811858979573194740}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.4570904, y: 7.94242, z: -0.44904613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3188569507601735953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811858979573194740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6289ad34a168ded4eb13ff4f2af99637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SunDirectionalLight: {fileID: 0}
+  Preset: {fileID: 11400000, guid: 10703449fc64e7143a3eb054ef487398, type: 2}
+  rotationAxis: 0
+  IsDayCycleOn: 1
+  RandomStartTime: 0
+  TimeOfDay: 12
+  StartTime: 12
+  CycleDuration: 180
+  morningInterval: {x: 0, y: 0.5}
+  afterNoonInterval: {x: 0.5, y: 1}
+  lightIntensity: {x: 0, y: 1}
+  IsShadowChangeOn: 0
+  shadowStrength: 0.5
+  IsSkyBoxOn: 0
+  skyboxMat: {fileID: 0}
+  customPropertyName: 
+  IsMoonActive: 0
+  MoonDirectionalLight: {fileID: 0}
+  IsMoonRotationOn: 0
+  MoonIntensity: {x: 0, y: 1}
+  MoonShadowStrength: 0.5
+  IsEventsOn: 0
+  events: []
+  eventsTolerance: 0.2
+  ResetEventsTime: 0.1
+  gameManager: {fileID: 1890441454344188239, guid: 2cb1b0cb135d63742913447ca7b2db5d, type: 3}
