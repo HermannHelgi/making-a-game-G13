@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WitchTradeScript : MonoBehaviour
 {
-    [Header("trade Window Variables")]
+    [Header("Trade Window Variables")]
     public float distancetoturnoffwitchoverlay = 10;
     public ItemScript[] craftableItems = new ItemScript[7];
     public GameObject tradeslotprefab;
@@ -16,6 +16,8 @@ public class WitchTradeScript : MonoBehaviour
     public Color selectedspritecolor = Color.white;
     public Color deselectedspritecolor = Color.gray;
 
+    [Header("Dialogue System variables")]
+    public GameObject dialogueHandler;
     
     // Private stuff, mostly references to other objects.
     private GameObject[] tradeslotgridchildren;
@@ -183,8 +185,17 @@ public class WitchTradeScript : MonoBehaviour
         }
     }
 
-    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh)
+    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh)   
     {
+        if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
+        {
+            bool check = dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject);
+            if (check)
+            {
+                return;
+            }
+        }
+
         if (!currentlytrading)
         {
             playerinventory = playerinventorycanvas;
