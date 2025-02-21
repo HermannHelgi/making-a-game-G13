@@ -34,6 +34,8 @@ public class PlayerInteractHandler : MonoBehaviour
     public TextMeshProUGUI nameofitemincanvastextmesh;
     [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
     public TextMeshProUGUI ingredientslisttextmesh;
+    [Tooltip("The text mesh component within the InventoryCanvas which should be updated on new dialogue.")]
+    public GameObject subtitletextmesh;
 
 
     void Start()
@@ -55,10 +57,9 @@ public class PlayerInteractHandler : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
         { 
             var script = hit.transform.GetComponent<InteractableItem>();
-            // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
+            // This always displays the same message for both, if we want to change/juice it then additional code will have to be added
             if (script != null || witchscript != null)
-            // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             {
                 popuptext.gameObject.SetActive(true);
             }
@@ -94,13 +95,12 @@ public class PlayerInteractHandler : MonoBehaviour
                 }
 
                 // Additional check for if it has the witchTradeScript
-                // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
                 var witchscript = hit.transform.GetComponent<WitchTradeScript>();
                 if (witchscript != null)
                 {
-                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh);
+                    // this initialize Trade Window will also handle the dialogue for the witch
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh);
                 }
-                // -------------- WARNING/TODO! This probably needs to change for when dialogue is implemented. --------------
             }
         }
 
