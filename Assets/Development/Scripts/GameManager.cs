@@ -21,6 +21,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        Debug.Log("IsNight: "+isNight);
     }
 }

@@ -72,6 +72,8 @@ public class LightingManager : MonoBehaviour
         [SerializeField][Range(0f, 24f)] private float ResetEventsTime = 0.1f;
         private bool DayCycleCompleted;
 
+        public GameManager gameManager;
+
     #endregion
 
         private void Start()
@@ -119,6 +121,15 @@ public class LightingManager : MonoBehaviour
             else
             {
                 UpdateLighting(TimeOfDay / 24f);
+            }
+
+            if(TimeOfDay <= 6 || TimeOfDay >= 20)
+            {
+                gameManager.isNight = true;
+            }
+            else
+            {
+                gameManager.isNight = false;
             }
 
 
