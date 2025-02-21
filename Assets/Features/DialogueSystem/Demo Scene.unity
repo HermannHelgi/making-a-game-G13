@@ -119,37 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &177517213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 177517214}
-  m_Layer: 0
-  m_Name: NEED TO MAKE DIALOGUE SCRIPTS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &177517214
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177517213}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 571.5, y: 321.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &215574884
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupitem: {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
   totalpickuptimes: 5
+  dialogue: {fileID: 11400000, guid: c5e6e11ce509bb04cadc09666a84edf7, type: 2}
   replaceondepletion: 0
   replacemodel: {fileID: 0}
 --- !u!65 &215574886
@@ -271,37 +241,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.4, y: 5.43, z: -6.51}
   m_LocalScale: {x: 0.34261, y: 2.3666, z: 0.37696}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &277151951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 277151952}
-  m_Layer: 0
-  m_Name: THEN TEST
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &277151952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277151951}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 571.5, y: 321.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -451,6 +390,10 @@ PrefabInstance:
       propertyPath: playerobject
       value: 
       objectReference: {fileID: 425305271}
+    - target: {fileID: 2484213141261098164, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: subtitletextmesh
+      value: 
+      objectReference: {fileID: 1885209444}
     - target: {fileID: 2826927715677490921, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.99
@@ -512,37 +455,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2826927715677490921, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
   m_PrefabInstance: {fileID: 922412885}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1073529469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1073529470}
-  m_Layer: 0
-  m_Name: THEN DIALOGUE TRIGGERS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1073529470
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073529469}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 571.5, y: 321.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492189277
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,8 +608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allDialogue:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 2a9bea41fa773d340816e2cd24efcfe5, type: 2}
+  - {fileID: 11400000, guid: c5e6e11ce509bb04cadc09666a84edf7, type: 2}
 --- !u!1 &1836641233
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupitem: {fileID: 11400000, guid: 4aa806401e7e3ac4cbf5ed6a57e7ea36, type: 2}
   totalpickuptimes: 5
+  dialogue: {fileID: 11400000, guid: 2a9bea41fa773d340816e2cd24efcfe5, type: 2}
   replaceondepletion: 0
   replacemodel: {fileID: 0}
 --- !u!65 &1836641235
@@ -858,7 +771,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -142}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1885209446
 MonoBehaviour:
@@ -915,7 +828,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1182,8 +1095,9 @@ GameObject:
   - component: {fileID: 2927457988108169877}
   - component: {fileID: 4838873158482594588}
   - component: {fileID: 6795816938913708835}
+  - component: {fileID: 6795816938913708836}
   m_Layer: 0
-  m_Name: WitchTradeSystem
+  m_Name: Witch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,7 +1129,20 @@ MonoBehaviour:
   deselectedhotbarcolor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
   deselectedspritecolor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  dialogueHandler: {fileID: 0}
+  dialogueHandler: {fileID: 5835428615842048283}
+--- !u!114 &6795816938913708836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835428615842048283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4a465816493854588a281ff3e88ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToDisableText: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1228,6 +1155,3 @@ SceneRoots:
   - {fileID: 425305270}
   - {fileID: 627450547}
   - {fileID: 1663721817}
-  - {fileID: 177517214}
-  - {fileID: 1073529470}
-  - {fileID: 277151952}

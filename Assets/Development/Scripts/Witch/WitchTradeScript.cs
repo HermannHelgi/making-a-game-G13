@@ -17,7 +17,7 @@ public class WitchTradeScript : MonoBehaviour
     public Color deselectedspritecolor = Color.gray;
 
     [Header("Dialogue System variables")]
-    public WitchDialogueHandler dialogueHandler;
+    public GameObject dialogueHandler;
     
     // Private stuff, mostly references to other objects.
     private GameObject[] tradeslotgridchildren;
@@ -188,10 +188,13 @@ public class WitchTradeScript : MonoBehaviour
 
     public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh)   
     {
-        if (!dialogueHandler.isQueueEmpty())
+        if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
         {
-            dialogueHandler.intializeDialogue(subtitletextmesh, playerobject);
-            return;
+            bool check = dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject);
+            if (check)
+            {
+                return;
+            }
         }
 
         if (!currentlytrading)
