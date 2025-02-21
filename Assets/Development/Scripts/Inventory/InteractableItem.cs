@@ -5,6 +5,8 @@ public class InteractableItem : MonoBehaviour
     [Header("ItemScript variables")]
     public ItemScript pickupitem;
     public int totalpickuptimes = 1;
+    [Tooltip("If a DialogueScriptableObject is emplaced, it will send the given dialogue on pickup to the Dialogue Manager. Leave empty if no message should be sent.")]
+    public DialogueScriptableObject dialoguetriggerforwitch;
 
     [Header("Replacement model variables")]
     [Tooltip("This section is for when the InteractableItem script needs to be replaced. For example, a berry bush going from a model with berries, to one without. This change happens when totalpickuptimes reach zero.")]
@@ -28,6 +30,11 @@ public class InteractableItem : MonoBehaviour
             }
             else
             {
+                // If a dialogue is emplaced, it will send the dialogue to the manager (and therefore the witch) on pickup
+                if (dialoguetriggerforwitch != null)
+                {
+                    DialogueManager.instance.SetDialogueFlags(dialoguetriggerforwitch);
+                }
                 totalpickuptimes--;
                 
                 if (totalpickuptimes <= 0)
