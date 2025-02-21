@@ -40,7 +40,6 @@ public class WitchTradeScript : MonoBehaviour
     {
         if (currentlytrading)
         {
-            // Turns off the trade window under set condition
             if (Vector3.Distance(gameObject.transform.position, player.transform.position) > distancetoturnoffwitchoverlay)
             {
                 deinitializeTradeWindow();
