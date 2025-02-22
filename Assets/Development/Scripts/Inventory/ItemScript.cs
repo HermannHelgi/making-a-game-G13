@@ -9,4 +9,6 @@ public class ItemScript : ScriptableObject
     public GameObject model;
     public ItemScript[] craftingrecipe;
     public bool structureitem;
+    public bool consumable;
+    public float hungergain;
 }

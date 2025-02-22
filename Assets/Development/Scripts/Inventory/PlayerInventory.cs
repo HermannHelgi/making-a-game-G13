@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,14 +18,22 @@ public class PlayerInventory : MonoBehaviour
     
     [Header("3D model variables")]
     public GameObject spawnlocation;
-    
 
+    [Header("Consumable variables")]
+
+    [Tooltip("TextMeshPro element for the 'Press F to consume' text.")]
+    public GameObject consumableindicator;
+    public GameObject necessitybargameobject;
+
+    // Private stuffs
     private int currentindex = 0;
     private ItemScript[] hotbarinventory;
     private GameObject[] hotbargridchildren;
 
     void Start()
     {
+        consumableindicator.SetActive(false);
+
         //  Instantiate the arrays
         hotbarinventory = new ItemScript[maxhotbarsize];
         hotbargridchildren = new GameObject[maxhotbarsize];
@@ -53,6 +62,8 @@ public class PlayerInventory : MonoBehaviour
             hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
         }
 
+        consumableindicator.SetActive(false);
+
         // Edge checks
         if (index >= maxhotbarsize)
         {
@@ -67,6 +78,14 @@ public class PlayerInventory : MonoBehaviour
         currentindex = index;
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = selectedhotbarcolor;
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
+
+        if (hotbarinventory[currentindex] != null)
+        {
+            if (hotbarinventory[currentindex].consumable)
+            {
+                consumableindicator.SetActive(true);
+            }
+        }
 
         deleteHeldObjects();
 
@@ -107,6 +126,7 @@ public class PlayerInventory : MonoBehaviour
 
         hotbarinventory[index] = null; 
         hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = emptyhotbar;
+        consumableindicator.SetActive(false);
 
         if (currentindex == index)
         {
@@ -201,6 +221,11 @@ public class PlayerInventory : MonoBehaviour
         // ------------------ NEEDS TO BE MOVED TO PLAYER CONTROLS ---------------------
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            removeItemFromHotbar(currentindex);
+        }
+        if (consumableindicator.activeSelf && Input.GetKeyDown(KeyCode.F))
+        {
+            necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
             removeItemFromHotbar(currentindex);
         }
         // -----------------------------------------------------------------------------

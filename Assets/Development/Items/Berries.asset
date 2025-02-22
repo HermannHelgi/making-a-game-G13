@@ -17,3 +17,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
   model: {fileID: 0}
   craftingrecipe: []
+  structureitem: 0
+  consumable: 1
+  hungergain: 60

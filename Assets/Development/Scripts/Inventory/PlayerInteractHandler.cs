@@ -42,6 +42,7 @@ public class PlayerInteractHandler : MonoBehaviour
     {
         popuptext.gameObject.SetActive(false);
         inventoryfulltext.gameObject.SetActive(false);
+        subtitletextmesh.SetActive(false);
 
         if (playerinventoryobject == null)
         {
@@ -113,6 +114,5 @@ public class PlayerInteractHandler : MonoBehaviour
                 inventoryfulltext.gameObject.SetActive(false);
             }
         }
-
     }
 }
