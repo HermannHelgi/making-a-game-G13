@@ -30,9 +30,9 @@ public class WendigoRaycast : MonoBehaviour
         Vector3 direction = (player.transform.position - startPos).normalized;
         
         RaycastHit hit;
-        LayerMask mask = ~LayerMask.GetMask("Obstacle"); // Ignore obstacles
+        // LayerMask mask = ~LayerMask.GetMask("Obstacle"); // Ignore obstacles
 
-        if (Physics.Raycast(startPos, direction, out hit, maxDistance, mask))
+        if (Physics.Raycast(startPos, direction, out hit, maxDistance))
         {
             // Debug.DrawLine(startPos, hit.point, Color.red, 2f);
             

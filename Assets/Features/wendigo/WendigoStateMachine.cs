@@ -12,8 +12,10 @@ public class WendigoStateMachine : MonoBehaviour
     public wendigoRandomizedSpawner wendigoRandomizedSpawner;
     public PlayerLineofSight playerLineOfSight;
 
+    public GameObject Wendigo;
+
     private float idleTimer;
-    public float respawnTimer;
+
     
     public GameManager gameManager;
     private enum State
@@ -21,9 +23,11 @@ public class WendigoStateMachine : MonoBehaviour
         Resting,
         Teleporting,
         Idle,
+        Despawned,
         FollowingPlayer,
         LookingForPlayer,
         AttackPlayer
+
     }
 
     private State currentState;
@@ -47,6 +51,9 @@ public class WendigoStateMachine : MonoBehaviour
             case State.Idle:
                 Idle();
                 break;
+            case State.Despawned:
+                Despawned();
+                break;
             case State.FollowingPlayer:
                 FollowingPlayer();
                 break;
@@ -60,21 +67,47 @@ public class WendigoStateMachine : MonoBehaviour
     }
 
     private void Idle()
-    {
+    {   
+        Debug.Log("Idle");
+        idleTimer += Time.deltaTime;
+        // Idle state logic until seen by player then switch to teleport
+        if(playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
+        {   
+            if(idleTimer >= wendigoRandomizedSpawner.maxStareTime){
+                wendigoRandomizedSpawner.DespawnWendigo();
+                wendigoRandomizedSpawner.playerSightings++;
+                Debug.Log("Player has seen Wendigo " + wendigoRandomizedSpawner.playerSightings + " times");
+                currentState = State.Despawned;
+                idleTimer = 0;
+
+            }
         
-        respawnTimer += Time.deltaTime;
-        if(wendigoRandomizedSpawner.spawnInterval < respawnTimer)
-        {
-            
-            
-            wendigoRandomizedSpawner.DespawnWendigo();
-            
         }
+        else if(idleTimer > wendigoRandomizedSpawner.spawnTimer)
+        {   
+            wendigoRandomizedSpawner.DespawnWendigo();
+            idleTimer = 0;
+            currentState = State.Despawned;
+
+        }
+    }
+
+    private void Despawned()
+    {
+        Debug.Log("Despawned");
+        // Despawned state logic
+        idleTimer += Time.deltaTime;
+        playerLineOfSight.isLooking = false;
+        if(idleTimer > wendigoRandomizedSpawner.spawnTimer)
+        {
+            idleTimer = 0;
             currentState = State.Teleporting;
+        }
     }
 
     private void Resting()
-    {
+    {   
+        Debug.Log("Resting");
         if(gameManager.isNight)
         {
             currentState = State.Teleporting;
@@ -83,14 +116,17 @@ public class WendigoStateMachine : MonoBehaviour
 
     private void Teleporting()
     {   
+        
         // teleport once, start timer once it reaches 30 seconds teleport again
-
-        if(wendigoRandomizedSpawner.playerSightings < wendigoRandomizedSpawner.maxPlayerSightings && respawnTimer >= wendigoRandomizedSpawner.spawnInterval)
+        if(wendigoRandomizedSpawner.playerSightings < wendigoRandomizedSpawner.maxPlayerSightings)
         {   
+            Debug.Log("Teleporting");
             wendigoRandomizedSpawner.SpawnWendigo();
+            currentState = State.Idle;
         }
         else
-        {
+        {   
+            Debug.Log("going to follow");
             // currentState = State.FollowingPlayer;
         }
         // Teleporting state logic

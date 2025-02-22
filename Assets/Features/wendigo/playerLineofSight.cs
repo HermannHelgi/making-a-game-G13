@@ -12,6 +12,7 @@ public class PlayerLineofSight : MonoBehaviour
     public float audioIncreaseRate, audioDecreaseRate, audioMaxVolume;
 
     public bool isLooking;
+    
 
     public float fovThreshold = 0.75f; // 45 degrees
 
@@ -23,10 +24,12 @@ public class PlayerLineofSight : MonoBehaviour
     private GameObject wendigo;
 
     public float detectionDistance = 60f;
+    private MeshRenderer isWendigoVisible;
     
     void Start()
     {
         wendigo = GameObject.Find("Wendigo");
+        isWendigoVisible = wendigo.GetComponent<MeshRenderer>();
 
         if(staticSound == null)
         {
@@ -65,16 +68,20 @@ public class PlayerLineofSight : MonoBehaviour
             return;
         }
         bool wasLooking = isLooking;
-        isLooking = IsLookingAtWendigo(wendigo.transform.position);
-
-        if(isLooking && !wasLooking)
+        // isLooking = IsLookingAtWendigo(wendigo.transform.position);
+        if(isWendigoVisible.enabled)
         {   
-            
-            Debug.Log("Player is looking at Wendigo");
-        }
-        else if(!isLooking && wasLooking)
-        {
-            Debug.Log("Player is not looking at Wendigo");
+            Debug.Log("Wendigo is visible");
+            isLooking = IsLookingAtWendigo(wendigo.transform.position);
+            if(isLooking && !wasLooking)
+            {   
+                
+                Debug.Log("Player is looking at Wendigo");
+            }
+            else if(!isLooking && wasLooking)
+            {
+                Debug.Log("Player is not looking at Wendigo");
+            }
         }
 
         AdjustAudio();
@@ -84,7 +91,7 @@ public class PlayerLineofSight : MonoBehaviour
     public bool IsLookingAtWendigo(Vector3 wendigoPosition)
     {
         
-        Vector3 directionToWendigo = (wendigo.transform.position - playerCamera.transform.position).normalized;
+        Vector3 directionToWendigo = (wendigoPosition - playerCamera.transform.position).normalized;
         float dot = Vector3.Dot(playerCamera.transform.forward, directionToWendigo);
 
         if (dot < fovThreshold)
@@ -98,13 +105,44 @@ public class PlayerLineofSight : MonoBehaviour
             // Debug.DrawLine(cameraForward, hit.point, Color.red, 2f);
             if (hit.transform.CompareTag("Wendigo"))
             {
-                return true;
+                if(isWendigoVisible.enabled)
+                {
+                    return true;
+                }
+                return false;
             }
         return false;
         }
         return false;
 
     }
+
+    public bool IsPositionVisibleToCamera(Vector3 position) 
+    {
+        Vector3 direction = (position - playerCamera.transform.position).normalized;
+        float dot = Vector3.Dot(playerCamera.transform.forward, direction);
+
+        // Check if within FOV
+        if (dot < fovThreshold)
+        {
+            return false;
+        }
+
+        // Check if there is no obstruction
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, direction, out hit, detectionDistance))
+        {
+            // If the ray hits 'position' or hits very close to it without hitting other geometry first
+            float distanceToPosition = Vector3.Distance(playerCamera.transform.position, position);
+            if (hit.distance < distanceToPosition - 1f) // Some small offset
+            {
+                return true; // Something else is in the way
+            }
+            
+        }
+        return false;
+    }
+
     void AdjustAudio()
     {
         if (isLooking)
