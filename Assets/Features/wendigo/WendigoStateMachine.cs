@@ -17,7 +17,7 @@ public class WendigoStateMachine : MonoBehaviour
     private float idleTimer;
 
     
-    public GameManager gameManager;
+    private GameManager gameManager = GameManager.instance;
     private enum State
     {
         Resting,

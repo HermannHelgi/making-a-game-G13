@@ -10,8 +10,8 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 {
     public Transform player;
     public GameObject wendigoPrefab;
-    public float spawnRadius = 50f;
-    // public float minSpawnDistance = 10f;
+    public float maxSpawnDistance = 50f;
+    public float minSpawnDistance = 30f;
     public float maxStareTime = 10f;
     public LayerMask groundLayer;
     public PlayerLineofSight playerLineOfSight;
@@ -77,15 +77,29 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         int attempts = 0;
         while (attempts < 15)
         {
-            spawnPosition = player.position + Random.insideUnitSphere * spawnRadius;
+            spawnPosition = player.position + Random.insideUnitSphere * maxSpawnDistance;
             // if (playerLineOfSight.IsPositionVisibleToPlayer(spawnPosition))
+            float distance = Vector3.Distance(spawnPosition, player.position);
+            Vector3 direction = Random.onUnitSphere;
+            spawnPosition = player.position + direction * distance;
+            if (distance < minSpawnDistance)
+            {
+                attempts++;
+                continue;
+            }
+        // if(Vector3.Distance(spawnPosition, player.position) < minSpawnDistance)
+        // {
+        //     attempts++;
+        //     continue;
+        // }
+
             if(HasLineOfSight(wendigoPrefab.transform.position, spawnPosition, 60f))
             {
                 attempts++;
                 continue;
             }
             RaycastHit hit;
-            if (Physics.Raycast(spawnPosition + Vector3.up * 100, Vector3.down, out hit, 200, groundLayer))
+            if (Physics.Raycast(spawnPosition + Vector3.up * 200, Vector3.down, out hit, 400, groundLayer))
             {
                 spawnPosition = hit.point;
                 spawnPosition.y = hit.point.y + 2;
