@@ -136,6 +136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -215,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -281,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 59720589}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trees1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -439,6 +451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -507,6 +523,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -696,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -764,6 +788,10 @@ PrefabInstance:
     - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_Name
       value: Tree_01_+_snow (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
@@ -1066,6 +1094,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1134,6 +1166,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -1213,6 +1249,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -1339,6 +1379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9999398
@@ -1418,6 +1462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1487,6 +1535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1555,6 +1607,10 @@ PrefabInstance:
     - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_Name
       value: Tree_01_+_snow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
@@ -1733,6 +1789,10 @@ PrefabInstance:
     - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_Name
       value: Tree_01_+_snow (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
@@ -2026,6 +2086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2100,6 +2164,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2168,6 +2236,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -2243,6 +2315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2311,6 +2387,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -2412,7 +2492,6 @@ MonoBehaviour:
   wendigoRandomizedSpawner: {fileID: 807962666}
   playerLineOfSight: {fileID: 1759952840}
   Wendigo: {fileID: 807962663}
-  gameManager: {fileID: 1583548129}
 --- !u!114 &807962665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,8 +2507,15 @@ MonoBehaviour:
   player: {fileID: 1759952839}
   wendigoTransform: {fileID: 807962670}
   detected: 0
-  maxDistance: 70
+  radius: 0
+  fovAngle: 60
   offset: {x: 0, y: 1.5, z: 0}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &807962666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2455,7 +2541,6 @@ MonoBehaviour:
   playerSightings: 0
   maxPlayerSightings: 3
   despawnPoint: {fileID: 2077315523}
-  wendigoRaycast: {fileID: 807962665}
 --- !u!136 &807962667
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2502,7 +2587,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2603,6 +2688,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -2792,6 +2881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2860,6 +2953,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -2930,6 +3027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2999,6 +3100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.99994
@@ -3067,6 +3172,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -3142,6 +3251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3210,6 +3323,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -3280,6 +3397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3348,6 +3469,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -3418,6 +3543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3486,6 +3615,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -3571,6 +3704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3639,6 +3776,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -3928,6 +4069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4001,6 +4146,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -4096,6 +4245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4164,6 +4317,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -4259,6 +4416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4321,17 +4482,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
   m_PrefabInstance: {fileID: 2110177680}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1583548129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1890441454344188239, guid: 2cb1b0cb135d63742913447ca7b2db5d, type: 3}
-  m_PrefabInstance: {fileID: 1776351403}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde029afad30b3b41803873b8f849f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1590967279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4343,6 +4493,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -4413,6 +4567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4481,6 +4639,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -4556,6 +4718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4624,6 +4790,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -4893,6 +5063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4977,6 +5151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_02_+_snow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5051,6 +5229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5119,6 +5301,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -5193,6 +5379,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
@@ -5406,6 +5596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5475,6 +5669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5543,6 +5741,10 @@ PrefabInstance:
     - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_Name
       value: Tree_02_+_snow (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229509114531082, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4730150905966382, guid: 8c5684a62eaa8974c8922ecc5c5ea0fa, type: 3}
       propertyPath: m_LocalScale.x
@@ -5740,6 +5942,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4135013735270702863, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -5763,6 +5973,10 @@ PrefabInstance:
     - target: {fileID: 5420857361349278248, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: cursorInputForLook
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105023270639334115, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: Grounded
@@ -5795,6 +6009,10 @@ PrefabInstance:
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Camera
@@ -5871,6 +6089,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_05_+_snow (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5940,6 +6162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01_+_snow (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1211137792361766, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4269362182392598, guid: a868e1e041073b849b372f327f72d0b7, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -6008,6 +6234,10 @@ PrefabInstance:
     - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_Name
       value: Tree_05_+_snow (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633530035272780, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4542277653025422, guid: c60724c53b0f0494ab4a70ba0ffd2184, type: 3}
       propertyPath: m_LocalScale.x

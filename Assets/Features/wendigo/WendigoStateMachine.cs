@@ -17,29 +17,42 @@ public class WendigoStateMachine : MonoBehaviour
     private float idleTimer;
 
     
-    private GameManager gameManager = GameManager.instance;
+    private GameManager gameManager;
     private enum State
     {
         Resting,
         Teleporting,
         Idle,
         Despawned,
+        
         FollowingPlayer,
         LookingForPlayer,
         AttackPlayer
 
     }
 
+    
+
     private State currentState;
 
     void Start()
     {
         currentState = State.Resting;
+        if(gameManager == null)
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
 
     }
 
     void Update()
-    {
+    {   
+
+        if (!gameManager.isNight && currentState != State.Resting)
+        {
+            currentState = State.Resting;
+        }
+
         switch (currentState)
         {
             case State.Resting:
@@ -127,7 +140,8 @@ public class WendigoStateMachine : MonoBehaviour
         else
         {   
             Debug.Log("going to follow");
-            // currentState = State.FollowingPlayer;
+            wendigoRandomizedSpawner.SpawnWendigo();
+            currentState = State.FollowingPlayer;
         }
         // Teleporting state logic
            
@@ -135,7 +149,11 @@ public class WendigoStateMachine : MonoBehaviour
     }
 
     private void FollowingPlayer()
-    {
+    {   
+        if(wendigoRaycasts.detected)
+        {
+            currentState = State.AttackPlayer;
+        }
         // FollowingPlayer state logic
     }
 

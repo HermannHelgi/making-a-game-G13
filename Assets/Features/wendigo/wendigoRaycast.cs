@@ -10,45 +10,66 @@ public class WendigoRaycast : MonoBehaviour
     public GameObject player;
     public Transform wendigoTransform;
     public bool detected;
-    public float maxDistance = 70f;
+    public float radius; 
+    [Range(0, 360)]
+    public float fovAngle = 60f;
     public Vector3 offset = new Vector3(0, 1.5f, 0); // Offset to avoid self-detection
+    public LayerMask obstacleMask;
+    public LayerMask playerMask;
 
     void Start()
     {
         if (wendigoTransform == null)
             wendigoTransform = transform;
+        StartCoroutine(FindPlayer());
     }
 
-    void Update()
+    private IEnumerator FindPlayer()
     {
-        if (player == null) 
-        {
-            return;
-        }
-
-        Vector3 startPos = wendigoTransform.position + offset;
-        Vector3 direction = (player.transform.position - startPos).normalized;
-        
-        RaycastHit hit;
-        // LayerMask mask = ~LayerMask.GetMask("Obstacle"); // Ignore obstacles
-
-        if (Physics.Raycast(startPos, direction, out hit, maxDistance))
-        {
-            // Debug.DrawLine(startPos, hit.point, Color.red, 2f);
-            
-            if (hit.transform.CompareTag("Player"))
+            WaitForSeconds wait = new WaitForSeconds(0.2f);
+            while(true)
             {
-                detected = true;
-                // Debug.Log("Player Detected");
+                yield return wait;
+                ScanForPlayer();
+            }
+    }
+
+    private void ScanForPlayer()
+    {
+        Collider[] playerInRadius = Physics.OverlapSphere(wendigoTransform.position, radius, playerMask);
+        if (playerInRadius.Length > 0)
+        {
+            Transform target = playerInRadius[0].transform;
+            Vector3 directionToPlayer = (target.position - wendigoTransform.position).normalized;
+
+            if (Vector3.Angle(wendigoTransform.forward, directionToPlayer) < fovAngle / 2)
+            {
+
+                float distanceToPlayer = Vector3.Distance(wendigoTransform.position, target.position);
+
+                if (!Physics.Raycast(wendigoTransform.position, directionToPlayer, distanceToPlayer, obstacleMask))
+                {
+                    detected = true;
+                }
+                else
+                {
+                    detected = false;
+                }
 
             }
             else
             {
                 detected = false;
-                // Debug.Log("Player Not Detected");
             }
         }
+        else if (detected)
+        {
+            detected = false;
+        }   
+    }
 
-    
+    void Update()
+    {
+
     }
 }

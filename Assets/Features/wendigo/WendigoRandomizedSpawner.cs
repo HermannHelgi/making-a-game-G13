@@ -22,8 +22,6 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     public Transform despawnPoint;
 
-    public WendigoRaycast wendigoRaycast;
-
     private MeshRenderer meshRenderer;
 
 
@@ -68,7 +66,6 @@ public class wendigoRandomizedSpawner : MonoBehaviour
             }        
     }
 
-    //spawn outside of player's line of sight and near a gameobject with tree tag
     private Vector3 FindValidSpawnPosition()
     {   
         if (player == null) return Vector3.zero;
@@ -78,20 +75,15 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         while (attempts < 15)
         {
             spawnPosition = player.position + Random.insideUnitSphere * maxSpawnDistance;
-            // if (playerLineOfSight.IsPositionVisibleToPlayer(spawnPosition))
             float distance = Vector3.Distance(spawnPosition, player.position);
             Vector3 direction = Random.onUnitSphere;
             spawnPosition = player.position + direction * distance;
+
             if (distance < minSpawnDistance)
             {
                 attempts++;
                 continue;
             }
-        // if(Vector3.Distance(spawnPosition, player.position) < minSpawnDistance)
-        // {
-        //     attempts++;
-        //     continue;
-        // }
 
             if(HasLineOfSight(wendigoPrefab.transform.position, spawnPosition, 60f))
             {
@@ -120,23 +112,6 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     }
     return false;
 }
-
-    // private bool IsPositionVisibleToPlayer(Vector3 spawnPosition)
-    // {
-    //     // if (playerLineOfSight == null) 
-    //     // {
-    //     //     // Debug.Log("Player Line of Sight is null");	
-    //     //     return false;
-    //     // }
-
-                
-    //     //     ispositionvisible = playerLineOfSight.IsLookingAtWendigo(spawnPosition);
-    //     //     return ispositionvisible;
-
-        
-
-    // }
-
 
 
 }
