@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: TORCH
   index: 11
-  icon: {fileID: 21300000, guid: 62651c60977519145aeb28cf3effc903, type: 3}
+  icon: {fileID: 21300000, guid: 7b054aa7b83081e4c98cac6c52368a80, type: 3}
   model: {fileID: 0}
   craftingrecipe:
   - {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
   - {fileID: 11400000, guid: 4aa806401e7e3ac4cbf5ed6a57e7ea36, type: 2}
+  structureitem: 0

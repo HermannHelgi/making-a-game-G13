@@ -15,7 +15,7 @@ MonoBehaviour:
   itemname: CAMPFIRE
   index: 12
   icon: {fileID: 21300000, guid: 6bcbcdeadd4583b4294fd2ab73d7f14a, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 4723724190695760756, guid: 13d908788667d3a44919c02293d39417, type: 3}
   craftingrecipe:
   - {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
   - {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
