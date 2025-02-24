@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(WendigoFieldofViewEditor))]
-public class WendigoFieldofViewEditor : Editor
+[CustomEditor(typeof(WendigoRaycast))]
+public class WendigoRaycastEdtiro : Editor
 {
     private void OnSceneGUI()
     {

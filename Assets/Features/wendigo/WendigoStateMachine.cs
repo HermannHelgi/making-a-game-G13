@@ -11,6 +11,7 @@ public class WendigoStateMachine : MonoBehaviour
     public WendigoRaycast wendigoRaycasts;
     public wendigoRandomizedSpawner wendigoRandomizedSpawner;
     public PlayerLineofSight playerLineOfSight;
+    public WendigoFollowPlayer wendigoFollowPlayer;
 
     public GameObject Wendigo;
 
@@ -24,7 +25,7 @@ public class WendigoStateMachine : MonoBehaviour
         Teleporting,
         Idle,
         Despawned,
-        
+        SpawnBehindPlayer,
         FollowingPlayer,
         LookingForPlayer,
         AttackPlayer
@@ -67,6 +68,9 @@ public class WendigoStateMachine : MonoBehaviour
             case State.Despawned:
                 Despawned();
                 break;
+            case State.SpawnBehindPlayer:
+                SpawnBehindPlayer();
+                break;
             case State.FollowingPlayer:
                 FollowingPlayer();
                 break;
@@ -81,8 +85,12 @@ public class WendigoStateMachine : MonoBehaviour
 
     private void Idle()
     {   
-        Debug.Log("Idle");
+        // Debug.Log("Idle");
         idleTimer += Time.deltaTime;
+        if(wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
+        {
+            currentState = State.SpawnBehindPlayer;
+        }
         // Idle state logic until seen by player then switch to teleport
         if(playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
         {   
@@ -107,7 +115,7 @@ public class WendigoStateMachine : MonoBehaviour
 
     private void Despawned()
     {
-        Debug.Log("Despawned");
+        // Debug.Log("Despawned");
         // Despawned state logic
         idleTimer += Time.deltaTime;
         playerLineOfSight.isLooking = false;
@@ -120,7 +128,7 @@ public class WendigoStateMachine : MonoBehaviour
 
     private void Resting()
     {   
-        Debug.Log("Resting");
+        // Debug.Log("Resting");
         if(gameManager.isNight)
         {
             currentState = State.Teleporting;
@@ -129,31 +137,43 @@ public class WendigoStateMachine : MonoBehaviour
 
     private void Teleporting()
     {   
-        
-        // teleport once, start timer once it reaches 30 seconds teleport again
-        if(wendigoRandomizedSpawner.playerSightings < wendigoRandomizedSpawner.maxPlayerSightings)
-        {   
-            Debug.Log("Teleporting");
+
+ 
+          
+            // Debug.Log("Teleporting");
             wendigoRandomizedSpawner.SpawnWendigo();
             currentState = State.Idle;
-        }
-        else
-        {   
-            Debug.Log("going to follow");
-            wendigoRandomizedSpawner.SpawnWendigo();
-            currentState = State.FollowingPlayer;
-        }
+        
+ 
         // Teleporting state logic
            
 
     }
 
+    private void SpawnBehindPlayer()
+    {   
+        Debug.Log("SpawnBehindPlayer");
+        wendigoFollowPlayer.SpawnBehindPlayer();
+        currentState = State.FollowingPlayer;
+        // SpawnBehindPlayer state logic
+    }
+
     private void FollowingPlayer()
     {   
-        if(wendigoRaycasts.detected)
+        Debug.Log("FollowingPlayer");
+        wendigoFollowPlayer.FollowPlayer();
+        // Follow player until player is out of sight
+        if(wendigoFollowPlayer.attackPlayer)
         {
+            Debug.Log("Attack Player");
             currentState = State.AttackPlayer;
         }
+        else if(wendigoFollowPlayer.lostPlayer)
+        {
+            Debug.Log("Lost Player");
+            currentState = State.LookingForPlayer;
+        }
+
         // FollowingPlayer state logic
     }
 
@@ -169,17 +189,6 @@ public class WendigoStateMachine : MonoBehaviour
     }
 
 
-    private bool IsPlayerVisible()
-    {
-        // Check if player is visible
-        return false;
-    }
-
-    private bool IsPlayerInRange()
-    {
-        // Check if player is in range
-        return false;
-    }
 
 
 
