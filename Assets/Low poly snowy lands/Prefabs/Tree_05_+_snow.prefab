@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4542277653025422}
   - component: {fileID: 33202987452669320}
   - component: {fileID: 23216408215526600}
-  - component: {fileID: 64577045008892028}
+  - component: {fileID: 5524743222424353278}
   m_Layer: 0
   m_Name: Tree_05_+_snow
   m_TagString: Tree
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64577045008892028
+--- !u!64 &5524743222424353278
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
