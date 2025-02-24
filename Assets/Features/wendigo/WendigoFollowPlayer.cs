@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class WendigoFollowPlayer : MonoBehaviour
 {
+    public AudioSource staticSound;
 
     public WendigoRaycast wendigoRaycast;
     public Transform wendigoTransform;
@@ -16,7 +17,7 @@ public class WendigoFollowPlayer : MonoBehaviour
     public float speedMultiplier = 1.5f;
     public float maxSpeed = 10f;
 
-    public bool lostPlayer = false; 
+    public bool lostPlayer = false;
     public bool attackPlayer = false;
 
     NavMeshAgent agent;
@@ -25,24 +26,25 @@ public class WendigoFollowPlayer : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
-        
+
         agent.stoppingDistance = caughtDistance;
     }
 
     private void Update()
     {
+        staticSound.volume = 30 - agent.remainingDistance;
 
     }
 
     public void FollowPlayer()
-    {   
+    {
         // if(agent.isOnNavMesh == false)
         // {
         //     agent.enabled = true;
         // }
-        if(wendigoRaycast.detected)
-        {   
-            if(!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (wendigoRaycast.detected)
+        {
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             {
                 attackPlayer = true;
             }
@@ -53,10 +55,10 @@ public class WendigoFollowPlayer : MonoBehaviour
 
         }
         else if (!wendigoRaycast.detected)
-        {   
+        {
             Debug.Log("Lost Player");
             float distToLastKnown = Vector3.Distance(wendigoRaycast.lastKnownPosition, wendigoTransform.position);
-            if(distToLastKnown <= agent.stoppingDistance)
+            if (distToLastKnown <= agent.stoppingDistance)
             {
                 lostPlayer = true;
             }
@@ -73,22 +75,47 @@ public class WendigoFollowPlayer : MonoBehaviour
     }
 
     public void SpawnBehindPlayer()
-    {   
+    {
         float sampleRadius = 5f;
         Vector3 behindPlayer = wendigoRaycast.player.transform.position - wendigoRaycast.player.transform.forward * 50f;
-
-        if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))     
+        PlayChaseMusic();
+        if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
             transform.position = hit.position + Vector3.up * 2f;
             transform.forward = wendigoRaycast.player.transform.forward;
             agent.Warp(transform.position);
-        }   
+        }
     }
 
-    private void OnDrawGizmos()
+
+    private void PlayChaseMusic()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(wendigoTransform.position, wendigoRaycast.player.transform.position);
+        if (!lostPlayer)
+        {
+            staticSound.Play();
+        }
+        else
+        {
+            staticSound.Stop();
+        }
+
+
+    }
+
+    void PlayMusic()
+    {
+
+        staticSound.Play();
+
+
+    }
+
+    void StopMusic()
+    {
+
+        staticSound.Stop();
+
+
     }
 
 }
