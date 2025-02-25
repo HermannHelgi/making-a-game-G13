@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 44ec12e2280651948936770a29711e8e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileMatressWithItemLogic.prefab
+  uploadId: 690848

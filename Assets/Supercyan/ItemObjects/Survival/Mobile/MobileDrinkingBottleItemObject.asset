@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c484ab7f65f4a449a412f4005542d3, type: 3}
+  m_Name: MobileDrinkingBottleItemObject
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 489937548842179602, guid: 75c48b31616b354439dc75b4f86ecf9a, type: 3}

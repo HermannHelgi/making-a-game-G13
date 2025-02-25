@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5ab4d227c6fe10d41b150a11eb197e24
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileBinocularsWithItemLogic.prefab
+  uploadId: 690848

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9c9551d8970b2e14d80a13dc09dc6e6b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileSardineCanClosedWithItemLogic.prefab
+  uploadId: 690848

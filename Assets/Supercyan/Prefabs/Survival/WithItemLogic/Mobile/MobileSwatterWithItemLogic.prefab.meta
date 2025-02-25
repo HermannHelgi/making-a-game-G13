@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f288e530f241a5149872a94078a74d10
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileSwatterWithItemLogic.prefab
+  uploadId: 690848

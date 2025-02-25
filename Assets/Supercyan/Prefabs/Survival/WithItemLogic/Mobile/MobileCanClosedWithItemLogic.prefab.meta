@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d9fd6a3fd52ba9748bc3b58d52095e99
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileCanClosedWithItemLogic.prefab
+  uploadId: 690848

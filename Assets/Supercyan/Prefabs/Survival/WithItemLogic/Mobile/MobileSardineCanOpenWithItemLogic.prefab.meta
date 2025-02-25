@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4413ec5d6a1c1f54b900120348a9dcd1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileSardineCanOpenWithItemLogic.prefab
+  uploadId: 690848

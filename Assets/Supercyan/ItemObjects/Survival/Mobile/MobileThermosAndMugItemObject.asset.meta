@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8f79ebac54eaae2439bd66e8bed8a413
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemObjects/Survival/Mobile/MobileThermosAndMugItemObject.asset
+  uploadId: 690848

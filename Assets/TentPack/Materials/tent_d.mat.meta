@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 258e8e606dd978540af1aa5f7200cf0c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 19370
+  packageName: Tent Pack
+  packageVersion: v1
+  assetPath: Assets/TentPack/Materials/tent_d.mat
+  uploadId: 8439

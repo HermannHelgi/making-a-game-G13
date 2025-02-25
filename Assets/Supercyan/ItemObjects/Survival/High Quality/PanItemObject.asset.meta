@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 45f2d552e0132ca48b5eceda67180bfa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemObjects/Survival/High Quality/PanItemObject.asset
+  uploadId: 690848

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2231c6b16c1e05c46b44566dc041fc9b
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - Ramp: {fileID: 2800000, guid: 55d9f997de358a34a85e48ef6b49e8f7, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Shaders/SharedShaders/Legacy/CelShader.shader
+  uploadId: 690848
