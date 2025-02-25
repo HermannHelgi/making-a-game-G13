@@ -1,3 +1,4 @@
+using StarterAssets;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerDeathHandler : MonoBehaviour
     public GameObject uiplayercanvas;
     public GameObject witchtradecanvas;
     public TextMeshProUGUI deathmessagetextmesh;
+    public GameObject playercontroller;
 
 
     private bool playerhasdied = false;
@@ -17,6 +19,7 @@ public class PlayerDeathHandler : MonoBehaviour
         // Makes the player "dead", aka freezes time and turns on the canvas
         if (!playerhasdied)
         {
+            playercontroller.GetComponent<FirstPersonController>().freezecamera = true;
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -32,6 +35,7 @@ public class PlayerDeathHandler : MonoBehaviour
     public void resetForNewGameScene()
     // Resets timescale to load new scene.
     {
+        playercontroller.GetComponent<FirstPersonController>().freezecamera = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
