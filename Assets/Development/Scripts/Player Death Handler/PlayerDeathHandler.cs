@@ -14,6 +14,7 @@ public class PlayerDeathHandler : MonoBehaviour
     private bool playerhasdied = false;
     public void die(string deathmessage)
     {
+        // Makes the player "dead", aka freezes time and turns on the canvas
         if (!playerhasdied)
         {
             Time.timeScale = 0;
@@ -29,6 +30,7 @@ public class PlayerDeathHandler : MonoBehaviour
     }
 
     public void resetForNewGameScene()
+    // Resets timescale to load new scene.
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;

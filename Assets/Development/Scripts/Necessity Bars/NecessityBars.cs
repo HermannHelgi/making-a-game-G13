@@ -20,6 +20,12 @@ public class NecessityBars : MonoBehaviour
     public float frostbiteoverheaddisplaycutoff;
     public Image frostbiteoverhead;
 
+    [Header("Player Death Variables")]
+
+    public GameObject playerdeathhandler;
+    public string starvationmessage;
+    public string frostbitemessage;
+
 
     // Private
     private float currenthunger;
@@ -43,16 +49,23 @@ public class NecessityBars : MonoBehaviour
         starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
         frostbiteoverhead.color = new Color(1, 1, 1, (1 - currenttemperature / frostbiteoverheaddisplaycutoff));
 
+        // Updating bars on screen
         hungermeter.fillAmount = hungerpercent;
         temperaturemeter.fillAmount = temperaturepercent;
 
-        if (currenthunger <= 0 || currenttemperature <= 0)
+        if (currenthunger <= 0)
         {
-            // TODO: Kill player
+            playerdeathhandler.GetComponent<PlayerDeathHandler>().die(starvationmessage);
+        }
+
+        if (currenttemperature <= 0)
+        {
+            playerdeathhandler.GetComponent<PlayerDeathHandler>().die(frostbitemessage);
         }
     }
 
     public void increaseHunger(float hungerincrease)
+    // Can be called to increase hunger, used by foods.
     {
         float newhunger = hungerincrease + currenthunger;
 
@@ -67,6 +80,7 @@ public class NecessityBars : MonoBehaviour
     }
 
     public void increaseTemperature(float temperatureincrease)
+    // Can be called to increase temperature, used by heat sources.
     {
         float newtemperature = temperatureincrease + currenttemperature;
 
