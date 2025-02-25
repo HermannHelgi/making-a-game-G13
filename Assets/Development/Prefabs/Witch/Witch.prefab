@@ -81,6 +81,8 @@ MonoBehaviour:
   campfirereference: {fileID: 11400000, guid: 8e47d33004faa674ca403e02cadd994f, type: 2}
   chest: {fileID: 0}
   chestreference: {fileID: 11400000, guid: 4c77d007ee85f7e4d85c877cd94f6fe9, type: 2}
+  buttontocraftstring: Press "Enter" to craft
+  itemcannotbecraftedstring: This item can not be crafted again
   selectedhotbarcolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
   deselectedhotbarcolor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}

@@ -18,6 +18,11 @@ public class WitchTradeScript : MonoBehaviour
     [Tooltip("The ItemScript of the chest.")]
     public ItemScript chestreference;
 
+    [Tooltip("The string which should be displayed on whether an item can be crafted or not.")]
+    public string buttontocraftstring;
+    [Tooltip("The string which should be displayed when an item can no longer be crafted.")]
+    public string itemcannotbecraftedstring;
+
     [Header("Sprite variables")]
     public Color selectedhotbarcolor = Color.white;
     public Color deselectedhotbarcolor = Color.gray;
@@ -41,6 +46,7 @@ public class WitchTradeScript : MonoBehaviour
     private TextMeshProUGUI itemnametextmesh;
     private TextMeshProUGUI ingredientstextmesh;
     private bool currentlytrading = false;
+    private TextMeshProUGUI crafttextmesh;
 
     void Start()
     {
@@ -144,6 +150,7 @@ public class WitchTradeScript : MonoBehaviour
         if (craftableItems[currentindex].onetimecraft)
         {
             tradeslotgridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
+            crafttextmesh.text = itemcannotbecraftedstring;
         }
 
         if (craftableItems[currentindex] == campfirereference)
@@ -190,6 +197,15 @@ public class WitchTradeScript : MonoBehaviour
         // Modifying update text
         itemnametextmesh.text = craftableItems[index].name;
         ingredientstextmesh.text = "";
+
+        if (craftableItems[currentindex].onetimecraft && hasbeencrafted[currentindex])
+        {
+            crafttextmesh.text = itemcannotbecraftedstring;
+        }
+        else
+        {
+            crafttextmesh.text = buttontocraftstring;
+        }
 
         for (int i = 0; i < craftableItems[currentindex].craftingrecipe.Length; i++)
         {
@@ -245,7 +261,7 @@ public class WitchTradeScript : MonoBehaviour
         return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
     }
 
-    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh)   
+    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext)   
     // Starts the trade window, if the witch has dialogue, does that first.
     {
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
@@ -269,6 +285,7 @@ public class WitchTradeScript : MonoBehaviour
             playerinventoryscript.deleteHeldObjects();
             currentlytrading = true;
             currentindex = 0;
+            crafttextmesh = crafttext;
             spawnCraftingRecipeBoxes();
             selectCraftingSlot(currentindex);
         }

@@ -2364,6 +2364,17 @@ PrefabInstance:
       addedObject: {fileID: 6238930546321210338}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+--- !u!114 &186561293635040304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1591433394644604804, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+  m_PrefabInstance: {fileID: 1478065507755647924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &317712616228103239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1219236690433394675, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
@@ -2480,6 +2491,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8709562959268111755}
     - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: raycastlength
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: inventoryoverlay
       value: 
       objectReference: {fileID: 2773670256373526545}
@@ -2491,6 +2506,10 @@ PrefabInstance:
       propertyPath: inventoryfulltext
       value: 
       objectReference: {fileID: 3991975613888055429}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: pressentertocraft
+      value: 
+      objectReference: {fileID: 186561293635040304}
     - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: witchtradeoverlay
       value: 

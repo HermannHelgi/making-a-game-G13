@@ -38,6 +38,8 @@ public class PlayerInteractHandler : MonoBehaviour
     public TextMeshProUGUI ingredientslisttextmesh;
     [Tooltip("The text mesh component within the InventoryCanvas which should be updated on new dialogue.")]
     public GameObject subtitletextmesh;
+    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated when switching between craftable items.")]
+    public TextMeshProUGUI pressentertocraft;
     [Tooltip("The text that should be displayed on being able to bargain with the witch in the wall.")]
     public string bargainpopupstring;
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
@@ -118,7 +120,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 if (witchscript != null)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
-                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh);
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft);
                 }
             }
         }
