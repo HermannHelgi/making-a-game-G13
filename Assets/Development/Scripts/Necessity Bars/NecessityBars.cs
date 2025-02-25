@@ -43,7 +43,16 @@ public class NecessityBars : MonoBehaviour
     {
         // Updating necessity bars
         currenthunger -= hungerdrainrate * Time.deltaTime;
-        currenttemperature -= temperaturedrainrate * Time.deltaTime;
+
+        // I do a check here as the campfire simply makes the drain rate negative, so to make sure the player doesn't "go over" the max, this edge check is needed.
+        if (currenttemperature - temperaturedrainrate * Time.deltaTime > maxtemperature)
+        {
+            currenttemperature = maxtemperature;
+        }
+        else
+        {
+            currenttemperature -= temperaturedrainrate * Time.deltaTime;
+        }
         
         // I do this calculation constantly to avoid more complex logic. 
         starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
