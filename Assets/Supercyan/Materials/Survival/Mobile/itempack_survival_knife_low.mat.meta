@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f31f9310b722bc644be7b8e05af99979
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/Mobile/itempack_survival_knife_low.mat
+  uploadId: 690848

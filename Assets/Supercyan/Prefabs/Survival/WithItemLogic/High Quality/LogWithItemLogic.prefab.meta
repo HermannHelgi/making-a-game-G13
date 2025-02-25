@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 264dd1fd9ea32694690d8c9f7638151b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/High Quality/LogWithItemLogic.prefab
+  uploadId: 690848

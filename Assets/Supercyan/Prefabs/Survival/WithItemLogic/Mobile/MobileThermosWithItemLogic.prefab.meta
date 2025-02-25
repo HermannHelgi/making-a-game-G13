@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d3b15beee9737db4b9b96818074b6e51
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileThermosWithItemLogic.prefab
+  uploadId: 690848

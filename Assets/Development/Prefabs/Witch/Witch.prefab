@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5518599721104813768}
-  - component: {fileID: 2349975780780917408}
-  - component: {fileID: 6941427713599633046}
   - component: {fileID: 3001175348225684546}
   - component: {fileID: 5478888138857818218}
   - component: {fileID: 8902890342277698575}
@@ -31,64 +29,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.354, y: 6.44, z: -3.439}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9453299, y: 3.8762074, z: 2.8643541}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2349975780780917408
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306468484199113661}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6941427713599633046
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306468484199113661}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3001175348225684546
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c3670e50dca2a41a5d4ba36034a428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distancetoturnoffwitchoverlay: 5
+  distancetoturnoffwitchoverlay: 10
   craftableItems:
   - {fileID: 11400000, guid: 4023cf24c009ffe45848721d7ce3454c, type: 2}
   - {fileID: 11400000, guid: 8e47d33004faa674ca403e02cadd994f, type: 2}
@@ -132,10 +77,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf63ff3a163a0bb43830703d2a6492dd, type: 2}
   - {fileID: 11400000, guid: e0b3fd96fa511b7469b759805e1a91ae, type: 2}
   tradeslotprefab: {fileID: 366402262393867716, guid: 995790105ab49ac4dab563cfe9a8096e, type: 3}
+  campfire: {fileID: 0}
+  campfirereference: {fileID: 11400000, guid: 8e47d33004faa674ca403e02cadd994f, type: 2}
+  chest: {fileID: 0}
+  chestreference: {fileID: 11400000, guid: 4c77d007ee85f7e4d85c877cd94f6fe9, type: 2}
+  buttontocraftstring: Press "Enter" to craft
+  itemcannotbecraftedstring: This item can not be crafted again
   selectedhotbarcolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
   deselectedhotbarcolor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
   deselectedspritecolor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  checkmark: {fileID: 21300000, guid: 61b34e4bcac6f474597a3b646a3b22c6, type: 3}
   dialogueHandler: {fileID: 306468484199113661}
 --- !u!114 &8902890342277698575
 MonoBehaviour:
@@ -149,4 +101,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4a465816493854588a281ff3e88ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToDisableText: 5
+  distanceToDisableText: 10

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b713a72a8e522fe40be925b744fcf375
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileRadioWithItemLogic.prefab
+  uploadId: 690848

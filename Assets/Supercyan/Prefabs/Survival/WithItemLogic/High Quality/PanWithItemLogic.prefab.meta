@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e2a29901bde44fe4e81d6db2d570e373
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/High Quality/PanWithItemLogic.prefab
+  uploadId: 690848

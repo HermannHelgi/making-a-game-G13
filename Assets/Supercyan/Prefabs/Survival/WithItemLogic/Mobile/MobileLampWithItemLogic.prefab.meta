@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 59944822d34ada447b06ed155314eb43
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileLampWithItemLogic.prefab
+  uploadId: 690848

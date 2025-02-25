@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 69afce4103140df48acf3dc082d5a481
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemObjects/Survival/High Quality/ShovelItemObject.asset
+  uploadId: 690848

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1aaa4bcc9cac47e4a838f3f64a553610
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileShovelWithItemLogic.prefab
+  uploadId: 690848

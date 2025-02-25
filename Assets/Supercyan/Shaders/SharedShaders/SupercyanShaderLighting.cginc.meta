@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 65e4c093871cf224db477874778d3c77
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Shaders/SharedShaders/SupercyanShaderLighting.cginc
+  uploadId: 690848

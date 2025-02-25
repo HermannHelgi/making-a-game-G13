@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c97989c4c3c08f442a36f3e11fb268b6
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/High Quality/itempack_survival_thermos_mug.mat
+  uploadId: 690848

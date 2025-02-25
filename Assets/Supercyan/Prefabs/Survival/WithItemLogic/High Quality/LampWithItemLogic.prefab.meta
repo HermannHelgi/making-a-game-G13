@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d01ee531e24915840b66e817f1e6919d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/High Quality/LampWithItemLogic.prefab
+  uploadId: 690848

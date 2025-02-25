@@ -13,6 +13,8 @@ public class PlayerInteractHandler : MonoBehaviour
     [Header("Text pop-up variables")]
     [Tooltip("TextMeshPro element for the 'Press E to interact' text.")]
     public TextMeshProUGUI popuptext;
+    [Tooltip("The text that should be displayed on being able to interact with an object.")]
+    public string interactwithobjectstring;
     [Tooltip("TextMeshPro element for the 'Inventory full' text.")]
     public TextMeshProUGUI inventoryfulltext;
     [Tooltip("The amount of time the 'Inventory full' text is displayed.")]
@@ -36,19 +38,24 @@ public class PlayerInteractHandler : MonoBehaviour
     public TextMeshProUGUI ingredientslisttextmesh;
     [Tooltip("The text mesh component within the InventoryCanvas which should be updated on new dialogue.")]
     public GameObject subtitletextmesh;
-
+    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated when switching between craftable items.")]
+    public TextMeshProUGUI pressentertocraft;
+    [Tooltip("The text that should be displayed on being able to bargain with the witch in the wall.")]
+    public string bargainpopupstring;
+    [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
+    public string dialoguepopupstring;
 
     void Start()
     {
         popuptext.gameObject.SetActive(false);
         inventoryfulltext.gameObject.SetActive(false);
+        subtitletextmesh.SetActive(false);
 
         if (playerinventoryobject == null)
         {
             Debug.LogWarning("PlayerInteractHandler in the scene is missing the object with the PlayerInventory Script! Fix this!");
         }
     }
-
 
     void Update()
     {
@@ -57,10 +64,24 @@ public class PlayerInteractHandler : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
         { 
             var script = hit.transform.GetComponent<InteractableItem>();
+            // The witch trade script kinda works as a wrapper for both the trade system and dialogue system.
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
-            // This always displays the same message for both, if we want to change/juice it then additional code will have to be added
-            if (script != null || witchscript != null)
+            
+            if (script != null)
             {
+                popuptext.text = interactwithobjectstring;
+                popuptext.gameObject.SetActive(true);
+            }
+            else if (witchscript != null)
+            {
+                if (witchscript.canTalk())
+                {
+                    popuptext.text = dialoguepopupstring;
+                }
+                else
+                {
+                    popuptext.text = bargainpopupstring;
+                }
                 popuptext.gameObject.SetActive(true);
             }
             else
@@ -99,7 +120,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 if (witchscript != null)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
-                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh);
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft);
                 }
             }
         }
@@ -113,6 +134,5 @@ public class PlayerInteractHandler : MonoBehaviour
                 inventoryfulltext.gameObject.SetActive(false);
             }
         }
-
     }
 }

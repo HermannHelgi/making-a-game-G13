@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d392268c5e42e4e4d806cb851a54a7e0
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/Mobile/itempack_survival_axe_low.mat
+  uploadId: 690848

@@ -19,3 +19,6 @@ MonoBehaviour:
   craftingrecipe:
   - {fileID: 11400000, guid: 8b14aa1ae2305054b8c3aa6c70e235d7, type: 2}
   - {fileID: 11400000, guid: 4aa806401e7e3ac4cbf5ed6a57e7ea36, type: 2}
+  onetimecraft: 1
+  consumable: 0
+  hungergain: 0

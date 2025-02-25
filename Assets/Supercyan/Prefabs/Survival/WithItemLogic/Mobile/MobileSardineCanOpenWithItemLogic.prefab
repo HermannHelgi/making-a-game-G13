@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5883097252713619295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853053520155798827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b040736da90200d469616062cbbd8ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_useBothHands: 0
+  m_preferredHand: 2
+  m_itemType: 3
+  m_dummyPoint: {fileID: 5853053520155767049}
+  m_itemAnimations: {fileID: 11400000, guid: 00ebea7630f8cec4b9ffcc8b54846d26, type: 2}
+  m_accessoryLogic: {fileID: 0}
+  m_flipXForHand: 0
+  m_flipYForHand: 2
+  m_flipZForHand: 0
+--- !u!1001 &5853053520155896713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_Name
+      value: MobileSardineCanOpenWithItemLogic
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48ab5f2c5e86e054cbb0f34f48618e65, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 707205467c1844f45907d986c00cd6e2, type: 3}
+--- !u!1 &5853053520155798827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 707205467c1844f45907d986c00cd6e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5853053520155896713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5853053520155767049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 707205467c1844f45907d986c00cd6e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5853053520155896713}
+  m_PrefabAsset: {fileID: 0}

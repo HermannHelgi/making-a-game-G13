@@ -20,3 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ff4fc1b09195bd74894715a9c044225c, type: 2}
   - {fileID: 11400000, guid: 7e09554fd20da714ead1e5a55376fb06, type: 2}
   - {fileID: 11400000, guid: ed635acb780797d4e96e2de918f6091b, type: 2}
+  onetimecraft: 1
+  consumable: 0
+  hungergain: 0

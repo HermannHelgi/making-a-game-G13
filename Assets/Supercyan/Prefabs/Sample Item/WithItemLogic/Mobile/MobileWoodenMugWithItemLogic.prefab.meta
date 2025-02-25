@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aa29eb1fb2333a6428c72d5d072b24c6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Sample Item/WithItemLogic/Mobile/MobileWoodenMugWithItemLogic.prefab
+  uploadId: 690848

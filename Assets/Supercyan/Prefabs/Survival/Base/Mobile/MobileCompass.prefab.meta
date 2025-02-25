@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1c5988d802c3070429c2f342a5a825ce
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/Base/Mobile/MobileCompass.prefab
+  uploadId: 690848
