@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
     [Tooltip("Base singleton instance of the Game Manager, do not touch!")]
     public static GameManager instance;
 
+    [Header("Player variables.")]
+    [Tooltip("Bool variable used by the Wendigo AI script to see whether the player is holding a torch.")]
+    public bool holdingtorch;
+
     [Header("Witch in the wall variables.")]
     [Tooltip("An item array for all the possible items in the game, ocne set to true the item is discovered.")]
     public bool[] discovereditems = new bool[18];

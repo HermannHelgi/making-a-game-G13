@@ -9,18 +9,29 @@ public class WitchTradeScript : MonoBehaviour
     public float distancetoturnoffwitchoverlay = 10;
     public ItemScript[] craftableItems = new ItemScript[7];
     public GameObject tradeslotprefab;
+    [Tooltip("The GameObject of the campfire within the scene.")]
+    public GameObject campfire;
+    [Tooltip("The ItemScript of the campfire.")]
+    public ItemScript campfirereference;
+    [Tooltip("The GameObject of the chest within the scene.")]
+    public GameObject chest;
+    [Tooltip("The ItemScript of the chest.")]
+    public ItemScript chestreference;
 
     [Header("Sprite variables")]
     public Color selectedhotbarcolor = Color.white;
     public Color deselectedhotbarcolor = Color.gray;
     public Color selectedspritecolor = Color.white;
     public Color deselectedspritecolor = Color.gray;
+    [Tooltip("Used to display if an item has been crafted.")]
+    public Sprite checkmark;
 
     [Header("Dialogue System variables")]
     public GameObject dialogueHandler;
     
     // Private stuff, mostly references to other objects.
     private GameObject[] tradeslotgridchildren;
+    private bool[] hasbeencrafted;
     private int currentindex = 0;
     private GameObject witchrecipegridspawner; 
     private GameObject playerinventory;
@@ -34,6 +45,25 @@ public class WitchTradeScript : MonoBehaviour
     void Start()
     {
         tradeslotgridchildren = new GameObject[craftableItems.Length];
+        hasbeencrafted = new bool[craftableItems.Length];
+
+        if (chest == null)
+        {
+            Debug.LogWarning("Chest gameobject is missing for Witch Trade Script.");
+        }
+        else
+        {
+            chest.SetActive(false);
+        }
+
+        if (campfire == null)
+        {
+            Debug.LogWarning("Campfire gameobject is missing for Witch Trade Script.");
+        }
+        else
+        {
+            campfire.SetActive(false);
+        }
     }
 
     void Update()
@@ -84,15 +114,22 @@ public class WitchTradeScript : MonoBehaviour
             }
         }
 
+        // Check, can I craft this item?
         for (int i = 0; i < craftableItems[currentindex].craftingrecipe.Length; i++)
         {
-            // TODO: Needs to check the storage container whether that has the item aswell (if it is unlocked)
+            // TODO: Needs to check the storage container whether that has the item aswell (if it is unlocked) and whether an item is shared in between the hotbar and storage
             if (!playerinventoryscript.hasItem(craftableItems[currentindex].craftingrecipe[i], count[craftableItems[currentindex].craftingrecipe[i].name]))
             {
                 return;
             }
         }
 
+        // Is this item a one-time craft item, and has it already been crafted?
+        if (craftableItems[currentindex].onetimecraft && hasbeencrafted[currentindex])
+        {
+            return;
+        }
+        
         for (int i = 0; i < craftableItems[currentindex].craftingrecipe.Length; i++)
         {
             // TODO: Needs to check the storage container as well if the item exists there
@@ -103,17 +140,27 @@ public class WitchTradeScript : MonoBehaviour
             }
         }
 
-        if (!craftableItems[currentindex].structureitem)
+        hasbeencrafted[currentindex] = true; 
+        if (craftableItems[currentindex].onetimecraft)
         {
-            bool inventoryFullCheck = playerinventoryscript.addItemToHotbar(craftableItems[currentindex]);
-            if (!inventoryFullCheck)
-            {
-                // TODO: Needs to add to the storage container.
-            }
+            tradeslotgridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
         }
-        else
+
+        if (craftableItems[currentindex] == campfirereference)
         {
-            // TODO: Needs to spawn potential structureitem, Campfire or Chest or more etc. 
+            campfire.SetActive(true);
+            return;
+        }
+        if (craftableItems[currentindex] == chestreference)
+        {
+            chest.SetActive(true);
+            return;
+        }
+
+        bool inventoryFullCheck = playerinventoryscript.addItemToHotbar(craftableItems[currentindex]);
+        if (!inventoryFullCheck)
+        {
+            // TODO: Needs to add to the storage container.
         }
     }
 
@@ -172,7 +219,14 @@ public class WitchTradeScript : MonoBehaviour
             childObject.transform.SetParent(witchrecipegridspawner.transform, false);
             childObject.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
             childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
-            childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = craftableItems[i].icon;
+            if (hasbeencrafted[i] && craftableItems[i].onetimecraft)
+            {
+                childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
+            }
+            else
+            {
+                childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = craftableItems[i].icon;
+            }
             tradeslotgridchildren[i] = childObject;
         }
     }
@@ -185,15 +239,19 @@ public class WitchTradeScript : MonoBehaviour
         }
     }
 
+    public bool canTalk()
+    // Used by the interact handler for the player to check if the witch can speak.
+    {
+        return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
+    }
+
     public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh)   
+    // Starts the trade window, if the witch has dialogue, does that first.
     {
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
         {
-            bool check = dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject);
-            if (check)
-            {
-                return;
-            }
+            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject);
+            return;
         }
 
         if (!currentlytrading)

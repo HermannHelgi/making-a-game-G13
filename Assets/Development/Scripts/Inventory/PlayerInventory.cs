@@ -9,6 +9,8 @@ public class PlayerInventory : MonoBehaviour
     public Sprite emptyhotbar;    
     public GameObject hotbarslotprefab;
     public GameObject hotbarslotgrid;
+    [Tooltip("ItemScript of the Torch, required for Wendigo AI.")]
+    public ItemScript torch;
 
     [Header("Sprite variables")]
     public Color selectedhotbarcolor = Color.white;
@@ -94,6 +96,15 @@ public class PlayerInventory : MonoBehaviour
         {
             GameObject newmodel = Instantiate(hotbarinventory[currentindex].model);
             newmodel.transform.SetParent(spawnlocation.transform, false);
+        }
+
+        if (hotbarinventory[currentindex] == torch)
+        {
+            GameManager.instance.holdingtorch = true;
+        }
+        else
+        {
+            GameManager.instance.holdingtorch = false;
         }
     }
 

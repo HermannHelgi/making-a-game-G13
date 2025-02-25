@@ -77,10 +77,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf63ff3a163a0bb43830703d2a6492dd, type: 2}
   - {fileID: 11400000, guid: e0b3fd96fa511b7469b759805e1a91ae, type: 2}
   tradeslotprefab: {fileID: 366402262393867716, guid: 995790105ab49ac4dab563cfe9a8096e, type: 3}
+  campfire: {fileID: 0}
+  campfirereference: {fileID: 11400000, guid: 8e47d33004faa674ca403e02cadd994f, type: 2}
+  chest: {fileID: 0}
+  chestreference: {fileID: 11400000, guid: 4c77d007ee85f7e4d85c877cd94f6fe9, type: 2}
   selectedhotbarcolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
   deselectedhotbarcolor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
   deselectedspritecolor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  checkmark: {fileID: 21300000, guid: 61b34e4bcac6f474597a3b646a3b22c6, type: 3}
   dialogueHandler: {fileID: 306468484199113661}
 --- !u!114 &8902890342277698575
 MonoBehaviour:
