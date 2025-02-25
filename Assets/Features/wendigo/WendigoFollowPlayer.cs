@@ -32,9 +32,10 @@ public class WendigoFollowPlayer : MonoBehaviour
 
     private void Update()
     {
-        staticSound.volume = 30 - agent.remainingDistance;
 
     }
+
+
 
     public void FollowPlayer()
     {
@@ -42,6 +43,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         // {
         //     agent.enabled = true;
         // }
+        SetVolumeIncrease();
         if (wendigoRaycast.detected)
         {
             if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
@@ -65,7 +67,7 @@ public class WendigoFollowPlayer : MonoBehaviour
             else
             {
                 agent.SetDestination(wendigoRaycast.lastKnownPosition);
-                agent.speed = speed / speedMultiplier;
+                agent.acceleration = speed / speedMultiplier;
                 agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
 
             }
@@ -115,6 +117,12 @@ public class WendigoFollowPlayer : MonoBehaviour
 
         staticSound.Stop();
 
+
+    }
+
+    public void SetVolumeIncrease()
+    {
+        staticSound.volume = 80 - agent.remainingDistance;
 
     }
 
