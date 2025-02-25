@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 53771d4331330ab4fb3bec80af8e3f75
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileKnifeWithItemLogic.prefab
+  uploadId: 690848

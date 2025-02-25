@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a4699b6de1082dd48b9708ae9f7b3f41
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileAxeWithItemLogic.prefab
+  uploadId: 690848

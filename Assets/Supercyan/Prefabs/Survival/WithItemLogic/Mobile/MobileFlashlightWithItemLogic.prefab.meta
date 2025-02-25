@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b6248ec4262b1d44db0474ddbc6bff38
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileFlashlightWithItemLogic.prefab
+  uploadId: 690848

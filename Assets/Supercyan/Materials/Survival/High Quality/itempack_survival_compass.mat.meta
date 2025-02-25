@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: fd6258fe52153e048aaa7c97abd2a6de
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/High Quality/itempack_survival_compass.mat
+  uploadId: 690848

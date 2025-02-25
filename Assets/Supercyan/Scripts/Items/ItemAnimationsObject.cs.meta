@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 018070b8cccb4354b85408e9c10aedee
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Scripts/Items/ItemAnimationsObject.cs
+  uploadId: 690848

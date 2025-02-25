@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ee9c98d7d0b8a44db6cd0c4f4bb76bb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemObjects/Survival/Mobile/MobileFlashlightBigItemObject.asset
+  uploadId: 690848

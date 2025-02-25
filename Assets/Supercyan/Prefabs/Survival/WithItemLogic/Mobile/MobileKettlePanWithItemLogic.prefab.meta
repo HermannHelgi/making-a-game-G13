@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 90d1274d9c8317541a76119bafea3477
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileKettlePanWithItemLogic.prefab
+  uploadId: 690848

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8ab7b77981def9c49a3f5ebc72411338
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemObjects/Survival/Mobile/MobileBinocularsItemObject.asset
+  uploadId: 690848

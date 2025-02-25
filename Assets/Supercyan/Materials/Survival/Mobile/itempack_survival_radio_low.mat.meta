@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ca273433c67c0ce46836662e475254d8
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/Mobile/itempack_survival_radio_low.mat
+  uploadId: 690848
