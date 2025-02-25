@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 75c48b31616b354439dc75b4f86ecf9a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileDrinkingBottleWithItemLogic.prefab
+  uploadId: 690848

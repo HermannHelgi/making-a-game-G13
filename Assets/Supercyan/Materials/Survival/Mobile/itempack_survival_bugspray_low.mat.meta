@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 48d7e96d9d617d44daff0818e5c00589
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/Mobile/itempack_survival_bugspray_low.mat
+  uploadId: 690848

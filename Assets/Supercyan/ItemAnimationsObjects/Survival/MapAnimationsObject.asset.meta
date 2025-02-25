@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3ad9e022dad3d3441b1c7645700a3baa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemAnimationsObjects/Survival/MapAnimationsObject.asset
+  uploadId: 690848

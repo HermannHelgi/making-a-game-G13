@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 28de7953f61500846ae9c3712d20f24a
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/High Quality/itempack_survival_thermos.mat
+  uploadId: 690848

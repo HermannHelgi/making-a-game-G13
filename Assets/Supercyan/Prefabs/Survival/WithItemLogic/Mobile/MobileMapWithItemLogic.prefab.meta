@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f9d63876e22afd54db56cb642d15e867
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Prefabs/Survival/WithItemLogic/Mobile/MobileMapWithItemLogic.prefab
+  uploadId: 690848

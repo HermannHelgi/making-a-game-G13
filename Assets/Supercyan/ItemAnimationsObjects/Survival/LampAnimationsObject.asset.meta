@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fd5a7e2cfdd7ba5488d0e9ff51c9fe5d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/ItemAnimationsObjects/Survival/LampAnimationsObject.asset
+  uploadId: 690848

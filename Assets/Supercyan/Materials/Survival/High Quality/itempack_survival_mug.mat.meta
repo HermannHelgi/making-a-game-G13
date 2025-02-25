@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 05f8f6731ff8d4a4d8a2dfb2f39a479d
+timeCreated: 1528368656
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 131598
+  packageName: 'Item Pack: Survival'
+  packageVersion: 4.0.0
+  assetPath: Assets/Supercyan/Materials/Survival/High Quality/itempack_survival_mug.mat
+  uploadId: 690848
