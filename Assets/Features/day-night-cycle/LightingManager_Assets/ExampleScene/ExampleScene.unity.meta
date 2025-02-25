@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a0df9fa0ff404f3468b3ba9715df31b9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258318
+  packageName: Day-Night System with Events and Custom Lighting
+  packageVersion: 1.0
+  assetPath: Assets/LightingManager_Assets/ExampleScene/ExampleScene.unity
+  uploadId: 594394

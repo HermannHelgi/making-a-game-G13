@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: BERRIES
   index: 2
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  icon: {fileID: 21300000, guid: df7846f7b18d88544b62e9edef6b4e9e, type: 3}
+  model: {fileID: 7830457375511861682, guid: 468ecc2ee873b964f9a9cf34a1f7db48, type: 3}
   craftingrecipe: []
   structureitem: 0
   consumable: 1
