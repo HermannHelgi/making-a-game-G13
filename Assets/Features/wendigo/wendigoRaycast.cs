@@ -16,13 +16,14 @@ public class WendigoRaycast : MonoBehaviour
     public float fovAngle = 60f;
     public Vector3 offset = new Vector3(0, 1.5f, 0); // Offset to avoid self-detection
 
-    [Header("Lose Sight Delay")]
-    public LayerMask obstacleMask;
     [Tooltip("Layer mask for obstacles")]
+    public LayerMask obstacleMask;
     public LayerMask playerMask;
-    public float loseSightDelay = 3f;
+    [Header("Lose Sight Delay")]
+    public float loseSightDelay = 4f;
     private float loseSightTimer = 0f;
     private bool sawPlayerThisScan = false;
+    public float listenRadius = 60f;
 
     public Vector3 lastKnownPosition;
 
@@ -69,6 +70,19 @@ public class WendigoRaycast : MonoBehaviour
 
             }
 
+        }
+        if(ListenForPlayer())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool ListenForPlayer()
+    {
+        if (Vector3.Distance(wendigoTransform.position, player.transform.position) < listenRadius && loseSightTimer < loseSightDelay)
+        {
+            return true;
         }
         return false;
     }

@@ -84,9 +84,12 @@ public class PlayerLineofSight : MonoBehaviour
             }
         }
 
+
         AdjustAudio();
 
     }
+
+
 
     public bool IsLookingAtWendigo(Vector3 wendigoPosition)
     {

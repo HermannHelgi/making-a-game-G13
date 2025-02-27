@@ -27,7 +27,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
 
-        agent.stoppingDistance = caughtDistance;
+        
     }
 
     private void Update()
@@ -46,7 +46,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         SetVolumeIncrease();
         if (wendigoRaycast.detected)
         {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            if (Vector3.Distance(wendigoRaycast.player.transform.position, wendigoTransform.position) <= caughtDistance)
             {
                 attackPlayer = true;
             }
@@ -59,18 +59,15 @@ public class WendigoFollowPlayer : MonoBehaviour
         else if (!wendigoRaycast.detected)
         {
             Debug.Log("Lost Player");
-            float distToLastKnown = Vector3.Distance(wendigoRaycast.lastKnownPosition, wendigoTransform.position);
-            if (distToLastKnown <= agent.stoppingDistance)
+            agent.SetDestination(wendigoRaycast.lastKnownPosition);
+            agent.acceleration = speed / speedMultiplier;
+            agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
+            if(Vector3.Distance(wendigoRaycast.lastKnownPosition, wendigoTransform.position) < 1f)
             {
                 lostPlayer = true;
             }
-            else
-            {
-                agent.SetDestination(wendigoRaycast.lastKnownPosition);
-                agent.acceleration = speed / speedMultiplier;
-                agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
 
-            }
+            
         }
 
 
@@ -85,6 +82,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         {
             transform.position = hit.position + Vector3.up * 2f;
             transform.forward = wendigoRaycast.player.transform.forward;
+            wendigoTransform.forward = wendigoRaycast.player.transform.forward;
             agent.Warp(transform.position);
         }
     }
@@ -94,11 +92,11 @@ public class WendigoFollowPlayer : MonoBehaviour
     {
         if (!lostPlayer)
         {
-            staticSound.Play();
+            PlayMusic();
         }
         else
         {
-            staticSound.Stop();
+            StopMusic();
         }
 
 

@@ -13,6 +13,8 @@ public class WendigoStateMachine : MonoBehaviour
     public PlayerLineofSight playerLineOfSight;
     public WendigoFollowPlayer wendigoFollowPlayer;
 
+    public WendigoLookForPlayer wendigoLookForPlayer;
+
     public GameObject Wendigo;
 
     private float idleTimer;
@@ -47,10 +49,11 @@ public class WendigoStateMachine : MonoBehaviour
     }
 
     void Update()
-    {
-
-        if (!gameManager.isNight && currentState != State.Resting)
-        {
+    {        
+        if(gameManager.isNight == false){
+            currentState = State.Resting;
+        }
+        if(gameManager.safeArea == true){
             currentState = State.Resting;
         }
 
@@ -130,10 +133,12 @@ public class WendigoStateMachine : MonoBehaviour
     private void Resting()
     {
         // Debug.Log("Resting");
-        if (gameManager.isNight)
+        wendigoRandomizedSpawner.DespawnWendigo();
+        if(gameManager.isNight == true && gameManager.safeArea == false)
         {
             currentState = State.Teleporting;
         }
+        
     }
 
     private void Teleporting()
@@ -180,13 +185,31 @@ public class WendigoStateMachine : MonoBehaviour
 
 
     private void LookingForPlayer()
-    {
+    {   
+        
+        idleTimer += Time.deltaTime;
+        wendigoLookForPlayer.TrackFootsteps();
+        if(wendigoLookForPlayer.trackingTimer > idleTimer)
+        {   
+            Debug.Log("Looking for player");	
+            if(wendigoRaycasts.detected)
+            {   
+                Debug.Log("Player detected");
+                currentState = State.FollowingPlayer;
+            }
+        }
+        else
+        {
+            currentState = State.Idle;
+        }
+
         // LookingForPlayer state logic
     }
 
     private void AttackPlayer()
     {
         Debug.Log("Attacking player");
+
         // AttackPlayer state logic
     }
 

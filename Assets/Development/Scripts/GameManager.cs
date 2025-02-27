@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     [Header("Day and night variables.")]
     [Tooltip("A bool which says whether the game is day or night.")]
     public bool isNight = false;
+    
+
+    [Header("Player variables.")]
+    [Tooltip("A bool which says the player is in a deemed safe area")]
+    public bool safeArea = false;
 
     void Start()
     {
