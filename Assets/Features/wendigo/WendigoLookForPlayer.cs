@@ -8,45 +8,43 @@ using UnityEngine.AI;
 
 public class WendigoLookForPlayer: MonoBehaviour
 {
-    List<Transform> playerFootsteps = new List<Transform>();
-    public WendigoRaycast wendigoRaycast;
+    private Transform playerFootsteps;
     public GameObject Wendigo;
+    public WendigoFollowPlayer wendigoFollowPlayer;
 
-    public float trackingTimer = 15f;
-    private int stepscounter = 0;
+    public float trackingTimer = 5f;
 
     NavMeshAgent agent;
 
 
     private void Start()
     {
-        StartCoroutine(GoToTracks());
         agent = GetComponent<NavMeshAgent>();
-        stepscounter = 0;
-        playerFootsteps.Clear();
+        
     }
 
     public void TrackFootsteps()
     {   
-
-        wendigoRaycast.player.transform.position = playerFootsteps[stepscounter].position;
-        stepscounter++;
+        float smellTimer = 0f;
+        smellTimer += Time.deltaTime;
+        if(smellTimer >  trackingTimer)
+        {
+            smellTimer = 0f;
+            playerFootsteps = wendigoFollowPlayer.wendigoRaycast.player.transform;
+            GoToTracks();
+        }
         
     }
 
 
-    private IEnumerator GoToTracks()
+    private void GoToTracks()
     {
-        TrackFootsteps();
-        WaitForSeconds wait = new WaitForSeconds(2f);
+        
+        wendigoFollowPlayer.agent.SetDestination(playerFootsteps.position);
 
-        while (true)
-        {
-            yield return wait;
-            TrackFootsteps();
-            agent.SetDestination(playerFootsteps[stepscounter].position);
-            
-        }
+        wendigoFollowPlayer.agent.speed = 15f;
+         
+
     }
 
 

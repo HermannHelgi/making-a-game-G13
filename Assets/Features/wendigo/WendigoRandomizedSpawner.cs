@@ -24,7 +24,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
-
+    public float heightOffset = 1.84f;  
 
     void Start()
     {   
@@ -44,6 +44,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         }
 
         Vector3 spawnpoint = FindValidSpawnPosition();
+
         if (spawnpoint != Vector3.zero)
         {
             wendigoPrefab.transform.position = spawnpoint;
@@ -72,21 +73,25 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         
         Vector3 spawnPosition;
         int attempts = 0;
+        Debug.Log("Finding valid spawn position");
         while (attempts < 15)
-        {
-            spawnPosition = player.position + Random.insideUnitSphere * maxSpawnDistance;
-            float distance = Vector3.Distance(spawnPosition, player.position);
-            Vector3 direction = Random.onUnitSphere;
-            spawnPosition = player.position + direction * distance;
-
-            if (distance < minSpawnDistance)
-            {
+        {   
+            
+            spawnPosition = player.position  + Random.insideUnitSphere * 80f;
+            spawnPosition.y -= heightOffset;
+            float distance = Vector3.Distance(player.position, spawnPosition);
+            Debug.Log("Checking point: " + spawnPosition + " Distance: " + distance);	
+            wendigoPrefab.transform.forward = -player.transform.forward;
+            if (distance < minSpawnDistance || distance > maxSpawnDistance)
+            {   
+                Debug.Log("Distance is too close or too far");
                 attempts++;
                 continue;
             }
 
-            if(HasLineOfSight(wendigoPrefab.transform.position, spawnPosition, 60f))
-            {
+            if(HasLineOfSight(wendigoPrefab.transform.position, spawnPosition, maxSpawnDistance))
+            {   
+                Debug.Log("No line of sight to player");
                 attempts++;
                 continue;
             }
@@ -94,8 +99,8 @@ public class wendigoRandomizedSpawner : MonoBehaviour
             if (Physics.Raycast(spawnPosition + Vector3.up * 200, Vector3.down, out hit, 400, groundLayer))
             {
                 spawnPosition = hit.point;
-                spawnPosition.y = hit.point.y + 2;
-                // attempts = 0;
+                spawnPosition.y = hit.point.y;
+                Debug.Log("Spawn position: " + spawnPosition);
                 return spawnPosition;
             }
             attempts++;
@@ -104,14 +109,14 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     }
 
     private bool HasLineOfSight(Vector3 fromPos, Vector3 toPos, float maxDist)
-{
+    {
     Vector3 dir = (toPos - fromPos).normalized;
     if (Physics.Raycast(fromPos, dir, out RaycastHit hit, maxDist))
     {
         return hit.transform.CompareTag("Player");
     }
     return false;
-}
+    }
 
 
 }

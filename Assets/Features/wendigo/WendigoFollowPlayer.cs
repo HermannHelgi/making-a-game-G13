@@ -13,14 +13,14 @@ public class WendigoFollowPlayer : MonoBehaviour
     public WendigoRaycast wendigoRaycast;
     public Transform wendigoTransform;
     public float speed = 5f;
-    public float caughtDistance = 2f;
+    public float caughtDistance = 3f;
     public float speedMultiplier = 1.5f;
     public float maxSpeed = 10f;
 
     public bool lostPlayer = false;
     public bool attackPlayer = false;
 
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     private void Start()
     {
@@ -45,15 +45,20 @@ public class WendigoFollowPlayer : MonoBehaviour
         // }
         SetVolumeIncrease();
         if (wendigoRaycast.detected)
-        {
-            if (Vector3.Distance(wendigoRaycast.player.transform.position, wendigoTransform.position) <= caughtDistance)
-            {
+        {   
+            float distance = Vector3.Distance(wendigoRaycast.player.transform.position, wendigoTransform.position);
+            Debug.Log("Distance to player: " + distance);
+            if (distance < caughtDistance)
+            {   
+                Debug.Log("Attacking playing");
                 attackPlayer = true;
             }
             Debug.Log("Following Player");
             agent.SetDestination(wendigoRaycast.player.transform.position);
             agent.speed = speed * speedMultiplier;
             agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
+
+
 
         }
         else if (!wendigoRaycast.detected)
@@ -62,10 +67,12 @@ public class WendigoFollowPlayer : MonoBehaviour
             agent.SetDestination(wendigoRaycast.lastKnownPosition);
             agent.acceleration = speed / speedMultiplier;
             agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
-            if(Vector3.Distance(wendigoRaycast.lastKnownPosition, wendigoTransform.position) < 1f)
+            
+            if(wendigoTransform.position ==  wendigoRaycast.lastKnownPosition)
             {
                 lostPlayer = true;
             }
+
 
             
         }
@@ -76,11 +83,10 @@ public class WendigoFollowPlayer : MonoBehaviour
     public void SpawnBehindPlayer()
     {
         float sampleRadius = 5f;
-        Vector3 behindPlayer = wendigoRaycast.player.transform.position - wendigoRaycast.player.transform.forward * 50f;
+        Vector3 behindPlayer = wendigoRaycast.player.transform.position - wendigoRaycast.player.transform.forward * 60f;
         PlayChaseMusic();
         if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
-            transform.position = hit.position + Vector3.up * 2f;
             transform.forward = wendigoRaycast.player.transform.forward;
             wendigoTransform.forward = wendigoRaycast.player.transform.forward;
             agent.Warp(transform.position);

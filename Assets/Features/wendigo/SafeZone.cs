@@ -34,14 +34,5 @@ using UnityEngine;
             }
         }
 
-        void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                Debug.Log("Player is in safe area");
-                gameManager.safeArea = true;
-            }
-        }
-
 
 }

@@ -20,7 +20,7 @@ public class WendigoRaycast : MonoBehaviour
     public LayerMask obstacleMask;
     public LayerMask playerMask;
     [Header("Lose Sight Delay")]
-    public float loseSightDelay = 4f;
+    public float loseSightDelay = 6f;
     private float loseSightTimer = 0f;
     private bool sawPlayerThisScan = false;
     public float listenRadius = 60f;
@@ -79,12 +79,17 @@ public class WendigoRaycast : MonoBehaviour
     }
 
     private bool ListenForPlayer()
-    {
-        if (Vector3.Distance(wendigoTransform.position, player.transform.position) < listenRadius && loseSightTimer < loseSightDelay)
+    {   
+        if (Physics.Raycast(wendigoTransform.position, player.transform.position, listenRadius, obstacleMask))
         {
             return true;
         }
         return false;
+        // if (Vector3.Distance(wendigoTransform.position, player.transform.position) < listenRadius && loseSightTimer < loseSightDelay)
+        // {
+        //     return true;
+        // }
+        // return false;
     }
 
     void Update()
@@ -103,6 +108,5 @@ public class WendigoRaycast : MonoBehaviour
                 detected = false;
             }
         }
-
     }
 }

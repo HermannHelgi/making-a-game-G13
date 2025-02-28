@@ -14,6 +14,7 @@ public class WendigoStateMachine : MonoBehaviour
     public WendigoFollowPlayer wendigoFollowPlayer;
 
     public WendigoLookForPlayer wendigoLookForPlayer;
+    public WendigoAttack wendigoAttack;
 
     public GameObject Wendigo;
 
@@ -50,10 +51,9 @@ public class WendigoStateMachine : MonoBehaviour
 
     void Update()
     {        
-        if(gameManager.isNight == false){
-            currentState = State.Resting;
-        }
-        if(gameManager.safeArea == true){
+
+        if(gameManager.isNight == false || gameManager.safeArea == true)
+        {
             currentState = State.Resting;
         }
 
@@ -133,7 +133,7 @@ public class WendigoStateMachine : MonoBehaviour
     private void Resting()
     {
         // Debug.Log("Resting");
-        wendigoRandomizedSpawner.DespawnWendigo();
+        Wendigo.transform.position = wendigoRandomizedSpawner.despawnPoint.position;
         if(gameManager.isNight == true && gameManager.safeArea == false)
         {
             currentState = State.Teleporting;
@@ -146,8 +146,9 @@ public class WendigoStateMachine : MonoBehaviour
 
 
 
-        // Debug.Log("Teleporting");
+        Debug.Log("Teleporting to new location");
         wendigoRandomizedSpawner.SpawnWendigo();
+        
         currentState = State.Idle;
 
 
@@ -189,16 +190,14 @@ public class WendigoStateMachine : MonoBehaviour
         
         idleTimer += Time.deltaTime;
         wendigoLookForPlayer.TrackFootsteps();
-        if(wendigoLookForPlayer.trackingTimer > idleTimer)
+           
+        if(wendigoRaycasts.detected)
         {   
-            Debug.Log("Looking for player");	
-            if(wendigoRaycasts.detected)
-            {   
-                Debug.Log("Player detected");
-                currentState = State.FollowingPlayer;
-            }
+            Debug.Log("Player detected");
+            currentState = State.FollowingPlayer;
         }
-        else
+    
+        if(idleTimer > 45f)
         {
             currentState = State.Idle;
         }
@@ -209,6 +208,7 @@ public class WendigoStateMachine : MonoBehaviour
     private void AttackPlayer()
     {
         Debug.Log("Attacking player");
+        wendigoAttack.Attack();
 
         // AttackPlayer state logic
     }
