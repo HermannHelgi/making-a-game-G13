@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class WitchTradeScript : MonoBehaviour
 {
+    [Header("Playtest Temporary Variables")]
+    public DialogueScriptableObject startdialogue;
+    private bool hasadded = false;
+
     [Header("Trade Window Variables")]
     public float distancetoturnoffwitchoverlay = 10;
     public ItemScript[] craftableItems = new ItemScript[7];
@@ -100,6 +104,12 @@ public class WitchTradeScript : MonoBehaviour
             {
                 craftItem();
             }
+        }
+
+        if (!hasadded)
+        {
+            DialogueManager.instance.SetDialogueFlags(startdialogue);
+            hasadded = true;
         }
     }
 
