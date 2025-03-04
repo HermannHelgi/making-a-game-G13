@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 854312466711896576}
   - component: {fileID: 3540137194155560103}
   - component: {fileID: -5253836965199286422}
+  - component: {fileID: 8276350978218753527}
+  - component: {fileID: 9183442223872618643}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -555,3 +557,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &8276350978218753527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214807352145036245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d80f684d1835a4fb7fdf9cfb81d289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupitem: {fileID: 11400000, guid: 8b14aa1ae2305054b8c3aa6c70e235d7, type: 2}
+  totalpickuptimes: 1
+  dialoguetriggerforwitch: {fileID: 0}
+  replaceondepletion: 0
+  replacemodel: {fileID: 0}
+--- !u!65 &9183442223872618643
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214807352145036245}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.017145082, y: 0.021847442, z: 0.011063802}
+  m_Center: {x: 0.00008586692, y: -0.0011521892, z: 0.0032203258}

@@ -151,6 +151,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2aa333e88b908064bb2f3e852fe2b7bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2483444491767819046}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2aa333e88b908064bb2f3e852fe2b7bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6077660931779991842}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2aa333e88b908064bb2f3e852fe2b7bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1515866071100207805}
   m_SourcePrefab: {fileID: 100100000, guid: 2aa333e88b908064bb2f3e852fe2b7bb, type: 3}
 --- !u!4 &6027836833611950109 stripped
 Transform:
@@ -184,6 +190,44 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2890447800104745, guid: 2aa333e88b908064bb2f3e852fe2b7bb, type: 3}
+--- !u!135 &6077660931779991842
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407774569197007527}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.39674407
+  m_Center: {x: -0.011318266, y: 0.3807443, z: 0.0041968673}
+--- !u!114 &1515866071100207805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407774569197007527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d80f684d1835a4fb7fdf9cfb81d289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupitem: {fileID: 11400000, guid: 4cf55cf16fb8e304c84e71e0b5215bcd, type: 2}
+  totalpickuptimes: 3
+  dialoguetriggerforwitch: {fileID: 0}
+  replaceondepletion: 1
+  replacemodel: {fileID: 2957112367194989284, guid: 85ba782f2a06d7e49ad886de4eeeb42d, type: 3}
 --- !u!1001 &7029518313978075153
 PrefabInstance:
   m_ObjectHideFlags: 0
