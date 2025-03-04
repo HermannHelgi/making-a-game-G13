@@ -10,35 +10,43 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 {
     public Transform player;
     public GameObject wendigoPrefab;
-    public float spawnRadius = 60f;
-    // public float minSpawnDistance = 10f;
-    public float spawnInterval = 30f;
+    public float maxSpawnDistance = 50f;
+    public float minSpawnDistance = 30f;
+    public float maxStareTime = 10f;
     public LayerMask groundLayer;
     public PlayerLineofSight playerLineOfSight;
     private bool ispositionvisible;
     public float spawnTimer;
     public int playerSightings;
     public int maxPlayerSightings = 3;
-    private GameObject wendigoInstance;
+
+    public Transform despawnPoint;
+
+    private MeshRenderer meshRenderer;
+
+
 
     void Start()
     {   
-        wendigoInstance = null;
-
-        SpawnWendigo();
+        meshRenderer = wendigoPrefab.GetComponent<MeshRenderer>();
+        
     }
 
 
     public void SpawnWendigo()
     {   
-        if (wendigoInstance != null) return;
+        
         if (player == null) return;
 
-        Vector3 spawnpoint = FindValidSpawnPosition();
+        if (meshRenderer != null)
+        {
+            meshRenderer.enabled = true;
+        }
 
+        Vector3 spawnpoint = FindValidSpawnPosition();
         if (spawnpoint != Vector3.zero)
         {
-            wendigoInstance = Instantiate(wendigoPrefab,spawnpoint,Quaternion.identity);
+            wendigoPrefab.transform.position = spawnpoint;
         }
         
 
@@ -46,65 +54,64 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     public void DespawnWendigo()
     {
-        if (wendigoInstance != null)
-        {
-            Debug.Log("Despawning Wendigo.");
-            Destroy(wendigoInstance);
-            wendigoInstance = null; //  Ensure reference is cleared
-        }
-    }
+        
+        if (wendigoPrefab == null) return;
 
+
+            if (meshRenderer != null)
+            {   
+                wendigoPrefab.transform.position = despawnPoint.position;
+                meshRenderer.enabled = false;
+                Debug.Log("Despawning Wendigo.");
+            }        
+    }
 
     private Vector3 FindValidSpawnPosition()
-    {
+    {   
         if (player == null) return Vector3.zero;
-
-        Vector3 spawnPosition = Vector3.zero;
-        Vector3 playerPosition = player.position;
-        const int maxAttempts = 20;
-        for(int i = 0; i < maxAttempts; i++)
+        
+        Vector3 spawnPosition;
+        int attempts = 0;
+        while (attempts < 15)
         {
-            Vector2 randomCircle = Random.insideUnitCircle.normalized * spawnRadius;
-            spawnPosition = new Vector3(randomCircle.x, 0, randomCircle.y) + playerPosition;
-            if(IsPositionVisibleToPlayer(spawnPosition))
+            spawnPosition = player.position + Random.insideUnitSphere * maxSpawnDistance;
+            float distance = Vector3.Distance(spawnPosition, player.position);
+            Vector3 direction = Random.onUnitSphere;
+            spawnPosition = player.position + direction * distance;
+
+            if (distance < minSpawnDistance)
             {
+                attempts++;
                 continue;
-    
             }
-            else
+
+            if(HasLineOfSight(wendigoPrefab.transform.position, spawnPosition, 60f))
             {
-                RaycastHit hit;
-                if(Physics.Raycast(spawnPosition,Vector3.down,out hit,Mathf.Infinity,groundLayer))
-                {
-                    if(hit.collider != null)
-                    {
-                        if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-                        {
-                            return hit.point;
-                        }
-                    }
-                }
+                attempts++;
+                continue;
             }
+            RaycastHit hit;
+            if (Physics.Raycast(spawnPosition + Vector3.up * 200, Vector3.down, out hit, 400, groundLayer))
+            {
+                spawnPosition = hit.point;
+                spawnPosition.y = hit.point.y + 2;
+                // attempts = 0;
+                return spawnPosition;
+            }
+            attempts++;
         }
-
-
-        return spawnPosition;
+        return Vector3.zero;
     }
 
-    private bool IsPositionVisibleToPlayer(Vector3 spawnPosition)
+    private bool HasLineOfSight(Vector3 fromPos, Vector3 toPos, float maxDist)
+{
+    Vector3 dir = (toPos - fromPos).normalized;
+    if (Physics.Raycast(fromPos, dir, out RaycastHit hit, maxDist))
     {
-        if (playerLineOfSight == null) 
-        {
-            // Debug.Log("Player Line of Sight is null");	
-            return false;
-        }
-
-                
-            ispositionvisible = playerLineOfSight.IsLookingAtWendigo(spawnPosition);
-            return ispositionvisible;
-
+        return hit.transform.CompareTag("Player");
     }
-
+    return false;
+}
 
 
 }
