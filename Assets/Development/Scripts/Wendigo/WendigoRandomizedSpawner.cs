@@ -63,7 +63,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
             {   
                 wendigoPrefab.transform.position = despawnPoint.position;
                 capsuleCollider.enabled = false;
-                Debug.Log("Despawning Wendigo.");
+                // Debug.Log("Despawning Wendigo.");
             }        
     }
 
@@ -73,25 +73,25 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         
         Vector3 spawnPosition;
         int attempts = 0;
-        Debug.Log("Finding valid spawn position");
+        // Debug.Log("Finding valid spawn position");
         while (attempts < 15)
         {   
             
             spawnPosition = player.position  + Random.insideUnitSphere * 80f;
             spawnPosition.y -= heightOffset;
             float distance = Vector3.Distance(player.position, spawnPosition);
-            Debug.Log("Checking point: " + spawnPosition + " Distance: " + distance);	
+            // Debug.Log("Checking point: " + spawnPosition + " Distance: " + distance);	
             wendigoPrefab.transform.forward = -player.transform.forward;
             if (distance < minSpawnDistance || distance > maxSpawnDistance)
             {   
-                Debug.Log("Distance is too close or too far");
+                // Debug.Log("Distance is too close or too far");
                 attempts++;
                 continue;
             }
 
             if(HasLineOfSight(wendigoPrefab.transform.position, spawnPosition, maxSpawnDistance))
             {   
-                Debug.Log("No line of sight to player");
+                // Debug.Log("No line of sight to player");
                 attempts++;
                 continue;
             }
@@ -100,7 +100,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
             {
                 spawnPosition = hit.point;
                 spawnPosition.y = hit.point.y + heightOffset;
-                Debug.Log("Spawn position: " + spawnPosition);
+                // Debug.Log("Spawn position: " + spawnPosition);
                 return spawnPosition;
             }
             attempts++;

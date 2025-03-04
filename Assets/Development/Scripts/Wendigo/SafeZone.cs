@@ -4,7 +4,7 @@ using UnityEngine;
     {   
 
         private GameManager gameManager;
-        private wendigoRandomizedSpawner wendigoRandomizedSpawner;
+        public wendigoRandomizedSpawner wendigoRandomizedSpawner;
         void Start()
         {
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -15,12 +15,12 @@ using UnityEngine;
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Player entered safe area");
+                // Debug.Log("Player entered safe area");
                 gameManager.safeArea = true;
             }
             if(other.CompareTag("Wendigo"))
             {
-                Debug.Log("Wendigo entered safe area");
+                // Debug.Log("Wendigo entered safe area");
                 wendigoRandomizedSpawner.DespawnWendigo();
             }
         }
@@ -29,7 +29,7 @@ using UnityEngine;
         {
             if (other.CompareTag("Player"))
             {
-                Debug.Log("Player exited safe area");
+                // Debug.Log("Player exited safe area");
                 gameManager.safeArea = false;
             }
         }
