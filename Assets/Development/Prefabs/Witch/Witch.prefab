@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c3670e50dca2a41a5d4ba36034a428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startdialogue: {fileID: 11400000, guid: 2537a9ec8022fc740a6900e14e7c78e8, type: 2}
   distancetoturnoffwitchoverlay: 10
   craftableItems:
   - {fileID: 11400000, guid: 4023cf24c009ffe45848721d7ce3454c, type: 2}
