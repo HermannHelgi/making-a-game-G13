@@ -48,6 +48,8 @@ public class PlayerInteractHandler : MonoBehaviour
     [Header("Campfire variables")]
     [Tooltip("The ItemScript which should be referenced as fuel for the campfire.")]
     public ItemScript stick;
+    [Tooltip("The text that should be displayed on wanting to interact with the campfire.")]
+    public string campfirenosticktext;
     [Tooltip("The text that should be displayed on being able to add fuel to the campfire.")]
     public string campfireaddfuelstring;
     [Tooltip("The text that should be displayed on being able to pickup coal from campfire.")]
@@ -114,7 +116,8 @@ public class PlayerInteractHandler : MonoBehaviour
                 }
                 else
                 {
-                    popuptext.gameObject.SetActive(false);
+                    popuptext.text = campfirenosticktext;
+                    popuptext.gameObject.SetActive(true);
                 }
             }
             else

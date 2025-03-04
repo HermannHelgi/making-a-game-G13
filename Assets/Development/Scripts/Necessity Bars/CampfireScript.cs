@@ -30,7 +30,7 @@ public class CampfireScript : MonoBehaviour
     public ItemScript coalitemscript;
 
     // Private vars, used for state management
-    public int sticksemplaced = 0;
+    public int sticksemplaced = 1;
     public float burntimer = 0;
     public bool playerinrange;
     public float oldtemperaturedrainrate;

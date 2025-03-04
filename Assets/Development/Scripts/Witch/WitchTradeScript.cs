@@ -90,12 +90,12 @@ public class WitchTradeScript : MonoBehaviour
             }
 
             // Increase trading slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
             {
                 selectCraftingSlot(currentindex + 1);
             }
             // Decrease trading slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
             {
                 selectCraftingSlot(currentindex - 1);
             }

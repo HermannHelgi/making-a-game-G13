@@ -235,12 +235,12 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         // Increase Hotbarslot, go right
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
         {
             selectHotbar(currentindex + 1);
         }
         // Decrease Hotbarslot, go left
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
         {
             selectHotbar(currentindex - 1);
         }
