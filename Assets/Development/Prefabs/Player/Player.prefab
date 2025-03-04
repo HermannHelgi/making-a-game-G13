@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &590604942136788093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8675802077361297338}
-  m_Layer: 0
-  m_Name: SpawnLocation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8675802077361297338
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590604942136788093}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.328, y: -0.389, z: 0.969}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4876284616008694636}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8353955107239986551
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,10 +296,6 @@ PrefabInstance:
       propertyPath: playerobject
       value: 
       objectReference: {fileID: 8709562959268111755}
-    - target: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
-      propertyPath: campfirenosticktext
-      value: You must be holding a stick to add to the flame.
-      objectReference: {fileID: 0}
     - target: {fileID: 2826927715677490921, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.81714
@@ -371,21 +336,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
-      propertyPath: spawnlocation
+    - target: {fileID: 3136164897122563468, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 590604942136788093}
+      objectReference: {fileID: 8709562959268111755}
+    - target: {fileID: 4013131337950723113, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282292482196510936, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -75.337166
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282292482196510936, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4849999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282292482196510936, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -69.59093
+      objectReference: {fileID: 0}
     - target: {fileID: 6673140093355727649, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_Name
       value: CameraHolder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1219236690433394675, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6282292482196510936, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8675802077361297338}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
 --- !u!4 &3726842457047018845 stripped
@@ -396,11 +373,6 @@ Transform:
 --- !u!20 &4876284616008694635 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6282292482196510943, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
-  m_PrefabInstance: {fileID: 1478065507755647924}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4876284616008694636 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6282292482196510936, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
   m_PrefabInstance: {fileID: 1478065507755647924}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8909877611622594424
@@ -425,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.495001
+      value: 5.495
       objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.z
