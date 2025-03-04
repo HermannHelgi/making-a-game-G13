@@ -13,9 +13,6 @@ public class DialogueManager : MonoBehaviour
     private bool[] dialogueflags;
     private WitchDialogueHandler witchdialogue;
 
-    [Header("Playtest Temporary Variables")]
-    public DialogueScriptableObject startdialogue;
-
     void Start()
     {
         instance = this;
