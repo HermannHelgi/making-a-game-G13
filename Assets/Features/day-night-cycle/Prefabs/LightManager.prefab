@@ -49,6 +49,8 @@ MonoBehaviour:
   rotationAxis: 0
   IsDayCycleOn: 1
   RandomStartTime: 0
+  startOfNight: 19
+  endOfNight: 6
   TimeOfDay: 12
   StartTime: 12
   CycleDuration: 180
@@ -69,4 +71,3 @@ MonoBehaviour:
   events: []
   eventsTolerance: 0.2
   ResetEventsTime: 0.1
-  gameManager: {fileID: 1890441454344188239, guid: 2cb1b0cb135d63742913447ca7b2db5d, type: 3}
