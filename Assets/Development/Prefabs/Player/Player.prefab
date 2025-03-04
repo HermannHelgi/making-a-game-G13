@@ -2483,6 +2483,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6307968128774350142}
     - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: popuptext
       value: 
       objectReference: {fileID: 5011321737350978935}
@@ -2519,6 +2523,10 @@ PrefabInstance:
       value: Press "E" to bargain
       objectReference: {fileID: 0}
     - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: campfirepickupcoal
+      value: Press "E" to collect coal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: dialoguepopupstring
       value: Press "E" to talk
       objectReference: {fileID: 0}
@@ -2526,6 +2534,10 @@ PrefabInstance:
       propertyPath: witchrecipegridspawn
       value: 
       objectReference: {fileID: 2282215246583876797}
+    - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
+      propertyPath: campfireaddfuelstring
+      value: Press "E" to add stick to fire
+      objectReference: {fileID: 0}
     - target: {fileID: 4172148587224761278, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: ingredientslisttextmesh
       value: 
@@ -2652,6 +2664,7 @@ MonoBehaviour:
   uiplayercanvas: {fileID: 2773670256373526545}
   witchtradecanvas: {fileID: 2856906899735666337}
   deathmessagetextmesh: {fileID: 8950152148615249760}
+  playercontroller: {fileID: 0}
 --- !u!1001 &8909877611622594424
 PrefabInstance:
   m_ObjectHideFlags: 0

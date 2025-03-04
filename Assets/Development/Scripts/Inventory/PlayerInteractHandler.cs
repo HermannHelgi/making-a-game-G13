@@ -45,6 +45,14 @@ public class PlayerInteractHandler : MonoBehaviour
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
     public string dialoguepopupstring;
 
+    [Header("Campfire variables")]
+    [Tooltip("The ItemScript which should be referenced as fuel for the campfire.")]
+    public ItemScript stick;
+    [Tooltip("The text that should be displayed on being able to add fuel to the campfire.")]
+    public string campfireaddfuelstring;
+    [Tooltip("The text that should be displayed on being able to pickup coal from campfire.")]
+    public string campfirepickupcoal;
+
     void Start()
     {
         popuptext.gameObject.SetActive(false);
@@ -59,15 +67,23 @@ public class PlayerInteractHandler : MonoBehaviour
 
     void Update()
     {
-        // This handles the "pop-up" text for the interact, if we want to customise it at all then it needs to be changed.
+        handlePopupText();
+        handleInteraction();
+        handleInventoryFullTimer();
+    }
+
+    void handlePopupText()
+    {
+        // This handles the "pop-up" text for interactions
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
         { 
-            var script = hit.transform.GetComponent<InteractableItem>();
+            var interactableitemscript = hit.transform.GetComponent<InteractableItem>();
             // The witch trade script kinda works as a wrapper for both the trade system and dialogue system.
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
+            var campfirescript = hit.transform.GetComponent<CampfireScript>();
             
-            if (script != null)
+            if (interactableitemscript != null)
             {
                 popuptext.text = interactwithobjectstring;
                 popuptext.gameObject.SetActive(true);
@@ -84,6 +100,23 @@ public class PlayerInteractHandler : MonoBehaviour
                 }
                 popuptext.gameObject.SetActive(true);
             }
+            else if (campfirescript != null)
+            {
+                if (playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(stick))
+                {
+                    popuptext.text = campfireaddfuelstring;
+                    popuptext.gameObject.SetActive(true);
+                }
+                else if (campfirescript.coalstored > 0)
+                {
+                    popuptext.text = campfirepickupcoal;
+                    popuptext.gameObject.SetActive(true);
+                }
+                else
+                {
+                    popuptext.gameObject.SetActive(false);
+                }
+            }
             else
             {
                 popuptext.gameObject.SetActive(false);
@@ -93,19 +126,23 @@ public class PlayerInteractHandler : MonoBehaviour
         { 
             popuptext.gameObject.SetActive(false);
         }
+    }
 
+    void handleInteraction()
+    {
         // If the player wants to interact with something
+        RaycastHit hit;
         if (Input.GetKeyDown(KeyCode.E))
         {
             // Raycast to get the object
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
             { 
                 // I check for a script since the player can do this raycast at any time, so need to make sure whatever object is there doesn't crash the game when we call an unknown method lol
-                var script = hit.transform.GetComponent<InteractableItem>();
-                if (script != null)
+                var interactableitemscript = hit.transform.GetComponent<InteractableItem>();
+                if (interactableitemscript != null)
                 {
                     // The item somehow has to gain access to the PlayerInventory script, first idea I came up with.
-                    bool test = script.pickUp(playerinventoryobject);
+                    bool test = interactableitemscript.pickUp(playerinventoryobject);
                     // if it fails, then the inventory is full.
                     if (!test)
                     {
@@ -122,9 +159,33 @@ public class PlayerInteractHandler : MonoBehaviour
                     // this initialize Trade Window will also handle the dialogue for the witch
                     witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft);
                 }
+
+                var campfirescript = hit.transform.GetComponent<CampfireScript>();
+                if (campfirescript != null)
+                {
+                    if (playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(stick))
+                    {
+                        playerinventoryobject.GetComponent<PlayerInventory>().removeItemFromHotbar(playerinventoryobject.GetComponent<PlayerInventory>().getCurrentIndex());
+                        campfirescript.addFuel();
+                    }
+                    else if (campfirescript.coalstored > 0)
+                    {
+                        ItemScript gatheredcoal = campfirescript.gatherCoal();
+                        bool test = playerinventoryobject.GetComponent<PlayerInventory>().addItemToHotbar(gatheredcoal);
+                        if (!test)
+                        {
+                            inventoryfulltext.gameObject.SetActive(true);
+                            inventoryfullclock = inventoryfullmaxtimer;
+                            campfirescript.failedToGatherCoal();
+                        }
+                    }
+                }
             }
         }
+    }
 
+    void handleInventoryFullTimer()
+    {
         // I just made a timer for the "Inventory Full" message, its simplest
         if (inventoryfullclock > 0)
         {

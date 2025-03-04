@@ -179,7 +179,6 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
-
     public void deleteHeldObjects()
     // Deletes held objects which are loaded in the scene
     {
@@ -214,6 +213,23 @@ public class PlayerInventory : MonoBehaviour
 
         // And select hotbar slot 0, to reset anything that is being held
         selectHotbar(0);
+    }
+
+    public bool isHoldingItem(ItemScript item)
+    {
+        if (hotbarinventory[currentindex] == item)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public int getCurrentIndex()
+    {
+        return currentindex;
     }
 
     void Update()
