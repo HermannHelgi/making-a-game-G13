@@ -7,6 +7,7 @@ public class PauseSystem : MonoBehaviour
     public static bool isPaused = false; // Static so other scripts can check
     public GameObject pauseMenu; // Assign this in the Inspector
     public GameObject player;
+    public PlayerDeathHandler deathhandler;
     private FirstPersonController playerController;
 
     void Start()
@@ -19,7 +20,7 @@ public class PauseSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !deathhandler.playerhasdied)
         {
             TogglePause();
         }
