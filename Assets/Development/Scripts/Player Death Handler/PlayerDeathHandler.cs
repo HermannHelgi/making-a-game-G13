@@ -12,8 +12,7 @@ public class PlayerDeathHandler : MonoBehaviour
     public TextMeshProUGUI deathmessagetextmesh;
     public GameObject playercontroller;
 
-
-    private bool playerhasdied = false;
+    public bool playerhasdied = false;
     public void die(string deathmessage)
     {
         // Makes the player "dead", aka freezes time and turns on the canvas
