@@ -24,12 +24,12 @@ public class PlayerLineofSight : MonoBehaviour
     private GameObject wendigo;
 
     public float detectionDistance = 60f;
-    private MeshRenderer isWendigoVisible;
+    private CapsuleCollider isWendigoVisible;
     
     void Start()
     {
         wendigo = GameObject.Find("Wendigo");
-        isWendigoVisible = wendigo.GetComponent<MeshRenderer>();
+        isWendigoVisible = wendigo.GetComponent<CapsuleCollider>();
 
         if(staticSound == null)
         {
@@ -71,7 +71,6 @@ public class PlayerLineofSight : MonoBehaviour
         // isLooking = IsLookingAtWendigo(wendigo.transform.position);
         if(isWendigoVisible.enabled)
         {   
-            Debug.Log("Wendigo is visible");
             isLooking = IsLookingAtWendigo(wendigo.transform.position);
             if(isLooking && !wasLooking)
             {   

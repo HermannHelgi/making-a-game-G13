@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class WendigoFollowPlayer : MonoBehaviour
 {
@@ -88,8 +89,9 @@ public class WendigoFollowPlayer : MonoBehaviour
         if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
             transform.forward = wendigoRaycast.player.transform.forward;
-            wendigoTransform.forward = wendigoRaycast.player.transform.forward;
-            agent.Warp(transform.position);
+            wendigoTransform.forward = -wendigoRaycast.player.transform.forward;
+            
+            agent.Warp(wendigoTransform.position);
         }
     }
 

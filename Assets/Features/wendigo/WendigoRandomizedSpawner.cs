@@ -22,13 +22,13 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     public Transform despawnPoint;
 
-    private MeshRenderer meshRenderer;
+    private CapsuleCollider capsuleCollider;
 
     public float heightOffset = 1.84f;  
 
     void Start()
     {   
-        meshRenderer = wendigoPrefab.GetComponent<MeshRenderer>();
+        capsuleCollider = wendigoPrefab.GetComponent<CapsuleCollider>();
         
     }
 
@@ -38,9 +38,9 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         
         if (player == null) return;
 
-        if (meshRenderer != null)
+        if (capsuleCollider != null)
         {
-            meshRenderer.enabled = true;
+            capsuleCollider.enabled = true;
         }
 
         Vector3 spawnpoint = FindValidSpawnPosition();
@@ -59,10 +59,10 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         if (wendigoPrefab == null) return;
 
 
-            if (meshRenderer != null)
+            if (capsuleCollider != null)
             {   
                 wendigoPrefab.transform.position = despawnPoint.position;
-                meshRenderer.enabled = false;
+                capsuleCollider.enabled = false;
                 Debug.Log("Despawning Wendigo.");
             }        
     }
@@ -99,7 +99,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
             if (Physics.Raycast(spawnPosition + Vector3.up * 200, Vector3.down, out hit, 400, groundLayer))
             {
                 spawnPosition = hit.point;
-                spawnPosition.y = hit.point.y;
+                spawnPosition.y = hit.point.y + heightOffset;
                 Debug.Log("Spawn position: " + spawnPosition);
                 return spawnPosition;
             }
