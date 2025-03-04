@@ -15,8 +15,8 @@ MonoBehaviour:
   itemname: BERRIES
   index: 2
   icon: {fileID: 21300000, guid: df7846f7b18d88544b62e9edef6b4e9e, type: 3}
-  model: {fileID: 7830457375511861682, guid: 468ecc2ee873b964f9a9cf34a1f7db48, type: 3}
+  model: {fileID: 7830457375511861682, guid: aba3bb00291469149bb76313e772fb56, type: 3}
   craftingrecipe: []
-  structureitem: 0
+  onetimecraft: 0
   consumable: 1
   hungergain: 60

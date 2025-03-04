@@ -30,10 +30,10 @@ public class CampfireScript : MonoBehaviour
     public ItemScript coalitemscript;
 
     // Private vars, used for state management
-    private int sticksemplaced = 0;
-    private float burntimer = 0;
-    private bool playerinrange;
-    private float oldtemperaturedrainrate;
+    public int sticksemplaced = 0;
+    public float burntimer = 0;
+    public bool playerinrange;
+    public float oldtemperaturedrainrate;
 
     void Start()
     {
@@ -53,7 +53,7 @@ public class CampfireScript : MonoBehaviour
                 warmPlayer();
             }
 
-            if (burntimer <= 0 && playerinrange)
+            if (burntimer <= 0)
             {
                 turnOffHeat();
             }

@@ -178,6 +178,10 @@ public class PlayerInteractHandler : MonoBehaviour
                             inventoryfullclock = inventoryfullmaxtimer;
                             campfirescript.failedToGatherCoal();
                         }
+                        else
+                        {
+                            GameManager.instance.discovereditems[gatheredcoal.index] = true;
+                        }
                     }
                 }
             }
