@@ -49,7 +49,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         {   
             float distance = Vector3.Distance(wendigoRaycast.player.transform.position, wendigoTransform.position);
             // Debug.Log("Distance to player: " + distance);
-            if (distance < caughtDistance)
+            if (distance <= caughtDistance)
             {   
                 Debug.Log("Attacking playing");
                 attackPlayer = true;
@@ -88,10 +88,9 @@ public class WendigoFollowPlayer : MonoBehaviour
         PlayChaseMusic();
         if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
-            transform.forward = wendigoRaycast.player.transform.forward;
             wendigoTransform.forward = -wendigoRaycast.player.transform.forward;
             
-            agent.Warp(wendigoTransform.position);
+            agent.Warp(hit.position);
         }
     }
 

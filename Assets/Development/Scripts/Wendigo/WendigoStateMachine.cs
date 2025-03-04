@@ -54,12 +54,14 @@ public class WendigoStateMachine : MonoBehaviour
 
         if(gameManager.isNight == false || gameManager.safeArea == true)
         {
+            wendigoRandomizedSpawner.playerSightings = 0;
             currentState = State.Resting;
         }
 
         switch (currentState)
         {
             case State.Resting:
+
                 Resting();
                 break;
             case State.Teleporting:
@@ -197,9 +199,15 @@ public class WendigoStateMachine : MonoBehaviour
             currentState = State.FollowingPlayer;
         }
     
-        if(idleTimer > 45f)
-        {
+        if(idleTimer > 30f)
+        {   
             currentState = State.Idle;
+        }
+        if(idleTimer > 60f)
+        {       
+            idleTimer = 0;
+            wendigoRandomizedSpawner.playerSightings = 1; 
+            currentState = State.Teleporting;
         }
 
         // LookingForPlayer state logic
