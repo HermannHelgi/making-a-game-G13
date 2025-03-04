@@ -26,6 +26,8 @@ public class LightingManager : MonoBehaviour
         [Header ("Day Cycle Parameters")]
         public bool IsDayCycleOn = true;
         public bool RandomStartTime;
+        public float startOfNight = 12f;
+        public float endOfNight = 12f;
         [Range(0, 24)] public float TimeOfDay = 12f;
         [Range(0, 24)] public float StartTime = 12f;
             //How long the day cycle will be in seconds
@@ -71,8 +73,6 @@ public class LightingManager : MonoBehaviour
         [SerializeField] private float eventsTolerance = 0.2f;
         [SerializeField][Range(0f, 24f)] private float ResetEventsTime = 0.1f;
         private bool DayCycleCompleted;
-
-        public GameManager gameManager;
 
     #endregion
 
@@ -123,13 +123,13 @@ public class LightingManager : MonoBehaviour
                 UpdateLighting(TimeOfDay / 24f);
             }
 
-            if(TimeOfDay <= 6 || TimeOfDay >= 20)
+            if(TimeOfDay <= endOfNight || TimeOfDay >= startOfNight)
             {
-                gameManager.isNight = true;
+                GameManager.instance.isNight = true;
             }
             else
             {
-                gameManager.isNight = false;
+                GameManager.instance.isNight = false;
             }
 
 
