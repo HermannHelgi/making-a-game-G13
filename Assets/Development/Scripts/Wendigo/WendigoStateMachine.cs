@@ -55,6 +55,7 @@ public class WendigoStateMachine : MonoBehaviour
         if(gameManager.isNight == false || gameManager.safeArea == true)
         {
             wendigoRandomizedSpawner.playerSightings = 0;
+            wendigoFollowPlayer.staticSound.Stop();
             currentState = State.Resting;
         }
 
