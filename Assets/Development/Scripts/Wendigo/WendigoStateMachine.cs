@@ -97,7 +97,7 @@ public class WendigoStateMachine : MonoBehaviour
             currentState = State.SpawnBehindPlayer;
         }
         // Idle state logic until seen by player then switch to teleport
-        if (playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
+        else if (playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
         {
             if (idleTimer >= wendigoRandomizedSpawner.maxStareTime)
             {
@@ -125,7 +125,13 @@ public class WendigoStateMachine : MonoBehaviour
         // Despawned state logic
         idleTimer += Time.deltaTime;
         playerLineOfSight.isLooking = false;
-        if (idleTimer > wendigoRandomizedSpawner.spawnTimer)
+        if(wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
+        {   
+            idleTimer = 0;
+            currentState = State.SpawnBehindPlayer;
+
+        }
+        else if (idleTimer > wendigoRandomizedSpawner.spawnTimer)
         {
             idleTimer = 0;
             currentState = State.Teleporting;

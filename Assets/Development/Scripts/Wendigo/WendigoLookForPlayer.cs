@@ -12,7 +12,7 @@ public class WendigoLookForPlayer: MonoBehaviour
     public GameObject Wendigo;
     public WendigoFollowPlayer wendigoFollowPlayer;
 
-    public float trackingTimer = 5f;
+    public float trackingTimer = 10f;
     private float smellTimer = 0f;
     NavMeshAgent agent;
 
