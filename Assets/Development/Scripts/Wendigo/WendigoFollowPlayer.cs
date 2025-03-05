@@ -65,14 +65,14 @@ public class WendigoFollowPlayer : MonoBehaviour
         else if (!wendigoRaycast.detected)
         {
             // Debug.Log("Lost Player");
-            agent.SetDestination(wendigoRaycast.lastKnownPosition);
-            agent.acceleration = speed / speedMultiplier;
-            agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
-            
-            if(wendigoTransform.position ==  wendigoRaycast.lastKnownPosition)
+            float distance = Vector3.Distance(wendigoTransform.position , wendigoRaycast.lastKnownPosition);
+            if(distance <= caughtDistance)
             {
                 lostPlayer = true;
             }
+            agent.SetDestination(wendigoRaycast.lastKnownPosition);
+            agent.acceleration = speed / speedMultiplier;
+            agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
 
 
             

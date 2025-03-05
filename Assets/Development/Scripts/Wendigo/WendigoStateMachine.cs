@@ -193,21 +193,17 @@ public class WendigoStateMachine : MonoBehaviour
         idleTimer += Time.deltaTime;
         wendigoLookForPlayer.TrackFootsteps();
            
-        if(wendigoRaycasts.detected)
+
+        if(idleTimer > 60f)
+        {       
+            wendigoRandomizedSpawner.playerSightings = 1; 
+            idleTimer = 0;
+            currentState = State.Teleporting;
+        }
+        else if(wendigoRaycasts.detected)
         {   
             Debug.Log("Player detected");
             currentState = State.FollowingPlayer;
-        }
-    
-        if(idleTimer > 30f)
-        {   
-            currentState = State.Idle;
-        }
-        if(idleTimer > 60f)
-        {       
-            idleTimer = 0;
-            wendigoRandomizedSpawner.playerSightings = 1; 
-            currentState = State.Teleporting;
         }
 
         // LookingForPlayer state logic

@@ -13,7 +13,7 @@ public class WendigoLookForPlayer: MonoBehaviour
     public WendigoFollowPlayer wendigoFollowPlayer;
 
     public float trackingTimer = 5f;
-
+    private float smellTimer = 0f;
     NavMeshAgent agent;
 
 
@@ -25,10 +25,9 @@ public class WendigoLookForPlayer: MonoBehaviour
 
     public void TrackFootsteps()
     {   
-        float smellTimer = 0f;
         smellTimer += Time.deltaTime;
         if(smellTimer >  trackingTimer)
-        {
+        {   
             smellTimer = 0f;
             playerFootsteps = wendigoFollowPlayer.wendigoRaycast.player.transform;
             GoToTracks();
@@ -40,10 +39,7 @@ public class WendigoLookForPlayer: MonoBehaviour
     private void GoToTracks()
     {
         
-        wendigoFollowPlayer.agent.SetDestination(playerFootsteps.position);
-
-        wendigoFollowPlayer.agent.speed = 15f;
-         
+        wendigoFollowPlayer.agent.SetDestination(playerFootsteps.position); 
 
     }
 
