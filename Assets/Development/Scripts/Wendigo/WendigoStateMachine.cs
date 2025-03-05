@@ -19,6 +19,7 @@ public class WendigoStateMachine : MonoBehaviour
     public GameObject Wendigo;
 
     private float idleTimer;
+    private float lookingTimer;
 
 
     private GameManager gameManager;
@@ -197,14 +198,14 @@ public class WendigoStateMachine : MonoBehaviour
     private void LookingForPlayer()
     {   
         
-        idleTimer += Time.deltaTime;
+        lookingTimer += Time.deltaTime;
         wendigoLookForPlayer.TrackFootsteps();
            
 
-        if(idleTimer > 60f)
+        if(lookingTimer > 60f)
         {       
             wendigoRandomizedSpawner.playerSightings = 1; 
-            idleTimer = 0;
+            lookingTimer = 0;
             currentState = State.Teleporting;
         }
         else if(wendigoRaycasts.detected)

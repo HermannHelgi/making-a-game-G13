@@ -67,8 +67,10 @@ public class WendigoFollowPlayer : MonoBehaviour
             // Debug.Log("Lost Player");
             float distance = Vector3.Distance(wendigoTransform.position , wendigoRaycast.lastKnownPosition);
             if(distance <= caughtDistance)
-            {
+            {   
+                PlayChaseMusic();
                 lostPlayer = true;
+                
             }
             agent.SetDestination(wendigoRaycast.lastKnownPosition);
             agent.acceleration = speed / speedMultiplier;
