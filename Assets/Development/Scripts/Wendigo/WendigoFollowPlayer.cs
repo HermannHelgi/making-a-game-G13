@@ -28,7 +28,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
 
-        
+
     }
 
     private void Update()
@@ -44,13 +44,13 @@ public class WendigoFollowPlayer : MonoBehaviour
         // {
         //     agent.enabled = true;
         // }
-        SetVolumeIncrease();
+        // SetVolumeIncrease();
         if (wendigoRaycast.detected)
-        {   
+        {
             float distance = Vector3.Distance(wendigoRaycast.player.transform.position, wendigoTransform.position);
             // Debug.Log("Distance to player: " + distance);
             if (distance <= caughtDistance)
-            {   
+            {
                 Debug.Log("Attacking playing");
                 attackPlayer = true;
             }
@@ -65,19 +65,19 @@ public class WendigoFollowPlayer : MonoBehaviour
         else if (!wendigoRaycast.detected)
         {
             // Debug.Log("Lost Player");
-            float distance = Vector3.Distance(wendigoTransform.position , wendigoRaycast.lastKnownPosition);
-            if(distance <= caughtDistance)
-            {   
+            float distance = Vector3.Distance(wendigoTransform.position, wendigoRaycast.lastKnownPosition);
+            if (distance <= caughtDistance)
+            {
                 PlayChaseMusic();
                 lostPlayer = true;
-                
+
             }
             agent.SetDestination(wendigoRaycast.lastKnownPosition);
             agent.acceleration = speed / speedMultiplier;
             agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
 
 
-            
+
         }
 
 
@@ -85,19 +85,20 @@ public class WendigoFollowPlayer : MonoBehaviour
 
     public void SpawnBehindPlayer()
     {
-        float sampleRadius = 5f;
+
+        float sampleRadius = 10f;
         Vector3 behindPlayer = wendigoRaycast.player.transform.position - wendigoRaycast.player.transform.forward * 60f;
-        PlayChaseMusic();
+        // PlayChaseMusic();
         if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
             wendigoTransform.forward = -wendigoRaycast.player.transform.forward;
-            
+
             agent.Warp(hit.position);
         }
     }
 
 
-    private void PlayChaseMusic()
+    public void PlayChaseMusic()
     {
         if (!lostPlayer)
         {

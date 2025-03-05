@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class WendigoStateMachine : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class WendigoStateMachine : MonoBehaviour
 
     private float idleTimer;
     private float lookingTimer;
+    private float spawnBehindTimer;
 
 
     private GameManager gameManager;
@@ -51,9 +53,9 @@ public class WendigoStateMachine : MonoBehaviour
     }
 
     void Update()
-    {        
+    {
 
-        if(gameManager.isNight == false || gameManager.safeArea == true)
+        if (gameManager.isNight == false || gameManager.safeArea == true)
         {
             wendigoRandomizedSpawner.playerSightings = 0;
             wendigoFollowPlayer.staticSound.Stop();
@@ -127,8 +129,8 @@ public class WendigoStateMachine : MonoBehaviour
         // Despawned state logic
         idleTimer += Time.deltaTime;
         playerLineOfSight.isLooking = false;
-        if(wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
-        {   
+        if (wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
+        {
             idleTimer = 0;
             currentState = State.SpawnBehindPlayer;
 
@@ -144,11 +146,11 @@ public class WendigoStateMachine : MonoBehaviour
     {
         // Debug.Log("Resting");
         Wendigo.transform.position = wendigoRandomizedSpawner.despawnPoint.position;
-        if(gameManager.isNight == true && gameManager.safeArea == false)
+        if (gameManager.isNight == true && gameManager.safeArea == false)
         {
             currentState = State.Teleporting;
         }
-        
+
     }
 
     private void Teleporting()
@@ -158,7 +160,7 @@ public class WendigoStateMachine : MonoBehaviour
 
         Debug.Log("Teleporting to new location");
         wendigoRandomizedSpawner.SpawnWendigo();
-        
+
         currentState = State.Idle;
 
 
@@ -170,8 +172,14 @@ public class WendigoStateMachine : MonoBehaviour
     private void SpawnBehindPlayer()
     {
         Debug.Log("SpawnBehindPlayer");
-        wendigoFollowPlayer.SpawnBehindPlayer();
-        currentState = State.FollowingPlayer;
+        wendigoFollowPlayer.SetVolumeIncrease();
+        spawnBehindTimer += Time.deltaTime;
+        if (spawnBehindTimer >= 20f)
+        {
+            wendigoFollowPlayer.SpawnBehindPlayer();
+            currentState = State.FollowingPlayer;
+
+        }
         // SpawnBehindPlayer state logic
     }
 
@@ -196,21 +204,22 @@ public class WendigoStateMachine : MonoBehaviour
 
 
     private void LookingForPlayer()
-    {   
-        
+    {
+
         lookingTimer += Time.deltaTime;
         wendigoLookForPlayer.TrackFootsteps();
-           
 
-        if(lookingTimer > 60f)
-        {       
-            wendigoRandomizedSpawner.playerSightings = 1; 
+
+        if (lookingTimer > 60f)
+        {
+            wendigoRandomizedSpawner.playerSightings = 1;
             lookingTimer = 0;
             currentState = State.Teleporting;
         }
-        else if(wendigoRaycasts.detected)
-        {   
+        else if (wendigoRaycasts.detected)
+        {
             Debug.Log("Player detected");
+            wendigoFollowPlayer.PlayChaseMusic();
             currentState = State.FollowingPlayer;
         }
 
