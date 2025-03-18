@@ -20,6 +20,8 @@ public class NecessityBars : MonoBehaviour
     public float maxtemperature;
     public float temperaturedrainrate = 1f;
     public Image temperaturemeter;
+    public Color coldcolor;
+    public Color warmcolor;
 
     public float frostbiteoverheaddisplaycutoff;
     public Image frostbiteoverhead;
@@ -37,7 +39,7 @@ public class NecessityBars : MonoBehaviour
     // Private
     private float currenthunger;
     private float hungerpercent => currenthunger / maxhunger;
-    private float currenttemperature;
+    public float currenttemperature;
     private float temperaturepercent => currenttemperature / maxtemperature;
     private bool displayingincreaseinhunger;
     private float increaseinhunger;
@@ -72,6 +74,15 @@ public class NecessityBars : MonoBehaviour
             currenttemperature -= temperaturedrainrate * Time.deltaTime;
         }
         
+        if (temperaturedrainrate < 0)
+        {
+            temperaturemeter.color = warmcolor;
+        }
+        else
+        {
+            temperaturemeter.color = coldcolor;
+        }
+
         // I do this calculation constantly to avoid more complex logic. 
         starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
         frostbiteoverhead.color = new Color(1, 1, 1, (1 - currenttemperature / frostbiteoverheaddisplaycutoff));
@@ -80,7 +91,7 @@ public class NecessityBars : MonoBehaviour
         hungermeter.fillAmount = hungerpercent;
         temperaturemeter.fillAmount = temperaturepercent;
 
-        if (hungerdisplayconsumablemeter)
+        if (displayingincreaseinhunger)
         {
             hungerdisplayconsumablemeter.fillAmount = (currenthunger + increaseinhunger) / maxhunger; 
         }
