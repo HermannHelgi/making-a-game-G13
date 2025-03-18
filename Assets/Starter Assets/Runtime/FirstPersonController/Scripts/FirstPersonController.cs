@@ -173,29 +173,30 @@ namespace StarterAssets
 		{
 			
 
-			if(_currentSprintBarStatus <= 0)
-			{
-				_sprintRecovered = false;
-			}
+			// if(_currentSprintBarStatus <= 0)
+			// {
+			// 	_sprintRecovered = false;
+			// }
 			
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed;
-			if(_input.sprint && _sprintRecovered)
+			if(_input.sprint)
+			// if(_input.sprint && _sprintRecovered)
 			{
 				targetSpeed = SprintSpeed;
-				_currentSprintBarStatus -= SprintDropOff * Time.deltaTime;
+				// _currentSprintBarStatus -= SprintDropOff * Time.deltaTime;
 			}
 			else
 			{
 				targetSpeed = MoveSpeed;
-				if(_currentSprintBarStatus < SprintTime)
-				{
-					_currentSprintBarStatus += SprintRecoverTime * Time.deltaTime;
-					if(_currentSprintBarStatus >= minimumSprintRecovery)
-					{
-						_sprintRecovered = true;
-					}
-				}
+			// 	if(_currentSprintBarStatus < SprintTime)
+			// 	{
+			// 		_currentSprintBarStatus += SprintRecoverTime * Time.deltaTime;
+			// 		if(_currentSprintBarStatus >= minimumSprintRecovery)
+			// 		{
+			// 			_sprintRecovered = true;
+			// 		}
+			// 	}
 			}
 
 
