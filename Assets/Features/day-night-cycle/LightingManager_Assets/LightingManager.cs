@@ -123,13 +123,16 @@ public class LightingManager : MonoBehaviour
                 UpdateLighting(TimeOfDay / 24f);
             }
 
-            if(TimeOfDay <= endOfNight || TimeOfDay >= startOfNight)
+            if (GameManager.instance != null)
             {
-                GameManager.instance.isNight = true;
-            }
-            else
-            {
-                GameManager.instance.isNight = false;
+                if(TimeOfDay <= endOfNight || TimeOfDay >= startOfNight)
+                {
+                    GameManager.instance.isNight = true;
+                }
+                else
+                {
+                    GameManager.instance.isNight = false;
+                }
             }
 
 

@@ -35,6 +35,7 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         consumableindicator.SetActive(false);
+        necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
 
         //  Instantiate the arrays
         hotbarinventory = new ItemScript[maxhotbarsize];
@@ -65,6 +66,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         consumableindicator.SetActive(false);
+        necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
 
         // Edge checks
         if (index >= maxhotbarsize)
@@ -86,6 +88,7 @@ public class PlayerInventory : MonoBehaviour
             if (hotbarinventory[currentindex].consumable)
             {
                 consumableindicator.SetActive(true);
+                necessitybargameobject.GetComponent<NecessityBars>().displayHungerIncrease(hotbarinventory[currentindex].hungergain);
             }
         }
 
@@ -254,6 +257,7 @@ public class PlayerInventory : MonoBehaviour
         {
             necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
             removeItemFromHotbar(currentindex);
+            necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
         }
         // -----------------------------------------------------------------------------
     }
