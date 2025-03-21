@@ -563,14 +563,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 482589360136488752, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: errormessagetext
-      value: 
-      objectReference: {fileID: 754538006}
-    - target: {fileID: 482589360136488752, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: inventoryfullstring
-      value: Inventory is full
-      objectReference: {fileID: 0}
     - target: {fileID: 1005204431041367635, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1142248
@@ -615,26 +607,6 @@ PrefabInstance:
       propertyPath: appleinhungerbar
       value: 
       objectReference: {fileID: 2061342613}
-    - target: {fileID: 2640201155253407670, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: failedtorefuel
-      value: Lacking coal to refuel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2640201155253407670, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: maxtorchdurability
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2640201155253407670, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: playerinteracthandler
-      value: 
-      objectReference: {fileID: 1531117252}
-    - target: {fileID: 2640201155253407670, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: maxemberstonedurability
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 3981407107401872576, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-      propertyPath: m_Name
-      value: Error Message
-      objectReference: {fileID: 0}
     - target: {fileID: 4876284616008694636, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.81714
@@ -780,17 +752,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &754538006 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3991975613888055429, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-  m_PrefabInstance: {fileID: 136130773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &912774777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,17 +1125,6 @@ MonoBehaviour:
   dialoguetriggerforwitch: {fileID: 0}
   replaceondepletion: 0
   replacemodel: {fileID: 0}
---- !u!114 &1531117252 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 482589360136488752, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
-  m_PrefabInstance: {fileID: 136130773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9bd1f5ee82a9854792589dc869efc14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1916166104
 GameObject:
   m_ObjectHideFlags: 0

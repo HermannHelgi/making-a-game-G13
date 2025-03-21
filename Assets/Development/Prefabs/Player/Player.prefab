@@ -541,10 +541,22 @@ PrefabInstance:
       propertyPath: playerobject
       value: 
       objectReference: {fileID: 8709562959268111755}
+    - target: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: errormessagetext
+      value: 
+      objectReference: {fileID: 3991975613888055429}
+    - target: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: inventoryfullstring
+      value: Inventory is full
+      objectReference: {fileID: 0}
     - target: {fileID: 2399064878521251955, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: playercontroller
       value: 
       objectReference: {fileID: 8709562959268111755}
+    - target: {fileID: 2577158588651738996, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: m_Name
+      value: Error Message
+      objectReference: {fileID: 0}
     - target: {fileID: 2826927715677490921, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.81714
@@ -606,12 +618,28 @@ PrefabInstance:
       value: Press "F" to consume
       objectReference: {fileID: 0}
     - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: failedtorefuel
+      value: Lacking coal to refuel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: refueltorchtext
       value: Press "F" to refuel torch
       objectReference: {fileID: 0}
     - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: maxtorchdurability
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: refuelemberstonetext
       value: Press "F" to refuel ember stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: playerinteracthandler
+      value: 
+      objectReference: {fileID: 482589360136488752}
+    - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: maxemberstonedurability
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4013131337950723113, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_IsActive
@@ -652,6 +680,17 @@ PrefabInstance:
       addedObject: {fileID: 4135121890692257320}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+--- !u!114 &482589360136488752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+  m_PrefabInstance: {fileID: 1478065507755647924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bd1f5ee82a9854792589dc869efc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1824585806040306547 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 995611765079863495, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
@@ -671,6 +710,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0095a6fabc3bf345be9fd174b4beb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3991975613888055429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2586609987029150513, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+  m_PrefabInstance: {fileID: 1478065507755647924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!20 &4876284616008694635 stripped
