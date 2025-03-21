@@ -19,27 +19,31 @@ public class NecessityBars : MonoBehaviour
     [Header("Cold Bar Variables")]
     public float maxtemperature;
     public float temperaturedrainrate = 1f;
+    public float torchincreaserate = 0.333f;
+    public float emberstoneincreaserate = 1.0f;
     public Image temperaturemeter;
     public Color coldcolor;
+    public GameObject snowflakeicon;
     public Color warmcolor;
+    public GameObject fireicon;
 
     public float frostbiteoverheaddisplaycutoff;
     public Image frostbiteoverhead;
 
     [Header("Player Death Variables")]
-
     public GameObject playerdeathhandler;
     public string starvationmessage;
     public string frostbitemessage;
 
     [Header("Player Death Variables")]
-
     public StarterAssetsInputs firstpersoncontroller;
 
     // Private
-    private float currenthunger;
+    [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
+    [SerializeField] private float currenthunger;
     private float hungerpercent => currenthunger / maxhunger;
-    public float currenttemperature;
+    [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
+    [SerializeField] private float currenttemperature;
     private float temperaturepercent => currenttemperature / maxtemperature;
     private bool displayingincreaseinhunger;
     private float increaseinhunger;
@@ -64,23 +68,35 @@ public class NecessityBars : MonoBehaviour
             currenthunger -= hungerdrainrate * Time.deltaTime;
         }
 
-        // I do a check here as the campfire simply makes the drain rate negative, so to make sure the player doesn't "go over" the max, this edge check is needed.
-        if (currenttemperature - temperaturedrainrate * Time.deltaTime > maxtemperature)
+        float changetocurrenttemp = 0;
+        changetocurrenttemp -= temperaturedrainrate * Time.deltaTime;
+        if (GameManager.instance.holdingtorch && GameManager.instance.torchactive)
         {
-            currenttemperature = maxtemperature;
+            changetocurrenttemp += torchincreaserate * Time.deltaTime;
         }
-        else
+        if (GameManager.instance.emberstoneactive)
         {
-            currenttemperature -= temperaturedrainrate * Time.deltaTime;
+            changetocurrenttemp += emberstoneincreaserate * Time.deltaTime;
         }
-        
-        if (temperaturedrainrate < 0)
-        {
-            temperaturemeter.color = warmcolor;
-        }
-        else
+
+        if (changetocurrenttemp <= 0)
         {
             temperaturemeter.color = coldcolor;
+            snowflakeicon.SetActive(true);
+            fireicon.SetActive(false);
+        }
+        else if (changetocurrenttemp > 0)
+        {
+            temperaturemeter.color = warmcolor;
+            snowflakeicon.SetActive(false);
+            fireicon.SetActive(true);
+        }
+
+        currenttemperature += changetocurrenttemp;
+        // I do a check here since the player could be near the campfire, or could be gaining heat from torch + emberstone.
+        if (currenttemperature > maxtemperature)
+        {
+            currenttemperature = maxtemperature;
         }
 
         // I do this calculation constantly to avoid more complex logic. 

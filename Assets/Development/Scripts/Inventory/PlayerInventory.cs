@@ -9,8 +9,6 @@ public class PlayerInventory : MonoBehaviour
     public Sprite emptyhotbar;    
     public GameObject hotbarslotprefab;
     public GameObject hotbarslotgrid;
-    [Tooltip("ItemScript of the Torch, required for Wendigo AI.")]
-    public ItemScript torch;
 
     [Header("Sprite variables")]
     public Color selectedhotbarcolor = Color.white;
@@ -26,6 +24,30 @@ public class PlayerInventory : MonoBehaviour
     [Tooltip("TextMeshPro element for the 'Press F to consume' text.")]
     public GameObject consumableindicator;
     public GameObject necessitybargameobject;
+    public string consumabletext;
+    public PlayerInteractHandler playerinteracthandler;
+
+    [Header("Torch variables")]
+    [Tooltip("ItemScript of the Torch, required for Wendigo AI and durability stuff.")]
+    public ItemScript torch;
+    [Tooltip("The total time the torch should be able to last, measured in seconds.")]
+    public float maxtorchdurability = 300;
+    [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
+    [SerializeField] private float currenttorchdurability = 0;
+    private bool torchininventory = false;
+    public string refueltorchtext;
+    public string failedtorefuel;
+    public ItemScript coal;
+
+    [Header("Ember stone variables")]
+    [Tooltip("ItemScript of the Torch, required for Wendigo AI and durability stuff.")]
+    public ItemScript emberstone;
+    [Tooltip("The total time the torch should be able to last, measured in seconds.")]
+    public float maxemberstonedurability = 300;
+    [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
+    [SerializeField] private float currentemberstonedurability = 0;
+    private bool emberstoneininventory = false;
+    public string refuelemberstonetext;
 
     // Private stuffs
     private int currentindex = 0;
@@ -88,7 +110,24 @@ public class PlayerInventory : MonoBehaviour
             if (hotbarinventory[currentindex].consumable)
             {
                 consumableindicator.SetActive(true);
+                consumableindicator.GetComponent<TextMeshProUGUI>().text = consumabletext;
                 necessitybargameobject.GetComponent<NecessityBars>().displayHungerIncrease(hotbarinventory[currentindex].hungergain);
+            }
+            else if (hotbarinventory[currentindex] == torch)
+            {
+                if (currenttorchdurability <= 0)
+                {
+                    consumableindicator.SetActive(true);
+                    consumableindicator.GetComponent<TextMeshProUGUI>().text = refueltorchtext;
+                }
+            }
+            else if (hotbarinventory[currentindex] == emberstone)
+            {
+                if (currentemberstonedurability <= 0)
+                {
+                    consumableindicator.SetActive(true);
+                    consumableindicator.GetComponent<TextMeshProUGUI>().text = refuelemberstonetext;
+                }
             }
         }
 
@@ -121,6 +160,18 @@ public class PlayerInventory : MonoBehaviour
             {
                 hotbarinventory[index] = newItem;
                 hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = newItem.icon;
+                if (newItem == torch)
+                {
+                    torchininventory = true;
+                    currenttorchdurability = maxtorchdurability;
+                    GameManager.instance.torchactive = true;
+                }
+                if (newItem == emberstone)
+                {
+                    emberstoneininventory = true;
+                    currentemberstonedurability = maxemberstonedurability;
+                    GameManager.instance.emberstoneactive = true;
+                }                    
                 selectHotbar(index); 
                 return true;
             }
@@ -248,17 +299,87 @@ public class PlayerInventory : MonoBehaviour
             selectHotbar(currentindex - 1);
         }
 
-        // ------------------ NEEDS TO BE MOVED TO PLAYER CONTROLS ---------------------
+        // ------------------ NEEDS TO BE CHANGED TO BE ABLE TO THROW / DORP ITEM ---------------------
         if (Input.GetKeyDown(KeyCode.Q))
         {
             removeItemFromHotbar(currentindex);
         }
+        // -----------------------------------------------------------------------------
+
+
         if (consumableindicator.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
-            necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
-            removeItemFromHotbar(currentindex);
-            necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
+            if (hotbarinventory[currentindex].consumable)
+            {
+                necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
+                removeItemFromHotbar(currentindex);
+                necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
+            }
+            else if (hotbarinventory[currentindex] == torch)
+            {
+                bool check = removeItemFromHotbar(coal);
+                if (check)
+                {
+                    GameManager.instance.torchactive = true;
+                    currenttorchdurability = maxtorchdurability;
+                    consumableindicator.SetActive(false);
+                    resetHotbarItems();
+                }
+                else
+                {
+                    playerinteracthandler.displayErrorMessage(failedtorefuel);
+                }
+            }
+            else if (hotbarinventory[currentindex] == emberstone)
+            {
+                bool check = removeItemFromHotbar(coal);
+                if (check)
+                {
+                    GameManager.instance.emberstoneactive = true;
+                    currentemberstonedurability = maxemberstonedurability;
+                    consumableindicator.SetActive(false);
+                    resetHotbarItems();
+                }
+                else
+                {
+                    playerinteracthandler.displayErrorMessage(failedtorefuel);
+                }
+            }
         }
-        // -----------------------------------------------------------------------------
+
+        // TODO: When moving items to chest, if item is torch / emberstone, make sure to set the booleans of those respective items to being FALSE in inventory.
+
+        if (torchininventory)
+        {
+            if (currenttorchdurability > 0)
+            {
+                currenttorchdurability -= 1 * Time.deltaTime;
+                if (currenttorchdurability <= 0)
+                {
+                    GameManager.instance.torchactive = false;
+                    if (hotbarinventory[currentindex] == torch)
+                    {
+                        consumableindicator.SetActive(true);
+                        consumableindicator.GetComponent<TextMeshProUGUI>().text = refueltorchtext;
+                    }
+                }
+            }
+        }
+        if (emberstoneininventory)
+        {
+            if (currentemberstonedurability > 0)
+            {
+                currentemberstonedurability -= 1 * Time.deltaTime;
+                if (currentemberstonedurability <= 0)
+                {
+                    GameManager.instance.emberstoneactive = false;
+                    if (hotbarinventory[currentindex] == emberstone)
+                    {
+                        consumableindicator.SetActive(true);
+                        consumableindicator.GetComponent<TextMeshProUGUI>().text = refuelemberstonetext;
+                    }
+                }
+            }
+        }
     }
 }
