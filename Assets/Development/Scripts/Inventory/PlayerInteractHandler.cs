@@ -15,13 +15,15 @@ public class PlayerInteractHandler : MonoBehaviour
     public TextMeshProUGUI popuptext;
     [Tooltip("The text that should be displayed on being able to interact with an object.")]
     public string interactwithobjectstring;
-    [Tooltip("TextMeshPro element for the 'Inventory full' text.")]
-    public TextMeshProUGUI inventoryfulltext;
-    [Tooltip("The amount of time the 'Inventory full' text is displayed.")]
-    public float inventoryfullmaxtimer = 3;
+    [Tooltip("TextMeshPro element for error messages which should be displayed to the player.")]
+    public TextMeshProUGUI errormessagetext;
+    [Tooltip("String of text which is displayed when the player tries to pick up an item with full inventory.")]
+    public string inventoryfullstring;
+    [Tooltip("The amount of time the error messages which should be displayed to the player is displayed.")]
+    public float errormessagemaxtimer = 3;
 
     // The clock variable is the actual timer which is manipulated, maxtimer is the value it resets to
-    private float inventoryfullclock = 0;
+    private float errormessageclock = 0;
 
     [Header("Witch in the Wall variables")]
     [Tooltip("The canvas for which the trade overlay appears.")]
@@ -58,7 +60,7 @@ public class PlayerInteractHandler : MonoBehaviour
     void Start()
     {
         popuptext.gameObject.SetActive(false);
-        inventoryfulltext.gameObject.SetActive(false);
+        errormessagetext.gameObject.SetActive(false);
         subtitletextmesh.SetActive(false);
 
         if (playerinventoryobject == null)
@@ -149,9 +151,9 @@ public class PlayerInteractHandler : MonoBehaviour
                     // if it fails, then the inventory is full.
                     if (!test)
                     {
-                        inventoryfulltext.gameObject.SetActive(true);
                         // Starts the timer, or resets it if it's already going
-                        inventoryfullclock = inventoryfullmaxtimer;
+                        displayErrorMessage(inventoryfullstring);
+                        
                     }
                 }
 
@@ -177,8 +179,7 @@ public class PlayerInteractHandler : MonoBehaviour
                         bool test = playerinventoryobject.GetComponent<PlayerInventory>().addItemToHotbar(gatheredcoal);
                         if (!test)
                         {
-                            inventoryfulltext.gameObject.SetActive(true);
-                            inventoryfullclock = inventoryfullmaxtimer;
+                            displayErrorMessage(inventoryfullstring);
                             campfirescript.failedToGatherCoal();
                         }
                         else
@@ -193,14 +194,21 @@ public class PlayerInteractHandler : MonoBehaviour
 
     void handleInventoryFullTimer()
     {
-        // I just made a timer for the "Inventory Full" message, its simplest
-        if (inventoryfullclock > 0)
+        // I just made a timer for the error messages, its simplest
+        if (errormessageclock > 0)
         {
-            inventoryfullclock -= Time.deltaTime;
-            if (inventoryfullclock <= 0)
+            errormessageclock -= Time.deltaTime;
+            if (errormessageclock <= 0)
             {
-                inventoryfulltext.gameObject.SetActive(false);
+                errormessagetext.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void displayErrorMessage(string text)
+    {
+        errormessagetext.gameObject.SetActive(true);
+        errormessagetext.text = text;
+        errormessageclock = errormessagemaxtimer;
     }
 }

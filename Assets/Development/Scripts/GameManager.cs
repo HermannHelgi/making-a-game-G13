@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [Header("Player variables.")]
     [Tooltip("Bool variable used by the Wendigo AI script to see whether the player is holding a torch.")]
     public bool holdingtorch;
+    public bool torchactive;
+    public bool emberstoneactive;
 
     [Header("Witch in the wall variables.")]
     [Tooltip("An item array for all the possible items in the game, ocne set to true the item is discovered.")]

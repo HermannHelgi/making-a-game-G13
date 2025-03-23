@@ -5027,8 +5027,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 487ded0a394b523408c90235d98f2898, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4942111948594316131}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 487ded0a394b523408c90235d98f2898, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8180245391421451051}
   m_SourcePrefab: {fileID: 100100000, guid: 487ded0a394b523408c90235d98f2898, type: 3}
+--- !u!1 &116292991022931485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 487ded0a394b523408c90235d98f2898, type: 3}
+  m_PrefabInstance: {fileID: 962730225606009676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8180245391421451051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116292991022931485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86dd0e73ea1b284aa9e2be658e40172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 4539616834127170728}
+  pointlight: {fileID: 1136109658562740124}
 --- !u!4 &781083677638149287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 487ded0a394b523408c90235d98f2898, type: 3}
