@@ -84,7 +84,16 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void EndOneShot(AudioClip clip, AudioSource source)
+    {
+        if (clip != null && source != null)
+        {
+            source.Stop();
+        }
+    }
+
     // Ambiance Sounds
+    
     public void PlayAmbiance1() => PlayOneShot(Ambiance1, AmbianceSource1);
     public void PlayAmbiance2() => PlayOneShot(Ambiance2, AmbianceSource2);
     
