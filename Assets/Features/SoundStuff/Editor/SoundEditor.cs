@@ -1,90 +1,120 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Reflection;
-using System;
+using UnityEngine.Rendering.HighDefinition;
 
 [CustomEditor(typeof(SoundManager))]
 public class SoundEditor : Editor
 {
-    private Dictionary<string, bool> headerFoldouts = new();
-    private Dictionary<string, bool> audioSourceFoldouts = new();
+    private Dictionary<int, bool> audioSourceFoldouts = new();
+    SerializedProperty soundGroupsProp;
+
+    void OnEnable()
+    {
+        soundGroupsProp = serializedObject.FindProperty("soundGroups");
+    }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
-        SoundManager soundManager = (SoundManager)target;
-        FieldInfo[] fields = typeof(SoundManager).GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+        for (int i = 0; i < soundGroupsProp.arraySize; i++)
+        {
+            SerializedProperty groupProp = soundGroupsProp.GetArrayElementAtIndex(i);
+            SerializedProperty headerProp = groupProp.FindPropertyRelative("headerName");
+            SerializedProperty sourceProp = groupProp.FindPropertyRelative("source");
+            SerializedProperty soundsProp = groupProp.FindPropertyRelative("sounds");
 
-        string currentHeader = "";
+            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.BeginHorizontal();
+            headerProp.stringValue = EditorGUILayout.TextField("Header", headerProp.stringValue);
 
-        foreach (FieldInfo field in fields)
-        {   
-            // Detect new headers and create foldouts
-            HeaderAttribute headerAttr = field.GetCustomAttribute<HeaderAttribute>();
-            if (headerAttr != null)
+            if (GUILayout.Button("Remove Group"))
             {
-                currentHeader = headerAttr.header;
+                soundGroupsProp.DeleteArrayElementAtIndex(i);
+                break;
+            }
+            EditorGUILayout.EndHorizontal();
 
-                if (!headerFoldouts.ContainsKey(currentHeader))
-                    headerFoldouts[currentHeader] = true;
+            EditorGUILayout.PropertyField(sourceProp, new GUIContent("Audio Source"));
+            
+            AudioSource src = sourceProp.objectReferenceValue as AudioSource;
+            if (src != null)
+            {
+                if (!audioSourceFoldouts.ContainsKey(i))
+                    audioSourceFoldouts[i] = false;
 
-                headerFoldouts[currentHeader] = EditorGUILayout.Foldout(headerFoldouts[currentHeader], currentHeader, true);
+                audioSourceFoldouts[i] = EditorGUILayout.Foldout(audioSourceFoldouts[i], "Audio Source Settings", true);
+
+                if (audioSourceFoldouts[i])
+                {
+                    EditorGUI.indentLevel++;
+                    src.mute = EditorGUILayout.Toggle("Mute", src.mute);
+                    src.loop = EditorGUILayout.Toggle("Loop", src.loop);
+                    src.playOnAwake = EditorGUILayout.Toggle("OnAwake", src.playOnAwake);
+                    src.priority = (int)EditorGUILayout.Slider("Priority", src.priority, 0, 256);
+                    GUILayout.Label("Lower = higher priority in Audio System", EditorStyles.miniLabel);
+                    src.volume = EditorGUILayout.Slider("Volume", src.volume, 0f, 1f);
+                    src.pitch = EditorGUILayout.Slider("Pitch", src.pitch, -3f, 3f);
+                    src.panStereo = EditorGUILayout.Slider("Stereo Pan",src.panStereo,-1, 1);
+                    GUILayout.Label("Left                               Right");
+                    src.spatialBlend = EditorGUILayout.Slider("Spatial Blend", src.spatialBlend, 0f, 1f);
+                    GUILayout.Label("Lower spatialBlend is 2D higher is 3D");    
+                    src.
+                    
+                    
+                }
+                audioSourceFoldouts[i] = EditorGUILayout.Foldout(audioSourceFoldouts[i],"3D Sound Settings");
+                if(audioSourceFoldouts[i])
+                {
+                    EditorGUI.indentLevel++;
+                    src.dopplerLevel = (int)EditorGUILayout.Slider("Doppler level", src.dopplerLevel, 0, 1);
+                    src.spread = (int)EditorGUILayout.Slider("Spread", src.spread, 0, 1);
+                    src.rolloffMode = (AudioRolloffMode)EditorGUILayout.EnumPopup("Volume Rolloff", src.rolloffMode); 
+                    src.minDistance = EditorGUILayout.FloatField("Min Distance", src.minDistance);
+                    src.maxDistance = EditorGUILayout.FloatField("Max Distance", src.maxDistance);
+        
+                    EditorGUI.indentLevel--;
+                }
+
+
+
+        }
+
+
+            EditorGUILayout.LabelField("Sounds", EditorStyles.boldLabel);
+
+            for (int j = 0; j < soundsProp.arraySize; j++)
+            {
+                SerializedProperty entryProp = soundsProp.GetArrayElementAtIndex(j);
+                SerializedProperty nameProp = entryProp.FindPropertyRelative("soundName");
+                SerializedProperty clipProp = entryProp.FindPropertyRelative("clip");
+
+                EditorGUILayout.BeginHorizontal();
+                nameProp.stringValue = EditorGUILayout.TextField(nameProp.stringValue);
+                clipProp.objectReferenceValue = EditorGUILayout.ObjectField(clipProp.objectReferenceValue, typeof(AudioClip), false);
+                if (GUILayout.Button("X", GUILayout.Width(20)))
+                {
+                    soundsProp.DeleteArrayElementAtIndex(j);
+                    break;
+                }
+                EditorGUILayout.EndHorizontal();
             }
 
-            // Only draw fields inside an expanded foldout
-            if (headerFoldouts.ContainsKey(currentHeader) && headerFoldouts[currentHeader])
+            if (GUILayout.Button("Add Sound"))
             {
-                DrawField(field, soundManager, currentHeader);
+                soundsProp.arraySize++;
             }
+
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(10);
+        }
+
+        if (GUILayout.Button("Add Sound Group"))
+        {
+            soundGroupsProp.arraySize++;
         }
 
         serializedObject.ApplyModifiedProperties();
-    }
-
-    private void DrawField(FieldInfo field, SoundManager sm, string currentHeader)
-    {
-        object value = field.GetValue(sm);
-        System.Type fieldType = field.FieldType;
-        string fieldName = field.Name;
-
-        EditorGUI.BeginChangeCheck();
-
-        if (fieldType == typeof(AudioClip))
-        {
-            AudioClip newClip = (AudioClip)EditorGUILayout.ObjectField(ObjectNames.NicifyVariableName(fieldName), (AudioClip)value, typeof(AudioClip), false);
-            if (EditorGUI.EndChangeCheck())
-                field.SetValue(sm, newClip);
-        }
-        else if (fieldType == typeof(AudioSource))
-        {
-            AudioSource newSource = (AudioSource)EditorGUILayout.ObjectField(ObjectNames.NicifyVariableName(fieldName), (AudioSource)value, typeof(AudioSource), true);
-            if (EditorGUI.EndChangeCheck())
-                field.SetValue(sm, newSource);
-
-            if (newSource != null)
-            {
-                if (!audioSourceFoldouts.ContainsKey(fieldName))
-                    audioSourceFoldouts[fieldName] = false;
-
-                audioSourceFoldouts[fieldName] = EditorGUILayout.Foldout(audioSourceFoldouts[fieldName], currentHeader + " Audio Settings", true);
-
-                if (audioSourceFoldouts[fieldName])
-                {
-                    DrawAudioSourceControls(newSource);
-                }
-            }
-        }
-    }
-
-    private void DrawAudioSourceControls(AudioSource source)
-    {
-        EditorGUILayout.BeginVertical("box");
-        source.volume = EditorGUILayout.Slider("Volume", source.volume, 0f, 1f);
-        source.pitch = EditorGUILayout.Slider("Pitch", source.pitch, -3f, 3f);
-        source.loop = EditorGUILayout.Toggle("Loop", source.loop);
-        source.spatialBlend = EditorGUILayout.Slider("Spatial Blend", source.spatialBlend, 0f, 1f);
-        EditorGUILayout.EndVertical();
     }
 }
