@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [System.Serializable]
 public class SoundEntry
 {
     public string soundName;
     public AudioClip clip;
+    public int soundPriority;
 }
 
 [System.Serializable]
@@ -13,11 +16,33 @@ public class SoundGroup
 {
     public string headerName;
     public AudioSource source;
+    public AudioMixerGroup mixer; 
     public List<SoundEntry> sounds = new();
 }
 
-public class SoundManager : MonoBehaviour
+[System.Serializable]
+public class SnapshotGroup
 {
+    public string name = "SnapshotName";
+    public AudioMixerSnapshot snapshot;
+}
+
+
+
+[System.Serializable]
+public class AudioMixerReference
+{
+    public string name = "AudioMixer";	
+    public AudioMixer mixer;
+}
+
+public class SoundManager : MonoBehaviour
+{   
+    public AudioMixer mainMixer;
+    public List<SnapshotGroup> soundSnapshots = new();
+    private AudioMixerSnapshot defaultSnapshot;
+    private string currentScene;
+
     public static SoundManager instance;
 
     public List<SoundGroup> soundGroups = new();
@@ -31,6 +56,25 @@ public class SoundManager : MonoBehaviour
         else Destroy(gameObject);
 
         BuildLookup();
+
+        if (mainMixer != null) defaultSnapshot = mainMixer.FindSnapshot("Main");
+    }
+
+    private void Update()
+    {
+     if (Input.GetKeyDown(KeyCode.B))
+        {
+            PlayGroup("PEE");
+        }
+    else if (Input.GetKeyDown(KeyCode.N))
+        {
+            PlayGroup("POOP");
+        }
+    else if (Input.GetKeyDown(KeyCode.M))
+        {
+            ChangeSoundsnapshot("Ambience");
+        }  
+ 
     }
 
 
@@ -88,6 +132,33 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"[SoundManager] Sound group '{groupName}' not found or empty.");
         }
     }
+
+
+    public void ChangeSoundsnapshot(string snapshotName)
+    {
+    var newsnapshot = soundSnapshots.Find(s => s.name == snapshotName);
+    Debug.Log("Snapshot" + snapshotName + " found");
+    if (newsnapshot != null && newsnapshot.snapshot != null)
+    {
+        newsnapshot.snapshot.TransitionTo(0.1f); // smooth transition
+        currentScene = snapshotName;
+    }
+    else
+    {
+        Debug.LogWarning($"Snapshot '{snapshotName}' not found or missing snapshot.");
+    }
+    }   
+
+    public void ExitSoundsnapshot()
+    {   
+        Debug.Log("returning to default snapshot");
+        if (defaultSnapshot != null)
+        {
+            defaultSnapshot.TransitionTo(0.1f);
+            currentScene = null;
+        }
+    }
+
 
 
 
