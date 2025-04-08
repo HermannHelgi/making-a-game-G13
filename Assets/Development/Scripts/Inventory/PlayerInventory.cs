@@ -19,6 +19,10 @@ public class PlayerInventory : MonoBehaviour
     [Header("3D model variables")]
     public GameObject spawnlocation;
 
+    [Header("Drop item variables")]
+    public GameObject droplocation;
+    public GameObject droppeditemprefab;
+
     [Header("Consumable variables")]
 
     [Tooltip("TextMeshPro element for the 'Press F to consume' text.")]
@@ -294,6 +298,26 @@ public class PlayerInventory : MonoBehaviour
         return currentindex;
     }
 
+    void dropItem()
+    {
+        if (hotbarinventory[currentindex] == null)
+        {
+            return;
+        }
+
+        if (hotbarinventory[currentindex].unique)
+        {
+            return;
+        }
+        else
+        {
+            GameObject droppedItem = Instantiate(droppeditemprefab);
+            droppedItem.transform.position = droplocation.transform.position;
+            droppedItem.GetComponent<InteractableItem>().pickupitem = hotbarinventory[currentindex];
+            removeItemFromHotbar(currentindex);
+        }
+    }
+
     void Update()
     {
         // Increase Hotbarslot, go right
@@ -310,7 +334,7 @@ public class PlayerInventory : MonoBehaviour
         // ------------------ NEEDS TO BE CHANGED TO BE ABLE TO THROW / DORP ITEM ---------------------
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            removeItemFromHotbar(currentindex);
+            dropItem();
         }
         // -----------------------------------------------------------------------------
 
