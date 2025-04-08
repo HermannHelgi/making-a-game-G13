@@ -627,7 +627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: maxtorchdurability
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: refuelemberstonetext
@@ -639,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 482589360136488752}
     - target: {fileID: 3467987534426729474, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: maxemberstonedurability
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4013131337950723113, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_IsActive

@@ -38,6 +38,7 @@ public class PlayerInventory : MonoBehaviour
     public string refueltorchtext;
     public string failedtorefuel;
     public ItemScript coal;
+    private GameObject torchdurabilitybar;
 
     [Header("Ember stone variables")]
     [Tooltip("ItemScript of the Torch, required for Wendigo AI and durability stuff.")]
@@ -48,6 +49,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private float currentemberstonedurability = 0;
     private bool emberstoneininventory = false;
     public string refuelemberstonetext;
+    private GameObject emberstonedurabilitybar;
 
     // Private stuffs
     private int currentindex = 0;
@@ -165,12 +167,18 @@ public class PlayerInventory : MonoBehaviour
                     torchininventory = true;
                     currenttorchdurability = maxtorchdurability;
                     GameManager.instance.torchactive = true;
+                    torchdurabilitybar = hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar;
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(true);
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(true);
                 }
                 if (newItem == emberstone)
                 {
                     emberstoneininventory = true;
                     currentemberstonedurability = maxemberstonedurability;
                     GameManager.instance.emberstoneactive = true;
+                    emberstonedurabilitybar = hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar;
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(true);
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(true);
                 }                    
                 selectHotbar(index); 
                 return true;
@@ -348,12 +356,14 @@ public class PlayerInventory : MonoBehaviour
         }
 
         // TODO: When moving items to chest, if item is torch / emberstone, make sure to set the booleans of those respective items to being FALSE in inventory.
+        // TODO: Also need to set the durability bars on their respective hotbar slots to inactive.
 
-        if (torchininventory)
+        if (hotbarinventory[currentindex] == torch)
         {
             if (currenttorchdurability > 0)
             {
                 currenttorchdurability -= 1 * Time.deltaTime;
+                torchdurabilitybar.GetComponent<Image>().fillAmount = currenttorchdurability / maxtorchdurability;
                 if (currenttorchdurability <= 0)
                 {
                     GameManager.instance.torchactive = false;
@@ -370,6 +380,7 @@ public class PlayerInventory : MonoBehaviour
             if (currentemberstonedurability > 0)
             {
                 currentemberstonedurability -= 1 * Time.deltaTime;
+                emberstonedurabilitybar.GetComponent<Image>().fillAmount = currentemberstonedurability / maxemberstonedurability;
                 if (currentemberstonedurability <= 0)
                 {
                     GameManager.instance.emberstoneactive = false;

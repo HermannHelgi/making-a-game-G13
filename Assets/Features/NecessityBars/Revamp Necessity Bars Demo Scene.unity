@@ -607,6 +607,14 @@ PrefabInstance:
       propertyPath: appleinhungerbar
       value: 
       objectReference: {fileID: 2061342613}
+    - target: {fileID: 2640201155253407670, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
+      propertyPath: maxtorchdurability
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2640201155253407670, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
+      propertyPath: maxemberstonedurability
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4876284616008694636, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.81714
