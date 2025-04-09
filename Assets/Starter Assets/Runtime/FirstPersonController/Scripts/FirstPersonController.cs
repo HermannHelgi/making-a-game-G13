@@ -63,6 +63,8 @@ namespace StarterAssets
 		public float BottomClamp = -90.0f;
 		[Tooltip("Set to true if the camera shouldn't move.")]
 		public bool freezecamera = false;
+		[Tooltip("Set to true if the players shouldn't move.")]
+		public bool freezeinmenu = true;
 
 		// cinemachine
 		private float _cinemachineTargetPitch;
@@ -239,7 +241,14 @@ namespace StarterAssets
 			}
 
 			// move the player
-			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			if (freezeinmenu)
+			{
+				_controller.Move(new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			}
+			else
+			{
+				_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			}
 		}
 
 		private void JumpAndGravity()
@@ -256,7 +265,7 @@ namespace StarterAssets
 				}
 
 				// Jump
-				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+				if (_input.jump && _jumpTimeoutDelta <= 0.0f && !freezeinmenu)
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);

@@ -123,6 +123,7 @@ public class WitchDialogueHandler : MonoBehaviour
     {
         subtitletextmesh.SetActive(false);
         displayingmessage = false;
+        GameManager.instance.inMenu = false;
     }
 
     public bool isQueueEmpty()

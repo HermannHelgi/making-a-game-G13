@@ -20,7 +20,7 @@ public class PauseSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !deathhandler.playerhasdied)
+        if (Input.GetKeyDown(KeyCode.Escape) && !deathhandler.playerhasdied && !GameManager.instance.inMenu)
         {
             TogglePause();
         }

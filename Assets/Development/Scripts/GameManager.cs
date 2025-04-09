@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool holdingtorch;
     public bool torchactive;
     public bool emberstoneactive;
+    public bool inMenu = false; 
 
     [Header("Witch in the wall variables.")]
     [Tooltip("An item array for all the possible items in the game, ocne set to true the item is discovered.")]

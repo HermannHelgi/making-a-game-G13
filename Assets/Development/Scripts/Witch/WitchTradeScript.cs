@@ -308,5 +308,6 @@ public class WitchTradeScript : MonoBehaviour
         witchoverlay.SetActive(false);
         playerinventoryscript.resetHotbarItems();
         currentlytrading = false;
+        GameManager.instance.inMenu = false;
     }
 }

@@ -580,6 +580,10 @@ PrefabInstance:
       propertyPath: inventoryfullstring
       value: Inventory is full
       objectReference: {fileID: 0}
+    - target: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: storageinteracttext
+      value: Press "E" to open chest
+      objectReference: {fileID: 0}
     - target: {fileID: 2002238873557250264, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: m_Color.b
       value: 0.029641954

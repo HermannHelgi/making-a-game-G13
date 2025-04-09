@@ -1,3 +1,4 @@
+using StarterAssets;
 using TMPro;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public GameObject witchtradeoverlay;
     [Tooltip("The grid which will be used to spawn the crafting recipes inside.")]
     public GameObject witchrecipegridspawn;
-    [Tooltip("The players normal overlay, meant to be turned off when trading starts.")]
+    [Tooltip("The players normal overlay, meant to be turned off when another menu rises starts.")]
     public GameObject inventoryoverlay;
     [Tooltip("The player, needed to measure distance from the witch and the player.")]
     public GameObject playerobject;    
@@ -56,6 +57,10 @@ public class PlayerInteractHandler : MonoBehaviour
     public string campfireaddfuelstring;
     [Tooltip("The text that should be displayed on being able to pickup coal from campfire.")]
     public string campfirepickupcoal;
+
+    [Header("Storage system variables")]
+    [Tooltip("The interact text which is shown on being able to open storage system.")]
+    public string storageinteracttext;
 
     void Start()
     {
@@ -86,6 +91,7 @@ public class PlayerInteractHandler : MonoBehaviour
             // The witch trade script kinda works as a wrapper for both the trade system and dialogue system.
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
             var campfirescript = hit.transform.GetComponent<CampfireScript>();
+            var storagescript = hit.transform.GetComponent<StorageSystem>();
             
             if (interactableitemscript != null)
             {
@@ -122,6 +128,11 @@ public class PlayerInteractHandler : MonoBehaviour
                     popuptext.gameObject.SetActive(true);
                 }
             }
+            else if (storagescript != null)
+            {
+                popuptext.text = storageinteracttext;
+                popuptext.gameObject.SetActive(true);
+            }
             else
             {
                 popuptext.gameObject.SetActive(false);
@@ -135,6 +146,17 @@ public class PlayerInteractHandler : MonoBehaviour
 
     void handleInteraction()
     {
+        if (GameManager.instance.inMenu)
+        {
+            playerobject.GetComponent<FirstPersonController>().freezecamera = true;
+            playerobject.GetComponent<FirstPersonController>().freezeinmenu = true;
+        }
+        else
+        {
+            playerobject.GetComponent<FirstPersonController>().freezecamera = false;
+            playerobject.GetComponent<FirstPersonController>().freezeinmenu = false;
+        }
+
         // If the player wants to interact with something
         RaycastHit hit;
         if (Input.GetKeyDown(KeyCode.E))
@@ -153,7 +175,6 @@ public class PlayerInteractHandler : MonoBehaviour
                     {
                         // Starts the timer, or resets it if it's already going
                         displayErrorMessage(inventoryfullstring);
-                        
                     }
                 }
 
@@ -163,6 +184,8 @@ public class PlayerInteractHandler : MonoBehaviour
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
                     witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft);
+                    GameManager.instance.inMenu = true;
+                    playerinventoryobject.GetComponent<PlayerInventory>().deleteHeldObjects();
                 }
 
                 var campfirescript = hit.transform.GetComponent<CampfireScript>();
@@ -188,6 +211,17 @@ public class PlayerInteractHandler : MonoBehaviour
                         }
                     }
                 }
+
+                var storagescript = hit.transform.GetComponent<StorageSystem>();
+                if (storagescript != null && !GameManager.instance.inMenu)
+                {
+                    int invsize = playerinventoryobject.GetComponent<PlayerInventory>().getInventorySize();
+                    ItemScript[] items = playerinventoryobject.GetComponent<PlayerInventory>().getInventoryItems();
+                    inventoryoverlay.SetActive(false);
+                    storagescript.initializeStorageWindow(invsize, items, this.gameObject);
+                    GameManager.instance.inMenu = true;
+                    playerinventoryobject.GetComponent<PlayerInventory>().deleteHeldObjects();
+                }
             }
         }
     }
@@ -210,5 +244,12 @@ public class PlayerInteractHandler : MonoBehaviour
         errormessagetext.gameObject.SetActive(true);
         errormessagetext.text = text;
         errormessageclock = errormessagemaxtimer;
+    }
+
+    public void leavingStorageSystem(ItemScript[] newinv)
+    {
+        playerinventoryobject.GetComponent<PlayerInventory>().updateInventoryContents(newinv);
+        inventoryoverlay.SetActive(true);
+        GameManager.instance.inMenu = false;
     }
 }

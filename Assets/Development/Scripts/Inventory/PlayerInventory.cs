@@ -260,7 +260,10 @@ public class PlayerInventory : MonoBehaviour
         int index = 0;
         while (index < maxhotbarsize)
         {
+            emberstoneininventory = false;
             hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = emptyhotbar;
+            hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(false);
+            hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(false);
             index++;
         }
 
@@ -271,6 +274,24 @@ public class PlayerInventory : MonoBehaviour
             if (hotbarinventory[index] != null)
             {
                 hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = hotbarinventory[index].icon;
+
+                if (hotbarinventory[index] == torch)
+                {
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(true);
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(true);
+                    torchdurabilitybar = hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar;
+
+                    torchdurabilitybar.GetComponent<Image>().fillAmount = currenttorchdurability / maxtorchdurability;
+                }
+                else if (hotbarinventory[index] == emberstone)
+                {
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(true);
+                    hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(true);
+                    emberstonedurabilitybar = hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar;
+                    emberstoneininventory = true;
+
+                    emberstonedurabilitybar.GetComponent<Image>().fillAmount = currentemberstonedurability / maxemberstonedurability;
+                }
             }
             index++;
         }
@@ -294,6 +315,26 @@ public class PlayerInventory : MonoBehaviour
     public int getCurrentIndex()
     {
         return currentindex;
+    }
+
+    public int getInventorySize()
+    {
+        return maxhotbarsize;
+    }
+
+    public ItemScript[] getInventoryItems()
+    {
+        return hotbarinventory;
+    }
+
+    public void updateInventoryContents(ItemScript[] newinv)
+    {
+        for (int i = 0; i < maxhotbarsize; i++)
+        {
+            hotbarinventory[i] = newinv[i];
+        }
+
+        resetHotbarItems();
     }
 
     void dropItem()
@@ -351,7 +392,6 @@ public class PlayerInventory : MonoBehaviour
                     GameManager.instance.torchactive = true;
                     currenttorchdurability = maxtorchdurability;
                     consumableindicator.SetActive(false);
-                    torchdurabilitybar.GetComponent<Image>().fillAmount = currenttorchdurability / maxtorchdurability;
                     resetHotbarItems();
                 }
                 else
@@ -367,7 +407,6 @@ public class PlayerInventory : MonoBehaviour
                     GameManager.instance.emberstoneactive = true;
                     currentemberstonedurability = maxemberstonedurability;
                     consumableindicator.SetActive(false);
-                    emberstonedurabilitybar.GetComponent<Image>().fillAmount = currentemberstonedurability / maxemberstonedurability;
                     resetHotbarItems();
                 }
                 else
@@ -421,7 +460,10 @@ public class PlayerInventory : MonoBehaviour
 
     void Update()
     {
-        updateControls();
+        if (!GameManager.instance.inMenu)
+        {
+            updateControls();
+        }
         updateDurabilityBars();
     }
 }
