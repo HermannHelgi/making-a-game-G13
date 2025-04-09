@@ -277,8 +277,8 @@ public class PlayerInventory : MonoBehaviour
             index++;
         }
 
-        // And select hotbar slot 0, to reset anything that is being held
-        selectHotbar(0);
+        // And select hotbar slot to the current index, to reset anything that is being held
+        selectHotbar(currentindex);
     }
 
     public bool isHoldingItem(ItemScript item)
@@ -315,10 +315,11 @@ public class PlayerInventory : MonoBehaviour
             droppedItem.transform.position = droplocation.transform.position;
             droppedItem.GetComponent<InteractableItem>().pickupitem = hotbarinventory[currentindex];
             removeItemFromHotbar(currentindex);
+            selectHotbar(currentindex);
         }
     }
 
-    void Update()
+    void updateControls()
     {
         // Increase Hotbarslot, go right
         if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
@@ -331,13 +332,10 @@ public class PlayerInventory : MonoBehaviour
             selectHotbar(currentindex - 1);
         }
 
-        // ------------------ NEEDS TO BE CHANGED TO BE ABLE TO THROW / DORP ITEM ---------------------
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
         }
-        // -----------------------------------------------------------------------------
-
 
         if (consumableindicator.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
@@ -355,6 +353,7 @@ public class PlayerInventory : MonoBehaviour
                     GameManager.instance.torchactive = true;
                     currenttorchdurability = maxtorchdurability;
                     consumableindicator.SetActive(false);
+                    torchdurabilitybar.GetComponent<Image>().fillAmount = currenttorchdurability / maxtorchdurability;
                     resetHotbarItems();
                 }
                 else
@@ -370,6 +369,7 @@ public class PlayerInventory : MonoBehaviour
                     GameManager.instance.emberstoneactive = true;
                     currentemberstonedurability = maxemberstonedurability;
                     consumableindicator.SetActive(false);
+                    emberstonedurabilitybar.GetComponent<Image>().fillAmount = currentemberstonedurability / maxemberstonedurability;
                     resetHotbarItems();
                 }
                 else
@@ -378,7 +378,10 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+    }
 
+    void updateDurabilityBars()
+    {
         // TODO: When moving items to chest, if item is torch / emberstone, make sure to set the booleans of those respective items to being FALSE in inventory.
         // TODO: Also need to set the durability bars on their respective hotbar slots to inactive.
 
@@ -416,5 +419,11 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Update()
+    {
+        updateControls();
+        updateDurabilityBars();
     }
 }
