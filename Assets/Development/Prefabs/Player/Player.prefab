@@ -542,11 +542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 30840953992973224, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: sprintcolor.b
-      value: 0.025819227
+      value: 0.023282541
       objectReference: {fileID: 0}
     - target: {fileID: 30840953992973224, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: sprintcolor.g
-      value: 0.6132076
+      value: 0.5188679
       objectReference: {fileID: 0}
     - target: {fileID: 30840953992973224, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: sprintcolor.r

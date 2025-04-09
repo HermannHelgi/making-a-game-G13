@@ -38,7 +38,6 @@ public class PlayerInventory : MonoBehaviour
     public float maxtorchdurability = 300;
     [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
     [SerializeField] private float currenttorchdurability = 0;
-    private bool torchininventory = false;
     public string refueltorchtext;
     public string failedtorefuel;
     public ItemScript coal;
@@ -168,7 +167,6 @@ public class PlayerInventory : MonoBehaviour
                 hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = newItem.icon;
                 if (newItem == torch)
                 {
-                    torchininventory = true;
                     currenttorchdurability = maxtorchdurability;
                     GameManager.instance.torchactive = true;
                     torchdurabilitybar = hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar;
