@@ -282,6 +282,10 @@ public class WitchTradeScript : MonoBehaviour
 
         if (!currentlytrading)
         {
+            // HOLY VARIABLES, BATMAN!
+            // This is a lot, won't lie
+            // I made this with the assumption that the witch doesn't have access to these variables on scene load to reduce inter-prefab references and reduce work on the inspector side.
+            // Its just a bunch of miscellaneous references, so don't worry bout it
             playerinventory = playerinventorycanvas;
             witchoverlay = witchtradecanvas;
             witchrecipegridspawner = witchrecipegridspawnerobject;
@@ -302,12 +306,13 @@ public class WitchTradeScript : MonoBehaviour
     }
 
     void deinitializeTradeWindow()
+    // Closes trade window
     {
         wipeCraftingRecipeBoxes();
         playerinventory.SetActive(true);
         witchoverlay.SetActive(false);
         playerinventoryscript.resetHotbarItems();
         currentlytrading = false;
-        GameManager.instance.inMenu = false;
+        GameManager.instance.activateMenuCooldown();
     }
 }

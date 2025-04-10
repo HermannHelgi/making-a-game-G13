@@ -253,14 +253,16 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    // This exists purely for the witch trading script. Its called when trades are over to update any sprites which exist within the hotbar if any trades occur.
+    // This function is used to completely reset the players hotbar. Its used by the witch trading script, storage system, and itself. 
     public void resetHotbarItems()
+    // Visually resets the players hotbar.
     {
         // I first remove all pictures that may be in the hotbar
         int index = 0;
         while (index < maxhotbarsize)
         {
             emberstoneininventory = false;
+            GameManager.instance.emberstoneactive = false;
             hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = emptyhotbar;
             hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(false);
             hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(false);
@@ -289,7 +291,8 @@ public class PlayerInventory : MonoBehaviour
                     hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilityframe.SetActive(true);
                     emberstonedurabilitybar = hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar;
                     emberstoneininventory = true;
-
+                    GameManager.instance.emberstoneactive = true;
+                    
                     emberstonedurabilitybar.GetComponent<Image>().fillAmount = currentemberstonedurability / maxemberstonedurability;
                 }
             }
@@ -325,6 +328,16 @@ public class PlayerInventory : MonoBehaviour
     public ItemScript[] getInventoryItems()
     {
         return hotbarinventory;
+    }
+
+    public float getEmberstoneDurability()
+    {
+        return currentemberstonedurability / maxemberstonedurability;
+    }
+    
+    public float getTorchDurability()
+    {
+        return currenttorchdurability / maxtorchdurability;
     }
 
     public void updateInventoryContents(ItemScript[] newinv)
@@ -419,9 +432,6 @@ public class PlayerInventory : MonoBehaviour
 
     void updateDurabilityBars()
     {
-        // TODO: When moving items to chest, if item is torch / emberstone, make sure to set the booleans of those respective items to being FALSE in inventory.
-        // TODO: Also need to set the durability bars on their respective hotbar slots to inactive.
-
         if (hotbarinventory[currentindex] == torch)
         {
             if (currenttorchdurability > 0)

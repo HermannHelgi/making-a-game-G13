@@ -180,12 +180,11 @@ public class PlayerInteractHandler : MonoBehaviour
 
                 // Additional check for if it has the witchTradeScript
                 var witchscript = hit.transform.GetComponent<WitchTradeScript>();
-                if (witchscript != null)
+                if (witchscript != null  && !GameManager.instance.inMenu)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
                     witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft);
                     GameManager.instance.inMenu = true;
-                    playerinventoryobject.GetComponent<PlayerInventory>().deleteHeldObjects();
                 }
 
                 var campfirescript = hit.transform.GetComponent<CampfireScript>();
@@ -215,12 +214,9 @@ public class PlayerInteractHandler : MonoBehaviour
                 var storagescript = hit.transform.GetComponent<StorageSystem>();
                 if (storagescript != null && !GameManager.instance.inMenu)
                 {
-                    int invsize = playerinventoryobject.GetComponent<PlayerInventory>().getInventorySize();
-                    ItemScript[] items = playerinventoryobject.GetComponent<PlayerInventory>().getInventoryItems();
                     inventoryoverlay.SetActive(false);
-                    storagescript.initializeStorageWindow(invsize, items, this.gameObject);
+                    storagescript.initializeStorageWindow(playerinventoryobject, this.gameObject);
                     GameManager.instance.inMenu = true;
-                    playerinventoryobject.GetComponent<PlayerInventory>().deleteHeldObjects();
                 }
             }
         }
@@ -250,6 +246,6 @@ public class PlayerInteractHandler : MonoBehaviour
     {
         playerinventoryobject.GetComponent<PlayerInventory>().updateInventoryContents(newinv);
         inventoryoverlay.SetActive(true);
-        GameManager.instance.inMenu = false;
+        GameManager.instance.activateMenuCooldown();
     }
 }

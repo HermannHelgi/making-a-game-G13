@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public bool torchactive;
     public bool emberstoneactive;
     public bool inMenu = false; 
+    private float menucooldown = 0;
+    private float maxmenucooldown = 0.10f;
 
     [Header("Witch in the wall variables.")]
     [Tooltip("An item array for all the possible items in the game, ocne set to true the item is discovered.")]
@@ -33,6 +35,20 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (menucooldown > 0)
+        {
+            menucooldown -= Time.deltaTime;
+            if (menucooldown <= 0)
+            {
+                inMenu = false;
+            }
+        }
+    }
 
+    public void activateMenuCooldown()
+    // This function is used by menus like the storage system, witch menus, etc to give the player their controls back.
+    // Due to the decentralised nature of our scripts, we need to use the Game manager as a mutex to prevent overlapping, such as pressing escape to leave the menu, but that opening the pause menu immedietly after.
+    {
+        menucooldown = maxmenucooldown;
     }
 }

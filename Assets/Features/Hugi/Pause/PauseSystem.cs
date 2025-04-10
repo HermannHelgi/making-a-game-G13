@@ -20,7 +20,7 @@ public class PauseSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !deathhandler.playerhasdied && !GameManager.instance.inMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) && !deathhandler.playerhasdied && (!GameManager.instance.inMenu || isPaused))
         {
             TogglePause();
         }
@@ -43,10 +43,14 @@ public class PauseSystem : MonoBehaviour
         // Pause/unpause audio
         AudioListener.pause = isPaused;
 
-          // Freeze/unfreeze the First Person Controller camera
-        if (playerController != null)
+        // Triggers the InMenu variable, freezing the player
+        if (isPaused)
         {
-            playerController.freezecamera = isPaused;
+            GameManager.instance.inMenu = isPaused;
+        }
+        else
+        {
+            GameManager.instance.activateMenuCooldown();
         }
     }
 

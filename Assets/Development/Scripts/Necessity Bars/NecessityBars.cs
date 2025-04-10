@@ -57,7 +57,7 @@ public class NecessityBars : MonoBehaviour
     void Update()
     {
         // Updating necessity bars
-        if (firstpersoncontroller.sprint)
+        if (firstpersoncontroller.sprint && !GameManager.instance.inMenu)
         {
             hungermeter.color = sprintcolor;
             currenthunger -= runningdrainrate * Time.deltaTime;

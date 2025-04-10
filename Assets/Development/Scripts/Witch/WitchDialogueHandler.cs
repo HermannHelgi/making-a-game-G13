@@ -30,9 +30,9 @@ public class WitchDialogueHandler : MonoBehaviour
         // just checks the distance of the player and whether to turn off the text
         if (displayingmessage)
         {
-            if (Vector3.Distance(gameObject.transform.position, player.transform.position) > distanceToDisableText)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                deinitializeDialogue();
+                runNextDialogue();       
             }
         }
     }
@@ -101,21 +101,14 @@ public class WitchDialogueHandler : MonoBehaviour
     }
 
     public bool intializeDialogue(GameObject subtitleobject, GameObject playerobject)
-    // Initializes the dialogue text. If it's already running, continues to the next dialogue.
+    // Initializes the dialogue text. 
     {
-        if (displayingmessage)
-        {
-            return runNextDialogue();
-        }
-        else
-        {
-            player = playerobject;
-            subtitletextmesh = subtitleobject;
-            
-            subtitletextmesh.SetActive(true);
-            displayingmessage = true;
-            return runNextDialogue();
-        }
+        player = playerobject;
+        subtitletextmesh = subtitleobject;
+        
+        subtitletextmesh.SetActive(true);
+        displayingmessage = true;
+        return runNextDialogue();
     }
 
     void deinitializeDialogue()
@@ -123,7 +116,7 @@ public class WitchDialogueHandler : MonoBehaviour
     {
         subtitletextmesh.SetActive(false);
         displayingmessage = false;
-        GameManager.instance.inMenu = false;
+        GameManager.instance.activateMenuCooldown();
     }
 
     public bool isQueueEmpty()
