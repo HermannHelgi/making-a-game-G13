@@ -169,6 +169,11 @@ namespace StarterAssets
 				// rotate the player left and right
 				transform.Rotate(Vector3.up * _rotationVelocity);
 			}
+			else if (freezecamera)
+			{
+				_cinemachineTargetPitch = CinemachineCameraTarget.transform.localEulerAngles.x;
+				_rotationVelocity = 0f;
+			}
 		}
 
 		private void Move()
@@ -269,6 +274,10 @@ namespace StarterAssets
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+				}
+				else if (_input.jump && _jumpTimeoutDelta <= 0.0f && freezeinmenu)
+				{
+					_input.jump = false;
 				}
 
 				// jump timeout

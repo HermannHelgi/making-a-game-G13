@@ -26,6 +26,8 @@ public class WitchTradeScript : MonoBehaviour
     public string buttontocraftstring;
     [Tooltip("The string which should be displayed when an item can no longer be crafted.")]
     public string itemcannotbecraftedstring;
+    public GameObject lerppos;
+    public int maxtimetolerp;
 
     [Header("Sprite variables")]
     public Color selectedhotbarcolor = Color.white;
@@ -51,6 +53,8 @@ public class WitchTradeScript : MonoBehaviour
     private TextMeshProUGUI ingredientstextmesh;
     private bool currentlytrading = false;
     private TextMeshProUGUI crafttextmesh;
+    private GameObject playercam;
+    private float lerptimer;
 
     void Start()
     {
@@ -80,10 +84,6 @@ public class WitchTradeScript : MonoBehaviour
     {
         if (currentlytrading)
         {
-            if (Vector3.Distance(gameObject.transform.position, player.transform.position) > distancetoturnoffwitchoverlay)
-            {
-                deinitializeTradeWindow();
-            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 deinitializeTradeWindow();
@@ -103,6 +103,14 @@ public class WitchTradeScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 craftItem();
+            }
+
+            if (lerptimer <= 1)
+            {
+                lerptimer += Time.deltaTime / maxtimetolerp;
+                player.transform.position = Vector3.Lerp(player.transform.position, lerppos.transform.position, lerptimer);
+                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, lerppos.transform.rotation, lerptimer);
+                playercam.transform.rotation = Quaternion.Lerp(playercam.transform.rotation, lerppos.transform.rotation, lerptimer);
             }
         }
 
@@ -271,12 +279,12 @@ public class WitchTradeScript : MonoBehaviour
         return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
     }
 
-    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext)   
+    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext, GameObject playercamera)   
     // Starts the trade window, if the witch has dialogue, does that first.
     {
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
         {
-            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject);
+            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject, playercamera);
             return;
         }
 
@@ -293,6 +301,8 @@ public class WitchTradeScript : MonoBehaviour
             player = playerobject;
             itemnametextmesh = nameofitemincanvastextmesh;
             ingredientstextmesh = ingredientslisttextmesh;
+            playercam = playercamera;
+            lerptimer = 0;
 
             playerinventory.SetActive(false);
             witchoverlay.SetActive(true);
@@ -314,5 +324,7 @@ public class WitchTradeScript : MonoBehaviour
         playerinventoryscript.resetHotbarItems();
         currentlytrading = false;
         GameManager.instance.activateMenuCooldown();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

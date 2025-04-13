@@ -47,6 +47,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public string bargainpopupstring;
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
     public string dialoguepopupstring;
+    public GameObject playercamera;
 
     [Header("Campfire variables")]
     [Tooltip("The ItemScript which should be referenced as fuel for the campfire.")]
@@ -183,7 +184,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 if (witchscript != null  && !GameManager.instance.inMenu)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
-                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft);
+                    witchscript.initializeTradeWindow(witchtradeoverlay, witchrecipegridspawn, inventoryoverlay, playerinventoryobject, playerobject, nameofitemincanvastextmesh, ingredientslisttextmesh, subtitletextmesh, pressentertocraft, playercamera);
                     GameManager.instance.inMenu = true;
                 }
 

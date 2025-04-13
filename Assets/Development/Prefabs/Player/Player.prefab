@@ -332,6 +332,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 276444967411648104}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+--- !u!1 &3902525654765575376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4135013735270702863, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 1101705692811445215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3902525654765575383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135013735270702856, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
@@ -568,6 +573,10 @@ PrefabInstance:
       propertyPath: starvationoverheaddisplaycutoff
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
+      propertyPath: playercamera
+      value: 
+      objectReference: {fileID: 3902525654765575376}
     - target: {fileID: 1311010149197538436, guid: b2909a7dcf3dadc44a16d498b7a342c4, type: 3}
       propertyPath: playerobject
       value: 
