@@ -50,7 +50,7 @@ public class SoundEditor : Editor
             SerializedProperty nameProp = snapshotsProp.FindPropertyRelative("name");
 
             
-            EditorGUILayout.PropertyField(snapshotsProp, new GUIContent("Snapshot"));
+            EditorGUILayout.PropertyField(snapshotsProp);
             if (GUILayout.Button("Remove snapshot"))
             {
                 snapshotsGroupProp.DeleteArrayElementAtIndex(i);
@@ -146,22 +146,7 @@ public class SoundEditor : Editor
                         src.minDistance = EditorGUILayout.FloatField("Min Distance", src.minDistance);
                         src.maxDistance = EditorGUILayout.FloatField("Max Distance", src.maxDistance);
 
-                        // if (src.rolloffMode == AudioRolloffMode.Custom)
-                        // {
-                        //     EditorGUILayout.Space(5);
-                        //     EditorGUILayout.LabelField("Custom Attenuation Curves", EditorStyles.boldLabel);
 
-                        //     src.SetCustomCurve(AudioSourceCurveType.CustomRolloff, 
-                        //         EditorGUILayout.CurveField("Volume Rolloff", src.GetCustomCurve(AudioSourceCurveType.CustomRolloff)));
-
-                        //     src.SetCustomCurve(AudioSourceCurveType.SpatialBlend, 
-                        //         EditorGUILayout.CurveField("Spatial Blend", src.GetCustomCurve(AudioSourceCurveType.SpatialBlend)));
-
-                        //     src.SetCustomCurve(AudioSourceCurveType.Spread, 
-                        //         EditorGUILayout.CurveField("Spread", src.GetCustomCurve(AudioSourceCurveType.Spread)));
-
-                        //     src.SetCustomCurve(AudioSourceCurveType.ReverbZoneMix, 
-                        //         EditorGUILayout.CurveField("Reverb Zone Mix", src.GetCustomCurve(AudioSourceCurveType.ReverbZoneMix)));
                         // }
                         EditorGUI.indentLevel--;
                     }

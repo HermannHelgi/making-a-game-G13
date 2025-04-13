@@ -23,8 +23,7 @@ public class SoundGroup
 [System.Serializable]
 public class SnapshotGroup
 {
-    public string name = "SnapshotName";
-    public AudioMixerSnapshot snapshot;
+    public AudioMixerSnapshot audioSnapshot;
 }
 
 
@@ -62,18 +61,26 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-     if (Input.GetKeyDown(KeyCode.B))
+     if (Input.GetKeyDown(KeyCode.V))
         {
-            PlayGroup("PEE");
+            PlayGroup("STOMP");
+        }
+    else if (Input.GetKeyDown(KeyCode.B))
+        {
+            PlayGroup("FOOD");
         }
     else if (Input.GetKeyDown(KeyCode.N))
         {
-            PlayGroup("POOP");
+            ChangeSoundsnapshot("SPOOKY", 0.9f);
         }
     else if (Input.GetKeyDown(KeyCode.M))
-        {
-            ChangeSoundsnapshot("Ambience");
-        }  
+    {
+        ExitSoundsnapshot(0.6f);
+    }
+    else if (Input.GetKeyDown(KeyCode.C))
+    {
+        PlayGroup("WALK");
+    }
  
     }
 
@@ -134,27 +141,28 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void ChangeSoundsnapshot(string snapshotName)
+    public void ChangeSoundsnapshot(string snapshotName, float timing)
     {
-    var newsnapshot = soundSnapshots.Find(s => s.name == snapshotName);
-    Debug.Log("Snapshot" + snapshotName + " found");
-    if (newsnapshot != null && newsnapshot.snapshot != null)
-    {
-        newsnapshot.snapshot.TransitionTo(0.1f); // smooth transition
-        currentScene = snapshotName;
-    }
-    else
-    {
-        Debug.LogWarning($"Snapshot '{snapshotName}' not found or missing snapshot.");
-    }
+        var snapshot = soundSnapshots.Find(s => s.audioSnapshot != null && s.audioSnapshot.name == snapshotName);
+
+        Debug.Log("Snapshot" + snapshotName + " found");
+        if (snapshot != null)
+        {
+            snapshot.audioSnapshot.TransitionTo(timing);
+            currentScene = snapshotName;
+        }
+        else
+        {
+            Debug.LogWarning($"Snapshot '{snapshotName}' not found.");
+        }
     }   
 
-    public void ExitSoundsnapshot()
+    public void ExitSoundsnapshot(float timing)
     {   
         Debug.Log("returning to default snapshot");
         if (defaultSnapshot != null)
         {
-            defaultSnapshot.TransitionTo(0.1f);
+            defaultSnapshot.TransitionTo(timing);
             currentScene = null;
         }
     }
