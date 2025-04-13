@@ -279,12 +279,12 @@ public class WitchTradeScript : MonoBehaviour
         return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
     }
 
-    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext, GameObject playercamera)   
+    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext, GameObject playercamera, GameObject escapemessage)   
     // Starts the trade window, if the witch has dialogue, does that first.
     {
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
         {
-            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject, playercamera);
+            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject, playercamera, escapemessage);
             return;
         }
 

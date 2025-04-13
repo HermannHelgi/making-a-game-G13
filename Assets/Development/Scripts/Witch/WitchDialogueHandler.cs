@@ -19,6 +19,7 @@ public class WitchDialogueHandler : MonoBehaviour
     private int currentindex;
     private GameObject playercam;
     private float lerptimer;
+    private GameObject escmess;
 
     void Start()
     {
@@ -114,10 +115,12 @@ public class WitchDialogueHandler : MonoBehaviour
         // TODO: Add functionality to run dialogue for each individual dialogue chain.
     }
 
-    public bool intializeDialogue(GameObject subtitleobject, GameObject playerobject, GameObject playercamera)
+    public bool intializeDialogue(GameObject subtitleobject, GameObject playerobject, GameObject playercamera, GameObject escapemessage)
     // Initializes the dialogue text. 
     {
         lerptimer = 0;
+        escmess = escapemessage;
+        escmess.SetActive(true);
         player = playerobject;
         playercam = playercamera;
         subtitletextmesh = subtitleobject;
@@ -131,6 +134,7 @@ public class WitchDialogueHandler : MonoBehaviour
     // Turns off the dialogue text
     {
         subtitletextmesh.SetActive(false);
+        escmess.SetActive(false);
         displayingmessage = false;
         GameManager.instance.activateMenuCooldown();
         Cursor.lockState = CursorLockMode.Locked;
