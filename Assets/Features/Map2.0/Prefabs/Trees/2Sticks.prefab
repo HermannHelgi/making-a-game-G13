@@ -55,15 +55,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4782149064924796220}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7807577, w: 0.6248339}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7807577, w: 0.6248339}
   m_LocalPosition: {x: 775.1905, y: 30.54179, z: 280.8772}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8523763803548770260}
   - {fileID: 930648637663893502}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 102.66}
 --- !u!1001 &2115081461982423911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 6943400304533761545, guid: 5749c17f1ef73e540bccf0a859bdeb9d, type: 3}
       propertyPath: m_Name
       value: stick (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7138207398464822071, guid: 5749c17f1ef73e540bccf0a859bdeb9d, type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7714729274479129779, guid: 5749c17f1ef73e540bccf0a859bdeb9d, type: 3}
       propertyPath: m_LocalScale.x
@@ -149,6 +153,10 @@ PrefabInstance:
     - target: {fileID: 6943400304533761545, guid: 5749c17f1ef73e540bccf0a859bdeb9d, type: 3}
       propertyPath: m_Name
       value: stick (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7138207398464822071, guid: 5749c17f1ef73e540bccf0a859bdeb9d, type: 3}
+      propertyPath: m_PolyMesh.m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7714729274479129779, guid: 5749c17f1ef73e540bccf0a859bdeb9d, type: 3}
       propertyPath: m_LocalScale.x
