@@ -381,6 +381,8 @@ MonoBehaviour:
   storageslotgrid: {fileID: 5901553033580781279}
   storagecanvas: {fileID: 6409674267007939617}
   inventoryslotgrid: {fileID: 8332388999664241479}
+  torch: {fileID: 11400000, guid: 4023cf24c009ffe45848721d7ce3454c, type: 2}
+  emberstone: {fileID: 11400000, guid: 1d5ad8c64add0904c970b8fcdc7191c5, type: 2}
   selectedstoragecolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
   deselectedstoragecolor: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
   selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
