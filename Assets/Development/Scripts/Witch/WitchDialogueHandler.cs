@@ -10,16 +10,14 @@ public class WitchDialogueHandler : MonoBehaviour
 
     // Private stuff, mostly references to other objects...
     private GameObject subtitletextmesh;
-    private GameObject player;
     
     // ... and stuff to keep track of the current dialogue.
     private bool displayingmessage = false;
     private Queue<DialogueScriptableObject> dialoguequeue;
     private DialogueScriptableObject currentdialoguechain;
     private int currentindex;
-    private GameObject playercam;
-    private float lerptimer;
     private GameObject escmess;
+    private PlayerLookScript playerlook;
 
     void Start()
     {
@@ -40,14 +38,6 @@ public class WitchDialogueHandler : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
                 deinitializeDialogue();
-            }
-
-            if (lerptimer <= 1)
-            {
-                lerptimer += Time.deltaTime / maxtimetolerp;
-                player.transform.position = Vector3.Lerp(player.transform.position, lerpposition.transform.position, lerptimer);
-                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, lerpposition.transform.rotation, lerptimer);
-                playercam.transform.rotation = Quaternion.Lerp(playercam.transform.rotation, lerpposition.transform.rotation, lerptimer);
             }
         }
     }
@@ -115,15 +105,14 @@ public class WitchDialogueHandler : MonoBehaviour
         // TODO: Add functionality to run dialogue for each individual dialogue chain.
     }
 
-    public bool intializeDialogue(GameObject subtitleobject, GameObject playerobject, GameObject playercamera, GameObject escapemessage)
+    public bool intializeDialogue(GameObject subtitleobject, GameObject escapemessage, GameObject playerlookscript)
     // Initializes the dialogue text. 
     {
-        lerptimer = 0;
         escmess = escapemessage;
         escmess.SetActive(true);
-        player = playerobject;
-        playercam = playercamera;
         subtitletextmesh = subtitleobject;
+        playerlook = playerlookscript.GetComponent<PlayerLookScript>();
+        playerlook.playerLookAt(lerpposition);
         
         subtitletextmesh.SetActive(true);
         displayingmessage = true;
@@ -133,6 +122,7 @@ public class WitchDialogueHandler : MonoBehaviour
     void deinitializeDialogue()
     // Turns off the dialogue text
     {
+        playerlook.finishLook();
         subtitletextmesh.SetActive(false);
         escmess.SetActive(false);
         displayingmessage = false;

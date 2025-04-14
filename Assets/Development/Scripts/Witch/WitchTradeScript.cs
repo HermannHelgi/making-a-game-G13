@@ -48,13 +48,11 @@ public class WitchTradeScript : MonoBehaviour
     private GameObject playerinventory;
     private GameObject witchoverlay;
     private PlayerInventory playerinventoryscript;
-    private GameObject player;
     private TextMeshProUGUI itemnametextmesh;
     private TextMeshProUGUI ingredientstextmesh;
     private bool currentlytrading = false;
     private TextMeshProUGUI crafttextmesh;
-    private GameObject playercam;
-    private float lerptimer;
+    private PlayerLookScript playerlook;
 
     void Start()
     {
@@ -103,14 +101,6 @@ public class WitchTradeScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 craftItem();
-            }
-
-            if (lerptimer <= 1)
-            {
-                lerptimer += Time.deltaTime / maxtimetolerp;
-                player.transform.position = Vector3.Lerp(player.transform.position, lerppos.transform.position, lerptimer);
-                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, lerppos.transform.rotation, lerptimer);
-                playercam.transform.rotation = Quaternion.Lerp(playercam.transform.rotation, lerppos.transform.rotation, lerptimer);
             }
         }
 
@@ -279,12 +269,12 @@ public class WitchTradeScript : MonoBehaviour
         return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
     }
 
-    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject playerobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext, GameObject playercamera, GameObject escapemessage)   
+    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext, GameObject escapemessage, GameObject playerlookscript)   
     // Starts the trade window, if the witch has dialogue, does that first.
     {
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
         {
-            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, playerobject, playercamera, escapemessage);
+            dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, escapemessage, playerlookscript);
             return;
         }
 
@@ -298,11 +288,10 @@ public class WitchTradeScript : MonoBehaviour
             witchoverlay = witchtradecanvas;
             witchrecipegridspawner = witchrecipegridspawnerobject;
             playerinventoryscript = playerinventoryscriptobject.GetComponent<PlayerInventory>();
-            player = playerobject;
             itemnametextmesh = nameofitemincanvastextmesh;
             ingredientstextmesh = ingredientslisttextmesh;
-            playercam = playercamera;
-            lerptimer = 0;
+            playerlook = playerlookscript.GetComponent<PlayerLookScript>();
+            playerlook.playerLookAt(lerppos);
 
             playerinventory.SetActive(false);
             witchoverlay.SetActive(true);
@@ -318,6 +307,7 @@ public class WitchTradeScript : MonoBehaviour
     void deinitializeTradeWindow()
     // Closes trade window
     {
+        playerlook.finishLook();
         wipeCraftingRecipeBoxes();
         playerinventory.SetActive(true);
         witchoverlay.SetActive(false);

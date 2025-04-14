@@ -47,7 +47,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public string bargainpopupstring;
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
     public string dialoguepopupstring;
-    public GameObject playercamera;
+    public GameObject playerlookscript;
     public GameObject escapemessage;
 
     [Header("Campfire variables")]
@@ -190,13 +190,12 @@ public class PlayerInteractHandler : MonoBehaviour
                         witchrecipegridspawn, 
                         inventoryoverlay, 
                         playerinventoryobject, 
-                        playerobject, 
                         nameofitemincanvastextmesh, 
                         ingredientslisttextmesh, 
                         subtitletextmesh, 
                         pressentertocraft, 
-                        playercamera, 
-                        escapemessage);
+                        escapemessage,
+                        playerlookscript);
                     GameManager.instance.inMenu = true;
                 }
 
