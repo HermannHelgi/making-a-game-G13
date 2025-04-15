@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class WitchTradeScript : MonoBehaviour
 {
-    [Header("Playtest Temporary Variables")]
-    public DialogueScriptableObject startdialogue;
-    private bool hasadded = false;
-
     [Header("Trade Window Variables")]
     public float distancetoturnoffwitchoverlay = 10;
     public ItemScript[] craftableItems = new ItemScript[7];
@@ -39,8 +35,10 @@ public class WitchTradeScript : MonoBehaviour
 
     [Header("Dialogue System variables")]
     public GameObject dialogueHandler;
+    public DialogueScriptableObject startingdialogue;
     
     // Private stuff, mostly references to other objects.
+    private bool hasaddedstartdialogue = false;
     private GameObject[] tradeslotgridchildren;
     private bool[] hasbeencrafted;
     private int currentindex = 0;
@@ -104,10 +102,10 @@ public class WitchTradeScript : MonoBehaviour
             }
         }
 
-        if (!hasadded)
+        if (!hasaddedstartdialogue)
         {
-            DialogueManager.instance.SetDialogueFlags(startdialogue);
-            hasadded = true;
+            DialogueManager.instance.SetDialogueFlags(startingdialogue);
+            hasaddedstartdialogue = true;
         }
     }
 
@@ -275,6 +273,12 @@ public class WitchTradeScript : MonoBehaviour
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
         {
             dialogueHandler.GetComponent<WitchDialogueHandler>().intializeDialogue(subtitletextmesh, escapemessage, playerlookscript);
+            return;
+        }
+
+        if (TutorialManager.instance.cannotcraft)
+        {
+            GameManager.instance.inMenu = false;
             return;
         }
 

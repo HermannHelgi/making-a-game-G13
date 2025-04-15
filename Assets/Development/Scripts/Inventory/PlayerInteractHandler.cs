@@ -94,6 +94,7 @@ public class PlayerInteractHandler : MonoBehaviour
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
             var campfirescript = hit.transform.GetComponent<CampfireScript>();
             var storagescript = hit.transform.GetComponent<StorageSystem>();
+            popuptext.gameObject.SetActive(false);
             
             if (interactableitemscript != null)
             {
@@ -105,12 +106,16 @@ public class PlayerInteractHandler : MonoBehaviour
                 if (witchscript.canTalk())
                 {
                     popuptext.text = dialoguepopupstring;
+                    popuptext.gameObject.SetActive(true);
                 }
                 else
                 {
-                    popuptext.text = bargainpopupstring;
+                    if (!TutorialManager.instance.cannotcraft)
+                    {
+                        popuptext.text = bargainpopupstring;
+                        popuptext.gameObject.SetActive(true);
+                    }
                 }
-                popuptext.gameObject.SetActive(true);
             }
             else if (campfirescript != null)
             {
@@ -185,6 +190,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 if (witchscript != null  && !GameManager.instance.inMenu)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
+                    GameManager.instance.inMenu = true;
                     witchscript.initializeTradeWindow(
                         witchtradeoverlay, 
                         witchrecipegridspawn, 
@@ -196,7 +202,6 @@ public class PlayerInteractHandler : MonoBehaviour
                         pressentertocraft, 
                         escapemessage,
                         playerlookscript);
-                    GameManager.instance.inMenu = true;
                 }
 
                 var campfirescript = hit.transform.GetComponent<CampfireScript>();

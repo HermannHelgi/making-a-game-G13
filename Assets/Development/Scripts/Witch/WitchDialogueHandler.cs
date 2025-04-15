@@ -86,6 +86,12 @@ public class WitchDialogueHandler : MonoBehaviour
                 {
                     ///// ...no, so stop.
                     currentdialoguechain = null;
+                    
+                    if (TutorialManager.instance.tutorialinprogress)
+                    {
+                        TutorialManager.instance.playerFinishedTalkingWithWitch();
+                    }
+                    
                     deinitializeDialogue();
                     return false;
                 }
@@ -108,6 +114,11 @@ public class WitchDialogueHandler : MonoBehaviour
     public bool intializeDialogue(GameObject subtitleobject, GameObject escapemessage, GameObject playerlookscript)
     // Initializes the dialogue text. 
     {
+        if (TutorialManager.instance.tutorialinprogress)
+        {
+            TutorialManager.instance.playerTalkedWithWitch();
+        }
+
         escmess = escapemessage;
         escmess.SetActive(true);
         subtitletextmesh = subtitleobject;
