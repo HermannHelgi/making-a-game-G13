@@ -142,6 +142,7 @@ MonoBehaviour:
   playerSightings: 0
   maxPlayerSightings: 2
   despawnPoint: {fileID: 0}
+  heightOffset: 1.84
 --- !u!114 &4574944248035606791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +187,7 @@ MonoBehaviour:
   playerLineOfSight: {fileID: 0}
   wendigoFollowPlayer: {fileID: 800272586612761328}
   wendigoLookForPlayer: {fileID: 1956191991036068811}
+  wendigoAttack: {fileID: 0}
   Wendigo: {fileID: 8884986120333703128}
 --- !u!114 &800272586612761328
 MonoBehaviour:
@@ -208,6 +210,7 @@ MonoBehaviour:
   maxSpeed: 20
   lostPlayer: 0
   attackPlayer: 0
+  agent: {fileID: 0}
 --- !u!195 &723745399182687618
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -334,11 +337,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8884986120333703128}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 286f8885e243cf144a2968a29cf14544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wendigoRaycast: {fileID: 4574944248035606791}
   Wendigo: {fileID: 8884986120333703128}
+  wendigoFollowPlayer: {fileID: 0}
   trackingTimer: 20
