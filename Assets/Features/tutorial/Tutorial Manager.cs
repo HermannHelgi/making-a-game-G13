@@ -10,6 +10,8 @@ public class TutorialManager : MonoBehaviour
     public float backgroundalpha;
     public bool tutorialinprogress;
     public bool cannotcraft;
+    public bool cannottalk;
+    public bool inactiveNecessityBars;
     public GameObject tutorialcavewall;
 
     // References
@@ -19,6 +21,10 @@ public class TutorialManager : MonoBehaviour
     public TutorialBoxWrapper tutorialscreen;
     public GameObject witchlerpposition;
     public TextMeshProUGUI witchsubtitletext;
+    public NecessityBars necessityBars;
+    public GameObject coldBar;
+    public GameObject hungerBar;
+    public TutorialBoxWrapper craftingTutorialScreen;
 
 
     // Tutorial Tooltips
@@ -27,6 +33,9 @@ public class TutorialManager : MonoBehaviour
     public string explainhotbaranditems;
     public ItemScript berry;
     public string explainnecessitybars;
+    public float hungerDecrease;
+    public string explainItems;
+    public string explainBargaining;
 
 
     // Look text
@@ -34,6 +43,7 @@ public class TutorialManager : MonoBehaviour
     public string witchleavecavetext;
     public string witchdiscussfurther;
     public DialogueScriptableObject makecampfire;
+    public DialogueScriptableObject howtobargain;
 
 
 
@@ -42,18 +52,27 @@ public class TutorialManager : MonoBehaviour
     private bool interactwithwitch = false;
     private bool teachingitems = false;
     private bool findsticks = false;
-    private bool teachingcrafting = false;
+    private bool teachingPickup = false;
+    private bool loadNextDialogue = false;
+    private bool teachingBargaining = false;
 
 
     private float looktimer = 0;
     private bool showingtutorialbox = false;
     private float tutorialboxtimer = 0;
 
+    private bool showingCraftingTutorialBox = false;
+    private float craftingTutorialBoxTimer = 0;
+
     void Start()
     {
         instance = this;
         tutorialinprogress = true;
         cannotcraft = true;
+        cannottalk = true;
+        inactiveNecessityBars = true;
+        coldBar.SetActive(false);
+        hungerBar.SetActive(false);
     }
 
     void Update()
@@ -103,6 +122,40 @@ public class TutorialManager : MonoBehaviour
                 tutorialscreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, backgroundalpha), tutorialboxtimer);
                 tutorialscreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), tutorialboxtimer);
                 tutorialscreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), tutorialboxtimer);
+                
+                if (loadNextDialogue && teachingPickup && tutorialboxtimer <= 0)
+                {
+                    showTutorialBox(explainItems);
+                    teachingPickup = false;
+                    teachingBargaining = true;
+                    DialogueManager.instance.SetDialogueFlags(howtobargain);
+                }
+            }
+        }
+
+        if (showingCraftingTutorialBox)
+        {
+            if (craftingTutorialBoxTimer <= 1)
+            {
+                craftingTutorialBoxTimer += Time.deltaTime / tutorialboxfadeintime;
+                craftingTutorialScreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, backgroundalpha), craftingTutorialBoxTimer);
+                craftingTutorialScreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
+                craftingTutorialScreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.X) && craftingTutorialBoxTimer > 1)
+            {
+                showingCraftingTutorialBox = false;
+            }
+        }
+        else if (!showingCraftingTutorialBox)
+        {
+            if (craftingTutorialBoxTimer >= 0)
+            {
+                craftingTutorialBoxTimer -= Time.deltaTime / tutorialboxfadeintime;
+                craftingTutorialScreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, backgroundalpha), craftingTutorialBoxTimer);
+                craftingTutorialScreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
+                craftingTutorialScreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
             }
         }
     }
@@ -136,6 +189,7 @@ public class TutorialManager : MonoBehaviour
                     witchsubtitletext.gameObject.SetActive(false);
                     GameManager.instance.activateMenuCooldown();
                     showTutorialBox(explaininteractbutton);
+                    cannottalk = false;
                 }
             }
         }
@@ -149,6 +203,7 @@ public class TutorialManager : MonoBehaviour
                     playerlookscript.finishLook();
                     witchsubtitletext.gameObject.SetActive(false);
                     GameManager.instance.activateMenuCooldown();
+                    cannottalk = false;
                 }
             }
         }
@@ -184,6 +239,14 @@ public class TutorialManager : MonoBehaviour
         {
             hideTutorialBox();
         }
+        else if (teachingPickup)
+        {
+            hideTutorialBox();
+        }
+        else if (teachingBargaining)
+        {
+            hideTutorialBox();
+        }
     }
 
     public void playerFinishedTalkingWithWitch()
@@ -192,15 +255,26 @@ public class TutorialManager : MonoBehaviour
         {
             interactwithwitch = false;
             teachingitems = true;
+            cannottalk = true;
+
+            coldBar.SetActive(true);
+            hungerBar.SetActive(true);
+            inactiveNecessityBars = false;
+            necessityBars.increaseHunger(-hungerDecrease);
+
             playerinventory.addItemToHotbar(berry);
             showTutorialBox(explainhotbaranditems);
         }
         else if (findsticks)
         {
             findsticks = false;
-            teachingcrafting = true;
+            teachingPickup = true;
             tutorialcavewall.SetActive(false);
             showTutorialBox(explainnecessitybars);
+        }
+        else if (teachingBargaining)
+        {
+            cannotcraft = false;
         }
     }
 
@@ -218,6 +292,34 @@ public class TutorialManager : MonoBehaviour
             witchsubtitletext.gameObject.SetActive(true);
             witchsubtitletext.text = witchdiscussfurther;
             playerlookscript.playerLookAt(witchlerpposition);
+        }
+    }
+
+    public void playerPickedUpItem()
+    {
+        if (teachingPickup)
+        {
+            if (showingtutorialbox)
+            {
+                hideTutorialBox();
+                loadNextDialogue = true;
+            }
+            else if (!showingtutorialbox && !loadNextDialogue)
+            {
+                showTutorialBox(explainItems);
+                teachingPickup = false;
+                teachingBargaining = true;
+                DialogueManager.instance.SetDialogueFlags(howtobargain);
+            }
+        }
+    }
+
+    public void playerHasOpenedTradeWindow()
+    {
+        if (teachingBargaining)
+        {
+            showingCraftingTutorialBox = true;
+            craftingTutorialScreen.message.text = explainBargaining;
         }
     }
 }

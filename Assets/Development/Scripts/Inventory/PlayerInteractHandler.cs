@@ -105,8 +105,11 @@ public class PlayerInteractHandler : MonoBehaviour
             {
                 if (witchscript.canTalk())
                 {
-                    popuptext.text = dialoguepopupstring;
-                    popuptext.gameObject.SetActive(true);
+                    if (!TutorialManager.instance.cannottalk)
+                    {
+                        popuptext.text = dialoguepopupstring;
+                        popuptext.gameObject.SetActive(true);
+                    }
                 }
                 else
                 {

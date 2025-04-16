@@ -305,6 +305,11 @@ public class WitchTradeScript : MonoBehaviour
             crafttextmesh = crafttext;
             spawnCraftingRecipeBoxes();
             selectCraftingSlot(currentindex);
+
+            if (TutorialManager.instance.tutorialinprogress)
+            {
+                TutorialManager.instance.playerHasOpenedTradeWindow();
+            }
         }
     }
 

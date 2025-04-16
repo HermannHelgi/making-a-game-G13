@@ -52,10 +52,16 @@ public class NecessityBars : MonoBehaviour
     {
         currenthunger = maxhunger;
         currenttemperature = maxtemperature;
+        hungerdisplayconsumablemeter.fillAmount = 0;
     }
 
     void Update()
     {
+        if (TutorialManager.instance.inactiveNecessityBars)
+        {
+            return;
+        }
+
         // Updating necessity bars
         if (firstpersoncontroller.sprint && !GameManager.instance.inMenu)
         {
