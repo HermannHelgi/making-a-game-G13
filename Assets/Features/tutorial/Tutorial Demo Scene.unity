@@ -2090,7 +2090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4372468531597363674, guid: fafba3d8954b3de479ccf8b7e58db05b, type: 3}
       propertyPath: allDialogue.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4372468531597363674, guid: fafba3d8954b3de479ccf8b7e58db05b, type: 3}
       propertyPath: 'allDialogue.Array.data[0]'
@@ -2104,6 +2104,10 @@ PrefabInstance:
       propertyPath: 'allDialogue.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: b35a02952951db74694de1c98c46ce88, type: 2}
+    - target: {fileID: 4372468531597363674, guid: fafba3d8954b3de479ccf8b7e58db05b, type: 3}
+      propertyPath: 'allDialogue.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
     - target: {fileID: 5607509640579277275, guid: fafba3d8954b3de479ccf8b7e58db05b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 571.5
@@ -2563,8 +2567,10 @@ MonoBehaviour:
   coldBar: {fileID: 2000112529}
   hungerBar: {fileID: 1844322447}
   craftingTutorialScreen: {fileID: 1914434287}
-  explaincontrols: 'Press WASD to move around and space to jump. \n\n Use the mouse
-    to look around.\n\n Hold shift to run. '
+  campfire: {fileID: 884960375}
+  explaincontrols: 'Welcome to the tutorial for Cold Bargain!\n\n   Press WASD to
+    move around and space to jump. \n Hold shift to run.\n Use the mouse to look
+    around.\n\n  If you wish to skip the tutorial, press Z now. '
   explaininteractbutton: "\\n\\nPress \u2018E\u2019 to interact with the environment."
   explainhotbaranditems: 'You can scroll through your hotbar using the mouse wheel.\n\n
     You can drop your selected item using Q.\n\n In addition, you can interact with
@@ -2583,12 +2589,21 @@ MonoBehaviour:
     items can only be bargained for once. Each item shows on the right side what
     they need to be bargained for. Question marks indicate items you have yet to
     discover. '
+  explainCampfire: 'You have unlocked the campfire.\n While lit, it will provide
+    you with warmth when you stand close to it.\n\n  Should it go out, it can be
+    relit by placing another stick within it.\n\n  As the campfire burns its fuel,
+    it will generate coal. '
   witchwalktext: "\u201CHey, psst, over here, young one.\u201D"
+  witchStartingDialogue: {fileID: 11400000, guid: 35fbaf2cdc605924da2e8ffcd773de87, type: 2}
   witchleavecavetext: "\u201CCome now, come over, I don\u2019t bite.\u201D"
   witchdiscussfurther: "\u201CThere, isn\u2019t that better? Come, I have much to
     tell you.\u201D "
   makecampfire: {fileID: 11400000, guid: 473a10f163556284f8fb4df9ba34bf89, type: 2}
   howtobargain: {fileID: 11400000, guid: b35a02952951db74694de1c98c46ce88, type: 2}
+  witchHighlightCampfire: "\u201CThere, why don\u2019t you warm yourself up?\u201D"
+  witchInitiateExposition: "\u201CNow that you\u2019re warm, come over, I have something
+    I must tell you\u2026\u201D"
+  witchExposition: {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

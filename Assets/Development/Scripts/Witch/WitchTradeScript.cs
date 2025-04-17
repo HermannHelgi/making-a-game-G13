@@ -35,10 +35,8 @@ public class WitchTradeScript : MonoBehaviour
 
     [Header("Dialogue System variables")]
     public GameObject dialogueHandler;
-    public DialogueScriptableObject startingdialogue;
     
     // Private stuff, mostly references to other objects.
-    private bool hasaddedstartdialogue = false;
     private GameObject[] tradeslotgridchildren;
     private bool[] hasbeencrafted;
     private int currentindex = 0;
@@ -101,12 +99,6 @@ public class WitchTradeScript : MonoBehaviour
                 craftItem();
             }
         }
-
-        if (!hasaddedstartdialogue)
-        {
-            DialogueManager.instance.SetDialogueFlags(startingdialogue);
-            hasaddedstartdialogue = true;
-        }
     }
 
     void craftItem()
@@ -162,6 +154,10 @@ public class WitchTradeScript : MonoBehaviour
         if (craftableItems[currentindex] == campfirereference)
         {
             campfire.SetActive(true);
+            if (TutorialManager.instance.tutorialinprogress)
+            {
+                TutorialManager.instance.playerHasCraftedCampfire();
+            }
             return;
         }
         if (craftableItems[currentindex] == chestreference)
@@ -316,14 +312,23 @@ public class WitchTradeScript : MonoBehaviour
     void deinitializeTradeWindow()
     // Closes trade window
     {
+        if (!TutorialManager.instance.tutorialinprogress)
+        {
+            GameManager.instance.activateMenuCooldown();
+        }
+
         playerlook.finishLook();
         wipeCraftingRecipeBoxes();
         playerinventory.SetActive(true);
         witchoverlay.SetActive(false);
         playerinventoryscript.resetHotbarItems();
         currentlytrading = false;
-        GameManager.instance.activateMenuCooldown();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (TutorialManager.instance.tutorialinprogress)
+        {
+            TutorialManager.instance.playerHasClosedTradeWindow();
+        }
     }
 }
