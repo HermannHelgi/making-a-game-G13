@@ -1,11 +1,10 @@
 
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting.FullSerializer;
-using System.Numerics;
+using TreeEditor;
 
 public class wendigoRandomizedSpawner : MonoBehaviour
 {
@@ -20,9 +19,10 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     public int playerSightings;
     public int maxPlayerSightings = 3;
     public Transform despawnPoint;
-    [Header("SpawnPoints")]
+    [Header("SpawnPoints and distance")]
     public List<GameObject> spawnPositions;
-    private List<Transform> possibleSpawns;
+    public float spawnDistance;
+    private List<GameObject> possibleSpawns;
     private int maxPossibleSpawns;
 
     // private SkinnedMeshRenderer wendigoMesh;
@@ -54,6 +54,23 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         //     wendigoPrefab.transform.position = spawnpoint;
         // }
         
+        foreach (GameObject spawnpoint in spawnPositions)
+        {   
+            Debug.Log("Iterating through points");
+            float distance = Vector3.Distance(spawnpoint.transform.position, player.position);
+            if (distance >= spawnDistance)
+            {
+                possibleSpawns.Add(spawnpoint);
+
+            }
+        }
+        foreach (GameObject possibleSpawn in possibleSpawns)
+        {   
+            Debug.Log("Iterating  near points");
+            SkinnedMeshRenderer mesh = possibleSpawn.GetComponentInChildren<SkinnedMeshRenderer>();
+            mesh.enabled = true;
+            possibleSpawn.transform.forward = -player.transform.forward;
+        }
 
     }
 
@@ -120,16 +137,16 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         
     }
 
-    private bool HasLineOfSight(Vector3 fromPos, Vector3 toPos, float maxDist)
-    {
-        Vector3 dir = (toPos - fromPos).normalized;
-        if (Physics.Raycast(fromPos, dir, out RaycastHit hit, maxDist))
-        {
-            return hit.transform.CompareTag("Player");
-            Debug.Log("has line of sight");
-        }
-        return false;
-    }
+    // private bool HasLineOfSight(Vector3 fromPos, Vector3 toPos, float maxDist)
+    // {
+    //     Vector3 dir = (toPos - fromPos).normalized;
+    //     if (Physics.Raycast(fromPos, dir, out RaycastHit hit, maxDist))
+    //     {
+    //         return hit.transform.CompareTag("Player");
+    //         Debug.Log("has line of sight");
+    //     }
+    //     return false;
+    // }
 
 
 }
