@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     public float maxlooktimer;     
     public float tutorialboxfadeintime;     
     public float backgroundalpha;
+    public float craftingBackgroundAlpha;
     public bool tutorialinprogress;
     public bool cannotcraft;
     public bool cannottalk;
@@ -193,7 +194,7 @@ public class TutorialManager : MonoBehaviour
             if (craftingTutorialBoxTimer <= 1)
             {
                 craftingTutorialBoxTimer += Time.deltaTime / tutorialboxfadeintime;
-                craftingTutorialScreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, backgroundalpha), craftingTutorialBoxTimer);
+                craftingTutorialScreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, craftingBackgroundAlpha), craftingTutorialBoxTimer);
                 craftingTutorialScreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
                 craftingTutorialScreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
             }
@@ -208,7 +209,7 @@ public class TutorialManager : MonoBehaviour
             if (craftingTutorialBoxTimer >= 0)
             {
                 craftingTutorialBoxTimer -= Time.deltaTime / tutorialboxfadeintime;
-                craftingTutorialScreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, backgroundalpha), craftingTutorialBoxTimer);
+                craftingTutorialScreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, craftingBackgroundAlpha), craftingTutorialBoxTimer);
                 craftingTutorialScreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
                 craftingTutorialScreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
             }
@@ -434,6 +435,10 @@ public class TutorialManager : MonoBehaviour
 
     public void playerHasClosedTradeWindow()
     {
+        if (teachingBargaining)
+        {
+            GameManager.instance.activateMenuCooldown();
+        }
         if (teachingCampfire)
         {
             looktimer = 0;

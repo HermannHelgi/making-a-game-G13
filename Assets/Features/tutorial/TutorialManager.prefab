@@ -159,6 +159,7 @@ MonoBehaviour:
   maxlooktimer: 4
   tutorialboxfadeintime: 2
   backgroundalpha: 0.5
+  craftingBackgroundAlpha: 0.95
   tutorialinprogress: 0
   cannotcraft: 0
   cannottalk: 0

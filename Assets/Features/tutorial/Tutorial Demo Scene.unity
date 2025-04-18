@@ -349,6 +349,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8709562959268111755, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
   m_PrefabInstance: {fileID: 107436204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &172445493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1453099006256341181, guid: 0e0ede8b63ce26e44a6e99c3cbf2d905, type: 3}
+  m_PrefabInstance: {fileID: 1609946106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16b9b2500cbd5648a79b71e0f82c910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &183352096
 Mesh:
   m_ObjectHideFlags: 0
@@ -627,17 +638,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 528170044}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &588000185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6650499306138606693, guid: 0e0ede8b63ce26e44a6e99c3cbf2d905, type: 3}
-  m_PrefabInstance: {fileID: 1609946106}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16b9b2500cbd5648a79b71e0f82c910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &737964871 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7787015165075230313, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
@@ -1740,7 +1740,7 @@ PrefabInstance:
     - target: {fileID: 3451913971859264440, guid: 4b7747c3d85e638459ca63842dfd946d, type: 3}
       propertyPath: craftingTutorialScreen
       value: 
-      objectReference: {fileID: 588000185}
+      objectReference: {fileID: 172445493}
     - target: {fileID: 5709387042270765378, guid: 4b7747c3d85e638459ca63842dfd946d, type: 3}
       propertyPath: m_Name
       value: TutorialManager
