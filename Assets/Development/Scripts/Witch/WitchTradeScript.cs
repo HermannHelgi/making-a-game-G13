@@ -111,7 +111,7 @@ public class WitchTradeScript : MonoBehaviour
 
     void SnapToElement(int index)
     {
-        verticalLayoutGroup.anchoredPosition = new Vector2(verticalLayoutGroup.anchoredPosition.x, index * (elementSize + paddingSize));
+        verticalLayoutGroup.anchoredPosition = new Vector2(verticalLayoutGroup.anchoredPosition.x, index * (elementSize + paddingSize) + (elementSize / 2));
     }
 
     void craftItem()

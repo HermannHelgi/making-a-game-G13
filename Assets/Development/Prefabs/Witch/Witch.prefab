@@ -362,6 +362,7 @@ MonoBehaviour:
   itemnametextmesh: {fileID: 148597500933796037}
   crafttextmesh: {fileID: 7797989530808021804}
   witchoverlay: {fileID: 1476115459624564163}
+  itemDescription: {fileID: 1131047693394496867}
   selectedhotbarcolor: {r: 0, g: 0.7529412, b: 0.050980393, a: 1}
   deselectedhotbarcolor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectedspritecolor: {r: 1, g: 1, b: 1, a: 1}
@@ -967,7 +968,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 500, y: 0}
-  m_SizeDelta: {x: 350, y: 50}
+  m_SizeDelta: {x: 700, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2439522612138304884
 CanvasRenderer:
