@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class WitchTradeScript : MonoBehaviour
 {
     [Header("Trade Window Variables")]
-    public float distancetoturnoffwitchoverlay = 10;
     public ItemScript[] craftableItems = new ItemScript[7];
     public GameObject tradeslotprefab;
     [Tooltip("The GameObject of the campfire within the scene.")]
@@ -25,13 +24,21 @@ public class WitchTradeScript : MonoBehaviour
     public GameObject lerppos;
     public int maxtimetolerp;
 
+    public GameObject witchrecipegridspawner; 
+    public TextMeshProUGUI itemnametextmesh;
+    public TextMeshProUGUI crafttextmesh;
+    public GameObject witchoverlay;
+    public TextMeshProUGUI itemDescription;
+
     [Header("Sprite variables")]
     public Color selectedhotbarcolor = Color.white;
     public Color deselectedhotbarcolor = Color.gray;
     public Color selectedspritecolor = Color.white;
     public Color deselectedspritecolor = Color.gray;
+    public Color itemInInventory = Color.white;
     [Tooltip("Used to display if an item has been crafted.")]
     public Sprite checkmark;
+    public Sprite questionMark;
 
     [Header("Dialogue System variables")]
     public GameObject dialogueHandler;
@@ -40,15 +47,16 @@ public class WitchTradeScript : MonoBehaviour
     private GameObject[] tradeslotgridchildren;
     private bool[] hasbeencrafted;
     private int currentindex = 0;
-    private GameObject witchrecipegridspawner; 
     private GameObject playerinventory;
-    private GameObject witchoverlay;
     private PlayerInventory playerinventoryscript;
-    private TextMeshProUGUI itemnametextmesh;
-    private TextMeshProUGUI ingredientstextmesh;
     private bool currentlytrading = false;
-    private TextMeshProUGUI crafttextmesh;
     private PlayerLookScript playerlook;
+
+    [Header("Scrollview Variables")]
+    public RectTransform verticalLayoutGroup;
+    public float elementSize;
+    public float paddingSize;
+    public GameObject witchBargainingSlotPrefab;
 
     void Start()
     {
@@ -101,6 +109,11 @@ public class WitchTradeScript : MonoBehaviour
         }
     }
 
+    void SnapToElement(int index)
+    {
+        verticalLayoutGroup.anchoredPosition = new Vector2(verticalLayoutGroup.anchoredPosition.x, index * (elementSize + paddingSize));
+    }
+
     void craftItem()
     {
         // I need to make a dictionary to get the total counts of each item, as i need to check how many unique amount of items there are
@@ -147,9 +160,46 @@ public class WitchTradeScript : MonoBehaviour
         hasbeencrafted[currentindex] = true; 
         if (craftableItems[currentindex].onetimecraft)
         {
-            tradeslotgridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
+            tradeslotgridchildren[currentindex].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
             crafttextmesh.text = itemcannotbecraftedstring;
         }
+
+        ItemScript[] playerHeldItems = playerinventoryscript.getInventoryItems();
+        List<GameObject> hotbarslots = new List<GameObject>();
+
+        foreach (GameObject bargainingSlots in tradeslotgridchildren)
+        {
+            for (int i = 0; i < bargainingSlots.GetComponent<WitchBargainingSlotWrapper>().content.transform.childCount; i++)
+            {
+                hotbarslots.Add(bargainingSlots.GetComponent<WitchBargainingSlotWrapper>().content.transform.GetChild(i).gameObject);
+            }
+
+            foreach (ItemScript playerItem in playerHeldItems)
+            {
+                if (playerItem == null)
+                {
+                    continue;
+                }
+
+                foreach (GameObject resourceGO in hotbarslots)
+                {
+                    if (resourceGO.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite == playerItem.icon)
+                    {
+                        resourceGO.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = itemInInventory;
+                        resourceGO.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
+                        hotbarslots.Remove(resourceGO);
+                        break;
+                    }
+                }
+            }
+
+            foreach(GameObject resourceGO in hotbarslots)
+            {
+                resourceGO.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
+                resourceGO.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
+            }
+        }
+
 
         if (craftableItems[currentindex] == campfirereference)
         {
@@ -177,28 +227,29 @@ public class WitchTradeScript : MonoBehaviour
     {
         for (int i = 0; i < craftableItems.Length; i++)
         {
-            tradeslotgridchildren[i].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
-            tradeslotgridchildren[i].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
+            tradeslotgridchildren[i].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
+            tradeslotgridchildren[i].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
         }
 
         // Edge checks
         if (index >= craftableItems.Length)
         {
-            index = 0;
+            index = craftableItems.Length - 1;
         }
         if (index < 0)
         {
-            index = craftableItems.Length - 1;
+            index = 0;
         }
 
         // Select Hotbar
         currentindex = index;
-        tradeslotgridchildren[currentindex].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = selectedhotbarcolor;
-        tradeslotgridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
+        SnapToElement(currentindex);
+        tradeslotgridchildren[currentindex].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = selectedhotbarcolor;
+        tradeslotgridchildren[currentindex].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
 
         // Modifying update text
         itemnametextmesh.text = craftableItems[index].name;
-        ingredientstextmesh.text = "";
+        itemDescription.text = craftableItems[index].craftingDescription;
 
         if (craftableItems[currentindex].onetimecraft && hasbeencrafted[currentindex])
         {
@@ -208,43 +259,67 @@ public class WitchTradeScript : MonoBehaviour
         {
             crafttextmesh.text = buttontocraftstring;
         }
-
-        for (int i = 0; i < craftableItems[currentindex].craftingrecipe.Length; i++)
-        {
-            // This is accessing the game manager at the index of the current ingredient of the recipe
-            if (GameManager.instance.discovereditems[craftableItems[currentindex].craftingrecipe[i].index])
-            {
-                ingredientstextmesh.text += craftableItems[currentindex].craftingrecipe[i].name;
-            }
-            else
-            {
-                ingredientstextmesh.text += "???";
-            }
-
-
-            if ((i + 1) < craftableItems[currentindex].craftingrecipe.Length)
-            {
-                ingredientstextmesh.text += ",\n";
-            }
-        }
     }
 
     void spawnCraftingRecipeBoxes()
     {
+        ItemScript[] playerHeldItems = playerinventoryscript.getInventoryItems();
+
         for (int i = 0; i < craftableItems.Length; i++)
         {
-            GameObject childObject = Instantiate(tradeslotprefab);
+            GameObject childObject = Instantiate(witchBargainingSlotPrefab);
             childObject.transform.SetParent(witchrecipegridspawner.transform, false);
-            childObject.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
-            childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
+            childObject.GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
+            childObject.GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
+            
             if (hasbeencrafted[i] && craftableItems[i].onetimecraft)
             {
-                childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
+                childObject.GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = checkmark;
             }
             else
             {
-                childObject.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = craftableItems[i].icon;
+                childObject.GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = craftableItems[i].icon;
             }
+
+            List<GameObject> hotbarslots = new List<GameObject>();
+            
+            foreach (ItemScript resource in craftableItems[i].craftingrecipe)
+            {
+                GameObject resourceItem = Instantiate(tradeslotprefab);
+                resourceItem.transform.SetParent(childObject.GetComponent<WitchBargainingSlotWrapper>().content.transform, false);
+                if (GameManager.instance.discovereditems[resource.index])
+                {
+                    resourceItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = resource.icon;
+                }
+                else
+                {
+                    resourceItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = questionMark;
+                }
+                resourceItem.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
+                resourceItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
+
+                hotbarslots.Add(resourceItem);  
+            }
+
+            foreach (ItemScript playerItem in playerHeldItems)
+            {
+                if (playerItem == null)
+                {
+                    continue;
+                }
+
+                foreach (GameObject resourceGO in hotbarslots)
+                {
+                    if (resourceGO.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite == playerItem.icon)
+                    {
+                        resourceGO.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = itemInInventory;
+                        resourceGO.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
+                        hotbarslots.Remove(resourceGO);
+                        break;
+                    }
+                }
+            }
+
             tradeslotgridchildren[i] = childObject;
         }
     }
@@ -263,7 +338,7 @@ public class WitchTradeScript : MonoBehaviour
         return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
     }
 
-    public void initializeTradeWindow(GameObject witchtradecanvas, GameObject witchrecipegridspawnerobject, GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, TextMeshProUGUI nameofitemincanvastextmesh, TextMeshProUGUI ingredientslisttextmesh, GameObject subtitletextmesh, TextMeshProUGUI crafttext, GameObject escapemessage, GameObject playerlookscript)   
+    public void initializeTradeWindow(GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject subtitletextmesh, GameObject escapemessage, GameObject playerlookscript)   
     // Starts the trade window, if the witch has dialogue, does that first.
     {
         if (!dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty())
@@ -285,11 +360,7 @@ public class WitchTradeScript : MonoBehaviour
             // I made this with the assumption that the witch doesn't have access to these variables on scene load to reduce inter-prefab references and reduce work on the inspector side.
             // Its just a bunch of miscellaneous references, so don't worry bout it
             playerinventory = playerinventorycanvas;
-            witchoverlay = witchtradecanvas;
-            witchrecipegridspawner = witchrecipegridspawnerobject;
             playerinventoryscript = playerinventoryscriptobject.GetComponent<PlayerInventory>();
-            itemnametextmesh = nameofitemincanvastextmesh;
-            ingredientstextmesh = ingredientslisttextmesh;
             playerlook = playerlookscript.GetComponent<PlayerLookScript>();
             playerlook.playerLookAt(lerppos);
 
@@ -298,7 +369,6 @@ public class WitchTradeScript : MonoBehaviour
             playerinventoryscript.deleteHeldObjects();
             currentlytrading = true;
             currentindex = 0;
-            crafttextmesh = crafttext;
             spawnCraftingRecipeBoxes();
             selectCraftingSlot(currentindex);
 

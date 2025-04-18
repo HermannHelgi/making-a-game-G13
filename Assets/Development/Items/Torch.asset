@@ -23,3 +23,7 @@ MonoBehaviour:
   consumable: 0
   hungergain: 0
   unique: 1
+  craftingDescription: 'When held, the torch generates light within a small area
+    and gives off a slight amount of warmth to the holder, staving off the cold slightly.\n\n 
+    The torch will slowly drain over time. Should it ever die out, it can be relit
+    with coal. '

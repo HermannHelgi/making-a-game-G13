@@ -195,14 +195,9 @@ public class PlayerInteractHandler : MonoBehaviour
                     // this initialize Trade Window will also handle the dialogue for the witch
                     GameManager.instance.inMenu = true;
                     witchscript.initializeTradeWindow(
-                        witchtradeoverlay, 
-                        witchrecipegridspawn, 
                         inventoryoverlay, 
                         playerinventoryobject, 
-                        nameofitemincanvastextmesh, 
-                        ingredientslisttextmesh, 
                         subtitletextmesh, 
-                        pressentertocraft, 
                         escapemessage,
                         playerlookscript);
                 }

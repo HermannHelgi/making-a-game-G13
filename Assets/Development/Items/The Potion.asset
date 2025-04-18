@@ -24,3 +24,5 @@ MonoBehaviour:
   consumable: 0
   hungergain: 0
   unique: 1
+  craftingDescription: The witch proclaims this item will save you from the wicked
+    beast, finding the resources to craft this item should be top priority.

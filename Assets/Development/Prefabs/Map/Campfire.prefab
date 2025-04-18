@@ -77,6 +77,10 @@ MonoBehaviour:
   necessitybars: {fileID: 0}
   coalstored: 0
   coalitemscript: {fileID: 11400000, guid: 4aa806401e7e3ac4cbf5ed6a57e7ea36, type: 2}
+  sticksemplaced: 1
+  burntimer: 0
+  playerinrange: 0
+  oldtemperaturedrainrate: 0
 --- !u!1001 &2452693412206822084
 PrefabInstance:
   m_ObjectHideFlags: 0

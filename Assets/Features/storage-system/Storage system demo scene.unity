@@ -497,6 +497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Witch
       objectReference: {fileID: 0}
+    - target: {fileID: 1476115459624564163, guid: 0e0ede8b63ce26e44a6e99c3cbf2d905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5518599721104813768, guid: 0e0ede8b63ce26e44a6e99c3cbf2d905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.68132
@@ -1068,6 +1072,10 @@ PrefabInstance:
     - target: {fileID: 8353955107239986551, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353955107239986551, guid: 6a7d8bfb974917349a464e6acdd2b41e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
