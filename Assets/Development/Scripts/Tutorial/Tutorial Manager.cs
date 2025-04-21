@@ -15,6 +15,8 @@ public class TutorialManager : MonoBehaviour
     public bool inactiveNecessityBars;
     public GameObject tutorialcavewall;
 
+    public SoundManager soundManager;
+
     // References
     [Header("References to other objects")]
     [Tooltip("The capsule of the player, should start at a Z rotation of 90.")]
@@ -314,6 +316,7 @@ public class TutorialManager : MonoBehaviour
         witchsubtitletext.text = witchwalktext;
         playerlookscript.playerLookAt(witchlerpposition);
         DialogueManager.instance.SetDialogueFlags(witchStartingDialogue);
+        soundManager.PlayGroup("GRYLA_PSST");
     }
 
     public void playerTriedToLeaveCave()
@@ -326,6 +329,7 @@ public class TutorialManager : MonoBehaviour
             witchsubtitletext.gameObject.SetActive(true);
             witchsubtitletext.text = witchleavecavetext;
             playerlookscript.playerLookAt(witchlerpposition);
+            soundManager.PlayGroup("GRYLA_OOH");
         }
     }
 
@@ -392,6 +396,7 @@ public class TutorialManager : MonoBehaviour
             witchsubtitletext.gameObject.SetActive(true);
             witchsubtitletext.text = witchdiscussfurther;
             playerlookscript.playerLookAt(witchlerpposition);
+            soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
         }
     }
 
@@ -410,6 +415,8 @@ public class TutorialManager : MonoBehaviour
                 teachingPickup = false;
                 teachingBargaining = true;
                 DialogueManager.instance.SetDialogueFlags(howtobargain);
+                soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
+
             }
         }
     }
@@ -446,6 +453,7 @@ public class TutorialManager : MonoBehaviour
             witchsubtitletext.gameObject.SetActive(true);
             witchsubtitletext.text = witchHighlightCampfire;
             playerlookscript.playerLookAt(campfire);
+            soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
         }
     }
 
@@ -464,6 +472,7 @@ public class TutorialManager : MonoBehaviour
             cannotcraft = false;
             DialogueManager.instance.SetDialogueFlags(witchExposition);
             doingExposition = true;
+            soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
         }
     }
 }
