@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b360467a1a45e464396a8062078c8386, type: 3}
+  m_Name: StartingExpositionDialogue
+  m_EditorClassIdentifier: 
+  dialoguename: EXPOSITION
+  dialogue:
+  - "\u201COh, it\u2019s such a relief to see you walking around.\u201D "
+  - "\u201CI wasn\u2019t sure you\u2019d survive the drag back to my cave.\u201D "
+  - "\u201CAfter all that tumbling, It's a miracle you survived!\u201D "
+  - "\u201C...\u201D "
+  - "\u201C...though, I wouldn\u2019t count your lucky stars <i>just</i> yet.\u201D "
+  - "\u201CYou see, there lurks a monster in these woods, a savage and vicious one.\u201D "
+  - "\u201CAnd it seems, it has marked you as its prey.\u201D "
+  - "\u201CWhen night falls, it will come for you\u2026\u201D "
+  - "\u201CAnd no doubt, rip you to pieces, limb from <b><i>bloody limb</i></b>\u201D "
+  - "\u201C...\u201D"
+  - "\u201CHowever, there is a silver lining to this situation.\u201D "
+  - "\u201CAs you just so happen to be talking to the only person who can help you!\u201D "
+  - "\u201CYou see, I\u2019m what some might call a <i><b>Witch.</b></i>\u201D "
+  - "\u201CWhile you rest within this cave, my magic can protect you from the monster.\u201D "
+  - "\u201CHowever, this will not protect you from the elements, and I doubt you
+    wish to stay here for eternity\u2026\u201D "
+  - "\u201CSo! To end this predicament, I can brew a potion for you.\u201C "
+  - "\u201COne which will remove the beast's mark, and allow you to escape.\u201D "
+  - "\u201C...\u201D"
+  - "\u201CI understand if you\u2019re a bit skeptical, but I assure you, your options
+    are <i>very</i> limited.\u201D "
+  - "\u201CEither trust me and survive, or <i>walk out there and die.</i>\u201D "
+  - "\u201C...\u201D"
+  - "\u201CNow, with that established.\u201D "
+  - "\u201CI can make this potion for you, however, I sadly lack the materials to
+    do so.\u201D "
+  - "\u201CAge has not been kind to such a frail woman like me\u2026\u201D "
+  - "\u201CIt took everything I had in me to get you here, to safety.\u201D "
+  - "\u201CAs such, I simply lack the strength to go searching in those cold, cold
+    woods.\u201D "
+  - "\u201CThus, I suggest a bargain.\u201D "
+  - "\u201CBring me the materials for the potion, and I will make it for you, simple
+    as that.\u201D "
+  - "\u201CAdditionally, if you happen to come across any other materials in the
+    woods,\u201D "
+  - "\u201CPerhaps I can make some other necessities for your survival.\u201D "
+  - "\u201CNow, you\u2019ll need to collect a few things to make the potion. So,
+    pay attention now.\u201D "
+  - "\u201C<i><b>The 3 ingredients you need to find are:</b></i>\u201D "
+  - "\u201C<i><b>A bottle, one filled with liquid courage.</b></i>\u201D "
+  - "\u201C<i><b>A rare flower, one which shimmers in the pale moonlight.</b></i>\u201D "
+  - "\u201C<i><b>And finally,</b></i>\""
+  - "\u201C<i><b><color=\"red\">The flesh of your own.</color></b></i>\u201D "
+  - "\u201C...don\u2019t think too much about that last bit, okay?\u201D "
+  - "\u201CNow, go on love, I believe in you!\u201D "
+  - "\u201CAnd remember\u2026\u201D "
+  - "\u201CThe beast comes out at <i><b>night.</b></i>\u201D "

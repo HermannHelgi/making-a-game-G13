@@ -47,7 +47,7 @@ public class PlayerInteractHandler : MonoBehaviour
     public string bargainpopupstring;
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
     public string dialoguepopupstring;
-    public GameObject playercamera;
+    public GameObject playerlookscript;
     public GameObject escapemessage;
 
     [Header("Campfire variables")]
@@ -94,6 +94,7 @@ public class PlayerInteractHandler : MonoBehaviour
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
             var campfirescript = hit.transform.GetComponent<CampfireScript>();
             var storagescript = hit.transform.GetComponent<StorageSystem>();
+            popuptext.gameObject.SetActive(false);
             
             if (interactableitemscript != null)
             {
@@ -104,13 +105,26 @@ public class PlayerInteractHandler : MonoBehaviour
             {
                 if (witchscript.canTalk())
                 {
-                    popuptext.text = dialoguepopupstring;
+                    if (TutorialManager.instance != null)
+                    {
+                        if (!TutorialManager.instance.cannottalk)
+                        {
+                            popuptext.text = dialoguepopupstring;
+                            popuptext.gameObject.SetActive(true);
+                        }
+                    }
                 }
                 else
                 {
-                    popuptext.text = bargainpopupstring;
+                    if (TutorialManager.instance != null)
+                    {
+                        if (!TutorialManager.instance.cannotcraft)
+                        {
+                            popuptext.text = bargainpopupstring;
+                            popuptext.gameObject.SetActive(true);
+                        }
+                    }
                 }
-                popuptext.gameObject.SetActive(true);
             }
             else if (campfirescript != null)
             {
@@ -185,19 +199,13 @@ public class PlayerInteractHandler : MonoBehaviour
                 if (witchscript != null  && !GameManager.instance.inMenu)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
+                    GameManager.instance.inMenu = true;
                     witchscript.initializeTradeWindow(
-                        witchtradeoverlay, 
-                        witchrecipegridspawn, 
                         inventoryoverlay, 
                         playerinventoryobject, 
-                        playerobject, 
-                        nameofitemincanvastextmesh, 
-                        ingredientslisttextmesh, 
                         subtitletextmesh, 
-                        pressentertocraft, 
-                        playercamera, 
-                        escapemessage);
-                    GameManager.instance.inMenu = true;
+                        escapemessage,
+                        playerlookscript);
                 }
 
                 var campfirescript = hit.transform.GetComponent<CampfireScript>();

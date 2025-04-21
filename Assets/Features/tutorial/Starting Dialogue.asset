@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b360467a1a45e464396a8062078c8386, type: 3}
+  m_Name: Starting Dialogue
+  m_EditorClassIdentifier: 
+  dialoguename: START
+  dialogue:
+  - "\u201CWould you look at that, our estranged traveler survived!\u201D "
+  - "\u201COh I was so worried, found you collapsed in the snow, nearly dead of night
+    as well!\u201D "
+  - "\u201CI was barely able to drag you back to my cave.\u201D "
+  - "\u201COh, look at you! My dear, you look famished.\u201D "
+  - "\u201CHere, eat this berry.\u201D "
