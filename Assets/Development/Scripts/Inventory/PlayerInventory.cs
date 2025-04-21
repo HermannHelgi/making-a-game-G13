@@ -393,9 +393,12 @@ public class PlayerInventory : MonoBehaviour
         {
             if (hotbarinventory[currentindex].consumable)
             {
-                if (TutorialManager.instance.tutorialinprogress)
-                {
-                    TutorialManager.instance.playerConsumedFood();
+                if (TutorialManager.instance != null)
+                {   
+                    if (TutorialManager.instance.tutorialinprogress)
+                    {
+                        TutorialManager.instance.playerConsumedFood();
+                    }
                 }
 
                 necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);

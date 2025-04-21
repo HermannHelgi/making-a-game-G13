@@ -58,9 +58,12 @@ public class InteractableItem : MonoBehaviour
                 }
                 GameManager.instance.discovereditems[pickupitem.index] = true;
 
-                if (TutorialManager.instance.tutorialinprogress)
+                if (TutorialManager.instance != null)
                 {
-                    TutorialManager.instance.playerPickedUpItem();
+                    if (TutorialManager.instance.tutorialinprogress)
+                    {
+                        TutorialManager.instance.playerPickedUpItem();
+                    }
                 }
 
                 return true;

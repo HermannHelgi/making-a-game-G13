@@ -105,18 +105,24 @@ public class PlayerInteractHandler : MonoBehaviour
             {
                 if (witchscript.canTalk())
                 {
-                    if (!TutorialManager.instance.cannottalk)
+                    if (TutorialManager.instance != null)
                     {
-                        popuptext.text = dialoguepopupstring;
-                        popuptext.gameObject.SetActive(true);
+                        if (!TutorialManager.instance.cannottalk)
+                        {
+                            popuptext.text = dialoguepopupstring;
+                            popuptext.gameObject.SetActive(true);
+                        }
                     }
                 }
                 else
                 {
-                    if (!TutorialManager.instance.cannotcraft)
+                    if (TutorialManager.instance != null)
                     {
-                        popuptext.text = bargainpopupstring;
-                        popuptext.gameObject.SetActive(true);
+                        if (!TutorialManager.instance.cannotcraft)
+                        {
+                            popuptext.text = bargainpopupstring;
+                            popuptext.gameObject.SetActive(true);
+                        }
                     }
                 }
             }

@@ -57,9 +57,12 @@ public class NecessityBars : MonoBehaviour
 
     void Update()
     {
-        if (TutorialManager.instance.inactiveNecessityBars)
+        if (TutorialManager.instance != null)
         {
-            return;
+            if (TutorialManager.instance.inactiveNecessityBars)
+            {
+                return;
+            }
         }
 
         // Updating necessity bars

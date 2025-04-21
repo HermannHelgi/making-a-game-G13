@@ -204,9 +204,12 @@ public class WitchTradeScript : MonoBehaviour
         if (craftableItems[currentindex] == campfirereference)
         {
             campfire.SetActive(true);
-            if (TutorialManager.instance.tutorialinprogress)
+            if (TutorialManager.instance != null)
             {
-                TutorialManager.instance.playerHasCraftedCampfire();
+                if (TutorialManager.instance.tutorialinprogress)
+                {
+                    TutorialManager.instance.playerHasCraftedCampfire();
+                }
             }
             return;
         }
@@ -347,10 +350,13 @@ public class WitchTradeScript : MonoBehaviour
             return;
         }
 
-        if (TutorialManager.instance.cannotcraft)
+        if (TutorialManager.instance != null)
         {
-            GameManager.instance.inMenu = false;
-            return;
+            if (TutorialManager.instance.cannotcraft)
+            {
+                GameManager.instance.inMenu = false;
+                return;
+            }
         }
 
         if (!currentlytrading)
@@ -372,9 +378,12 @@ public class WitchTradeScript : MonoBehaviour
             spawnCraftingRecipeBoxes();
             selectCraftingSlot(currentindex);
 
-            if (TutorialManager.instance.tutorialinprogress)
+            if (TutorialManager.instance != null)
             {
-                TutorialManager.instance.playerHasOpenedTradeWindow();
+                if (TutorialManager.instance.tutorialinprogress)
+                {
+                    TutorialManager.instance.playerHasOpenedTradeWindow();
+                }
             }
         }
     }
@@ -382,7 +391,14 @@ public class WitchTradeScript : MonoBehaviour
     void deinitializeTradeWindow()
     // Closes trade window
     {
-        if (!TutorialManager.instance.tutorialinprogress)
+        if (TutorialManager.instance != null)
+        {
+            if (!TutorialManager.instance.tutorialinprogress)
+            {
+                GameManager.instance.activateMenuCooldown();
+            }
+        }
+        else
         {
             GameManager.instance.activateMenuCooldown();
         }
@@ -396,9 +412,12 @@ public class WitchTradeScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        if (TutorialManager.instance.tutorialinprogress)
+        if (TutorialManager.instance != null)
         {
-            TutorialManager.instance.playerHasClosedTradeWindow();
+            if (TutorialManager.instance.tutorialinprogress)
+            {
+                TutorialManager.instance.playerHasClosedTradeWindow();
+            }
         }
     }
 }

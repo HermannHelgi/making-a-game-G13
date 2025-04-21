@@ -68,9 +68,12 @@ public class CampfireScript : MonoBehaviour
             if (Vector3.Distance(playercapsule.transform.position, this.transform.position) > rangeofheat)
             {
                 turnOffHeat();
-                if (TutorialManager.instance.tutorialinprogress)
+                if (TutorialManager.instance != null)
                 {
-                    TutorialManager.instance.playerHasWalkedAwayFromCampfire();
+                    if (TutorialManager.instance.tutorialinprogress)
+                    {
+                        TutorialManager.instance.playerHasWalkedAwayFromCampfire();
+                    }   
                 }
             }
         }
