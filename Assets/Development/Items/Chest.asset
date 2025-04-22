@@ -23,3 +23,6 @@ MonoBehaviour:
   onetimecraft: 1
   consumable: 0
   hungergain: 0
+  unique: 0
+  craftingDescription: The chest gives a convenient place to store extra gear, items
+    and valuables.

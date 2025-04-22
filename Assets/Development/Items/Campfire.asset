@@ -23,3 +23,8 @@ MonoBehaviour:
   onetimecraft: 1
   consumable: 0
   hungergain: 0
+  unique: 0
+  craftingDescription: 'The campfire generates heat when lit, allowing a person to
+    regain their warmth.\n Sticks can be placed into the fire as fuel, elongating
+    the time it burns.\n\n  As the campfire burns through its fuel, it will create
+    coal in equal measure. '

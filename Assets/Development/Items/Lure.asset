@@ -23,3 +23,5 @@ MonoBehaviour:
   consumable: 0
   hungergain: 0
   unique: 1
+  craftingDescription: 'This item can be used to draw the monster''s attention away
+    from you for a short while.\n\n To activate it, place it upon the effigy nearby. '

@@ -23,3 +23,7 @@ MonoBehaviour:
   consumable: 0
   hungergain: 0
   unique: 1
+  craftingDescription: 'While this stone rests within your inventory, it will completely
+    stave off the cold from the environment.\n\n  The Ember stone will slowly drain
+    over time. Should it ever run out of warmth to give, it can be refueled with
+    coal. '

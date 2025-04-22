@@ -171,9 +171,16 @@ namespace StarterAssets
 			}
 			else if (freezecamera)
 			{
-				_cinemachineTargetPitch = CinemachineCameraTarget.transform.localEulerAngles.x;
+				_cinemachineTargetPitch =  NormalizeAngle(CinemachineCameraTarget.transform.localEulerAngles.x);
 				_rotationVelocity = 0f;
 			}
+		}
+
+		private float NormalizeAngle(float angle)
+		{
+			angle = angle % 360f;
+			if (angle > 180f) angle -= 360f;
+			return angle;
 		}
 
 		private void Move()
