@@ -58,14 +58,13 @@ public class WendigoStateMachine : MonoBehaviour
         if (gameManager.isNight == false || gameManager.safeArea == true)
         {
             wendigoRandomizedSpawner.playerSightings = 0;
-            wendigoFollowPlayer.staticSound.Stop();
+            // wendigoFollowPlayer.staticSound.Stop();
             currentState = State.Resting;
         }
 
         switch (currentState)
         {
             case State.Resting:
-
                 Resting();
                 break;
             case State.Teleporting:
@@ -100,20 +99,20 @@ public class WendigoStateMachine : MonoBehaviour
         {
             currentState = State.SpawnBehindPlayer;
         }
-        // Idle state logic until seen by player then switch to teleport
-        else if (playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
-        {
-            if (idleTimer >= wendigoRandomizedSpawner.maxStareTime)
-            {
-                wendigoRandomizedSpawner.DespawnWendigo();
-                wendigoRandomizedSpawner.playerSightings++;
-                Debug.Log("Player has seen Wendigo " + wendigoRandomizedSpawner.playerSightings + " times");
-                currentState = State.Despawned;
-                idleTimer = 0;
+        // // Idle state logic until seen by player then switch to teleport
+        // else if (playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
+        // {
+        //     // if (idleTimer >= wendigoRandomizedSpawner.maxStareTime)
+        //     // {
+        //     //     wendigoRandomizedSpawner.DespawnWendigo();
+        //     //     wendigoRandomizedSpawner.playerSightings++;
+        //     //     Debug.Log("Player has seen Wendigo " + wendigoRandomizedSpawner.playerSightings + " times");
+        //     //     currentState = State.Despawned;
+        //     //     idleTimer = 0;
 
-            }
-
-        }
+        //     // }
+        
+        // }
         else if (idleTimer > wendigoRandomizedSpawner.spawnTimer)
         {
             wendigoRandomizedSpawner.DespawnWendigo();
