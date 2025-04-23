@@ -127,8 +127,11 @@ public class SoundManager : MonoBehaviour
 
             if (randomSound.clip != null && group.source != null)
             {
-                Debug.Log($"[SoundManager] Playing from group '{groupName}': {randomSound.soundName}");
-                group.source.PlayOneShot(randomSound.clip);
+                if(!group.source.isPlaying)
+                {
+                    Debug.Log($"[SoundManager] Playing from group '{groupName}': {randomSound.soundName}");
+                    group.source.PlayOneShot(randomSound.clip);
+                }
             }
             else
             {
