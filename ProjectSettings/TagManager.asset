@@ -8,6 +8,7 @@ TagManager:
   - CinemachineTarget
   - Wendigo
   - safeArea
+  - SoundManager
   layers:
   - Default
   - TransparentFX

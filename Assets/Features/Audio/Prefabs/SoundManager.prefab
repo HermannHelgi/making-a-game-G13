@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4821835157270677491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4170149000400958773}
+  - component: {fileID: 8316440662825307001}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: SoundManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4170149000400958773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821835157270677491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8316440662825307001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821835157270677491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56de2aa3e05a39d4eb0e44257ba86332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMixer: {fileID: 24100000, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+  soundSnapshots:
+  - audioSnapshot: {fileID: 1312452628178790859, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+  soundGroups:
+  - headerName: GRYLA_GENERIC_DIALOGUE
+    source: {fileID: 0}
+    mixer: {fileID: -4109357176214829464, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+    sounds:
+    - soundName: Gryla_Talking_06
+      clip: {fileID: 8300000, guid: b15b1645e9ae4d143aed08e75c62950d, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_11
+      clip: {fileID: 8300000, guid: 9bd513f6e3f3e884481d6a854c3948dc, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_04
+      clip: {fileID: 8300000, guid: 7947f603d412d824db706e408bd27485, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_07
+      clip: {fileID: 8300000, guid: 580740ac5b9caa944857c99b61446b26, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_10
+      clip: {fileID: 8300000, guid: fc5e6af0cf6325b46960263e903fede7, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_16
+      clip: {fileID: 8300000, guid: 336a47e66ed895c45b1e52f73376c893, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_17
+      clip: {fileID: 8300000, guid: 499883d8425ba57468ca82fb58c5cae3, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_19
+      clip: {fileID: 8300000, guid: c22d3f220857df843bb648f8d999a5e6, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_22
+      clip: {fileID: 8300000, guid: 2de39b21a5088a245a7433c06fe0a2be, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_25
+      clip: {fileID: 8300000, guid: 27bf3802968140e4ab0066b20bac8230, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Talking_28
+      clip: {fileID: 8300000, guid: 09b9aa67288cba046822a8189f945137, type: 3}
+      soundPriority: 0
+  - headerName: GRYLA_PSST
+    source: {fileID: 0}
+    mixer: {fileID: -4109357176214829464, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+    sounds:
+    - soundName: Gryla_Sigh_01
+      clip: {fileID: 8300000, guid: 52e817526d389e3418f34be5a15c94fe, type: 3}
+      soundPriority: 0
+  - headerName: GRYLA_OOH
+    source: {fileID: 0}
+    mixer: {fileID: -4109357176214829464, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+    sounds:
+    - soundName: Gryla_Ooh_01
+      clip: {fileID: 8300000, guid: a421e79d86c166548ad442b19521e3c5, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Ooh_02
+      clip: {fileID: 8300000, guid: ec83f5e618a63c248b3d1b77433f2330, type: 3}
+      soundPriority: 0
+    - soundName: Gryla_Ooh_03
+      clip: {fileID: 8300000, guid: 8d5fb7102022ac34c8b6016de3463e99, type: 3}
+      soundPriority: 0
+  - headerName: PLAYER_WALKING
+    source: {fileID: 0}
+    mixer: {fileID: -2298248162163239852, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+    sounds:
+    - soundName: Snow_Footstep_01
+      clip: {fileID: 8300000, guid: 63f425b20c293d74daae6c3343aa14cb, type: 3}
+      soundPriority: 0
+    - soundName: Snow_Footstep_02
+      clip: {fileID: 8300000, guid: b956acb7e841671469b329b3af5b6d28, type: 3}
+      soundPriority: 0
+    - soundName: Snow_Footstep_03
+      clip: {fileID: 8300000, guid: ce38a89efcb79e8409f127e0fd134c4a, type: 3}
+      soundPriority: 0
+    - soundName: Snow_Footstep_04
+      clip: {fileID: 8300000, guid: 0d541428d53c01b4598c6a1dc96f5b4f, type: 3}
+      soundPriority: 0
+    - soundName: Snow_Footstep_05
+      clip: {fileID: 8300000, guid: c62fe9496ed30a14c9f6eb28b22befe3, type: 3}
+      soundPriority: 0
+    - soundName: Snow_Footstep_06
+      clip: {fileID: 8300000, guid: ac1e83e609c48014c93713b4e83b6dcf, type: 3}
+      soundPriority: 0
+    - soundName: Snow_Footstep_07
+      clip: {fileID: 8300000, guid: 751440e9902eb8049882b5f79ccb7d0c, type: 3}
+      soundPriority: 0

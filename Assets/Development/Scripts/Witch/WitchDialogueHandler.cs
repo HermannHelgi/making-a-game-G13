@@ -8,6 +8,8 @@ public class WitchDialogueHandler : MonoBehaviour
     public GameObject lerpposition;
     public int maxtimetolerp;
 
+    public SoundManager soundManager;
+
     // Private stuff, mostly references to other objects...
     private GameObject subtitletextmesh;
     
@@ -101,6 +103,7 @@ public class WitchDialogueHandler : MonoBehaviour
             else
             {
                 //// ...the dialogue chain is still ongoing, so index by one and show the next string.
+                runAudioForDialogue();
                 currentindex++;
                 subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
                 return true;
@@ -110,7 +113,7 @@ public class WitchDialogueHandler : MonoBehaviour
 
     void runAudioForDialogue()
     {
-        // TODO: Add functionality to run dialogue for each individual dialogue chain.
+        soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
     }
 
     public bool intializeDialogue(GameObject subtitleobject, GameObject escapemessage, GameObject playerlookscript)
