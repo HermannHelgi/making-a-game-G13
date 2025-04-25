@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting.FullSerializer;
 using TreeEditor;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
+using UnityEditor;
 
 public class wendigoRandomizedSpawner : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     // public float maxStareTime = 10f;
     public LayerMask groundLayer;
+    public LayerMask obstacleLayer;
     public PlayerLineofSight playerLineOfSight;
     public float spawnTimer;
     public int playerSightings;
@@ -29,6 +32,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     private List<GameObject> activeWendigos = new List<GameObject>();
     private GameObject activeWendigo = null;
     private int maxPossibleSpawns;
+    public float wendigoRadius = 0.75f;
 
     // private SkinnedMeshRenderer wendigoMesh;
 
@@ -46,16 +50,6 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         possibleSpawns = new List<GameObject>();
     }
 
-    void OnTriggerEnter(Collider collision)
-    {
-        // possibleSpawns.Add(collision.gameObject);
-    }
-    
-    void OnTriggerExit(Collider collision)
-    {
-        // possibleSpawns.Remove(collision.gameObject);
-    }
-
     void  FindWendigosWithinRange()
     {   
         List<GameObject> temporaryWendigos = new List<GameObject>();
@@ -69,7 +63,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
                 temporaryWendigos.Add(spawn);
             }
         }
-        
+
         foreach(GameObject potentialRemove in temporaryWendigos)
         {
             possibleSpawns.Remove(potentialRemove);
@@ -80,11 +74,9 @@ public class wendigoRandomizedSpawner : MonoBehaviour
             if(!GameObjectWithinFrustum(collision.gameObject, playerLineOfSight.playerCamera))
             {   
                 Debug.Log(collision);
-                possibleSpawns.Add(collision.gameObject);
+                possibleSpawns.Add(collision.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject);
             }
         }
-        
-        
     }
 
     bool GameObjectWithinFrustum(GameObject go, Camera camera)
@@ -108,15 +100,46 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         }
     }
 
+    void DeActivateWendigo()
+    {
+        SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponent<SkinnedMeshRenderer>();
+        mesh.enabled = false;
+        activeWendigo = null;
+    }
+
+    void ActivateWendigo()
+    {
+        SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponent<SkinnedMeshRenderer>();
+        mesh.enabled = true;
+    }
     void UpdateActiveWendigo()
     {
         if (activeWendigo != null)
         {
             if (!GameObjectWithinFrustum(activeWendigo, playerLineOfSight.playerCamera))
             {
-                SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-                mesh.enabled = false;
-                activeWendigo = null;
+                DeActivateWendigo();
+            }
+            
+            List<Vector3> pointArray = new List<Vector3>();
+            pointArray.Add(activeWendigo.transform.position);
+            pointArray.Add(activeWendigo.transform.position - (playerLineOfSight.transform.right * wendigoRadius));
+            pointArray.Add(activeWendigo.transform.position + (playerLineOfSight.transform.right * wendigoRadius));
+            bool allHit = true;
+            foreach(Vector3 point in pointArray)
+            {   
+                
+                Debug.DrawRay(playerLineOfSight.playerCamera.transform.position, point - playerLineOfSight.transform.position, Color.red);
+
+                if(!Physics.Raycast(playerLineOfSight.playerCamera.transform.position, (point - playerLineOfSight.transform.position),  wendigoLayer))
+                {
+                   allHit = false;
+                   break;
+                } 
+            }
+            if(allHit)
+            {   
+                DeActivateWendigo();
             }
         }
     }
@@ -140,8 +163,7 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         if (potentialSpawns.Count > 0)
         {
             activeWendigo = SelectRandom(potentialSpawns);
-            SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-            mesh.enabled = true;
+            ActivateWendigo();
         }
     }
 
