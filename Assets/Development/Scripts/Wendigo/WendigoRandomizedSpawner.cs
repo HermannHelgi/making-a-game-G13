@@ -20,8 +20,11 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     public int maxPlayerSightings = 3;
     public Transform despawnPoint;
     private HashSet<GameObject> spawnPositions;
+    public LayerMask wendigoLayer;
     [Header("SpawnPoints distance")]
-    public float spawnDistance;
+    public float minSpawnDistance;
+    // public float midSpawnDistance;
+    public float maxSpawnDistance;
     private List<GameObject> possibleSpawns;
     private List<GameObject> activeWendigos = new List<GameObject>();
     private GameObject activeWendigo = null;
@@ -45,61 +48,113 @@ public class wendigoRandomizedSpawner : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        possibleSpawns.Add(collision.gameObject);
-        Debug.Log(collision.gameObject);
-        
+        // possibleSpawns.Add(collision.gameObject);
     }
+    
     void OnTriggerExit(Collider collision)
     {
-        possibleSpawns.Remove(collision.gameObject);
-       
+        // possibleSpawns.Remove(collision.gameObject);
     }
-    void Update()
+
+    void  FindWendigosWithinRange()
     {   
-        if(activeWendigo != null)
+        List<GameObject> temporaryWendigos = new List<GameObject>();
+        foreach(GameObject spawn in possibleSpawns)
         {
-            Vector3 cameraforward = playerLineOfSight.playerCamera.transform.forward;
-            cameraforward.y = 0;
-            cameraforward.Normalize();
-            Vector3 wendigoVector = activeWendigo.transform.position - playerLineOfSight.playerCamera.transform.position;
-            float angle = Vector3.Angle(wendigoVector, cameraforward);
-            if(angle > playerLineOfSight.playerCamera.fieldOfView)
+            float distance = Vector3.Distance(spawn.transform.position , player.transform.position);
+
+            if( distance >= maxSpawnDistance)
+            {   
+                Debug.Log(spawn);
+                temporaryWendigos.Add(spawn);
+            }
+        }
+        
+        foreach(GameObject potentialRemove in temporaryWendigos)
+        {
+            possibleSpawns.Remove(potentialRemove);
+        }
+
+        foreach (Collider collision in Physics.OverlapSphere(transform.position, maxSpawnDistance,wendigoLayer))
+        {   
+            if(!GameObjectWithinFrustum(collision.gameObject, playerLineOfSight.playerCamera))
+            {   
+                Debug.Log(collision);
+                possibleSpawns.Add(collision.gameObject);
+            }
+        }
+        
+        
+    }
+
+    bool GameObjectWithinFrustum(GameObject go, Camera camera)
+    {
+        Vector3 dir = go.transform.position - camera.transform.position;
+        dir.y = 0;
+        Vector3 cameraForward = camera.transform.forward;
+        cameraForward.y = 0;
+        return Vector3.Angle(dir, cameraForward) <= camera.fieldOfView;
+    }
+
+    GameObject SelectRandom(List<GameObject> list)
+    {
+        if (list.Count > 0)
+        {
+            return list[Random.Range(0, list.Count)];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    void UpdateActiveWendigo()
+    {
+        if (activeWendigo != null)
+        {
+            if (!GameObjectWithinFrustum(activeWendigo, playerLineOfSight.playerCamera))
             {
                 SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
                 mesh.enabled = false;
                 activeWendigo = null;
             }
-
-        }
-        if(activeWendigo == null)
-        {
-            List<GameObject> potentialSpawns = new List<GameObject>();
-            Vector3 cameraforward = playerLineOfSight.playerCamera.transform.forward;
-            cameraforward.y = 0;
-            cameraforward.Normalize();
-            foreach (GameObject wendigo in possibleSpawns)
-            {
-                Vector3 wendigoVector = wendigo.transform.position - playerLineOfSight.playerCamera.transform.position;
-                wendigoVector.y = 0;
-                if( wendigoVector.magnitude < spawnDistance)
-                {
-                    continue;
-                }
-                float angle = Vector3.Angle(wendigoVector, cameraforward);
-                if(angle < playerLineOfSight.playerCamera.fieldOfView)
-                {
-                    potentialSpawns.Add(wendigo);
-                }
-                
-            } 
-            if(potentialSpawns.Count > 0)
-            {
-                activeWendigo = potentialSpawns[Random.Range(0,potentialSpawns.Count)];
-                SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-                mesh.enabled = true;
-            }
         }
     }
+
+    void SelectNewActiveWendigo()
+    {
+        List<GameObject> potentialSpawns = new List<GameObject>();
+        foreach (GameObject wendigo in possibleSpawns)
+        {
+            Vector3 wendigoVector = wendigo.transform.position - playerLineOfSight.playerCamera.transform.position;
+            wendigoVector.y = 0;
+            if (wendigoVector.magnitude < minSpawnDistance)
+            {
+                continue;
+            }
+            if (GameObjectWithinFrustum(wendigo, playerLineOfSight.playerCamera))
+            {
+                potentialSpawns.Add(wendigo);
+            }
+        }
+        if (potentialSpawns.Count > 0)
+        {
+            activeWendigo = SelectRandom(potentialSpawns);
+            SkinnedMeshRenderer mesh = activeWendigo.gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+            mesh.enabled = true;
+        }
+    }
+
+    void Update()
+    {   
+        FindWendigosWithinRange();
+        UpdateActiveWendigo();
+        if(activeWendigo == null)
+        {
+            SelectNewActiveWendigo();
+        }
+    }
+
     public void CheckAndDespawnVisibleWendigos()
     {
         foreach (GameObject wendigo in activeWendigos)
