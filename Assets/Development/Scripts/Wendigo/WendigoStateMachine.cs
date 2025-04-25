@@ -94,6 +94,7 @@ public class WendigoStateMachine : MonoBehaviour
     private void Idle()
     {
         // Debug.Log("Idle");
+        wendigoRandomizedSpawner.CheckAndDespawnVisibleWendigos();
         idleTimer += Time.deltaTime;
         if (wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
         {
@@ -113,13 +114,7 @@ public class WendigoStateMachine : MonoBehaviour
         //     // }
         
         // }
-        else if (idleTimer > wendigoRandomizedSpawner.spawnTimer)
-        {
-            wendigoRandomizedSpawner.DespawnWendigo();
-            idleTimer = 0;
-            currentState = State.Despawned;
-
-        }
+        
     }
 
     private void Despawned()
