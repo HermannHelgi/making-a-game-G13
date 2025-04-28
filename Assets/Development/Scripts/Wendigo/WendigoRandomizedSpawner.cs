@@ -12,8 +12,6 @@ using UnityEditor;
 public class wendigoRandomizedSpawner : MonoBehaviour
 {
     public Transform player;
-    public LayerMask groundLayer;
-    public LayerMask obstacleLayer;
     public GameObject wendigo;
     public PlayerLineofSight playerLineOfSight;
     public float spawnTimer;
@@ -27,7 +25,6 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     // public float midSpawnDistance;
     public float maxSpawnDistance;
     private List<GameObject> possibleSpawns;
-    private List<GameObject> activeWendigos = new List<GameObject>();
     private GameObject activeWendigo = null;
     public float wendigoRadius = 0.75f;
 
@@ -70,6 +67,16 @@ public class wendigoRandomizedSpawner : MonoBehaviour
                 possibleSpawns.Add(collision.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject);
             }
         }
+    }
+
+    public Transform ReturnCurrentPosition()
+    {
+        if(activeWendigo != null)
+        {
+            return activeWendigo.transform;
+
+        }
+        return null;
     }
 
     bool GameObjectWithinFrustum(GameObject go, Camera camera)
@@ -168,7 +175,6 @@ public class wendigoRandomizedSpawner : MonoBehaviour
         if (potentialSpawns.Count > 0)
         {   
             activeWendigo = SelectRandom(potentialSpawns);
-            activeWendigo.transform.forward = -playerLineOfSight.playerCamera.transform.forward;
             ActivateWendigo();
         }
     }
@@ -176,6 +182,11 @@ public class wendigoRandomizedSpawner : MonoBehaviour
     void Update()
     {   
         FindWendigosWithinRange();
+        if(activeWendigo != null)
+        {
+            activeWendigo.transform.forward = (playerLineOfSight.playerCamera.transform.position - activeWendigo.transform.position).normalized;
+        }
+
         // UpdateActiveWendigo();
         // if(activeWendigo == null)
         // {

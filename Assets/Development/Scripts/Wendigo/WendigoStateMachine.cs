@@ -19,6 +19,7 @@ public class WendigoStateMachine : MonoBehaviour
     private float idleTimer;
     private float lookingTimer;
     private float spawnBehindTimer;
+    private bool playerProximity;
 
 
     private GameManager gameManager;
@@ -96,7 +97,14 @@ public class WendigoStateMachine : MonoBehaviour
         {   
             Debug.Log("Is not looking at wendigo!");
             currentState = State.Despawned;
-        } 
+        }
+        Transform currentWendigoPosition = wendigoRandomizedSpawner.ReturnCurrentPosition();
+        float distance = Vector3.Distance(playerLineOfSight.transform.position , currentWendigoPosition.position);
+        if(distance < 10)
+        {   
+            playerProximity = true;
+            currentState =State.SpawnBehindPlayer;
+        }
         
     }
 
@@ -154,6 +162,13 @@ public class WendigoStateMachine : MonoBehaviour
     private void SpawnBehindPlayer()
     {
         spawnBehindTimer += Time.deltaTime;
+        if(playerProximity)
+        {
+            wendigoFollowPlayer.SpawnBehindPlayer(wendigoRandomizedSpawner.ReturnCurrentPosition());
+            playerProximity = false;
+            wendigoRandomizedSpawner.DespawnWendigo();
+            currentState = State.FollowingPlayer;
+        }
         if (spawnBehindTimer >= 20f)
         {
             Debug.Log("SpawnBehindPlayer");
