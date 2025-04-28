@@ -1,16 +1,9 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Unity.VisualScripting.FullSerializer;
+
 using UnityEngine.AI;
-using Unity.VisualScripting;
 
 public class WendigoFollowPlayer : MonoBehaviour
 {
-    public AudioSource staticSound;
-
     public WendigoRaycast wendigoRaycast;
     public Transform wendigoTransform;
     public float speed = 5f;
@@ -22,6 +15,8 @@ public class WendigoFollowPlayer : MonoBehaviour
     public bool attackPlayer = false;
 
     public NavMeshAgent agent;
+    private wendigoRandomizedSpawner spawnerLogic;
+
 
     private void Start()
     {
@@ -31,6 +26,11 @@ public class WendigoFollowPlayer : MonoBehaviour
 
     }
 
+    void Awake()
+    {
+        spawnerLogic = FindFirstObjectByType<wendigoRandomizedSpawner>();
+
+    }
     private void Update()
     {
 
@@ -68,7 +68,6 @@ public class WendigoFollowPlayer : MonoBehaviour
             float distance = Vector3.Distance(wendigoTransform.position, wendigoRaycast.lastKnownPosition);
             if (distance <= caughtDistance)
             {
-                PlayChaseMusic();
                 lostPlayer = true;
 
             }
@@ -87,51 +86,16 @@ public class WendigoFollowPlayer : MonoBehaviour
     {
 
         float sampleRadius = 10f;
-        Vector3 behindPlayer = wendigoRaycast.player.transform.position - wendigoRaycast.player.transform.forward * 60f;
+        GameObject spawnPoint = spawnerLogic.FindStartPoint();
+        // Ray spawnspot =  
         // PlayChaseMusic();
-        if (NavMesh.SamplePosition(behindPlayer, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(spawnPoint.transform.position, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
+            wendigoTransform.position = spawnPoint.transform.position;
             wendigoTransform.forward = -wendigoRaycast.player.transform.forward;
-
             agent.Warp(hit.position);
         }
     }
 
-
-    public void PlayChaseMusic()
-    {
-        if (!lostPlayer)
-        {
-            PlayMusic();
-        }
-        else
-        {
-            StopMusic();
-        }
-
-
-    }
-
-    void PlayMusic()
-    {
-
-        staticSound.Play();
-
-
-    }
-
-    void StopMusic()
-    {
-
-        staticSound.Stop();
-
-
-    }
-
-    public void SetVolumeIncrease()
-    {
-        staticSound.volume = 80 - agent.remainingDistance;
-
-    }
-
+    
 }

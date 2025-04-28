@@ -1,10 +1,7 @@
 
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Threading;
+using UnityEngine;
+
 
 public class WendigoStateMachine : MonoBehaviour
 {
@@ -92,53 +89,43 @@ public class WendigoStateMachine : MonoBehaviour
     }
 
     private void Idle()
-    {
-        // Debug.Log("Idle");
-        wendigoRandomizedSpawner.CheckAndDespawnVisibleWendigos();
-        idleTimer += Time.deltaTime;
-        if (wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
-        {
-            currentState = State.SpawnBehindPlayer;
-        }
-        // // Idle state logic until seen by player then switch to teleport
-        // else if (playerLineOfSight.IsLookingAtWendigo(Wendigo.transform.position))
-        // {
-        //     // if (idleTimer >= wendigoRandomizedSpawner.maxStareTime)
-        //     // {
-        //     //     wendigoRandomizedSpawner.DespawnWendigo();
-        //     //     wendigoRandomizedSpawner.playerSightings++;
-        //     //     Debug.Log("Player has seen Wendigo " + wendigoRandomizedSpawner.playerSightings + " times");
-        //     //     currentState = State.Despawned;
-        //     //     idleTimer = 0;
+    {   
 
-        //     // }
-        
-        // }
+        Debug.Log("Idle");
+        if(!playerLineOfSight.isLookingAtWendigo())
+        {   
+            Debug.Log("Is not looking at wendigo!");
+            currentState = State.Despawned;
+        } 
         
     }
 
     private void Despawned()
     {
-        // Debug.Log("Despawned");
+        Debug.Log("Despawned");
         // Despawned state logic
+        wendigoRandomizedSpawner.DespawnWendigo();
         idleTimer += Time.deltaTime;
-        playerLineOfSight.isLooking = false;
-        if (wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
+        // playerLineOfSight.isLooking = false;
+        if(idleTimer >= wendigoRandomizedSpawner.spawnTimer)
         {
-            idleTimer = 0;
-            currentState = State.SpawnBehindPlayer;
+            if (wendigoRandomizedSpawner.playerSightings >= wendigoRandomizedSpawner.maxPlayerSightings)
+            {
+                idleTimer = 0;
+                currentState = State.SpawnBehindPlayer;
 
-        }
-        else if (idleTimer > wendigoRandomizedSpawner.spawnTimer)
-        {
-            idleTimer = 0;
-            currentState = State.Teleporting;
+            }
+            else
+            {
+                idleTimer = 0;
+                currentState = State.Teleporting;
+            }
         }
     }
 
     private void Resting()
     {
-        // Debug.Log("Resting");
+        Debug.Log("Resting");
         Wendigo.transform.position = wendigoRandomizedSpawner.despawnPoint.position;
         if (gameManager.isNight == true && gameManager.safeArea == false)
         {
@@ -149,27 +136,27 @@ public class WendigoStateMachine : MonoBehaviour
 
     private void Teleporting()
     {
-
-
-
-        Debug.Log("Teleporting to new location");
+        
         wendigoRandomizedSpawner.SpawnWendigo();
+        idleTimer += Time.deltaTime;
+        if(playerLineOfSight.isLookingAtWendigo() & idleTimer >= 2)
+        {
+            wendigoRandomizedSpawner.playerSightings++;
 
-        currentState = State.Idle;
+            Debug.Log("Spotted Wendigo " + wendigoRandomizedSpawner.playerSightings + " times!");
+            currentState = State.Idle;
+        }
 
-
-        // Teleporting state logic
 
 
     }
 
     private void SpawnBehindPlayer()
     {
-        Debug.Log("SpawnBehindPlayer");
-        wendigoFollowPlayer.SetVolumeIncrease();
         spawnBehindTimer += Time.deltaTime;
         if (spawnBehindTimer >= 20f)
         {
+            Debug.Log("SpawnBehindPlayer");
             wendigoFollowPlayer.SpawnBehindPlayer();
             currentState = State.FollowingPlayer;
 
@@ -213,7 +200,6 @@ public class WendigoStateMachine : MonoBehaviour
         else if (wendigoRaycasts.detected)
         {
             Debug.Log("Player detected");
-            wendigoFollowPlayer.PlayChaseMusic();
             currentState = State.FollowingPlayer;
         }
 
