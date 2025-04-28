@@ -27,23 +27,13 @@ public class PlayerInteractHandler : MonoBehaviour
     private float errormessageclock = 0;
 
     [Header("Witch in the Wall variables")]
-    [Tooltip("The canvas for which the trade overlay appears.")]
-    public GameObject witchtradeoverlay;
-    [Tooltip("The grid which will be used to spawn the crafting recipes inside.")]
-    public GameObject witchrecipegridspawn;
     [Tooltip("The players normal overlay, meant to be turned off when another menu rises starts.")]
     public GameObject inventoryoverlay;
     [Tooltip("The player, needed to measure distance from the witch and the player.")]
     public GameObject playerobject;    
-    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
-    public TextMeshProUGUI nameofitemincanvastextmesh;
-    [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated on new Item craft.")]
-    public TextMeshProUGUI ingredientslisttextmesh;
     [Tooltip("The text mesh component within the InventoryCanvas which should be updated on new dialogue.")]
     public GameObject subtitletextmesh;
     [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated when switching between craftable items.")]
-    public TextMeshProUGUI pressentertocraft;
-    [Tooltip("The text that should be displayed on being able to bargain with the witch in the wall.")]
     public string bargainpopupstring;
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
     public string dialoguepopupstring;
