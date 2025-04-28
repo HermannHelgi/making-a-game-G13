@@ -65,22 +65,22 @@ public class SoundManager : MonoBehaviour
         {
             PlayGroup("STOMP");
         }
-    else if (Input.GetKeyDown(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B))
+            {
+                PlayGroup("FOOD");
+            }
+        else if (Input.GetKeyDown(KeyCode.N))
+            {
+                ChangeSoundsnapshot("SPOOKY", 0.9f);
+            }
+        else if (Input.GetKeyDown(KeyCode.M))
         {
-            PlayGroup("FOOD");
+            ExitSoundsnapshot(0.6f);
         }
-    else if (Input.GetKeyDown(KeyCode.N))
+        else if (Input.GetKeyDown(KeyCode.C))
         {
-            ChangeSoundsnapshot("SPOOKY", 0.9f);
+            PlayGroup("WALK");
         }
-    else if (Input.GetKeyDown(KeyCode.M))
-    {
-        ExitSoundsnapshot(0.6f);
-    }
-    else if (Input.GetKeyDown(KeyCode.C))
-    {
-        PlayGroup("WALK");
-    }
  
     }
 
@@ -122,12 +122,16 @@ public class SoundManager : MonoBehaviour
 
         if (group != null && group.sounds.Count > 0)
         {
+
             SoundEntry randomSound = group.sounds[Random.Range(0, group.sounds.Count)];
 
             if (randomSound.clip != null && group.source != null)
             {
-                Debug.Log($"[SoundManager] Playing from group '{groupName}': {randomSound.soundName}");
-                group.source.PlayOneShot(randomSound.clip);
+                if(!group.source.isPlaying)
+                {
+                    Debug.Log($"[SoundManager] Playing from group '{groupName}': {randomSound.soundName}");
+                    group.source.PlayOneShot(randomSound.clip);
+                }
             }
             else
             {

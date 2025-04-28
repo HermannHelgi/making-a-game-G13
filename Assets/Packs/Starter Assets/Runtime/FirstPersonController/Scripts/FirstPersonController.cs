@@ -2,7 +2,6 @@
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
-
 namespace StarterAssets
 {
 	[RequireComponent(typeof(CharacterController))]
@@ -90,6 +89,8 @@ namespace StarterAssets
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
+		public bool _walked;
+
 		private const float _threshold = 0.01f;
 
 		private bool IsCurrentDeviceMouse
@@ -127,7 +128,8 @@ namespace StarterAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 			_currentSprintBarStatus = SprintTime;
-			_sprintRecovered = true;
+			_sprintRecovered = true;			
+
 		}
 
 		private void Update()
@@ -250,6 +252,14 @@ namespace StarterAssets
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				if(Grounded && !freezeinmenu)
+				{
+					_walked = true;
+				}
+			}
+			else
+			{
+				_walked = false;
 			}
 
 			// move the player
