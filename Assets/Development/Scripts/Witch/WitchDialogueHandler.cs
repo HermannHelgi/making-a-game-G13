@@ -113,7 +113,7 @@ public class WitchDialogueHandler : MonoBehaviour
 
     void runAudioForDialogue()
     {
-        //soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
+        soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
     }
 
     public bool intializeDialogue(GameObject subtitleobject, GameObject escapemessage, GameObject playerlookscript)
