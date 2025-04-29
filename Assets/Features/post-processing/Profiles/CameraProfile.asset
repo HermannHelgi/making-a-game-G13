@@ -51,14 +51,14 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2.3
   aperture:
-    m_OverrideState: 0
-    m_Value: 7.07
+    m_OverrideState: 1
+    m_Value: 6.4
   focalLength:
-    m_OverrideState: 0
-    m_Value: 36.44
+    m_OverrideState: 1
+    m_Value: 52
   bladeCount:
     m_OverrideState: 0
-    m_Value: 5
+    m_Value: 4
   bladeCurvature:
     m_OverrideState: 0
     m_Value: 0.9
@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.38
   smoothness:
     m_OverrideState: 1
     m_Value: 0.67
@@ -290,8 +290,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.34033614
-          value: 0.94495416
+          time: 0.35085228
+          value: 0.9030303
           inSlope: 0
           outSlope: 0
           tangentMode: 0
