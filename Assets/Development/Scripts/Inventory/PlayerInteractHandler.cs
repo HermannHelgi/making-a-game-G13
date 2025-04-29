@@ -30,7 +30,7 @@ public class PlayerInteractHandler : MonoBehaviour
     [Tooltip("The players normal overlay, meant to be turned off when another menu rises starts.")]
     public GameObject inventoryoverlay;
     [Tooltip("The player, needed to measure distance from the witch and the player.")]
-    public GameObject playerobject;    
+    public GameObject playerobject;
     [Tooltip("The text mesh component within the InventoryCanvas which should be updated on new dialogue.")]
     public GameObject subtitletextmesh;
     [Tooltip("The text mesh component within the Witch Trade Canvas which should be updated when switching between craftable items.")]
@@ -78,14 +78,14 @@ public class PlayerInteractHandler : MonoBehaviour
         // This handles the "pop-up" text for interactions
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
-        { 
+        {
             var interactableitemscript = hit.transform.GetComponent<InteractableItem>();
             // The witch trade script kinda works as a wrapper for both the trade system and dialogue system.
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
             var campfirescript = hit.transform.GetComponent<CampfireScript>();
             var storagescript = hit.transform.GetComponent<StorageSystem>();
             popuptext.gameObject.SetActive(false);
-            
+
             if (interactableitemscript != null)
             {
                 popuptext.text = interactwithobjectstring;
@@ -145,7 +145,7 @@ public class PlayerInteractHandler : MonoBehaviour
             }
         }
         else
-        { 
+        {
             popuptext.gameObject.SetActive(false);
         }
     }
@@ -169,7 +169,7 @@ public class PlayerInteractHandler : MonoBehaviour
         {
             // Raycast to get the object
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, raycastlength))
-            { 
+            {
                 // I check for a script since the player can do this raycast at any time, so need to make sure whatever object is there doesn't crash the game when we call an unknown method lol
                 var interactableitemscript = hit.transform.GetComponent<InteractableItem>();
                 if (interactableitemscript != null)
@@ -186,14 +186,14 @@ public class PlayerInteractHandler : MonoBehaviour
 
                 // Additional check for if it has the witchTradeScript
                 var witchscript = hit.transform.GetComponent<WitchTradeScript>();
-                if (witchscript != null  && !GameManager.instance.inMenu)
+                if (witchscript != null && !GameManager.instance.inMenu)
                 {
                     // this initialize Trade Window will also handle the dialogue for the witch
                     GameManager.instance.inMenu = true;
                     witchscript.initializeTradeWindow(
-                        inventoryoverlay, 
-                        playerinventoryobject, 
-                        subtitletextmesh, 
+                        inventoryoverlay,
+                        playerinventoryobject,
+                        subtitletextmesh,
                         escapemessage,
                         playerlookscript);
                 }

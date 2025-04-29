@@ -12,7 +12,7 @@ public class WitchDialogueHandler : MonoBehaviour
 
     // Private stuff, mostly references to other objects...
     private GameObject subtitletextmesh;
-    
+
     // ... and stuff to keep track of the current dialogue.
     private bool displayingmessage = false;
     private Queue<DialogueScriptableObject> dialoguequeue;
@@ -35,7 +35,7 @@ public class WitchDialogueHandler : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                runNextDialogue();       
+                runNextDialogue();
             }
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -77,7 +77,7 @@ public class WitchDialogueHandler : MonoBehaviour
                 if (dialoguequeue.Count > 0)
                 {
                     ///// ...yes, so start the next one
-                    
+
                     runAudioForDialogue();
                     currentdialoguechain = dialoguequeue.Dequeue();
                     currentindex = 0;
@@ -95,7 +95,7 @@ public class WitchDialogueHandler : MonoBehaviour
                             TutorialManager.instance.playerFinishedTalkingWithWitch();
                         }
                     }
-                
+
                     deinitializeDialogue();
                     return false;
                 }
@@ -113,7 +113,7 @@ public class WitchDialogueHandler : MonoBehaviour
 
     void runAudioForDialogue()
     {
-        soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
+        //soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
     }
 
     public bool intializeDialogue(GameObject subtitleobject, GameObject escapemessage, GameObject playerlookscript)
@@ -124,7 +124,7 @@ public class WitchDialogueHandler : MonoBehaviour
             if (TutorialManager.instance.tutorialinprogress)
             {
                 TutorialManager.instance.playerTalkedWithWitch();
-            }   
+            }
         }
 
         escmess = escapemessage;
@@ -132,7 +132,7 @@ public class WitchDialogueHandler : MonoBehaviour
         subtitletextmesh = subtitleobject;
         playerlook = playerlookscript.GetComponent<PlayerLookScript>();
         playerlook.playerLookAt(lerpposition);
-        
+
         subtitletextmesh.SetActive(true);
         displayingmessage = true;
         return runNextDialogue();
