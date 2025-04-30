@@ -15,8 +15,10 @@ MonoBehaviour:
   itemname: MUSHROOM
   index: 3
   icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 1248275687986424272, guid: f2f68687f30a3424083845e5f12f718a, type: 3}
   craftingrecipe: []
-  structureitem: 0
+  onetimecraft: 0
   consumable: 1
   hungergain: 0
+  unique: 0
+  craftingDescription: 
