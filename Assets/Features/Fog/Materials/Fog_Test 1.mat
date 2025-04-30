@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fog_Test 2
+  m_Name: Fog_Test 1
   m_Shader: {fileID: -6465566751694194690, guid: 533e6b0d0656d48439c9cfabbe8a0ae2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -175,7 +175,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FogColor: {r: 1, g: 1, b: 1, a: 0.7254902}
+    - _FogColor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 0.63529414}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
