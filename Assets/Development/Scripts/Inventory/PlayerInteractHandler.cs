@@ -103,6 +103,11 @@ public class PlayerInteractHandler : MonoBehaviour
                             popuptext.gameObject.SetActive(true);
                         }
                     }
+                    else
+                    {
+                        popuptext.text = dialoguepopupstring;
+                        popuptext.gameObject.SetActive(true);
+                    }
                 }
                 else
                 {
@@ -113,6 +118,11 @@ public class PlayerInteractHandler : MonoBehaviour
                             popuptext.text = bargainpopupstring;
                             popuptext.gameObject.SetActive(true);
                         }
+                    }
+                    else
+                    {
+                        popuptext.text = bargainpopupstring;
+                        popuptext.gameObject.SetActive(true);
                     }
                 }
             }

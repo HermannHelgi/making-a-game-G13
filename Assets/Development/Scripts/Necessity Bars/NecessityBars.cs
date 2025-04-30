@@ -2,7 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using StarterAssets;
 
-public class NecessityBars : MonoBehaviour
+public class NecessityBars : MonoBehaviour, IDataPersistence
 {
     [Header("Hunger Bar Variables")]
     public float maxhunger;
@@ -48,11 +48,21 @@ public class NecessityBars : MonoBehaviour
     private bool displayingincreaseinhunger;
     private float increaseinhunger;
 
-    void Start()
+    void Awake()
     {
-        currenthunger = maxhunger;
-        currenttemperature = maxtemperature;
         hungerdisplayconsumablemeter.fillAmount = 0;
+    }
+
+    public void loadData(GameData data)
+    {
+        currenthunger = data.currentHunger;
+        currenttemperature = data.currentTemperature;
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.currentHunger = currenthunger;
+        data.currentTemperature = currenttemperature;
     }
 
     void Update()

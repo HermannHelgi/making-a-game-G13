@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour, IDataPersistence
 {
     [Header("Hotbar variables")]
     public int maxhotbarsize = 6;
@@ -59,10 +59,9 @@ public class PlayerInventory : MonoBehaviour
     private ItemScript[] hotbarinventory;
     private GameObject[] hotbargridchildren;
 
-    void Start()
+    void Awake()
     {
         consumableindicator.SetActive(false);
-        necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
 
         //  Instantiate the arrays
         hotbarinventory = new ItemScript[maxhotbarsize];
@@ -80,6 +79,49 @@ public class PlayerInventory : MonoBehaviour
 
         // Selecting the first hotbarslot
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = selectedhotbarcolor;
+    }
+
+    void Start()
+    {
+        necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
+    }
+
+    public void loadData(GameData data)
+    {
+        currenttorchdurability = data.torchDurability;
+        currentemberstonedurability = data.emberstoneDurability;
+
+        for (int i = 0; i < data.playerInventory.Count; i++)
+        {
+            if (data.playerInventory[i] == -1)
+            {
+                hotbarinventory[i] = null;
+            }
+            else
+            {
+                hotbarinventory[i] = GameManager.instance.items[data.playerInventory[i]];
+            }
+        }
+
+        resetHotbarItems();
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.torchDurability = currenttorchdurability;
+        data.emberstoneDurability = currentemberstonedurability;
+
+        for (int i = 0; i < hotbarinventory.Length; i++)
+        {
+            if (hotbarinventory[i] == null)
+            {
+                data.playerInventory[i] = -1;
+            }
+            else
+            {
+                data.playerInventory[i] = hotbarinventory[i].index;
+            }
+        }
     }
 
     void selectHotbar(int index)
