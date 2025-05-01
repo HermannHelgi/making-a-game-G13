@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: MUSHROOM
   index: 3
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 1248275687986424272, guid: f2f68687f30a3424083845e5f12f718a, type: 3}
+  icon: {fileID: 21300000, guid: 443eee1b809a5ee4e98608f1b2afeaa1, type: 3}
+  model: {fileID: 5846715223407531771, guid: ce1a55dc9b7c253468c07e3d5602bab8, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 1
-  hungergain: 0
+  hungergain: 30
   unique: 0
   craftingDescription: 
