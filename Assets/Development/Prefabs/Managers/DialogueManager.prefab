@@ -45,4 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allDialogue:
-  - {fileID: 11400000, guid: 2537a9ec8022fc740a6900e14e7c78e8, type: 2}
+  - {fileID: 11400000, guid: 35fbaf2cdc605924da2e8ffcd773de87, type: 2}
+  - {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
+  - {fileID: 11400000, guid: 473a10f163556284f8fb4df9ba34bf89, type: 2}
+  - {fileID: 11400000, guid: b35a02952951db74694de1c98c46ce88, type: 2}
