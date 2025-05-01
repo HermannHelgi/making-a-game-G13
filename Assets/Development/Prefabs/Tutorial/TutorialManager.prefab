@@ -165,6 +165,9 @@ MonoBehaviour:
   cannottalk: 0
   inactiveNecessityBars: 0
   tutorialcavewall: {fileID: 1777214597425309396}
+  caveWallCollider: {fileID: 6672210416471304157}
+  walkCollider: {fileID: 7182238015684030747}
+  soundManager: {fileID: 0}
   playercapsule: {fileID: 0}
   playerlookscript: {fileID: 0}
   playerinventory: {fileID: 0}

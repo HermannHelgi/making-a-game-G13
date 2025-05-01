@@ -95,10 +95,6 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
         coldBar.SetActive(false);
         hungerBar.SetActive(false);
     }

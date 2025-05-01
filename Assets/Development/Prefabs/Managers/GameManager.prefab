@@ -44,3 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde029afad30b3b41803873b8f849f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdingtorch: 0
+  torchactive: 0
+  emberstoneactive: 0
+  inMenu: 0
+  items:
+  - {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
+  - {fileID: 11400000, guid: 8b14aa1ae2305054b8c3aa6c70e235d7, type: 2}
+  - {fileID: 11400000, guid: 4cf55cf16fb8e304c84e71e0b5215bcd, type: 2}
+  - {fileID: 11400000, guid: 1dd42a57e8498f74b80711d8aca05272, type: 2}
+  - {fileID: 11400000, guid: 4aa806401e7e3ac4cbf5ed6a57e7ea36, type: 2}
+  - {fileID: 11400000, guid: 2c3f7a5decf25e041bd1f6db050e398e, type: 2}
+  - {fileID: 11400000, guid: ff4fc1b09195bd74894715a9c044225c, type: 2}
+  - {fileID: 11400000, guid: 7833bf51c948bdf4e9cb6b97810ad90d, type: 2}
+  - {fileID: 11400000, guid: 90b944351c5197a4aa4ef443178ea6e9, type: 2}
+  - {fileID: 11400000, guid: ed635acb780797d4e96e2de918f6091b, type: 2}
+  - {fileID: 11400000, guid: 7e09554fd20da714ead1e5a55376fb06, type: 2}
+  - {fileID: 11400000, guid: 4023cf24c009ffe45848721d7ce3454c, type: 2}
+  - {fileID: 11400000, guid: 8e47d33004faa674ca403e02cadd994f, type: 2}
+  - {fileID: 11400000, guid: 4c77d007ee85f7e4d85c877cd94f6fe9, type: 2}
+  - {fileID: 11400000, guid: 1d5ad8c64add0904c970b8fcdc7191c5, type: 2}
+  - {fileID: 11400000, guid: 01a1341324fa90f4e917d1257b545d83, type: 2}
+  - {fileID: 11400000, guid: cf63ff3a163a0bb43830703d2a6492dd, type: 2}
+  - {fileID: 11400000, guid: e0b3fd96fa511b7469b759805e1a91ae, type: 2}
+  discovereditems: 000000000000000000000000000000000000
+  isNight: 0
+  safeArea: 0

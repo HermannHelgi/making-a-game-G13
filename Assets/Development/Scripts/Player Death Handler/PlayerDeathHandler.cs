@@ -50,9 +50,12 @@ public class PlayerDeathHandler : MonoBehaviour
             deathscreen.SetActive(true);
             playerhasdied = true;
 
-            if (!fileDataHandler.fileExists())
+            if (fileDataHandler != null)
             {
-                loadLastSaveButton.GetComponent<Button>().interactable = false;
+                if (!fileDataHandler.fileExists())
+                {
+                    loadLastSaveButton.GetComponent<Button>().interactable = false;
+                }
             }
         }
     }
