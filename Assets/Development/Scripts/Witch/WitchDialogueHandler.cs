@@ -13,7 +13,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
 
     // Private stuff, mostly references to other objects...
     private GameObject subtitletextmesh;
-    
+
     // ... and stuff to keep track of the current dialogue.
     private bool displayingmessage = false;
     private Queue<DialogueScriptableObject> dialoguequeue;
@@ -70,7 +70,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                runNextDialogue();       
+                runNextDialogue();
             }
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -112,7 +112,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 if (dialoguequeue.Count > 0)
                 {
                     ///// ...yes, so start the next one
-                    
+
                     runAudioForDialogue();
                     currentdialoguechain = dialoguequeue.Dequeue();
                     currentindex = 0;
@@ -130,7 +130,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                             TutorialManager.instance.playerFinishedTalkingWithWitch();
                         }
                     }
-                
+
                     deinitializeDialogue();
                     return false;
                 }
@@ -159,7 +159,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
             if (TutorialManager.instance.tutorialinprogress)
             {
                 TutorialManager.instance.playerTalkedWithWitch();
-            }   
+            }
         }
 
         escmess = escapemessage;
@@ -167,7 +167,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
         subtitletextmesh = subtitleobject;
         playerlook = playerlookscript.GetComponent<PlayerLookScript>();
         playerlook.playerLookAt(lerpposition);
-        
+
         subtitletextmesh.SetActive(true);
         displayingmessage = true;
         return runNextDialogue();

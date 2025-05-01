@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: COAL
   index: 4
-  icon: {fileID: 21300000, guid: 3fd008dbe17e1de449f2cb2812b16f2b, type: 3}
+  icon: {fileID: 21300000, guid: d6de8cdc746e07c468fb3ed215a58daf, type: 3}
   model: {fileID: 3147001820570103312, guid: 09b71eaf650b993469eee3e23915270c, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
+  unique: 0
+  craftingDescription: 

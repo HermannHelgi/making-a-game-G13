@@ -5,8 +5,8 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
 {
     [Header("Tutorial Manager Variables")]
     public static TutorialManager instance;
-    public float maxlooktimer;     
-    public float tutorialboxfadeintime;     
+    public float maxlooktimer;
+    public float tutorialboxfadeintime;
     public float backgroundalpha;
     public float craftingBackgroundAlpha;
     public bool tutorialinprogress;
@@ -24,9 +24,9 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     [Tooltip("The capsule of the player, should start at a Z rotation of 90.")]
     public GameObject playercapsule;
     [Tooltip("The location of the 'player look' script.")]
-    public PlayerLookScript playerlookscript; 
+    public PlayerLookScript playerlookscript;
     [Tooltip("The location of the 'player inventory' script.")]
-    public PlayerInventory playerinventory; 
+    public PlayerInventory playerinventory;
     [Tooltip("The UI element which displays the tutorial tooltips.")]
     public TutorialBoxWrapper tutorialscreen;
     [Tooltip("The location of the Witch 'lerp' position, basically where the player should look when the witch speaks.")]
@@ -228,7 +228,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                 tutorialscreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), tutorialboxtimer);
                 tutorialscreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), tutorialboxtimer);
             }
-            
+
             if (Input.GetKeyDown(KeyCode.X) && tutorialboxtimer > 1)
             {
                 hideTutorialBox();
@@ -242,7 +242,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                 tutorialscreen.background.color = Color.Lerp(new Color(0, 0, 0, 0), new Color(0, 0, 0, backgroundalpha), tutorialboxtimer);
                 tutorialscreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), tutorialboxtimer);
                 tutorialscreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), tutorialboxtimer);
-                
+
                 if (loadNextDialogue && teachingPickup && tutorialboxtimer <= 0)
                 {
                     showTutorialBox(explainItems);
@@ -262,7 +262,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                 craftingTutorialScreen.message.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
                 craftingTutorialScreen.xtoclose.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), craftingTutorialBoxTimer);
             }
-            
+
             if (Input.GetKeyDown(KeyCode.X) && craftingTutorialBoxTimer > 1)
             {
                 showingCraftingTutorialBox = false;
@@ -363,7 +363,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
                     witchsubtitletext.gameObject.SetActive(false);
                     GameManager.instance.activateMenuCooldown();
                 }
-            } 
+            }
         }
     }
 

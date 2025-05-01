@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: NIGHT FLOWER
   index: 6
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  icon: {fileID: 21300000, guid: f0a3de82c63eadd44a130f9cdec8924c, type: 3}
+  model: {fileID: 7037686750630648571, guid: e4353225318a1fd43adad8f4aa8289d0, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
   unique: 1
+  craftingDescription: 

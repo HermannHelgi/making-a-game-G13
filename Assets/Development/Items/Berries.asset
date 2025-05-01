@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: BERRIES
   index: 2
-  icon: {fileID: 21300000, guid: df7846f7b18d88544b62e9edef6b4e9e, type: 3}
+  icon: {fileID: 21300000, guid: 51c31021129887d49a60a18a668ef27d, type: 3}
   model: {fileID: 7830457375511861682, guid: aba3bb00291469149bb76313e772fb56, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 1
   hungergain: 60
+  unique: 0
+  craftingDescription: 
