@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class DataPersistenceManager : MonoBehaviour
 {
-    [SerializeField] private string fileName;
+    public string fileName;
 
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
@@ -121,11 +121,6 @@ public class DataPersistenceManager : MonoBehaviour
         }
         
         dataHandler.save(this.gameData);
-    }
-
-    private void OnApplicationQuit()
-    {
-        saveGame();
     }
 
     private List<IDataPersistence> findAllDataPersistenceObjects()

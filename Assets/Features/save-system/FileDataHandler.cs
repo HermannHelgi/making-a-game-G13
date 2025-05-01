@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Diagnostics;
 using System.IO;
 
 public class FileDataHandler
@@ -62,5 +61,32 @@ public class FileDataHandler
         {
             UnityEngine.Debug.LogError("Something went wrong when trying to save data to file: " + e);
         }
+    }
+
+    public bool delete()
+    {
+        string fullpath = Path.Combine(dataDirPath, dataFileName);
+        if (File.Exists(fullpath))
+        {
+            try
+            {
+                File.Delete(fullpath);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError("Something went wrong when trying to delete save file: " + e);
+            }
+        }
+        return true;
+    }
+
+    public bool fileExists()
+    {
+        string fullpath = Path.Combine(dataDirPath, dataFileName);
+        if (File.Exists(fullpath))
+        {
+            return true;
+        }
+        return false;
     }
 }

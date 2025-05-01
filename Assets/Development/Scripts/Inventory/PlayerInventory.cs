@@ -30,6 +30,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     public GameObject necessitybargameobject;
     public string consumabletext;
     public PlayerInteractHandler playerinteracthandler;
+    public ItemScript thePotion;
+    public PlayerDeathHandler playerDeathHandler;
 
     [Header("Torch variables")]
     [Tooltip("ItemScript of the Torch, required for Wendigo AI and durability stuff.")]
@@ -443,7 +445,12 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
                     }
                 }
 
+
                 necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
+                if (hotbarinventory[currentindex] == thePotion)
+                {
+                    playerDeathHandler.playerDrankPotion();
+                }
                 removeItemFromHotbar(currentindex);
                 necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
             }
