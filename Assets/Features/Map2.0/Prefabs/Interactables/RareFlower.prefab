@@ -7319,6 +7319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d80f684d1835a4fb7fdf9cfb81d289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   pickupitem: {fileID: 11400000, guid: ff4fc1b09195bd74894715a9c044225c, type: 2}
   totalpickuptimes: 1
   dialoguetriggerforwitch: {fileID: 0}
