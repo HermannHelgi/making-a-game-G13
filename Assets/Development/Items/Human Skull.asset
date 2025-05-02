@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: HUMAN SKULL
   index: 9
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  icon: {fileID: 21300000, guid: 816788a3427e50e48b4f9ec4ca63b507, type: 3}
+  model: {fileID: 7244713943719655243, guid: 085549e80050149428a909a1df35c785, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
   unique: 1
+  craftingDescription: 

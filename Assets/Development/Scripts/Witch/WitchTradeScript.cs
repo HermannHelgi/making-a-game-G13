@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WitchTradeScript : MonoBehaviour
+public class WitchTradeScript : MonoBehaviour, IDataPersistence
 {
     [Header("Trade Window Variables")]
     public ItemScript[] craftableItems = new ItemScript[7];
@@ -58,7 +58,7 @@ public class WitchTradeScript : MonoBehaviour
     public float paddingSize;
     public GameObject witchBargainingSlotPrefab;
 
-    void Start()
+    void Awake()
     {
         tradeslotgridchildren = new GameObject[craftableItems.Length];
         hasbeencrafted = new bool[craftableItems.Length];
@@ -67,19 +67,41 @@ public class WitchTradeScript : MonoBehaviour
         {
             Debug.LogWarning("Chest gameobject is missing for Witch Trade Script.");
         }
-        else
-        {
-            chest.SetActive(false);
-        }
 
         if (campfire == null)
         {
             Debug.LogWarning("Campfire gameobject is missing for Witch Trade Script.");
         }
+    }
+    
+    public void loadData(GameData data)
+    {
+        if (data.chestUnlocked)
+        {
+            chest.SetActive(true);
+        }
+        else
+        {
+            chest.SetActive(false);
+        }
+
+        if (data.campfireUnlocked)
+        {
+            campfire.SetActive(true);
+        }
         else
         {
             campfire.SetActive(false);
         }
+
+        hasbeencrafted = data.hasBeenCrafted.ToArray();
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.chestUnlocked = chest.activeSelf;
+        data.campfireUnlocked = campfire.activeSelf;
+        data.hasBeenCrafted = new List<bool>(hasbeencrafted);
     }
 
     void Update()
@@ -198,6 +220,8 @@ public class WitchTradeScript : MonoBehaviour
                 resourceGO.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
                 resourceGO.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
             }
+            
+            hotbarslots.Clear();
         }
 
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4170149000400958773}
   - component: {fileID: 8316440662825307001}
+  - component: {fileID: 5682506201998162701}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: SoundManager
@@ -105,28 +106,54 @@ MonoBehaviour:
     - soundName: Gryla_Ooh_03
       clip: {fileID: 8300000, guid: 8d5fb7102022ac34c8b6016de3463e99, type: 3}
       soundPriority: 0
-  - headerName: PLAYER_WALKING
+  - headerName: BIRD_CHIRPS
     source: {fileID: 0}
-    mixer: {fileID: -2298248162163239852, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+    mixer: {fileID: -1307818168190413709, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
     sounds:
-    - soundName: Snow_Footstep_01
-      clip: {fileID: 8300000, guid: 63f425b20c293d74daae6c3343aa14cb, type: 3}
+    - soundName: Bird_Chirps_01
+      clip: {fileID: 8300000, guid: aad6bd32b3efd694ca19653610f27603, type: 3}
       soundPriority: 0
-    - soundName: Snow_Footstep_02
-      clip: {fileID: 8300000, guid: b956acb7e841671469b329b3af5b6d28, type: 3}
+    - soundName: Bird_Chirps_02
+      clip: {fileID: 8300000, guid: b757f415cdb00c749a2d47b2edc68a83, type: 3}
       soundPriority: 0
-    - soundName: Snow_Footstep_03
-      clip: {fileID: 8300000, guid: ce38a89efcb79e8409f127e0fd134c4a, type: 3}
+    - soundName: Bird_Chirps_03
+      clip: {fileID: 8300000, guid: e14bf67e9785b9b4a8e8439940cfbdb4, type: 3}
       soundPriority: 0
-    - soundName: Snow_Footstep_04
-      clip: {fileID: 8300000, guid: 0d541428d53c01b4598c6a1dc96f5b4f, type: 3}
+    - soundName: Bird_Chirps_04
+      clip: {fileID: 8300000, guid: be1c2bf6e70fdf1448a6896f36050bf3, type: 3}
       soundPriority: 0
-    - soundName: Snow_Footstep_05
-      clip: {fileID: 8300000, guid: c62fe9496ed30a14c9f6eb28b22befe3, type: 3}
+    - soundName: Bird_Chirps_05
+      clip: {fileID: 8300000, guid: 4314fc2bd60f4194cb0b3ce9f6f26ac3, type: 3}
       soundPriority: 0
-    - soundName: Snow_Footstep_06
-      clip: {fileID: 8300000, guid: ac1e83e609c48014c93713b4e83b6dcf, type: 3}
+  - headerName: OWL_CHRIPS
+    source: {fileID: 0}
+    mixer: {fileID: -1307818168190413709, guid: 8fc725e138ae2f04c9ef496e9d687475, type: 2}
+    sounds:
+    - soundName: Owl_Noise_01
+      clip: {fileID: 8300000, guid: 926e1d57c4f9e2a40b7ce2960b2cc4a6, type: 3}
       soundPriority: 0
-    - soundName: Snow_Footstep_07
-      clip: {fileID: 8300000, guid: 751440e9902eb8049882b5f79ccb7d0c, type: 3}
+    - soundName: Owl_Noise_02
+      clip: {fileID: 8300000, guid: 0bc9fab8ee59ccd4f8dec93caed59691, type: 3}
       soundPriority: 0
+    - soundName: Owl_Noise_03
+      clip: {fileID: 8300000, guid: 0f87be32d2702274b95ba1c08964e58d, type: 3}
+      soundPriority: 0
+    - soundName: Owl_Noise_04
+      clip: {fileID: 8300000, guid: 53019c898d6daa64ab9ce5a29c1959b5, type: 3}
+      soundPriority: 0
+--- !u!114 &5682506201998162701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821835157270677491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6f1080c78b18b4783f32c6980f8089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNight: 0
+  soundManager: {fileID: 8316440662825307001}
+  timeTilNextChrip: 30
+  _timeTilNextChrip: 0

@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class CampfireScript : MonoBehaviour
+public class CampfireScript : MonoBehaviour, IDataPersistence
 {
-
     [Header("Campfire heating variables")]
     [Tooltip("The range which the campfire heats up the player.")]
     public float rangeofheat;
@@ -25,20 +24,40 @@ public class CampfireScript : MonoBehaviour
 
     [Header("Coal variables")]
     [Tooltip("The amount of coal currently in the campfire.")]
-    public int coalstored = 0;
+    public int coalstored;
     [Tooltip("The ItemScript of coal.")]
     public ItemScript coalitemscript;
 
     // Private vars, used for state management
-    public int sticksemplaced = 1;
-    public float burntimer = 0;
+    public int sticksemplaced;
+    public float burntimer;
     public bool playerinrange;
     public float oldtemperaturedrainrate;
 
-    void Start()
+
+    public void loadData(GameData data)
     {
-        litcampfire.SetActive(false);
-        coldcampfire.SetActive(true);
+        sticksemplaced = data.sticksEmplaced;
+        burntimer = data.burnTimer;
+        coalstored = data.coalStored;
+
+        if (burntimer > 0)
+        {
+            litcampfire.SetActive(true);
+            coldcampfire.SetActive(false);
+        }
+        else
+        {
+            litcampfire.SetActive(false);
+            coldcampfire.SetActive(true);
+        }
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.sticksEmplaced = sticksemplaced;
+        data.burnTimer = burntimer;
+        data.coalStored = coalstored;
     }
 
     void Update()

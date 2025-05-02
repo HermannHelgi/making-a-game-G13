@@ -21,6 +21,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1dd42a57e8498f74b80711d8aca05272, type: 2}
   onetimecraft: 0
   consumable: 1
-  hungergain: 300
+  hungergain: 120
   unique: 0
   craftingDescription: This hearty meal will provide ample nourishment to any traveler.

@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour, IDataPersistence
 {
     [Header("GameManager variables")]
     [Tooltip("Base singleton instance of the Game Manager, do not touch!")]
@@ -13,11 +14,14 @@ public class DialogueManager : MonoBehaviour
     private bool[] dialogueflags;
     private WitchDialogueHandler witchdialogue;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         dialogueflags = new bool[allDialogue.Length];
+    }
 
+    void Start()
+    {
         WitchDialogueHandler[] check = GameObject.FindObjectsByType<WitchDialogueHandler>(FindObjectsSortMode.None);
         if (check.Length == 0)
         {
@@ -31,6 +35,16 @@ public class DialogueManager : MonoBehaviour
         {
             witchdialogue = check[0];
         }
+    }
+
+    public void loadData(GameData data)
+    {
+        dialogueflags = data.dialogueFlags.ToArray();
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.dialogueFlags = new List<bool>(dialogueflags);
     }
 
     public void SetDialogueFlags(DialogueScriptableObject newdialogue)

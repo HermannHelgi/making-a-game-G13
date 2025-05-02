@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: STONE
   index: 1
-  icon: {fileID: 21300000, guid: cbc3b776537afac4c8a9f0b3e30d30aa, type: 3}
+  icon: {fileID: 21300000, guid: 9aac4c3f5b2ceb94b9afa842a6032c2f, type: 3}
   model: {fileID: 1214807352145036245, guid: df808198c2e07b149b8b4d7fa7ee035a, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
+  unique: 0
+  craftingDescription: 
