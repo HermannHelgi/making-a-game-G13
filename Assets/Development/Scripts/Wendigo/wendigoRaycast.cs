@@ -23,7 +23,7 @@ public class WendigoRaycast : MonoBehaviour
     public LayerMask playerMask;
     [Header("Lose Sight Delay")]
     public float loseSightDelay = 6f;
-    private float loseSightTimer = 0f;
+    [SerializeField] private float loseSightTimer = 0f;
     private bool sawPlayerThisScan = false;
 
     private float scanDelay = 0;
@@ -102,16 +102,18 @@ public class WendigoRaycast : MonoBehaviour
                 detected = true;
                 loseSightTimer = 0;
             }
-            else
-            {
-                loseSightTimer += Time.deltaTime;
-                if(loseSightTimer >= loseSightDelay)
-                {
-                    Debug.Log("Player Lost!");
-                    detected = false;
-                }
-            }
+            
             scanDelay = 0f;
+        }
+
+        if (detected)
+        {
+            loseSightTimer += Time.deltaTime;
+            if(loseSightTimer >= loseSightDelay)
+            {
+                Debug.Log("Player Lost!");
+                detected = false;
+            }
         }
     }
 }
