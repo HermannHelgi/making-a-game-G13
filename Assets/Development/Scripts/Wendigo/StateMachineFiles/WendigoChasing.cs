@@ -83,7 +83,7 @@ public class WendigoChasing : WendigoBehaviour
             Vector3 currentPosition = stalkingBehaviour.ReturnCurrentPosition();
             if(currentPosition != Vector3.zero)
             {
-                wendigoFollowPlayer.SpawnBehindPlayer();
+                wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
                 spawned = true;
                 stalkingBehaviour.DespawnWendigo();
             }
