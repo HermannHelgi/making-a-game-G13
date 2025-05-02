@@ -121,20 +121,17 @@ public class StalkingBehaviour : WendigoBehaviour
                     {
                         Debug.DrawRay(spawnPointTracker.playerCamera.transform.position, direction, Color.red);
                         counter++;
-                        break;
                     }
                 }
                 if (counter == 3)
                 {   
                     sightTimer = 0;
-                    Debug.Log("ALL HIT");
                     DeActivateWendigo();
                 }
                 else
                 {
                     if (Vector3.Distance(spawnPointTracker.playerCamera.transform.position, activeWendigo.transform.position) <= aggressionRange)
                     {
-                        Debug.Log("RANGE");
                         playerSightings += 10;
                         inAggressionRange = true;
                     }
@@ -151,7 +148,6 @@ public class StalkingBehaviour : WendigoBehaviour
             }
             else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
             {
-                Debug.Log("FRUSTRUM");
                 seen = false;
                 DeActivateWendigo();
             }
