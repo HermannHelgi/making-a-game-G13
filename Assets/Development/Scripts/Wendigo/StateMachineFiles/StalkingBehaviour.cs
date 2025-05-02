@@ -37,7 +37,6 @@ public class StalkingBehaviour : WendigoBehaviour
     public override void ExitState()
     {
         base.ExitState();
-        playerSightings = 0;
     }
     public Vector3 ReturnCurrentPosition()
     {   
@@ -118,11 +117,11 @@ public class StalkingBehaviour : WendigoBehaviour
                 foreach(Vector3 point in pointArray)
                 {   
                     Vector3 direction = point - spawnPointTracker.playerCamera.transform.position;
-                    Debug.DrawRay(spawnPointTracker.playerCamera.transform.position, direction, Color.red);
                     if(Physics.Raycast(spawnPointTracker.playerCamera.transform.position, direction.normalized, direction.magnitude, obstacleLayer))
                     {
-                       counter++;
-                       break;
+                        Debug.DrawRay(spawnPointTracker.playerCamera.transform.position, direction, Color.red);
+                        counter++;
+                        break;
                     }
                 }
                 if (counter == 3)
@@ -187,6 +186,10 @@ public class StalkingBehaviour : WendigoBehaviour
         {
             UpdateActiveWendigo();
             if(activeWendigo == null)
+            {
+                isEnding = false;
+            }
+            if (inAggressionRange)
             {
                 isEnding = false;
             }
