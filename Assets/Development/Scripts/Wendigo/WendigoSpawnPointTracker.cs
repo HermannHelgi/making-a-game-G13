@@ -16,6 +16,9 @@ public class WendigoSpawnPointTracker : MonoBehaviour
 
     void Start()
     {
+    }
+    void Awake()
+    {
         spawnPositions = new HashSet<GameObject>();
     }
 
@@ -99,7 +102,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             {
                 continue;
             }
-            if (GameObjectWithinFrustum(wendigo, playerCamera, 50))
+            if (GameObjectWithinFrustum(wendigo, playerCamera, 30f))
             {
                 potentialSpawns.Add(wendigo);
             }
