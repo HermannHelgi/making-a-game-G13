@@ -69,6 +69,11 @@ public class WendigoStateMachine : MonoBehaviour
             Debug.Log("Entering Stalking State");
             SetNewState(stalking);
         }
+        if (activeState == stalking && stalking.playerSightings >= maxPlayerSightings && stalking.inAggressionRange)
+        {
+            Debug.Log("Entering Chasing State");
+            SetNewState(chasing);
+        }
         if (activeState == stalking && stalking.playerSightings >= maxPlayerSightings)
         {
             Debug.Log("Entering Chasing State");

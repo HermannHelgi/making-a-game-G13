@@ -13,6 +13,9 @@ public class StalkingBehaviour : WendigoBehaviour
     public float wendigoRadius = 0.55f; 
     public int playerSightings = 0;
     public float sightThreshold = 2.0f;
+    public float aggressionRange = 5.0f;
+    public float yOffsetForRaycast = 2.0f;
+    public bool inAggressionRange = false;
 
     private GameObject activeWendigo = null;
     private float spawnTimer ;
@@ -27,6 +30,7 @@ public class StalkingBehaviour : WendigoBehaviour
     {
         base.EnterState();
         playerSightings = 0;
+        inAggressionRange = false;
         spawnTimer = spawnCooldown;
     }
 
@@ -106,20 +110,10 @@ public class StalkingBehaviour : WendigoBehaviour
             if (spawnPointTracker.GameObjectWithinFrustum(activeWendigo))
             {
                 seen = true;
-            }
-            else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
-            {
-                Debug.Log("FRUSTRUM");
-                seen = false;
-                DeActivateWendigo();
-            }
-            else
-            {   
-                
                 List<Vector3> pointArray = new List<Vector3>();
-                pointArray.Add(activeWendigo.transform.position);
-                pointArray.Add(activeWendigo.transform.position - (spawnPointTracker.playerCamera.transform.right * wendigoRadius));
-                pointArray.Add(activeWendigo.transform.position + (spawnPointTracker.playerCamera.transform.right * wendigoRadius));
+                pointArray.Add(activeWendigo.transform.position + new Vector3(0, yOffsetForRaycast, 0));
+                pointArray.Add(activeWendigo.transform.position - (spawnPointTracker.playerCamera.transform.right * wendigoRadius) + new Vector3(0, yOffsetForRaycast, 0));
+                pointArray.Add(activeWendigo.transform.position + (spawnPointTracker.playerCamera.transform.right * wendigoRadius) + new Vector3(0, yOffsetForRaycast, 0));
                 int counter = 0;
                 foreach(Vector3 point in pointArray)
                 {   
@@ -139,13 +133,28 @@ public class StalkingBehaviour : WendigoBehaviour
                 }
                 else
                 {
-                    sightTimer += Time.deltaTime;
-                    if (sightTimer > sightThreshold)
+                    if (Vector3.Distance(spawnPointTracker.playerCamera.transform.position, activeWendigo.transform.position) <= aggressionRange)
                     {
-                        playerSightings++;
-                        sightTimer = -sightThreshold * playerSightings;
+                        Debug.Log("RANGE");
+                        playerSightings += 10;
+                        inAggressionRange = true;
                     }
-                }                
+                    else
+                    {
+                        sightTimer += Time.deltaTime;
+                        if (sightTimer > sightThreshold)
+                        {
+                            playerSightings++;
+                            sightTimer = -sightThreshold * playerSightings;
+                        }
+                    }
+                }   
+            }
+            else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
+            {
+                Debug.Log("FRUSTRUM");
+                seen = false;
+                DeActivateWendigo();
             }
         }
     }
