@@ -78,7 +78,7 @@ public class LightingManager : MonoBehaviour, IDataPersistence
 
     #endregion
 
-        private void Start()
+        private void Awake()
         {
             if(IsDayCycleOn)
             {
