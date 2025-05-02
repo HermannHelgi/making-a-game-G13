@@ -26,6 +26,8 @@ public class WendigoRaycast : MonoBehaviour
     private float loseSightTimer = 0f;
     private bool sawPlayerThisScan = false;
 
+    private float scanDelay = 0;
+
     public Vector3 lastKnownPosition;
 
     void Start()
@@ -92,11 +94,10 @@ public class WendigoRaycast : MonoBehaviour
 
     void Update()
     {   
-        float scanDelay = Time.deltaTime;
+        scanDelay += Time.deltaTime;
         
         if(scanDelay >= 0.2f)
         {   
-            // Debug.Log("looking for player");
             sawPlayerThisScan = ScanForPlayer();
             if (sawPlayerThisScan)
             {   
@@ -120,8 +121,8 @@ public class WendigoRaycast : MonoBehaviour
                     detected = false;
                 }
             }
+            scanDelay = 0f;
         }
         // Debug.Log("Players last known position " + target.transform.position);
-        scanDelay = 0f;
     }
 }
