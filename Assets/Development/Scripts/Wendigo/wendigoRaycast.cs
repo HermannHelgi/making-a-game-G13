@@ -34,12 +34,6 @@ public class WendigoRaycast : MonoBehaviour
     {
         if (wendigoTransform == null)
             wendigoTransform = transform;
-        // StartCoroutine(FindPlayer());
-    }
-
-    private void FindPlayer(float range)
-    {
-        
     }
 
     private bool ScanForPlayer()
@@ -64,10 +58,6 @@ public class WendigoRaycast : MonoBehaviour
 
             }
 
-        }
-        if(ListenForPlayer())
-        {
-            return true;
         }
         return false;
     }
@@ -123,6 +113,5 @@ public class WendigoRaycast : MonoBehaviour
             }
             scanDelay = 0f;
         }
-        // Debug.Log("Players last known position " + target.transform.position);
     }
 }
