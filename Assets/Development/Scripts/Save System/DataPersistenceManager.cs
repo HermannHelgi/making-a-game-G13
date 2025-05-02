@@ -36,6 +36,9 @@ public class DataPersistenceManager : MonoBehaviour
     public List<int> playerInventory;
     public List<int> chestInventory;
 
+    public bool isNight;
+    public float timeOfDay;
+
     public bool tutorialinprogress;
     public bool cannotcraft;
     public bool cannottalk;
@@ -84,6 +87,8 @@ public class DataPersistenceManager : MonoBehaviour
         gameData.witchDialogueQueue = witchDialogueQueue;
         gameData.playerInventory = playerInventory;
         gameData.chestInventory = chestInventory;
+        gameData.timeOfDay = timeOfDay;
+        gameData.isNight = isNight;
         
         gameData.tutorialinprogress = tutorialinprogress;
         gameData.cannotcraft = cannotcraft;

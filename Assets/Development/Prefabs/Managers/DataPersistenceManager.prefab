@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.game
-  playerPos: {x: 0, y: 0, z: 0}
+  playerPos: {x: 403, y: 7.8, z: 49.7}
   currentHunger: 600
   currentTemperature: 600
   torchDurability: 300
@@ -63,6 +63,8 @@ MonoBehaviour:
   witchDialogueQueue: 
   playerInventory: ffffffffffffffffffffffffffffffffffffffffffffffff
   chestInventory: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  isNight: 0
+  timeOfDay: 12
   tutorialinprogress: 1
   cannotcraft: 1
   cannottalk: 1

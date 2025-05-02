@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Sydewa
 {
 [ExecuteAlways]
-public class LightingManager : MonoBehaviour
+public class LightingManager : MonoBehaviour, IDataPersistence
 {
         //Credits to "Probably Spoonie" in youtube and his video https://www.youtube.com/watch?v=m9hj9PdO328&ab_channel=ProbablySpoonie
         //He made the original script and i've HEAVILY modified it to fit my needs. 
@@ -98,6 +98,16 @@ public class LightingManager : MonoBehaviour
             {
                 ResetEvents();
             }
+        }
+
+        public void loadData(GameData data)
+        {
+            TimeOfDay = data.timeOfDay;
+        }
+
+        public void saveData(ref GameData data)
+        {
+            data.timeOfDay = TimeOfDay;
         }
 
         private void Update()
