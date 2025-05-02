@@ -44,7 +44,12 @@ public class WendigoFollowPlayer : MonoBehaviour
             if(distance >= retreatDistance)
             {
                 agent.SetDestination(spot.transform.position);
+                if(Vector3.Distance(transform.position,spot.transform.position) <= 0.5)
+                {
+                    agent.transform.position = spawnPointTracker.despawnPoint.transform.position;
+                }
             }
         }
+        
     }
 }

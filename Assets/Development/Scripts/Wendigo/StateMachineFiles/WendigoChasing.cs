@@ -6,7 +6,7 @@ using UnityEngine;
 public class WendigoChasing : WendigoBehaviour
 {
     public float spawnBehindCooldown = 20.0f;
-    public float attackDistance = 5.0f;
+    public float attackDistance = 3.0f;
     public float searchTime = 0.0f;
     public GameObject wendigo;
 
