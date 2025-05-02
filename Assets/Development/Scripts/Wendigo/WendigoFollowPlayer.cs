@@ -9,21 +9,25 @@ public class WendigoFollowPlayer : MonoBehaviour
     public NavMeshAgent agent;
     public WendigoSpawnPointTracker spawnPointTracker;
     public List<GameObject> retreatPositions;
+    public GameObject selectedRetreat;
     public float retreatDistance;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
+        selectedRetreat = null;
     }
 
     public void FollowPlayer()
     {
+        selectedRetreat = null;
         agent.SetDestination(player.transform.position);
     }
 
     public void SpawnBehindPlayer()
     {
+        selectedRetreat = null;
         SpawnBehindPlayer(spawnPointTracker.SelectRandomSpawn().transform.position);
     }
 
@@ -41,17 +45,11 @@ public class WendigoFollowPlayer : MonoBehaviour
         foreach(GameObject spot in retreatPositions)
         {
             float distance = Vector3.Distance(spot.transform.position, transform.position);
-            if(distance >= retreatDistance)
+            if (distance >= retreatDistance)
             {
-                agent.SetDestination(spot.transform.position);
-                if(Vector3.Distance(transform.position, spot.transform.position ) <= 1f)
-                {
-                    agent.enabled = false;
-                    transform.position = spawnPointTracker.despawnPoint.transform.position;
-
-                }
+                selectedRetreat = spot;
+                break;
             }
         }
-        
     }
 }

@@ -84,6 +84,10 @@ public class WendigoStateMachine : MonoBehaviour
             Debug.Log("Entering Stalking State");
             SetNewState(stalking);
         }
+        if (activeState == chasing && chasing.searchTime > maxSearchTime && chasing.wendigoRaycasts.detected)
+        {
+            SetNewState(chasing);
+        }
         // if (// lure isn't placed && player in lair)
         // {
         //     SetNewState(chasing);

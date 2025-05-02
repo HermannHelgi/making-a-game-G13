@@ -20,10 +20,6 @@ public class WendigoChasing : WendigoBehaviour
     public WendigoLookForPlayer wendigoLookForPlayer;
     public WendigoAttack wendigoAttack;
 
-    void Awake()
-    {
-       
-    }
     public override void EnterState()
     {
         base.EnterState();
@@ -67,12 +63,27 @@ public class WendigoChasing : WendigoBehaviour
         }
         else if (isEnding)
         {
-            wendigoFollowPlayer.Retreat();
+            isEnding = false;	
+            agent.enabled = false;
+            transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
 
-            if (!wendigoRaycasts.detected)
-            {
-                isEnding = false;
-            }
+            // Debug.Log("DOING000");
+            // if (wendigoFollowPlayer.selectedRetreat == null)
+            // {
+            //     wendigoFollowPlayer.Retreat();
+            // }
+
+            // if (Vector3.Distance(transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
+            // {
+            //     Debug.Log("DISSAPEARS");
+            //     agent.enabled = false;
+            //     transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+            //     spawned = false;
+            // }
+            // else if (wendigoRaycasts.detected)
+            // {
+            //     isEnding = false;
+            // }
         }        
     }
 
