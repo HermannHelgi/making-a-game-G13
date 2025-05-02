@@ -70,7 +70,7 @@ public class StalkingBehaviour : WendigoBehaviour
 
     void ActivateWendigo()
     {   
-        Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
+        Debug.Log("activating wendigo at: " + activeWendigo.transform.position + " named " + activeWendigo.name);
         // SkinnedMeshRenderer mesh = activeWendigo.GetComponent<SkinnedMeshRenderer>();
         // mesh.enabled = true;
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
