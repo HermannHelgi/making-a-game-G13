@@ -9,7 +9,6 @@ public class WendigoStateMachine : MonoBehaviour
     private WendigoChasing chasing;
     private WendigoBehaviour activeState = null;
     private WendigoBehaviour nextState = null;
-    private GameManager gameManager;
 
     public int maxPlayerSightings = 2;
     public float maxSearchTime = 60.0f;
@@ -19,7 +18,6 @@ public class WendigoStateMachine : MonoBehaviour
         resting = GetComponent<WendigoResting>();
         stalking = GetComponent<StalkingBehaviour>();
         chasing = GetComponent<WendigoChasing>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         
         activeState = resting;
         nextState = null;
@@ -61,12 +59,12 @@ public class WendigoStateMachine : MonoBehaviour
 
     void UpdateCurrentState()
     {
-        if (!gameManager.isNight || gameManager.safeArea)
+        if (!GameManager.instance.isNight || GameManager.instance.safeArea)
         {   
             Debug.Log("Entering Resting State");
             SetNewState(resting);
         }
-        if (activeState == resting && gameManager.isNight && !gameManager.safeArea)
+        if (activeState == resting && GameManager.instance.isNight && !GameManager.instance.safeArea)
         {
             Debug.Log("Entering Stalking State");
             SetNewState(stalking);
