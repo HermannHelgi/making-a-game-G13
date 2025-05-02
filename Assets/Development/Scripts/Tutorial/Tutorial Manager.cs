@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TutorialManager : MonoBehaviour
+public class TutorialManager : MonoBehaviour, IDataPersistence
 {
     [Header("Tutorial Manager Variables")]
     public static TutorialManager instance;
@@ -14,6 +14,8 @@ public class TutorialManager : MonoBehaviour
     public bool cannottalk;
     public bool inactiveNecessityBars;
     public GameObject tutorialcavewall;
+    public GameObject caveWallCollider;
+    public GameObject walkCollider;
 
     public SoundManager soundManager;
 
@@ -71,7 +73,7 @@ public class TutorialManager : MonoBehaviour
 
 
     // State bools
-    private bool wakingup = true;
+    private bool wakingup = false;
     private bool canSkipTutorial = false;
     private bool interactwithwitch = false;
     private bool teachingitems = false;
@@ -90,15 +92,68 @@ public class TutorialManager : MonoBehaviour
     private bool showingCraftingTutorialBox = false;
     private float craftingTutorialBoxTimer = 0;
 
-    void Start()
+    void Awake()
     {
         instance = this;
-        tutorialinprogress = true;
-        cannotcraft = true;
-        cannottalk = true;
-        inactiveNecessityBars = true;
         coldBar.SetActive(false);
         hungerBar.SetActive(false);
+    }
+
+    public void loadData(GameData data)
+    {
+        tutorialinprogress = data.tutorialinprogress;
+        if (tutorialinprogress)
+        {
+            cannotcraft = data.cannotcraft;
+            cannottalk = data.cannottalk;
+            inactiveNecessityBars = data.inactiveNecessityBars;
+            if (!inactiveNecessityBars)
+            {
+                coldBar.SetActive(true);
+                hungerBar.SetActive(true);
+            }
+
+            wakingup = data.wakingup;
+            canSkipTutorial = data.canSkipTutorial;
+            interactwithwitch = data.interactwithwitch;
+            teachingitems = data.teachingitems;
+            findsticks = data.findsticks;
+            teachingPickup = data.teachingPickup;
+            loadNextDialogue = data.loadNextDialogue;
+            teachingBargaining = data.teachingBargaining;
+            teachingCampfire = data.teachingCampfire;
+            doingExposition = data.doingExposition;
+            tutorialcavewall.SetActive(data.caveWallActive);
+            caveWallCollider.SetActive(data.caveWallColliderActive);
+            walkCollider.SetActive(data.walkColliderActive);
+        }
+        else
+        {
+            finishTutorial();
+        }
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.tutorialinprogress = tutorialinprogress;
+        data.cannotcraft = cannotcraft;
+        data.cannottalk = cannottalk;
+        data.inactiveNecessityBars = inactiveNecessityBars;
+
+        data.caveWallActive = tutorialcavewall.activeSelf;
+        data.caveWallColliderActive = caveWallCollider.activeSelf;
+        data.walkColliderActive = walkCollider.activeSelf;
+        
+        data.wakingup = wakingup;
+        data.canSkipTutorial = canSkipTutorial;
+        data.interactwithwitch = interactwithwitch;
+        data.teachingitems = teachingitems;
+        data.findsticks = findsticks;
+        data.teachingPickup = teachingPickup;
+        data.loadNextDialogue = loadNextDialogue;
+        data.teachingBargaining = teachingBargaining;
+        data.teachingCampfire = teachingCampfire;
+        data.doingExposition = doingExposition;
     }
 
     void Update()
@@ -140,7 +195,10 @@ public class TutorialManager : MonoBehaviour
 
         hideTutorialBox();
 
-        gameObject.SetActive(false);
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     void showTutorialBox(string message)
@@ -415,7 +473,6 @@ public class TutorialManager : MonoBehaviour
                 teachingPickup = false;
                 teachingBargaining = true;
                 DialogueManager.instance.SetDialogueFlags(howtobargain);
-                soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
 
             }
         }

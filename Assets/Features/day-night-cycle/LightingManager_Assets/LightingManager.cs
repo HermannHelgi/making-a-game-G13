@@ -74,6 +74,8 @@ public class LightingManager : MonoBehaviour
         [SerializeField][Range(0f, 24f)] private float ResetEventsTime = 0.1f;
         private bool DayCycleCompleted;
 
+        public List<Material> fogMaterials;
+
     #endregion
 
         private void Start()
@@ -248,7 +250,7 @@ public class LightingManager : MonoBehaviour
                 }
             
             }
-
+            UpdateFogMaterials(timePercent);
         }
 
         private void UpdateMoonLighting(float timePercent)
@@ -341,6 +343,28 @@ public class LightingManager : MonoBehaviour
             {
                 UpdateMoonLighting(TimeOfDay / 24f);
             }
+
         }
+
+    private void UpdateFogMaterials(float timePercent)
+    {
+        // Evaluate current fog color from gradient
+        float nightFactor = 1f - Mathf.Cos(timePercent * Mathf.PI * 2f); // Peaks at midnight
+        Color baseFog = Preset.FogColor.Evaluate(timePercent);
+        Color darkerFog = Color.Lerp(Color.black, baseFog, nightFactor * 0.5f); // Adjust blend factor
+
+
+        foreach (var mat in fogMaterials)
+        {
+            if (mat != null)
+            {
+                // Get the original alpha from the material
+                Color originalColor = mat.GetColor("_FogColor");
+                darkerFog.a = originalColor.a;
+
+                mat.SetColor("_FogColor", darkerFog);
+            }
+        }
+    }
     }
 }
