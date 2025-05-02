@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -77,11 +78,15 @@ public class WendigoChasing : WendigoBehaviour
     private void SpawnBehindPlayer()
     {
         spawnBehindTimer = spawnBehindCooldown;
-        if (wendigoRaycasts.detected)
-        {
-            wendigoFollowPlayer.SpawnBehindPlayer(stalkingBehaviour.ReturnCurrentPosition());
-            spawned = true;
-            stalkingBehaviour.DespawnWendigo();
+        if (stalkingBehaviour.inAggressionRange)
+        {   
+            Vector3 currentPosition = stalkingBehaviour.ReturnCurrentPosition();
+            if(currentPosition != Vector3.zero)
+            {
+                wendigoFollowPlayer.SpawnBehindPlayer();
+                spawned = true;
+                stalkingBehaviour.DespawnWendigo();
+            }
         }
     }
 }
