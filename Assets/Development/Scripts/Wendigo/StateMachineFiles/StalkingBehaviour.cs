@@ -17,6 +17,7 @@ public class StalkingBehaviour : WendigoBehaviour
     private GameObject activeWendigo = null;
     private float spawnTimer ;
     private float sightTimer = 0.0f;
+    private bool seen = false;
 
     void Awake()
     {
@@ -53,11 +54,11 @@ public class StalkingBehaviour : WendigoBehaviour
         // SkinnedMeshRenderer mesh = activeWendigo.GetComponent<SkinnedMeshRenderer>();
         // mesh.enabled = false;
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
-    if (mesh == null)
-    {
-        Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");
-        return;
-    }   
+        if (mesh == null)
+        {
+            Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");
+            return;
+        }   
         mesh.enabled = false;
         activeWendigo = null;
         spawnTimer = spawnCooldown;
@@ -69,7 +70,7 @@ public class StalkingBehaviour : WendigoBehaviour
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
         // SkinnedMeshRenderer mesh = activeWendigo.GetComponent<SkinnedMeshRenderer>();
         // mesh.enabled = true;
-            SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
+        SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
         if (mesh == null)
         {
             Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");
@@ -81,28 +82,35 @@ public class StalkingBehaviour : WendigoBehaviour
 
     SkinnedMeshRenderer FindSkinnedMeshRenderer(GameObject obj)
     {
-    foreach (Transform child in obj.transform)
-    {
-        SkinnedMeshRenderer mesh = child.GetComponent<SkinnedMeshRenderer>();
-        if (mesh != null)
+        foreach (Transform child in obj.transform)
         {
-            return mesh;
+            SkinnedMeshRenderer mesh = child.GetComponent<SkinnedMeshRenderer>();
+            if (mesh != null)
+            {
+                return mesh;
+            }
+            // Recursively search deeper in the hierarchy
+            SkinnedMeshRenderer nestedMesh = FindSkinnedMeshRenderer(child.gameObject);
+            if (nestedMesh != null)
+            {
+                return nestedMesh;
+            }
         }
-        // Recursively search deeper in the hierarchy
-        SkinnedMeshRenderer nestedMesh = FindSkinnedMeshRenderer(child.gameObject);
-        if (nestedMesh != null)
-        {
-            return nestedMesh;
-        }
+        return null;
     }
-    return null;
-    }
+
     void UpdateActiveWendigo()
     {
         if (activeWendigo != null)
         {   
-            if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo))
+            if (spawnPointTracker.GameObjectWithinFrustum(activeWendigo))
             {
+                seen = true;
+            }
+            else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
+            {
+                Debug.Log("FRUSTRUM");
+                seen = false;
                 DeActivateWendigo();
             }
             else
@@ -112,19 +120,21 @@ public class StalkingBehaviour : WendigoBehaviour
                 pointArray.Add(activeWendigo.transform.position);
                 pointArray.Add(activeWendigo.transform.position - (spawnPointTracker.playerCamera.transform.right * wendigoRadius));
                 pointArray.Add(activeWendigo.transform.position + (spawnPointTracker.playerCamera.transform.right * wendigoRadius));
-                bool allHit = true;
+                int counter = 0;
                 foreach(Vector3 point in pointArray)
                 {   
                     Vector3 direction = point - spawnPointTracker.playerCamera.transform.position;
                     Debug.DrawRay(spawnPointTracker.playerCamera.transform.position, direction, Color.red);
-                    if(!Physics.Raycast(spawnPointTracker.playerCamera.transform.position, direction.normalized, direction.magnitude, obstacleLayer))
+                    if(Physics.Raycast(spawnPointTracker.playerCamera.transform.position, direction.normalized, direction.magnitude, obstacleLayer))
                     {
-                       allHit = false;
+                       counter++;
                        break;
                     }
                 }
-                if (!allHit)
+                if (counter == 3)
                 {   
+                    sightTimer = 0;
+                    Debug.Log("ALL HIT");
                     DeActivateWendigo();
                 }
                 else
