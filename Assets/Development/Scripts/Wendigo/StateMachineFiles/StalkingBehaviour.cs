@@ -16,7 +16,7 @@ public class StalkingBehaviour : WendigoBehaviour
 
     private GameObject activeWendigo = null;
     private float spawnTimer ;
-    private float sightTimer = 0.0f;
+    [SerializeField] private float sightTimer = 0.0f;
     private bool seen = false;
 
     void Awake()
