@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class WendigoChasing : WendigoBehaviour
@@ -9,7 +10,7 @@ public class WendigoChasing : WendigoBehaviour
     public float attackDistance = 3.0f;
     public float searchTime = 0.0f;
     public GameObject wendigo;
-
+    public NavMeshAgent agent;
     private float spawnBehindTimer = 0.0f;
     private bool spawned = false;
     public WendigoSpawnPointTracker wendigoSpawnPointTracker;
@@ -27,6 +28,7 @@ public class WendigoChasing : WendigoBehaviour
     {
         base.EnterState();
         spawned = false;
+        agent.enabled = true;
         SpawnBehindPlayer();
     }
 
@@ -69,7 +71,6 @@ public class WendigoChasing : WendigoBehaviour
 
             if (!wendigoRaycasts.detected)
             {
-                wendigo.transform.position = wendigoSpawnPointTracker.despawnPoint.position;
                 isEnding = false;
             }
         }        
