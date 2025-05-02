@@ -66,6 +66,7 @@ public class WendigoChasing : WendigoBehaviour
             isEnding = false;	
             agent.enabled = false;
             transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+            searchTime = 0;
 
             // Debug.Log("DOING000");
             // if (wendigoFollowPlayer.selectedRetreat == null)
