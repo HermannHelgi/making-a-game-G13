@@ -7,13 +7,15 @@ public class WendigoRaycast : MonoBehaviour
 {
 
 
-    public GameObject player;
+    public GameObject target;
     public Transform wendigoTransform;
     public bool detected;
     [Header("FOV Settings")]
-    public float radius;
+    public float listenRadius = 50f;
+    public float followRange = 45f;
     [Range(0, 360)]
     public float fovAngle = 60f;
+
     public Vector3 offset = new Vector3(0, 1.5f, 0); // Offset to avoid self-detection
 
     [Tooltip("Layer mask for obstacles")]
@@ -23,7 +25,6 @@ public class WendigoRaycast : MonoBehaviour
     public float loseSightDelay = 6f;
     private float loseSightTimer = 0f;
     private bool sawPlayerThisScan = false;
-    public float listenRadius = 60f;
 
     public Vector3 lastKnownPosition;
 
@@ -31,27 +32,17 @@ public class WendigoRaycast : MonoBehaviour
     {
         if (wendigoTransform == null)
             wendigoTransform = transform;
-        StartCoroutine(FindPlayer());
+        // StartCoroutine(FindPlayer());
     }
 
-    private IEnumerator FindPlayer()
+    private void FindPlayer(float range)
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
-
-        while (true)
-        {
-            yield return wait;
-            sawPlayerThisScan = ScanForPlayer();
-            if (sawPlayerThisScan)
-            {
-                lastKnownPosition = player.transform.position;
-            }
-        }
+        
     }
 
     private bool ScanForPlayer()
     {
-        Collider[] playerInRadius = Physics.OverlapSphere(wendigoTransform.position, radius, playerMask);
+        Collider[] playerInRadius = Physics.OverlapSphere(wendigoTransform.position, followRange, playerMask);
         if (playerInRadius.Length > 0)
         {
             Transform target = playerInRadius[0].transform;
@@ -61,6 +52,7 @@ public class WendigoRaycast : MonoBehaviour
             {
 
                 float distanceToPlayer = Vector3.Distance(wendigoTransform.position, target.position);
+                Debug.DrawRay(wendigoTransform.position, target.transform.position, Color.red);
 
                 if (!Physics.Raycast(wendigoTransform.position, directionToPlayer, distanceToPlayer, obstacleMask))
                 {
@@ -80,33 +72,56 @@ public class WendigoRaycast : MonoBehaviour
 
     private bool ListenForPlayer()
     {   
-        if (Physics.Raycast(wendigoTransform.position, player.transform.position, listenRadius, obstacleMask))
+        Collider[] playerInRadius = Physics.OverlapSphere(wendigoTransform.position, listenRadius, playerMask);
+
+        if(playerInRadius.Length > 0)
         {
-            return true;
+            Transform target = playerInRadius[0].transform;
+            float distanceToPlayer = Vector3.Distance(wendigoTransform.position, target.position);
+            if(distanceToPlayer < listenRadius)
+            {
+                return false;
+            }
+            else{
+                return true;
+            }
         }
         return false;
-        // if (Vector3.Distance(wendigoTransform.position, player.transform.position) < listenRadius && loseSightTimer < loseSightDelay)
-        // {
-        //     return true;
-        // }
-        // return false;
+
     }
 
     void Update()
-    {
-
-        if (sawPlayerThisScan)
-        {
-            detected = true;
-            loseSightTimer = 0;
-        }
-        else
-        {
-            loseSightTimer += Time.deltaTime;
-            if (loseSightTimer >= loseSightDelay)
+    {   
+        float scanDelay = Time.deltaTime;
+        
+        if(scanDelay >= 0.2f)
+        {   
+            // Debug.Log("looking for player");
+            sawPlayerThisScan = ScanForPlayer();
+            if (sawPlayerThisScan)
+            {   
+                Debug.Log("Player detected!");
+                detected = true;
+                loseSightTimer = 0;
+            }
+            else if(ListenForPlayer())
             {
-                detected = false;
+                Debug.Log("Player heard!");
+                lastKnownPosition = target.transform.position;
+                detected = true;
+                loseSightTimer = 0;
+            }
+            else
+            {
+                loseSightTimer += Time.deltaTime;
+                if(loseSightTimer >= loseSightDelay)
+                {
+                    Debug.Log("Player Lost!");
+                    detected = false;
+                }
             }
         }
+        // Debug.Log("Players last known position " + target.transform.position);
+        scanDelay = 0f;
     }
 }

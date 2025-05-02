@@ -1,115 +1,50 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.AI;
 
 public class WendigoFollowPlayer : MonoBehaviour
 {
-    public WendigoRaycast wendigoRaycast;
-    public Transform wendigoTransform;
-    public float speed = 5f;
-    public float caughtDistance = 3f;
-    public float speedMultiplier = 1.5f;
-    public float maxSpeed = 10f;
-
-    public bool lostPlayer = false;
-    public bool attackPlayer = false;
-
+    public GameObject player;
     public NavMeshAgent agent;
-    private wendigoRandomizedSpawner spawnerLogic;
-
+    public WendigoSpawnPointTracker spawnPointTracker;
+    public List<GameObject> retreatPositions;
+    public float retreatDistance;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
-
-
     }
-
-    void Awake()
-    {
-        spawnerLogic = FindFirstObjectByType<wendigoRandomizedSpawner>();
-
-    }
-    private void Update()
-    {
-
-    }
-
-
 
     public void FollowPlayer()
     {
-        // if(agent.isOnNavMesh == false)
-        // {
-        //     agent.enabled = true;
-        // }
-        // SetVolumeIncrease();
-        if (wendigoRaycast.detected)
-        {
-            float distance = Vector3.Distance(wendigoRaycast.player.transform.position, wendigoTransform.position);
-            // Debug.Log("Distance to player: " + distance);
-            Debug.Log("Player Position :" + wendigoRaycast.player.transform.position);
-            if (distance <= caughtDistance)
-            {
-                Debug.Log("Attacking playing");
-                attackPlayer = true;
-            }
-            // Debug.Log("Following Player");
-            agent.SetDestination(wendigoRaycast.player.transform.position);
-            agent.speed = speed * speedMultiplier;
-            agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
-
-
-
-        }
-        else if (!wendigoRaycast.detected)
-        {
-            // Debug.Log("Lost Player");
-            float distance = Vector3.Distance(wendigoTransform.position, wendigoRaycast.lastKnownPosition);
-            if (distance <= caughtDistance)
-            {
-                lostPlayer = true;
-
-            }
-            agent.SetDestination(wendigoRaycast.lastKnownPosition);
-            agent.acceleration = speed / speedMultiplier;
-            agent.speed = Mathf.Clamp(agent.speed, speed, maxSpeed);
-
-
-
-        }
-
-
+        agent.SetDestination(player.transform.position);
     }
 
     public void SpawnBehindPlayer()
     {
+        SpawnBehindPlayer(spawnPointTracker.SelectRandomSpawn().transform.position);
+    }
 
-        float sampleRadius = 10f;
-        GameObject spawnPoint = spawnerLogic.FindStartPoint();
-        // Ray spawnspot =  
-        // PlayChaseMusic();
-        if (NavMesh.SamplePosition(spawnPoint.transform.position, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
+    public void SpawnBehindPlayer(Vector3 spawnPoint, float sampleRadius=10.0f)
+    {
+        if(NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
-            wendigoTransform.position = spawnPoint.transform.position;
-            wendigoTransform.forward = -wendigoRaycast.player.transform.forward;
+            transform.position = spawnPoint;
+            transform.forward = (player.transform.position - transform.position).normalized;
             agent.Warp(hit.position);
         }
     }
-
-    public void SpawnBehindPlayer(Transform spawnPoint)
+    public void Retreat()
     {
-        float sampleRadius = 10f;
-
-        if(NavMesh.SamplePosition(spawnPoint.position, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
+        foreach(GameObject spot in retreatPositions)
         {
-            wendigoTransform.position = spawnPoint.transform.position;
-            wendigoTransform.forward = (wendigoRaycast.player.transform.position - wendigoRaycast.transform.position).normalized;
-
-            agent.Warp(hit.position);  
+            float distance = Vector3.Distance(spot.transform.position, transform.position);
+            if(distance >= retreatDistance)
+            {
+                agent.SetDestination(spot.transform.position);
+            }
         }
     }
-
-    
 }

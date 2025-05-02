@@ -1,49 +1,51 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine.AI;
 
 public class WendigoLookForPlayer: MonoBehaviour
 {
-    private Transform playerFootsteps;
-    public GameObject Wendigo;
-    public WendigoFollowPlayer wendigoFollowPlayer;
-
-    public float trackingTimer = 10f;
-    private float smellTimer = 0f;
+    public GameObject player;
+    public float trackingTimer = 10.0f;
+    private float smellTimer = 0.0f;
+    public float markerTimer = 4.0f;
+    private float trackingMarkerTimer = 0.0f;
     NavMeshAgent agent;
-
+    public int numMarkers = 5;
+    private Queue<Vector3> markers;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        
+        markers = new Queue<Vector3>();
     }
 
     public void TrackFootsteps()
     {   
         smellTimer += Time.deltaTime;
-        if(smellTimer >  trackingTimer)
+        if(smellTimer > trackingTimer)
         {   
-            smellTimer = 0f;
-            playerFootsteps = wendigoFollowPlayer.wendigoRaycast.player.transform;
-            GoToTracks();
+            smellTimer = 0.0f;
+            agent.SetDestination(markers.Dequeue()); 
         }
-        
     }
 
-
-    private void GoToTracks()
+    public void MarkPlayerSighting()
     {
-        
-        wendigoFollowPlayer.agent.SetDestination(playerFootsteps.position); 
-
+        markers.Clear();
+        markers.Enqueue(player.transform.position);
     }
 
-
-
-
+    public void Update()
+    {
+        trackingMarkerTimer -= Time.deltaTime;
+        if (trackingMarkerTimer < 0.0)
+        {
+            trackingMarkerTimer = markerTimer;
+            markers.Enqueue(player.transform.position);
+            while (markers.Count > numMarkers)
+            {
+                markers.Dequeue();
+            }
+        }
+    }
 }

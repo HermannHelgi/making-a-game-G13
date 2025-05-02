@@ -4,11 +4,10 @@ using UnityEngine;
     {   
 
         private GameManager gameManager;
-        public wendigoRandomizedSpawner wendigoRandomizedSpawner;
+        public StalkingBehaviour stalkingBehaviour;
         void Start()
         {
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-            wendigoRandomizedSpawner = GameObject.Find("WendigoSpawner").GetComponent<wendigoRandomizedSpawner>();
         }
         
         void OnTriggerEnter(Collider other)
@@ -21,7 +20,7 @@ using UnityEngine;
             if(other.CompareTag("Wendigo"))
             {
                 // Debug.Log("Wendigo entered safe area");
-                wendigoRandomizedSpawner.DespawnWendigo();
+                // stalkingBehaviour.retreat();
             }
         }
 

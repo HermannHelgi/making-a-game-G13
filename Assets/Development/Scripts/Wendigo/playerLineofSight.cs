@@ -1,55 +1,52 @@
-using UnityEngine;
-using System.Collections.Generic;
+// using UnityEngine;
+// using System.Collections.Generic;
 
 
-public class PlayerLineofSight : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public bool isLooking;
+// public class PlayerLineofSight : MonoBehaviour
+// {
+//     // Start is called once before the first execution of Update after the MonoBehaviour is created
+//     public bool isLooking;
 
-    public float fovThreshold = 0.75f; // 45 degrees
+//     public float fovThreshold = 0.75f; // 45 degrees
 
-    public Camera playerCamera;
-    public List<GameObject> spawnBoxes;
+//     public Camera playerCamera;
+//     public List<GameObject> spawnBoxes;
 
-    public wendigoRandomizedSpawner spawner;
+//     public wendigoRandomizedSpawner spawner;
 
-    public bool wasLooking;
-    private wendigoRandomizedSpawner spawnerLogic;
+//     public bool wasLooking;
+//     private wendigoRandomizedSpawner spawnerLogic;
     
-    void Start()
-    {
+//     void Start()
+//     {
         
-    }
+//     }
 
-    void Awake()
-    {
-        spawnerLogic = FindFirstObjectByType<wendigoRandomizedSpawner>();
+//     void Awake()
+//     {
+//         spawnerLogic = FindFirstObjectByType<wendigoRandomizedSpawner>();
 
-        if (spawnerLogic == null)
-        {
-            Debug.LogError("WendigoRandomizedSpawner not found in the scene!");
-        }
-    }
+//         if (spawnerLogic == null)
+//         {
+//             // Debug.LogError("WendigoRandomizedSpawner not found in the scene!");
+//         }
+//     }
 
     
-    void Update()
+//     void Update()
 
-    {
+//     {
 
 
         
 
-    }
+//     }
 
-    public bool isLookingAtWendigo()
-    {
-        return spawnerLogic.isWendigoWithinFrustum();   
-    }
-
-    
-
-    }
+//     public bool isLookingAtWendigo()
+//     {
+//         return spawnerLogic.isWendigoWithinFrustum();   
+//     }
+//     }
 
 
 
