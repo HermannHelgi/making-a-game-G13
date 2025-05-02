@@ -47,7 +47,7 @@ public class WendigoChasing : WendigoBehaviour
             }
             else
             {
-                if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.position) < attackDistance)
+                if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
                 {
                     playerDeathHandler.die("You were slain by the monster!");
                 }
