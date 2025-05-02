@@ -141,7 +141,7 @@ public class StalkingBehaviour : WendigoBehaviour
                         if (sightTimer > sightThreshold)
                         {
                             playerSightings++;
-                            sightTimer = -sightThreshold * playerSightings;
+                            sightTimer = -sightThreshold * playerSightings/2;
                         }
                     }
                 }   
@@ -177,12 +177,13 @@ public class StalkingBehaviour : WendigoBehaviour
                     ActivateWendigo();
                 }
             }
+
         }
         else if (isEnding)
         {
             UpdateActiveWendigo();
             if(activeWendigo == null)
-            {
+            {   
                 isEnding = false;
             }
             if (inAggressionRange)

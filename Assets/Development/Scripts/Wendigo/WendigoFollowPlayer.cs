@@ -38,6 +38,7 @@ public class WendigoFollowPlayer : MonoBehaviour
             transform.position = spawnPoint;
             transform.forward = (player.transform.position - transform.position).normalized;
             agent.Warp(hit.position);
+            Debug.Log("Spawning at : " + spawnPoint);
         }
     }
     public void Retreat()

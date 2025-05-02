@@ -19,6 +19,8 @@ public class WendigoChasing : WendigoBehaviour
     public WendigoFollowPlayer wendigoFollowPlayer;
     public WendigoLookForPlayer wendigoLookForPlayer;
     public WendigoAttack wendigoAttack;
+    public PlayerDeathHandler playerDeathHandler;
+
 
     public override void EnterState()
     {
@@ -26,27 +28,30 @@ public class WendigoChasing : WendigoBehaviour
         spawned = false;
         agent.enabled = true;
         SpawnBehindPlayer();
+        spawnBehindTimer = spawnBehindCooldown;
     }
 
     public override void Run()
     {   
-        spawnBehindTimer = spawnBehindCooldown;
         if (isActive)
-        {
+        {   
+            Debug.Log("spawn Status: "+ spawned);
             if (!spawned)
             {
                 spawnBehindTimer -= Time.deltaTime;
                 if (spawnBehindTimer < 0.0f)
-                {
+                {   
+                    Debug.Log("Spawning wendigo!"); 
                     wendigoFollowPlayer.SpawnBehindPlayer();
                     spawnBehindTimer = spawnBehindCooldown;
+                    spawned = true;
                 }
             }
             else
             {
-                if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.position) < attackDistance)
-                {
-                    wendigoAttack.Attack();
+                if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
+                {   
+                    playerDeathHandler.die("You were slain by the monster!");
                 }
                 else if (wendigoRaycasts.detected)
                 {
