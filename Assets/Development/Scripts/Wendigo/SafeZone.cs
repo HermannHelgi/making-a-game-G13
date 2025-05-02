@@ -7,10 +7,14 @@ using UnityEngine;
         public StalkingBehaviour stalkingBehaviour;
         void Start()
         {
+            }
+        void Awake()
+        {
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            
         }
-        
-        void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
