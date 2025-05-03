@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     [Header("GameManager variables")]
     [Tooltip("Base singleton instance of the Game Manager, do not touch!")]
@@ -14,9 +15,11 @@ public class GameManager : MonoBehaviour
     public bool inMenu = false; 
     private float menucooldown = 0;
     private float maxmenucooldown = 0.10f;
+    [Tooltip("An array for all Item scriptable objects in the game.")]
+    public ItemScript[] items = new ItemScript[18];
 
     [Header("Witch in the wall variables.")]
-    [Tooltip("An item array for all the possible items in the game, ocne set to true the item is discovered.")]
+    [Tooltip("An item array for all the possible items in the game, once set to true the item is discovered.")]
     public bool[] discovereditems = new bool[18];
 
     [Header("Day and night variables.")]
@@ -28,9 +31,23 @@ public class GameManager : MonoBehaviour
     [Tooltip("A bool which says the player is in a deemed safe area")]
     public bool safeArea = false;
 
-    void Start()
+    void Awake()
     {
         instance = this;
+    }
+
+    public void loadData(GameData data)
+    {
+        discovereditems = data.discoveredItems.ToArray();
+        torchactive = data.torchActive;
+        emberstoneactive = data.emberstoneActive;
+    }
+
+    public void saveData(ref GameData data)
+    {
+        data.discoveredItems = new List<bool>(discovereditems);
+        data.emberstoneActive = emberstoneactive;
+        data.torchActive = torchactive;
     }
 
     void Update()

@@ -1,8 +1,16 @@
 using UnityEngine;
 
-public class InteractableItem : MonoBehaviour
+public class InteractableItem : MonoBehaviour, IDataPersistence
 {
     [Header("ItemScript variables")]
+    [Tooltip("GUID for individual interactable item. DO NOT CHANGE. If empty, right click the script and press 'generate guid for id'")]
+    [SerializeField] private string id;
+    [ContextMenu("Generate guid for id")]
+    private void generateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
+
     public ItemScript pickupitem;
     public int totalpickuptimes = 1;
     [Tooltip("If a DialogueScriptableObject is emplaced, it will send the given dialogue on pickup to the Dialogue Manager. Leave empty if no message should be sent.")]
@@ -12,6 +20,28 @@ public class InteractableItem : MonoBehaviour
     [Tooltip("This section is for when the InteractableItem script needs to be replaced. For example, a berry bush going from a model with berries, to one without. This change happens when totalpickuptimes reach zero.")]
     public bool replaceondepletion;
     public GameObject replacemodel;
+
+    public void loadData(GameData data)
+    {
+        if (data.interactableItemCounts.ContainsKey(id))
+        {
+            data.interactableItemCounts.TryGetValue(id, out int count);
+            totalpickuptimes = count;
+            if (totalpickuptimes == 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void saveData(ref GameData data)
+    {
+        if (data.interactableItemCounts.ContainsKey(id))
+        {
+            data.interactableItemCounts.Remove(id);
+        }
+        data.interactableItemCounts.Add(id, totalpickuptimes);
+    }
 
     public bool pickUp(GameObject playercamera)
     {
@@ -47,13 +77,11 @@ public class InteractableItem : MonoBehaviour
                         newmodel.transform.position = gameObject.transform.position;
                         newmodel.transform.rotation = gameObject.transform.rotation;
                         newmodel.transform.localScale = gameObject.transform.localScale;
-                        // See below comment
-                        Destroy(gameObject);
+                        gameObject.SetActive(false);
                     }
                     else
                     {
-                        // This works, surprisingly. The object is marked as "deleted" but it doesn't get removed until next frame. Allowing it to send the bool.
-                        Destroy(gameObject);
+                        gameObject.SetActive(false);
                     }
                 }
                 GameManager.instance.discovereditems[pickupitem.index] = true;

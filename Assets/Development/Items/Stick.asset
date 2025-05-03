@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: STICK
   index: 0
-  icon: {fileID: 21300000, guid: 60b6bcc73a3735f4cafe9a17ff3a9787, type: 3}
+  icon: {fileID: 21300000, guid: 103ceca57fbdc954aad2e40cd06f7df0, type: 3}
   model: {fileID: 6943400304533761545, guid: b5460c68e17863c4fb1c55b8453d244f, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
+  unique: 0
+  craftingDescription: 

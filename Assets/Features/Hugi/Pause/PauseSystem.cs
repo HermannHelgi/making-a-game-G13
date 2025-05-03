@@ -1,28 +1,60 @@
 using UnityEngine;
-using System.Collections;
-using StarterAssets;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseSystem : MonoBehaviour
 {
+    [Header("Pause Menu Variables")]
     public static bool isPaused = false; // Static so other scripts can check
     public GameObject pauseMenu; // Assign this in the Inspector
-    public GameObject player;
-    public PlayerDeathHandler deathhandler;
-    private FirstPersonController playerController;
+    public float maxMessageTimer;
+    
+    [Header("References")]
+    public string mainMenuSceneName;
+    public GameObject loadLastSaveButton;
+    public GameObject saveButton;
+    public GameObject messageToPlayer;
+    
+
+    private FileDataHandler fileDataHandler;
+    private float messageTimer;
 
     void Start()
     {
-        if (player != null)
+        if (DataPersistenceManager.instance != null)
         {
-            playerController = player.GetComponent<FirstPersonController>();
+            fileDataHandler = new FileDataHandler(Application.persistentDataPath, DataPersistenceManager.instance.fileName);
+        }
+        else
+        {
+            saveButton.GetComponent<Button>().interactable = false;
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !deathhandler.playerhasdied && (!GameManager.instance.inMenu || isPaused))
+        if (Input.GetKeyDown(KeyCode.Escape) && (!GameManager.instance.inMenu || isPaused))
         {
+            // Need to check if new save has been made to make load button "interactable"
+            if (fileDataHandler.fileExists())
+            {
+                loadLastSaveButton.GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                loadLastSaveButton.GetComponent<Button>().interactable = false;
+            }
+
             TogglePause();
+        }
+
+        if (messageTimer > 0)
+        {
+            messageTimer -= Time.deltaTime;
+            if (messageTimer <= 0)
+            {
+                messageToPlayer.SetActive(false);
+            }
         }
     }
 
@@ -54,10 +86,31 @@ public class PauseSystem : MonoBehaviour
         }
     }
 
-    public void ApplicationQuit()
+    public void leaveToMainMenu()
     {
-        Application.Quit();
-        // Change when Main_Menu is ready
-        // UnityEngine.SceneManagement.SceneManager.LoadScene("Main_Menu");
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        AudioListener.pause = false;
+
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+
+    public void loadLastSave()
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        AudioListener.pause = false;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void saveGame()
+    {
+        DataPersistenceManager.instance.saveGame();
+        messageToPlayer.SetActive(true);
+        loadLastSaveButton.GetComponent<Button>().interactable = true;
+        messageTimer = maxMessageTimer;
     }
 }

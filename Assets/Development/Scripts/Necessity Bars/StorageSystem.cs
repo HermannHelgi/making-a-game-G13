@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StorageSystem : MonoBehaviour
+public class StorageSystem : MonoBehaviour, IDataPersistence
 {
     [Header("Storage system variables")]
     [Tooltip("The maximum amount of slots in chest.")]
@@ -47,7 +47,7 @@ public class StorageSystem : MonoBehaviour
     private GameObject torchdurabilitybar = null;
     private GameObject emberstonedurabilitybar = null;
 
-    void Start()
+    void Awake()
     {
         //  Instantiate the arrays
         itemcontents = new ItemScript[maxstoragesize];
@@ -62,6 +62,36 @@ public class StorageSystem : MonoBehaviour
             childObject.transform.SetParent(storageslotgrid.transform, false);
             childObject.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedstoragecolor;
             storageslots[i] = childObject;
+        }
+    }
+
+    public void loadData(GameData data)
+    {
+        for (int i = 0; i < data.chestInventory.Count; i++)
+        {
+            if (data.chestInventory[i] == -1)
+            {
+                itemcontents[i] = null;
+            }
+            else
+            {
+                itemcontents[i] = GameManager.instance.items[data.chestInventory[i]];
+            }
+        }
+    }
+
+    public void saveData(ref GameData data)
+    {
+        for (int i = 0; i < itemcontents.Length; i++)
+        {
+            if (itemcontents[i] == null)
+            {
+                data.chestInventory[i] = -1;
+            }
+            else
+            {
+                data.chestInventory[i] = itemcontents[i].index;
+            }
         }
     }
 

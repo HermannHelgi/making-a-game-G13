@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WitchDialogueHandler : MonoBehaviour
+public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
 {
     [Header("Dialogue Variables")]
     public GameObject lerpposition;
@@ -21,11 +22,45 @@ public class WitchDialogueHandler : MonoBehaviour
     private GameObject escmess;
     private PlayerLookScript playerlook;
 
-    void Start()
+    void Awake()
     {
         // Need to initialize the queue
         dialoguequeue = new Queue<DialogueScriptableObject>();
         currentdialoguechain = null;
+    }
+
+    public void loadData(GameData data)
+    {
+        foreach (int i in data.witchDialogueQueue)
+        {
+            dialoguequeue.Enqueue(DialogueManager.instance.allDialogue[i]);
+        }
+    }
+
+    public void saveData(ref GameData data)
+    {
+        if (currentdialoguechain != null)
+        {
+            for (int i = 0; i < DialogueManager.instance.allDialogue.Length; i++)
+            {
+                if (currentdialoguechain == DialogueManager.instance.allDialogue[i])
+                {
+                    data.witchDialogueQueue.Add(i);
+                    break;
+                }
+            }
+        }
+        
+        foreach (DialogueScriptableObject dialogue in dialoguequeue)
+        {
+            for (int i = 0; i < DialogueManager.instance.allDialogue.Length; i++)
+            {
+                if (dialogue == DialogueManager.instance.allDialogue[i])
+                {
+                    data.witchDialogueQueue.Add(i);
+                }
+            }
+        }
     }
 
     void Update()
