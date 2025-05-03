@@ -102,7 +102,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             {
                 continue;
             }
-            if (GameObjectWithinFrustum(wendigo, playerCamera, 30f))
+            if (GameObjectWithinFrustum(wendigo, playerCamera, 15f))
             {
                 potentialSpawns.Add(wendigo);
             }
