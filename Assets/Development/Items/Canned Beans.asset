@@ -19,6 +19,6 @@ MonoBehaviour:
   craftingrecipe: []
   onetimecraft: 0
   consumable: 1
-  hungergain: 0
+  hungergain: 90
   unique: 0
   craftingDescription: 
