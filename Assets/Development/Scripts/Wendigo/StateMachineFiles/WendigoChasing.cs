@@ -51,13 +51,16 @@ public class WendigoChasing : WendigoBehaviour
             {
                 if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
                 {   
-                    // soundManager.PlayGroup("Wendigo_kill");
+                    soundManager.ChangeSoundsnapshot("SPOOKY", 1f);
+                    soundManager.PlayGroup("WENDIGO_KILL");
                     playerDeathHandler.die("You were slain by the monster!");
+                    soundManager.ExitSoundsnapshot(0f);
                 }
 
                 else if (wendigoRaycasts.detected || wendigoFollowPlayer.justSpawned == true)
-                {      
-                    // soundManager.PlayGroup("Wendigo_Follow");
+                {   
+                    soundManager.ChangeSoundsnapshot("SPOOKY", 3f);
+                    soundManager.PlayGroup("WENDIGO_FOLLOW");
                     searchTime = 0.0f;
                     wendigoFollowPlayer.justSpawned = false;
                     wendigoFollowPlayer.FollowPlayer();
@@ -66,7 +69,7 @@ public class WendigoChasing : WendigoBehaviour
 
                 else if (!wendigoRaycasts.detected)
                 {   
-                    // soundManager.PlayGroup("Wendigo_tracking");
+                    soundManager.ExitSoundsnapshot(1f);
                     searchTime += Time.deltaTime;
                     wendigoLookForPlayer.TrackFootsteps();
                 }

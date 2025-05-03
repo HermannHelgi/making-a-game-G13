@@ -61,26 +61,26 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
-     if (Input.GetKeyDown(KeyCode.V))
-        {
-            PlayGroup("STOMP");
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-            {
-                PlayGroup("FOOD");
-            }
-        else if (Input.GetKeyDown(KeyCode.N))
-            {
-                ChangeSoundsnapshot("SPOOKY", 0.9f);
-            }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            ExitSoundsnapshot(0.6f);
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            PlayGroup("WALK");
-        }
+    //  if (Input.GetKeyDown(KeyCode.V))
+    //     {
+    //         PlayGroup("STOMP");
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.B))
+    //         {
+    //             PlayGroup("FOOD");
+    //         }
+    //     else if (Input.GetKeyDown(KeyCode.N))
+    //         {
+    //             ChangeSoundsnapshot("SPOOKY", 0.9f);
+    //         }
+    //     else if (Input.GetKeyDown(KeyCode.M))
+    //     {
+    //         ExitSoundsnapshot(0.6f);
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.C))
+    //     {
+    //         PlayGroup("WALK");
+    //     }
  
     }
 

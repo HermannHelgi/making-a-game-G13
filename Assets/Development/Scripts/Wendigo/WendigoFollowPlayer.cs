@@ -43,7 +43,7 @@ public class WendigoFollowPlayer : MonoBehaviour
             agent.Warp(hit.position);
             justSpawned = true;
             Debug.Log("Spawning at : " + spawnPoint);
-            // soundManager.PlayGroup("Wendigo_Stalking");
+            soundManager.PlayGroup("WENDIGO_STALKING");
             
         }
     }

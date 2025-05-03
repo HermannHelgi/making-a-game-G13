@@ -12,6 +12,7 @@ public class WendigoLookForPlayer: MonoBehaviour
     NavMeshAgent agent;
     public int numMarkers = 5;
     private Queue<Vector3> markers;
+    public SoundManager soundManager;
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class WendigoLookForPlayer: MonoBehaviour
         if(smellTimer > trackingTimer)
         {   
             smellTimer = 0.0f;
+            soundManager.PlayGroup("WENDIGO_TRACKING");
+
             agent.SetDestination(markers.Dequeue()); 
         }
     }
