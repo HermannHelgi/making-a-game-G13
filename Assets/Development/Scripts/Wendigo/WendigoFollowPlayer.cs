@@ -11,6 +11,9 @@ public class WendigoFollowPlayer : MonoBehaviour
     public List<GameObject> retreatPositions;
     public GameObject selectedRetreat;
     public float retreatDistance;
+    public SoundManager soundManager;
+    public bool justSpawned;
+    
 
     private void Start()
     {
@@ -38,11 +41,15 @@ public class WendigoFollowPlayer : MonoBehaviour
             transform.position = spawnPoint;
             transform.forward = (player.transform.position - transform.position).normalized;
             agent.Warp(hit.position);
+            justSpawned = true;
             Debug.Log("Spawning at : " + spawnPoint);
+            // soundManager.PlayGroup("Wendigo_Stalking");
+            
         }
     }
     public void Retreat()
-    {
+    {   
+
         foreach(GameObject spot in retreatPositions)
         {
             float distance = Vector3.Distance(spot.transform.position, transform.position);
@@ -52,5 +59,6 @@ public class WendigoFollowPlayer : MonoBehaviour
                 break;
             }
         }
+    
     }
 }

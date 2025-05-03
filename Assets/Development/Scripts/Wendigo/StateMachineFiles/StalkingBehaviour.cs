@@ -21,6 +21,7 @@ public class StalkingBehaviour : WendigoBehaviour
     private float spawnTimer ;
     [SerializeField] private float sightTimer = 0.0f;
     private bool seen = false;
+    public SoundManager soundManager;
 
     void Awake()
     {
@@ -71,8 +72,7 @@ public class StalkingBehaviour : WendigoBehaviour
     void ActivateWendigo()
     {   
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
-        // SkinnedMeshRenderer mesh = activeWendigo.GetComponent<SkinnedMeshRenderer>();
-        // mesh.enabled = true;
+        // soundManager.PlayGroup("Wendigo_Spawn");
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
         if (mesh == null)
         {
@@ -139,7 +139,8 @@ public class StalkingBehaviour : WendigoBehaviour
                     {
                         sightTimer += Time.deltaTime;
                         if (sightTimer > sightThreshold)
-                        {
+                        {   
+                            // soundManager.PlayGroup("Wendigo_Staring");
                             playerSightings++;
                             sightTimer = -sightThreshold * playerSightings/2;
                         }

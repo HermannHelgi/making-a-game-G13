@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 
 public class WendigoChasing : WendigoBehaviour
@@ -20,28 +21,28 @@ public class WendigoChasing : WendigoBehaviour
     public WendigoLookForPlayer wendigoLookForPlayer;
     public WendigoAttack wendigoAttack;
     public PlayerDeathHandler playerDeathHandler;
+    public SoundManager soundManager;
+    // public bool isRetreating = false;
 
 
     public override void EnterState()
     {
         base.EnterState();
-        spawned = false;
         agent.enabled = true;
+        spawned = false;
         SpawnBehindPlayer();
         spawnBehindTimer = spawnBehindCooldown;
+        
     }
-
     public override void Run()
     {   
         if (isActive)
         {   
-            Debug.Log("spawn Status: "+ spawned);
             if (!spawned)
             {
                 spawnBehindTimer -= Time.deltaTime;
                 if (spawnBehindTimer < 0.0f)
                 {   
-                    Debug.Log("Spawning wendigo!"); 
                     wendigoFollowPlayer.SpawnBehindPlayer();
                     spawnBehindTimer = spawnBehindCooldown;
                     spawned = true;
@@ -51,16 +52,22 @@ public class WendigoChasing : WendigoBehaviour
             {
                 if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
                 {   
+                    // soundManager.PlayGroup("Wendigo_kill");
                     playerDeathHandler.die("You were slain by the monster!");
                 }
-                else if (wendigoRaycasts.detected)
-                {
+
+                else if (wendigoRaycasts.detected || wendigoFollowPlayer.justSpawned == true)
+                {      
+                    // soundManager.PlayGroup("Wendigo_Follow");
                     searchTime = 0.0f;
+                    wendigoFollowPlayer.justSpawned = false;
                     wendigoFollowPlayer.FollowPlayer();
                     wendigoLookForPlayer.MarkPlayerSighting();
                 }
+
                 else if (!wendigoRaycasts.detected)
-                {
+                {   
+                    // soundManager.PlayGroup("Wendigo_tracking");
                     searchTime += Time.deltaTime;
                     wendigoLookForPlayer.TrackFootsteps();
                 }
@@ -68,28 +75,25 @@ public class WendigoChasing : WendigoBehaviour
         }
         else if (isEnding)
         {
-            isEnding = false;	
-            agent.enabled = false;
-            transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
             searchTime = 0;
-
-            // Debug.Log("DOING000");
-            // if (wendigoFollowPlayer.selectedRetreat == null)
-            // {
-            //     wendigoFollowPlayer.Retreat();
-            // }
-
-            // if (Vector3.Distance(transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
-            // {
-            //     Debug.Log("DISSAPEARS");
-            //     agent.enabled = false;
-            //     transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
-            //     spawned = false;
-            // }
-            // else if (wendigoRaycasts.detected)
-            // {
-            //     isEnding = false;
-            // }
+            if (wendigoFollowPlayer.selectedRetreat == null)
+            {
+                wendigoFollowPlayer.Retreat();
+                // isRetreating = true;
+                agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);
+                
+                
+            }
+            if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
+            {
+                Debug.Log("DISSAPEARS");
+                agent.enabled = false;
+                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+                // isRetreating = true;
+                spawned = false;
+                isEnding = false;
+                
+            }
         }        
     }
 
@@ -106,5 +110,10 @@ public class WendigoChasing : WendigoBehaviour
                 stalkingBehaviour.DespawnWendigo();
             }
         }
+        // if(isRetreating)
+        // {
+        //     spawned = true;
+        //     isRetreating = false;
+        // }
     }
 }
