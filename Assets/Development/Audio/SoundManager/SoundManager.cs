@@ -129,7 +129,6 @@ public class SoundManager : MonoBehaviour
             {
                 if(!group.source.isPlaying)
                 {
-                    Debug.Log($"[SoundManager] Playing from group '{groupName}': {randomSound.soundName}");
                     group.source.PlayOneShot(randomSound.clip);
                 }
             }

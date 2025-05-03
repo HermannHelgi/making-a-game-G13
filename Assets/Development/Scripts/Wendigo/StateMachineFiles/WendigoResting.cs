@@ -11,7 +11,7 @@ public class WendigoResting : WendigoBehaviour
     {
         if (isActive)
         {
-            transform.position = wendigoSpawnPointTracker.despawnPoint.position;
+            transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.position;
             if (gameManager.isNight == true && gameManager.safeArea == false)
             {
                 isEnding = true;

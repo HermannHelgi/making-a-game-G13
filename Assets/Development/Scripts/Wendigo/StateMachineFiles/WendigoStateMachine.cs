@@ -61,7 +61,6 @@ public class WendigoStateMachine : MonoBehaviour
     {
         if (!GameManager.instance.isNight || GameManager.instance.safeArea)
         {   
-            Debug.Log("Entering Resting State");
             SetNewState(resting);
         }
         if (activeState == resting && GameManager.instance.isNight && !GameManager.instance.safeArea)

@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         discovereditems = data.discoveredItems.ToArray();
         torchactive = data.torchActive;
         emberstoneactive = data.emberstoneActive;
+        isNight = data.isNight;
     }
 
     public void saveData(ref GameData data)
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.discoveredItems = new List<bool>(discovereditems);
         data.emberstoneActive = emberstoneactive;
         data.torchActive = torchactive;
+        data.isNight = isNight;
     }
 
     void Update()

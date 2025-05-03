@@ -19,7 +19,6 @@ public class WendigoChasing : WendigoBehaviour
     public WendigoRaycast wendigoRaycasts;
     public WendigoFollowPlayer wendigoFollowPlayer;
     public WendigoLookForPlayer wendigoLookForPlayer;
-    public WendigoAttack wendigoAttack;
     public PlayerDeathHandler playerDeathHandler;
     public SoundManager soundManager;
     // public bool isRetreating = false;

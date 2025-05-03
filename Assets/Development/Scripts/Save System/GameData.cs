@@ -31,6 +31,9 @@ public class GameData
 
     public SerializableDictionary<string, int> interactableItemCounts;
 
+    public bool isNight;
+    public float timeOfDay;
+
     // This is all for the tutorial, don't ask...
 
     public bool tutorialinprogress;
@@ -74,6 +77,8 @@ public class GameData
         playerInventory = new List<int>();
         chestInventory = new List<int>();
         interactableItemCounts = new SerializableDictionary<string, int>();
+        isNight = false;
+        timeOfDay = 0;
 
         tutorialinprogress = false;
         cannotcraft = false;

@@ -126,6 +126,7 @@ public class StalkingBehaviour : WendigoBehaviour
                 if (counter == 3)
                 {   
                     sightTimer = 0;
+                    Debug.Log("ALL HIT");
                     DeActivateWendigo();
                 }
                 else
@@ -149,6 +150,7 @@ public class StalkingBehaviour : WendigoBehaviour
             }
             else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
             {
+                Debug.Log("FRUSTRUM");
                 seen = false;
                 DeActivateWendigo();
             }
