@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b360467a1a45e464396a8062078c8386, type: 3}
+  m_Name: OnBottlePickup
+  m_EditorClassIdentifier: 
+  dialoguename: ONBOTTLEPICKUP
+  dialogue:
+  - "\u201COoh, I see you\u2019ve found the <i><b>bottle of liquid courage!</b></i>\u201D "
+  - "\u201CHm? You found it in an abandoned cabin?\u201D "
+  - "\u201CAh yes\u2026 there was once a man who lived there, the type that cuts
+    the trees to feed their family.\u201D "
+  - "\u201CHe was a kind man\u2026 once.\u201D "
+  - "\u201CHowever, over time, he spent more and more of his nights in drunken stupors.\u201D "
+  - "\u201CHe began to lose himself in those bottles.\u201D"
+  - "\u201CAnd with time, his family as well.\u201D "
+  - "\u201DHis wife, his son, his daughter.\u201D "
+  - "\u201CThen, one day, he turned to me...\u201D "
+  - "\u201C...said he\u2019d do <i><b>anything</b></i> for the touch of his closest
+    blood again.\u201D "
+  - "\u201C...\u201D"
+  - "\u201CWell, story time\u2019s over, go find what\u2019s left, alright sweetie?\u201D "

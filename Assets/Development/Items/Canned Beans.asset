@@ -15,7 +15,7 @@ MonoBehaviour:
   itemname: CANNED BEANS
   index: 5
   icon: {fileID: 21300000, guid: 8e4dff83983a3f444b5696fdfbee4b79, type: 3}
-  model: {fileID: 832607391920195203, guid: 7065c0d3be5fa1b468cdf11798e82212, type: 3}
+  model: {fileID: 8985706911905830324, guid: 0e29d482f71f5394eb445fc5c22afcaf, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 1

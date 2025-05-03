@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     public static DialogueManager instance;
     [Tooltip("All dialogue objects in the game. If any elements are missing then it will go badly.")]
     public DialogueScriptableObject[] allDialogue;
+    public int[] indexForPotionDialogue;
+    public DialogueScriptableObject winConditionText;
 
     // Private stuffs
     // This dialogueflags will always be generated the same way. Due to this, we can just save this array for which flags have been activated to redo everything :D
@@ -60,6 +62,13 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
                 }
                 dialogueflags[i] = true;
                 witchdialogue.addDialogueToQueue(newdialogue);
+
+                // This is hardcoded as there are ATM always three items required for the potion. If the recipe changes, then this needs to be changed as well.
+                if (dialogueflags[indexForPotionDialogue[0]] && dialogueflags[indexForPotionDialogue[1]] && dialogueflags[indexForPotionDialogue[2]])
+                {
+                    SetDialogueFlags(winConditionText);
+                }
+
                 break;
             }
         }
