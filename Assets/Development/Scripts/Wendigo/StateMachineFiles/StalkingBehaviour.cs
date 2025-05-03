@@ -30,7 +30,6 @@ public class StalkingBehaviour : WendigoBehaviour
     public override void EnterState()
     {
         base.EnterState();
-        playerSightings = 0;
         inAggressionRange = false;
         spawnTimer = spawnCooldown;
     }
@@ -72,7 +71,7 @@ public class StalkingBehaviour : WendigoBehaviour
     void ActivateWendigo()
     {   
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
-        // soundManager.PlayGroup("Wendigo_Spawn");
+        soundManager.PlayGroup("WENDIGO_STALKING");
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
         if (mesh == null)
         {
@@ -141,7 +140,7 @@ public class StalkingBehaviour : WendigoBehaviour
                         if (sightTimer > sightThreshold)
                         {   
                             soundManager.ChangeSoundsnapshot("SPOOKY", 0f);
-                            soundManager.PlayGroup("WENDINGO_STARING");
+                            soundManager.PlayGroup("WENDIGO_STARING");
                             
                             playerSightings++;
                             sightTimer = -sightThreshold * playerSightings/2;
