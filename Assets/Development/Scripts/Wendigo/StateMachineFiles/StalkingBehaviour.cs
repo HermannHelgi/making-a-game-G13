@@ -140,6 +140,7 @@ public class StalkingBehaviour : WendigoBehaviour
                         sightTimer += Time.deltaTime;
                         if (sightTimer > sightThreshold)
                         {   
+                            soundManager.ChangeSoundsnapshot("SPOOKY", 0f);
                             soundManager.PlayGroup("WENDINGO_STARING");
                             
                             playerSightings++;
@@ -149,7 +150,8 @@ public class StalkingBehaviour : WendigoBehaviour
                 }   
             }
             else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
-            {
+            {   
+                soundManager.ExitSoundsnapshot(0f);
                 seen = false;
                 DeActivateWendigo();
             }
