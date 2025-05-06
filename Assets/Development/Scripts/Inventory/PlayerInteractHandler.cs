@@ -1,3 +1,4 @@
+using System.Linq;
 using StarterAssets;
 using TMPro;
 using UnityEngine;
@@ -54,6 +55,8 @@ public class PlayerInteractHandler : MonoBehaviour
     [Tooltip("The interact text which is shown on being able to open storage system.")]
     public string storageinteracttext;
 
+    public bool highlighting = false;
+
     void Start()
     {
         popuptext.gameObject.SetActive(false);
@@ -90,6 +93,8 @@ public class PlayerInteractHandler : MonoBehaviour
             {
                 popuptext.text = interactwithobjectstring;
                 popuptext.gameObject.SetActive(true);
+                hit.transform.GetComponent<Outline>().enabled = true;
+                highlighting = true;
             }
             else if (witchscript != null)
             {
@@ -152,11 +157,13 @@ public class PlayerInteractHandler : MonoBehaviour
             else
             {
                 popuptext.gameObject.SetActive(false);
+                highlighting = false;
             }
         }
         else
         {
             popuptext.gameObject.SetActive(false);
+            highlighting = false;
         }
     }
 
