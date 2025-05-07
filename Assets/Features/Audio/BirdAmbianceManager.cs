@@ -3,7 +3,7 @@ using UnityEngine;
 public class BirdAmbianceManager : MonoBehaviour
 {
 
-    public bool isNight;
+    GameManager gameManager;
     public SoundManager soundManager;
     public float timeTilNextChrip = 100f;
     public float _timeTilNextChrip;
@@ -19,7 +19,7 @@ public class BirdAmbianceManager : MonoBehaviour
     {
             if(_timeTilNextChrip < 0)
             {
-                if(isNight)
+                if(GameManager.instance.isNight)
                 {
                     soundManager.PlayGroup("OWL_CHRIPS");
                 }

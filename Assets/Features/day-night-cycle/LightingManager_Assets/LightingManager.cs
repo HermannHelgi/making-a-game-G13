@@ -31,7 +31,10 @@ public class LightingManager : MonoBehaviour, IDataPersistence
         [Range(0, 24)] public float TimeOfDay = 12f;
         [Range(0, 24)] public float StartTime = 12f;
             //How long the day cycle will be in seconds
-        [Range(1, 1200)] public float CycleDuration = 360f;
+        public float CycleDuration = 360f;
+        [Range(1, 1200)] public float DayCycleDuration = 80f;
+        [Range(1, 1200)] public float nightCycleDuration = 240f;
+        
         public Vector2 morningInterval = new Vector2(0f, 0.5f);
         public Vector2 afterNoonInterval = new Vector2(0.5f, 1f);
         public Vector2 lightIntensity = new Vector2(0f, 1f);
@@ -112,11 +115,34 @@ public class LightingManager : MonoBehaviour, IDataPersistence
 
         private void Update()
         {
+            if (GameManager.instance != null)
+            {
+                if(TimeOfDay <= endOfNight || TimeOfDay >= startOfNight)
+                {
+                    GameManager.instance.isNight = true;
+                    if(CycleDuration <= nightCycleDuration)
+                    {
+                        CycleDuration += 6;
+                    }
+                }
+                else
+                {
+                    GameManager.instance.isNight = false;
+                    if(CycleDuration > DayCycleDuration)
+                    {
+                        CycleDuration -= 6;
+                    }
+                }
+            }
+
+
             if (Preset == null)
                 return;
 
             if (Application.isPlaying)
             {
+
+
                 //(Replace with a reference to your game time if needed)
                 if(IsDayCycleOn)
                 {
@@ -135,17 +161,7 @@ public class LightingManager : MonoBehaviour, IDataPersistence
                 UpdateLighting(TimeOfDay / 24f);
             }
 
-            if (GameManager.instance != null)
-            {
-                if(TimeOfDay <= endOfNight || TimeOfDay >= startOfNight)
-                {
-                    GameManager.instance.isNight = true;
-                }
-                else
-                {
-                    GameManager.instance.isNight = false;
-                }
-            }
+
 
 
             //Detects when an event should trigger
