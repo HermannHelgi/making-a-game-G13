@@ -9,10 +9,13 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     public Camera playerCamera;
     public LayerMask wendigoLayer;
     [Header("SpawnPoints distance")]
-    public float minSpawnDistance;
-    public float maxSpawnDistance;
+    public float minSpawnDistance = 45f;
+    public float maxSpawnDistance = 60f;
+    public float minStalkDistance = 20f;
+    public float maxStalkDistance = 40f;
     public Transform despawnPoint;
     private HashSet<GameObject> spawnPositions;
+    private HashSet<GameObject> chasePositions;
 
     void Start()
     {
@@ -20,6 +23,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     void Awake()
     {
         spawnPositions = new HashSet<GameObject>();
+        chasePositions = new HashSet<GameObject>();
     }
 
     private GameObject SelectRandom(HashSet<GameObject> set)
@@ -51,7 +55,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
                 toRemove.Add(spawn);
             }
             float distance = Vector3.Distance(spawn.transform.position, playerCamera.transform.position);
-            if (distance < minSpawnDistance || distance > maxSpawnDistance)
+            if (distance < minStalkDistance || distance > maxStalkDistance)
             {   
                 toRemove.Add(spawn);
             }
@@ -61,13 +65,41 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             spawnPositions.Remove(potentialRemove);
         }
 
-        foreach (Collider collision in Physics.OverlapSphere(transform.position, maxSpawnDistance, wendigoLayer))
+        foreach (Collider collision in Physics.OverlapSphere(transform.position, maxStalkDistance, wendigoLayer))
         {   
             if(!GameObjectWithinFrustum(collision.gameObject, playerCamera))
             {   
                 spawnPositions.Add(collision.gameObject);
             }
         }
+
+        toRemove.Clear();
+                foreach(GameObject spawn in chasePositions)
+        {   
+            // Debug.Log(spawn.transform.position);
+            if(spawn == null)
+            {
+                toRemove.Add(spawn);
+            }
+            float distance = Vector3.Distance(spawn.transform.position, playerCamera.transform.position);
+            if (distance < minSpawnDistance || distance > maxSpawnDistance)
+            {   
+                toRemove.Add(spawn);
+            }
+        }
+        foreach(GameObject remove in toRemove)
+        {
+            chasePositions.Remove(remove);
+        }
+
+        foreach (Collider collision in Physics.OverlapSphere(transform.position, maxSpawnDistance, wendigoLayer))
+        {   
+            if(!GameObjectWithinFrustum(collision.gameObject, playerCamera))
+            {   
+                chasePositions.Add(collision.gameObject);
+            }
+        }
+        
     }
 
     private bool GameObjectWithinFrustum(GameObject go, Camera camera, float offset=20.0f)
@@ -98,7 +130,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
         {
             Vector3 wendigoVector = wendigo.transform.position - playerCamera.transform.position;
             wendigoVector.y = 0;
-            if (wendigoVector.magnitude < minSpawnDistance)
+            if (wendigoVector.magnitude < minStalkDistance)
             {
                 continue;
             }
@@ -114,6 +146,40 @@ public class WendigoSpawnPointTracker : MonoBehaviour
         else 
         {
             return null;
+        }
+    }
+
+    public GameObject SelectRandomSpawn(bool chasing)
+    {   
+        if(chasing)
+        {
+            HashSet<GameObject> potentialSpawns = new HashSet<GameObject>();
+            foreach (GameObject wendigo in chasePositions)
+            {
+                Vector3 wendigoVector = wendigo.transform.position - playerCamera.transform.position;
+                wendigoVector.y = 0;
+                if (wendigoVector.magnitude < minSpawnDistance)
+                {
+                    continue;
+                }
+                if (GameObjectWithinFrustum(wendigo, playerCamera, 35f))
+                {
+                    potentialSpawns.Add(wendigo);
+                }
+            }
+            if (potentialSpawns.Count > 0)
+            {   
+                return SelectRandom(potentialSpawns);
+            }
+            else 
+            {
+                return null;
+            }
+
+        }
+        else
+        {
+            return SelectRandomSpawn();
         }
     }
 

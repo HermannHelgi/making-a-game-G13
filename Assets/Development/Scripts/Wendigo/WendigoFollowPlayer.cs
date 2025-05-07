@@ -117,12 +117,12 @@ public class WendigoFollowPlayer : MonoBehaviour
         selectedRetreat = null;
         GameObject spawnPosition = null;
 
-        spawnPosition = spawnPointTracker.SelectRandomSpawn();
+        spawnPosition = spawnPointTracker.SelectRandomSpawn(true);
         while(true)
         {
             if(spawnPointTracker == null)
             {
-                spawnPosition = spawnPointTracker.SelectRandomSpawn();
+                spawnPosition = spawnPointTracker.SelectRandomSpawn(true);
 
             }
             else
