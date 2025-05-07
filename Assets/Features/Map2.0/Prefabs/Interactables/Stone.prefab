@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5111860334774688537}
+  - component: {fileID: 1688458576758949998}
   - component: {fileID: 4708594184736437782}
   - component: {fileID: 9030147979076543582}
   - component: {fileID: 4720131481741657971}
@@ -38,6 +39,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1688458576758949998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414641054961208694}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8745098, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!33 &4708594184736437782
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -570,11 +589,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d80f684d1835a4fb7fdf9cfb81d289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   pickupitem: {fileID: 11400000, guid: 8b14aa1ae2305054b8c3aa6c70e235d7, type: 2}
   totalpickuptimes: 1
   dialoguetriggerforwitch: {fileID: 0}
   replaceondepletion: 0
   replacemodel: {fileID: 0}
+  playerInteractHandler: {fileID: 0}
+  outlineHandler: {fileID: 1688458576758949998}
 --- !u!65 &7645668049314458280
 BoxCollider:
   m_ObjectHideFlags: 0

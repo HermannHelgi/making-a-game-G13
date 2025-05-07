@@ -328,7 +328,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   hueVsHue:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value:
       <length>k__BackingField: 3
       m_Loop: 1
