@@ -28,6 +28,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public bool chestUnlocked;
     public List<bool> discoveredItems;
+    public List<bool> unlockedItems;
     public List<bool> hasBeenCrafted;
 
     public List<bool> dialogueFlags;
@@ -82,6 +83,7 @@ public class DataPersistenceManager : MonoBehaviour
         gameData.campfireUnlocked = campfireUnlocked;
         gameData.chestUnlocked = chestUnlocked;
         gameData.discoveredItems = discoveredItems;
+        gameData.unlockedItems = unlockedItems;
         gameData.hasBeenCrafted = hasBeenCrafted;
         gameData.dialogueFlags = dialogueFlags;
         gameData.witchDialogueQueue = witchDialogueQueue;

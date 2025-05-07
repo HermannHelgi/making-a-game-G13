@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Development/Scenes/Main Menu/mainMenuScene.unity
     guid: 53204d58187c5194ba8ec4b24723e4e8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Features/save-system/Save system demo scene.unity
     guid: 2a0da0b4687e4b74cbb3534317a5c1b4
+  - enabled: 1
+    path: Assets/Development/Scenes/Playtest2/Playtest2Scene.unity
+    guid: 8ab2c03f8bc3e2f4380e8677ee7ef351
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

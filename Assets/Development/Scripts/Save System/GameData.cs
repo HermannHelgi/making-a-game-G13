@@ -21,6 +21,7 @@ public class GameData
     public bool chestUnlocked;
 
     public List<bool> discoveredItems;
+    public List<bool> unlockedItems;
     public List<bool> hasBeenCrafted;
 
     public List<bool> dialogueFlags;
@@ -71,6 +72,7 @@ public class GameData
         campfireUnlocked = false;
         chestUnlocked = false;
         discoveredItems = new List<bool>();
+        unlockedItems = new List<bool>();
         hasBeenCrafted = new List<bool>();
         dialogueFlags = new List<bool>();
         witchDialogueQueue = new List<int>();
