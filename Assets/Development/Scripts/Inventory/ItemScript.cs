@@ -11,6 +11,7 @@ public class ItemScript : ScriptableObject
     public bool onetimecraft;
     public bool consumable;
     public float hungergain;
+    public float satiation;
     public bool unique;
     public string craftingDescription;
 }

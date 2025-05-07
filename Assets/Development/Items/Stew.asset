@@ -22,5 +22,6 @@ MonoBehaviour:
   onetimecraft: 0
   consumable: 1
   hungergain: 120
+  satiation: 60
   unique: 0
   craftingDescription: This hearty meal will provide ample nourishment to any traveler.

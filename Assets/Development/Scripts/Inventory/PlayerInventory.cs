@@ -469,8 +469,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
                     }
                 }
 
-
                 necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
+                necessitybargameobject.GetComponent<NecessityBars>().setSatiation(hotbarinventory[currentindex].satiation);
                 if (hotbarinventory[currentindex] == thePotion)
                 {
                     playerDeathHandler.playerDrankPotion();

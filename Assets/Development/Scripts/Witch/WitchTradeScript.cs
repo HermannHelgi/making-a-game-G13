@@ -18,6 +18,8 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     public GameObject chest;
     [Tooltip("The ItemScript of the chest.")]
     public ItemScript chestreference;
+     [Tooltip("The ItemScript of the lure.")]
+    public ItemScript lureReference;
 
     [Tooltip("The string which should be displayed on whether an item can be crafted or not.")]
     public string buttontocraftstring;
@@ -255,6 +257,10 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
         {
             chest.SetActive(true);
             return;
+        }
+        if (craftableItems[currentindex] == lureReference)
+        {
+            GameManager.instance.lureCrafted = true;
         }
 
         bool inventoryFullCheck = playerinventoryscript.addItemToHotbar(craftableItems[currentindex]);

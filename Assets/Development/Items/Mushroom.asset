@@ -20,5 +20,6 @@ MonoBehaviour:
   onetimecraft: 0
   consumable: 1
   hungergain: 30
+  satiation: 15
   unique: 0
   craftingDescription: 

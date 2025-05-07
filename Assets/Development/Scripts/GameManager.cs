@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [Tooltip("A bool which says the player is in a deemed safe area")]
     public bool safeArea = false;
 
+    [Header("Effigy variables.")]
+    public bool lureCrafted = false;
+    public bool lurePlaced = false;
+    public bool skullPickedUp = false;
+
+
     void Awake()
     {
         instance = this;
@@ -42,6 +48,10 @@ public class GameManager : MonoBehaviour, IDataPersistence
         torchactive = data.torchActive;
         emberstoneactive = data.emberstoneActive;
         isNight = data.isNight;
+
+        lureCrafted = data.lureCrafted;
+        lurePlaced = data.lurePlaced;
+        skullPickedUp = data.skullPickedUp;
     }
 
     public void saveData(ref GameData data)
@@ -50,6 +60,10 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.emberstoneActive = emberstoneactive;
         data.torchActive = torchactive;
         data.isNight = isNight;
+
+        data.lureCrafted = lureCrafted;
+        data.lurePlaced = lurePlaced;
+        data.skullPickedUp = skullPickedUp;
     }
 
     void Update()

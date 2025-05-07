@@ -34,6 +34,9 @@ public class GameData
 
     public bool isNight;
     public float timeOfDay;
+    public bool lureCrafted;
+    public bool lurePlaced;
+    public bool skullPickedUp;
 
     // This is all for the tutorial, don't ask...
 
@@ -81,6 +84,9 @@ public class GameData
         interactableItemCounts = new SerializableDictionary<string, int>();
         isNight = false;
         timeOfDay = 0;
+        lureCrafted = false;
+        lurePlaced = false;
+        skullPickedUp = false;
 
         tutorialinprogress = false;
         cannotcraft = false;
