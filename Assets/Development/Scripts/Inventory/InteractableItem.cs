@@ -21,6 +21,21 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
     public bool replaceondepletion;
     public GameObject replacemodel;
 
+    public PlayerInteractHandler playerInteractHandler;
+    private Outline outlineHandler;
+
+    void Start()
+    {
+        outlineHandler = GetComponent<Outline>();
+    }
+
+    void Update()
+    {
+        if(!playerInteractHandler.highlighting)
+        {
+            outlineHandler.enabled = false;
+        }
+    }
     public void loadData(GameData data)
     {
         if (data.interactableItemCounts.ContainsKey(id))
