@@ -15,6 +15,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     public Color deselectedhotbarcolor = Color.gray;
     public Color selectedspritecolor = Color.white;
     public Color deselectedspritecolor = Color.white;
+    public Color deselectednumbercolor = Color.white;
     
     [Header("3D model variables")]
     public GameObject spawnlocation;
@@ -79,7 +80,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             childObject.transform.SetParent(hotbarslotgrid.transform, false);
             childObject.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
             childObject.GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
-            childObject.GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = deselectedspritecolor;
+            childObject.GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = deselectednumbercolor;
             hotbargridchildren[i] = childObject;
         }
 
@@ -138,7 +139,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
         {
             hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
             hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
-            hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = deselectedspritecolor;
+            hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = deselectednumbercolor;
         }
 
         consumableindicator.SetActive(false);
