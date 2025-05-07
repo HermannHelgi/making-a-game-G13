@@ -70,7 +70,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
         }
     }
 
-    private bool GameObjectWithinFrustum(GameObject go, Camera camera, float offset=15.0f)
+    private bool GameObjectWithinFrustum(GameObject go, Camera camera, float offset=20.0f)
     {
         Vector3 dir = go.transform.position - camera.transform.position;
         dir.y = 0;
@@ -81,7 +81,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     }
 
 
-    public bool GameObjectWithinFrustum(GameObject go, float offset=15.0f)
+    public bool GameObjectWithinFrustum(GameObject go, float offset=20.0f)
     {
         Vector3 dir = go.transform.position - playerCamera.transform.position;
         dir.y = 0;
@@ -102,7 +102,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             {
                 continue;
             }
-            if (GameObjectWithinFrustum(wendigo, playerCamera, 15f))
+            if (GameObjectWithinFrustum(wendigo, playerCamera, 35f))
             {
                 potentialSpawns.Add(wendigo);
             }
@@ -120,6 +120,5 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     void Update()
     {   
         UpdateSpawnPositions();
-        // SelectRandomSpawn();
     }
 }

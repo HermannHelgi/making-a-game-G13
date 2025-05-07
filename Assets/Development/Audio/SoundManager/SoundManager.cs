@@ -142,8 +142,6 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"[SoundManager] Sound group '{groupName}' not found or empty.");
         }
     }
-
-
     public void ChangeSoundsnapshot(string snapshotName, float timing)
     {
         var snapshot = soundSnapshots.Find(s => s.audioSnapshot != null && s.audioSnapshot.name == snapshotName);
