@@ -54,13 +54,15 @@ MonoBehaviour:
   TimeOfDay: 12
   StartTime: 12
   CycleDuration: 180
-  morningInterval: {x: 0, y: 0.5}
-  afterNoonInterval: {x: 0.5, y: 1}
-  lightIntensity: {x: 0, y: 1}
+  DayCycleDuration: 30
+  nightCycleDuration: 280
+  morningInterval: {x: 0, y: 0.01}
+  afterNoonInterval: {x: 0.04, y: 1}
+  lightIntensity: {x: 0, y: 0.1}
   IsShadowChangeOn: 0
   shadowStrength: 0.5
   IsSkyBoxOn: 0
-  skyboxMat: {fileID: 0}
+  skyboxMat: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   customPropertyName: 
   IsMoonActive: 0
   MoonDirectionalLight: {fileID: 0}
@@ -71,3 +73,8 @@ MonoBehaviour:
   events: []
   eventsTolerance: 0.2
   ResetEventsTime: 0.1
+  fogMaterials:
+  - {fileID: 2100000, guid: 1229bf0dde8ff5d4f8f21aea7f43b148, type: 2}
+  - {fileID: 2100000, guid: e366e57ed56cf1c4e99bd17a1fcea15b, type: 2}
+  - {fileID: 2100000, guid: 6e834d916808a4e4fb3eb9e7250aca16, type: 2}
+  - {fileID: 2100000, guid: 649dcb34e633b504a939576557a69a35, type: 2}
