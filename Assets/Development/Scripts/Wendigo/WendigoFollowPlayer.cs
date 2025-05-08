@@ -54,7 +54,6 @@ public class WendigoFollowPlayer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         selectedRetreat = null;
-        // stalkingBehaviour = GetComponent<StalkingBehaviour>();
 
         
        
@@ -63,8 +62,7 @@ public class WendigoFollowPlayer : MonoBehaviour
 
     public void FollowPlayer()
     {
-        // selectedRetreat = null;
-        // agent.SetDestination(player.transform.position);
+        selectedRetreat = null;
         target = player.transform;            
         if (Time.time < nextRepath) return;   
         nextRepath = Time.time + repathInterval;
