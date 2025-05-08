@@ -15,7 +15,7 @@ MonoBehaviour:
   itemname: THE POTION
   index: 17
   icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 4510107120196946764, guid: 921cbae89acbaf64d9d59f626db2ffb0, type: 3}
   craftingrecipe:
   - {fileID: 11400000, guid: ff4fc1b09195bd74894715a9c044225c, type: 2}
   - {fileID: 11400000, guid: 7e09554fd20da714ead1e5a55376fb06, type: 2}
@@ -23,6 +23,7 @@ MonoBehaviour:
   onetimecraft: 1
   consumable: 1
   hungergain: 0
+  satiation: 0
   unique: 1
   craftingDescription: The witch proclaims this item will save you from the wicked
     beast, finding the resources to craft this item should be top priority.
