@@ -41,6 +41,7 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
     // Private
     [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
     [SerializeField] private float currenthunger;
+    [SerializeField] private float currentSatiation;
     private float hungerpercent => currenthunger / maxhunger;
     [Tooltip("DO NOT TOUCH. This variable is serialized for viewability, not editing.")]
     [SerializeField] private float currenttemperature;
@@ -79,12 +80,26 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
         if (firstpersoncontroller.sprint && !GameManager.instance.inMenu)
         {
             hungermeter.color = sprintcolor;
-            currenthunger -= runningdrainrate * Time.deltaTime;
+            if (currentSatiation > 0)
+            {
+                currentSatiation -= runningdrainrate * Time.deltaTime;
+            }
+            else
+            {
+                currenthunger -= runningdrainrate * Time.deltaTime;
+            }
         }
         else
         {
             hungermeter.color = walkcolor;
-            currenthunger -= hungerdrainrate * Time.deltaTime;
+            if (currentSatiation > 0)
+            {
+                currentSatiation -= hungerdrainrate * Time.deltaTime;
+            }
+            else
+            {
+                currenthunger -= hungerdrainrate * Time.deltaTime;
+            }
         }
 
         float changetocurrenttemp = 0;
@@ -159,6 +174,12 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
         {
             currenthunger = newhunger;
         }
+    }
+
+    public void setSatiation(float satiation)
+    // Can be called to set the satiation levels of the player, used when the player eats something.
+    {
+        currentSatiation = satiation;
     }
 
     public void displayHungerIncrease(float hungerincrease)

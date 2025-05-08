@@ -31,9 +31,12 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if(!playerInteractHandler.highlighting)
+        if (playerInteractHandler != null)
         {
-            outlineHandler.enabled = false;
+            if(!playerInteractHandler.highlighting)
+            {
+                outlineHandler.enabled = false;
+            }
         }
     }
     public void loadData(GameData data)

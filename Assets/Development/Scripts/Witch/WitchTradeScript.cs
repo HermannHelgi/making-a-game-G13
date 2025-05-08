@@ -7,6 +7,8 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
 {
     [Header("Trade Window Variables")]
     public ItemScript[] craftableItems = new ItemScript[7];
+    [Tooltip("Which items the player has unlocked, MUST match the size of craftableItems!")]
+    public bool[] unlockedItems = new bool[7];
     public GameObject tradeslotprefab;
     [Tooltip("The GameObject of the campfire within the scene.")]
     public GameObject campfire;
@@ -16,6 +18,8 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     public GameObject chest;
     [Tooltip("The ItemScript of the chest.")]
     public ItemScript chestreference;
+     [Tooltip("The ItemScript of the lure.")]
+    public ItemScript lureReference;
 
     [Tooltip("The string which should be displayed on whether an item can be crafted or not.")]
     public string buttontocraftstring;
@@ -94,6 +98,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             campfire.SetActive(false);
         }
 
+        unlockedItems = data.unlockedItems.ToArray();
         hasbeencrafted = data.hasBeenCrafted.ToArray();
     }
 
@@ -101,6 +106,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     {
         data.chestUnlocked = chest.activeSelf;
         data.campfireUnlocked = campfire.activeSelf;
+        data.unlockedItems = new List<bool>(unlockedItems);
         data.hasBeenCrafted = new List<bool>(hasbeencrafted);
     }
 
@@ -114,12 +120,12 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             }
 
             // Increase trading slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.DownArrow)) 
             {
                 selectCraftingSlot(currentindex + 1);
             }
             // Decrease trading slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.UpArrow)) 
             {
                 selectCraftingSlot(currentindex - 1);
             }
@@ -133,6 +139,16 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
 
     void SnapToElement(int index)
     {
+        int count = 0;
+        for (int i = 0; i < index; i++)
+        {
+            if (unlockedItems[i])
+            {
+                count++;
+            }
+        }
+        index = count;
+
         verticalLayoutGroup.anchoredPosition = new Vector2(verticalLayoutGroup.anchoredPosition.x, index * (elementSize + paddingSize) + (elementSize / 2));
     }
 
@@ -191,6 +207,11 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
 
         foreach (GameObject bargainingSlots in tradeslotgridchildren)
         {
+            if (bargainingSlots == null)
+            {
+                continue;
+            }
+
             for (int i = 0; i < bargainingSlots.GetComponent<WitchBargainingSlotWrapper>().content.transform.childCount; i++)
             {
                 hotbarslots.Add(bargainingSlots.GetComponent<WitchBargainingSlotWrapper>().content.transform.GetChild(i).gameObject);
@@ -242,6 +263,10 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             chest.SetActive(true);
             return;
         }
+        if (craftableItems[currentindex] == lureReference)
+        {
+            GameManager.instance.lureCrafted = true;
+        }
 
         bool inventoryFullCheck = playerinventoryscript.addItemToHotbar(craftableItems[currentindex]);
         if (!inventoryFullCheck)
@@ -254,6 +279,10 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < craftableItems.Length; i++)
         {
+            if (tradeslotgridchildren[i] == null)
+            {
+                continue;
+            }
             tradeslotgridchildren[i].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
             tradeslotgridchildren[i].GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
         }
@@ -266,6 +295,28 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
         if (index < 0)
         {
             index = 0;
+        }
+
+        while (!unlockedItems[index])
+        {
+            if (index > currentindex)
+            {
+                index++;
+
+                if (index >= craftableItems.Length)
+                {
+                    index = currentindex;
+                }
+            }
+            else if (index < currentindex)
+            {
+                index--;
+
+                if (index < 0)
+                {
+                    index = currentindex;
+                }
+            }
         }
 
         // Select Hotbar
@@ -294,6 +345,11 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
 
         for (int i = 0; i < craftableItems.Length; i++)
         {
+            if (!unlockedItems[i])
+            {
+                continue;
+            }
+
             GameObject childObject = Instantiate(witchBargainingSlotPrefab);
             childObject.transform.SetParent(witchrecipegridspawner.transform, false);
             childObject.GetComponent<WitchBargainingSlotWrapper>().craftableItem.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
@@ -363,6 +419,18 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     // Used by the interact handler for the player to check if the witch can speak.
     {
         return !dialogueHandler.GetComponent<WitchDialogueHandler>().isQueueEmpty();
+    }
+
+    public void unlockItem(ItemScript item)
+    {
+        for (int i = 0; i < craftableItems.Length; i++)
+        {
+            if (craftableItems[i] == item)
+            {
+                unlockedItems[i] = true;
+                break;
+            }
+        }
     }
 
     public void initializeTradeWindow(GameObject playerinventorycanvas, GameObject playerinventoryscriptobject, GameObject subtitletextmesh, GameObject escapemessage, GameObject playerlookscript)   

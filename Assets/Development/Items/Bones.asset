@@ -15,5 +15,11 @@ MonoBehaviour:
   itemname: BONES
   index: 8
   icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 564192501441622437, guid: 0a0d527907ea27e4ea7e05fe3896ae11, type: 3}
   craftingrecipe: []
+  onetimecraft: 0
+  consumable: 0
+  hungergain: 0
+  satiation: 0
+  unique: 0
+  craftingDescription: 

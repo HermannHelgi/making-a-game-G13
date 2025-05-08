@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d0e02f396fadb4c9d014024b85ee97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxstoragesize: 24
+  maxstoragesize: 12
   emptystoragesprite: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
   storageslotprefab: {fileID: 366402262393867716, guid: 995790105ab49ac4dab563cfe9a8096e, type: 3}
   storageslotgrid: {fileID: 5901553033580781279}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3456166430392775049}
   - component: {fileID: 9041600448567353638}
   - component: {fileID: 43287388775177349}
+  - component: {fileID: 8104635376078093177}
   m_Layer: 7
   m_Name: BottleModel
   m_TagString: Untagged
@@ -125,6 +126,25 @@ MonoBehaviour:
   id: 8a32bbe7-ef55-4e44-a07a-d5a89137886c
   pickupitem: {fileID: 11400000, guid: 7e09554fd20da714ead1e5a55376fb06, type: 2}
   totalpickuptimes: 1
-  dialoguetriggerforwitch: {fileID: 0}
+  dialoguetriggerforwitch: {fileID: 11400000, guid: 6fc41692346476943a1e0784dafc4d64, type: 2}
   replaceondepletion: 0
   replacemodel: {fileID: 0}
+  playerInteractHandler: {fileID: 0}
+--- !u!114 &8104635376078093177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2277788500440000492}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8745098, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

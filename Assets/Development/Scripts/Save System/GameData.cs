@@ -21,6 +21,7 @@ public class GameData
     public bool chestUnlocked;
 
     public List<bool> discoveredItems;
+    public List<bool> unlockedItems;
     public List<bool> hasBeenCrafted;
 
     public List<bool> dialogueFlags;
@@ -33,6 +34,9 @@ public class GameData
 
     public bool isNight;
     public float timeOfDay;
+    public bool lureCrafted;
+    public bool lurePlaced;
+    public bool skullPickedUp;
 
     // This is all for the tutorial, don't ask...
 
@@ -71,6 +75,7 @@ public class GameData
         campfireUnlocked = false;
         chestUnlocked = false;
         discoveredItems = new List<bool>();
+        unlockedItems = new List<bool>();
         hasBeenCrafted = new List<bool>();
         dialogueFlags = new List<bool>();
         witchDialogueQueue = new List<int>();
@@ -79,6 +84,9 @@ public class GameData
         interactableItemCounts = new SerializableDictionary<string, int>();
         isNight = false;
         timeOfDay = 0;
+        lureCrafted = false;
+        lurePlaced = false;
+        skullPickedUp = false;
 
         tutorialinprogress = false;
         cannotcraft = false;
