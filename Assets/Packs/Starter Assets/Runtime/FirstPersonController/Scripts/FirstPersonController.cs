@@ -19,6 +19,7 @@ namespace StarterAssets
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+		[SerializeField] private float maxSlope = 45f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -196,6 +197,7 @@ namespace StarterAssets
 			
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed;
+
 			if(_input.sprint)
 			// if(_input.sprint && _sprintRecovered)
 			{
@@ -214,7 +216,6 @@ namespace StarterAssets
 			// 		}
 			// 	}
 			}
-
 
 			// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -245,6 +246,11 @@ namespace StarterAssets
 
 			// normalise input direction
 			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+			if (SlopeTooSteep() && Vector3.Angle(Vector3.up, _controller.velocity) < 90f)
+			{
+				inputDirection = Vector3.zero;
+			}
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
@@ -287,7 +293,8 @@ namespace StarterAssets
 				}
 
 				// Jump
-				if (_input.jump && _jumpTimeoutDelta <= 0.0f && !freezeinmenu)
+
+				if (_input.jump && _jumpTimeoutDelta <= 0.0f && !freezeinmenu&& !SlopeTooSteep())
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -324,6 +331,17 @@ namespace StarterAssets
 				_verticalVelocity += Gravity * Time.deltaTime;
 			}
 		}
+
+		private bool SlopeTooSteep()
+		{
+			if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1.5f))
+			{
+				float slope = Vector3.Angle(hit.normal, Vector3.up);
+				return slope > maxSlope;
+			}
+			return false;
+		}
+
 
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
