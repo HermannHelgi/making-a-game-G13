@@ -29,12 +29,13 @@ public class WendigoChasing : WendigoBehaviour
     {
         base.EnterState();
         agent.enabled = true;
+        // stalkingBehaviour.DespawnWendigo();
+
         spawned = false;
+        wendigoLookForPlayer.MarkPlayerSighting();
         SpawnBehindPlayer();
         spawnBehindTimer = spawnBehindCooldown;
-        wendigoLookForPlayer.MarkPlayerSighting();
         isRetreating = false; 
-        
     }
 
     public override void Run()
@@ -122,13 +123,7 @@ public class WendigoChasing : WendigoBehaviour
             {
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
                 spawned = true;
-                stalkingBehaviour.DespawnWendigo();
             }
         }
-        // if(isRetreating)
-        // {
-        //     spawned = true;
-        //     isRetreating = false;
-        // }
     }
 }

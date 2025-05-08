@@ -50,7 +50,7 @@ public class StalkingBehaviour : WendigoBehaviour
     }
 
     public void DespawnWendigo()
-    {
+    {   
         DeActivateWendigo();
     }
 
@@ -152,7 +152,8 @@ public class StalkingBehaviour : WendigoBehaviour
                 }   
             }
             else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
-            {   
+            {  
+                soundManager.StopPlayGroup("WENDIGO_STARING"); 
                 soundManager.ExitSoundsnapshot(0f);
                 seen = false;
                 sightTimer = 0f;
@@ -168,8 +169,7 @@ public class StalkingBehaviour : WendigoBehaviour
             Transform parentTransform = activeWendigo.GetComponentInParent<Transform>();
             parentTransform.LookAt(spawnPointTracker.playerCamera.transform);
             activeWendigo.transform.forward = (spawnPointTracker.playerCamera.transform.position - activeWendigo.transform.position).normalized;
-            spawnPointTracker.SelectRandomSpawn();
-            // wendigoSpawns ++;
+            spawnPointTracker.SelectRandomSpawn(false);
         }
 
         if (isActive)
@@ -178,7 +178,7 @@ public class StalkingBehaviour : WendigoBehaviour
             UpdateActiveWendigo();
             if(activeWendigo == null && spawnTimer < 0.0f)
             {
-                activeWendigo = spawnPointTracker.SelectRandomSpawn();
+                activeWendigo = spawnPointTracker.SelectRandomSpawn(false);
                 if (activeWendigo)
                 {   
                     Debug.Log("Activating wendigo");
@@ -188,6 +188,7 @@ public class StalkingBehaviour : WendigoBehaviour
             }
 
         }
+
         else if (isEnding)
         {
             UpdateActiveWendigo();

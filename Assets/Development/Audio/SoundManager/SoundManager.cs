@@ -158,6 +158,25 @@ public class SoundManager : MonoBehaviour
         }
     }   
 
+    public void StopPlayGroup(string groupName)
+    {
+        SoundGroup group = soundGroups.Find(g => g.headerName == groupName);
+        if (group != null && group.sounds.Count > 0)
+        {
+
+            if(group.source.isPlaying)
+            {
+                group.source.Stop();
+            }
+
+        }
+        else
+        {
+            Debug.LogWarning($"[SoundManager] Sound group '{groupName}' not found or empty.");
+        }
+
+    }
+
     public void ExitSoundsnapshot(float timing)
     {   
         Debug.Log("returning to default snapshot");

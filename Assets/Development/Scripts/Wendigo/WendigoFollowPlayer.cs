@@ -19,9 +19,10 @@ public class WendigoFollowPlayer : MonoBehaviour
     private Transform target;
     private Vector3 playerVelocity;
     private StalkingBehaviour stalkingBehaviour;
-    private AudioSource source;
+    // private AudioSource source;
+    public AudioClip audioClip;
     private float internalDelay;
-
+    public AudioSource spawnAudioSource;
 
     private void Awake()
     {
@@ -37,10 +38,14 @@ public class WendigoFollowPlayer : MonoBehaviour
         {
         soundManager = FindFirstObjectByType<SoundManager>();
         }
+        // if(source == null)
+        // {
+        //     source = GetComponentInParent<AudioSource>();
+        // }
 
-        if(source == null)
+        if ( stalkingBehaviour == null)
         {
-            source = GetComponent<AudioSource>();
+            stalkingBehaviour = FindAnyObjectByType<StalkingBehaviour>();
         }
     }
 
@@ -49,7 +54,8 @@ public class WendigoFollowPlayer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         selectedRetreat = null;
-        stalkingBehaviour = GetComponent<StalkingBehaviour>();
+        // stalkingBehaviour = GetComponent<StalkingBehaviour>();
+
         
        
     }
@@ -115,23 +121,17 @@ public class WendigoFollowPlayer : MonoBehaviour
     public void SpawnBehindPlayer()
     {
         selectedRetreat = null;
-        GameObject spawnPosition = null;
+        // GameObject spawnPosition = null;
 
-        spawnPosition = spawnPointTracker.SelectRandomSpawn(true);
-        while(true)
-        {
-            if(spawnPointTracker == null)
-            {
-                spawnPosition = spawnPointTracker.SelectRandomSpawn(true);
-
-            }
-            else
-            {
-                break;
-            }
-        }
+        // spawnPosition = spawnPointTracker.SelectRandomSpawn(true);
+        // if(spawnPosition != null)
+        // {
+            
+        // }
         
-        SpawnBehindPlayer(spawnPosition.transform.position);
+        // Debug.Log("Spawn position "+ spawnPosition.transform.position);
+        SpawnBehindPlayer(spawnPointTracker.SelectRandomSpawn(true).transform.position);
+        
     }
 
     public void SpawnBehindPlayer(Vector3 spawnPoint, float sampleRadius=10.0f)
@@ -141,11 +141,13 @@ public class WendigoFollowPlayer : MonoBehaviour
             transform.position = spawnPoint;
             transform.forward = (player.transform.position - transform.position).normalized;
             agent.Warp(hit.position);
+            nextRepath = 0f;
             justSpawned = true;
             Debug.Log("Spawning at : " + spawnPoint);
             // soundManager.PlayGroup("WENDIGO_STALKING");
             // AudioSource source = GetComponent<AudioSource>();
-            source.PlayOneShot(stalkingBehaviour.spawnAudio);
+            spawnAudioSource.PlayOneShot(audioClip);
+            stalkingBehaviour.DespawnWendigo();
             
         }
     }
