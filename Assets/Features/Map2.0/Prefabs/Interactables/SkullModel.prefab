@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2736566909383111284}
   - component: {fileID: 6132556770281509429}
   - component: {fileID: 6974963074285932960}
+  - component: {fileID: 3926629649098611323}
+  - component: {fileID: 8024830102332652932}
   m_Layer: 0
   m_Name: SkullModel
   m_TagString: Untagged
@@ -86,3 +88,40 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3926629649098611323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3715849641602744323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d80f684d1835a4fb7fdf9cfb81d289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5b0784b6-5150-4cba-b6fd-0e5f095b38fc
+  pickupitem: {fileID: 11400000, guid: ed635acb780797d4e96e2de918f6091b, type: 2}
+  totalpickuptimes: 1
+  dialoguetriggerforwitch: {fileID: 11400000, guid: df28cb65f080ba349bb96fab9c96a466, type: 2}
+  replaceondepletion: 0
+  replacemodel: {fileID: 0}
+  playerInteractHandler: {fileID: 0}
+--- !u!114 &8024830102332652932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3715849641602744323}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8745098, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

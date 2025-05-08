@@ -215,6 +215,13 @@ MonoBehaviour:
   witchInitiateExposition: "\u201CNow that you\u2019re warm, come over, I have something
     I must tell you\u2026\u201D"
   witchExposition: {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
+  witchTradeScript: {fileID: 0}
+  unlockedItemsOnTutorialEnd:
+  - {fileID: 11400000, guid: 4c77d007ee85f7e4d85c877cd94f6fe9, type: 2}
+  - {fileID: 11400000, guid: 1d5ad8c64add0904c970b8fcdc7191c5, type: 2}
+  - {fileID: 11400000, guid: 01a1341324fa90f4e917d1257b545d83, type: 2}
+  - {fileID: 11400000, guid: 4023cf24c009ffe45848721d7ce3454c, type: 2}
+  - {fileID: 11400000, guid: e0b3fd96fa511b7469b759805e1a91ae, type: 2}
 --- !u!1 &6672210416471304157
 GameObject:
   m_ObjectHideFlags: 0

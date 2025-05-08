@@ -49,3 +49,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
   - {fileID: 11400000, guid: 473a10f163556284f8fb4df9ba34bf89, type: 2}
   - {fileID: 11400000, guid: b35a02952951db74694de1c98c46ce88, type: 2}
+  - {fileID: 11400000, guid: 6e9717f7404fb9b49a8a98c3303e0e32, type: 2}
+  - {fileID: 11400000, guid: 5afec0663ba9ef0478d57353ec35eb4c, type: 2}
+  - {fileID: 11400000, guid: 6fc41692346476943a1e0784dafc4d64, type: 2}
+  - {fileID: 11400000, guid: a8ba67d35486d694ab966e87d2c88547, type: 2}
+  - {fileID: 11400000, guid: df28cb65f080ba349bb96fab9c96a466, type: 2}
+  indexForPotionDialogue: 040000000500000006000000
+  winConditionText: {fileID: 11400000, guid: a8ba67d35486d694ab966e87d2c88547, type: 2}
+  lure: {fileID: 11400000, guid: cf63ff3a163a0bb43830703d2a6492dd, type: 2}
