@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-9132022317631448896
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: d5bc65bb266d0014594622f90a7c7aaa
+  m_EffectName: Attenuation
+  m_MixLevel: 01bfe6702eaaca34d9e63a994fe1acb4
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-8942833885346445969
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -28,6 +42,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &-8106207393011464285
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StomachGurgle
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1d2d6692dd7216b4480839826f9e3dda
+  m_Children: []
+  m_Volume: b8a75acba95c5c243afc5b4ef3e492ba
+  m_Pitch: 06b06cef97ac51f49a591f260b171ad0
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -9132022317631448896}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!245 &-7210898822083403977
 AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
@@ -169,9 +202,10 @@ AudioMixerController:
     - 0020729198df39645bc63f71a2890ed7
     - 1fe0d176c2ffc9b419e218ce88f0dc3c
     - ffed975b8506c344fa71c56a12251f3d
+    - 1d2d6692dd7216b4480839826f9e3dda
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -1794558959265809143}
+  m_TargetSnapshot: {fileID: 1312452628178790859}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -188,6 +222,7 @@ AudioMixerGroupController:
   - {fileID: -2298248162163239852}
   - {fileID: -1307818168190413709}
   - {fileID: 9162109483497344164}
+  - {fileID: -8106207393011464285}
   m_Volume: 7d77b8861514ffd4d8f3e44dc6053180
   m_Pitch: 2290185fcd9c02348be9865949bbee2d
   m_Send: 00000000000000000000000000000000

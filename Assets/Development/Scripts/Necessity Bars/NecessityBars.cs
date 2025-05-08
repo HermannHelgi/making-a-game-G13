@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.InputSystem.Controls;
 
 public class NecessityBars : MonoBehaviour, IDataPersistence
 {
@@ -136,6 +137,20 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
         // I do this calculation constantly to avoid more complex logic. 
         starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
         frostbiteoverhead.color = new Color(1, 1, 1, (1 - currenttemperature / frostbiteoverheaddisplaycutoff));
+
+        //Yub more silly code for audio :)
+        if((currenthunger / starvationoverheaddisplaycutoff) < 1)
+        {
+            if(SoundManager.instance.currentStomachGurgleTimer <= 0)
+            {
+                SoundManager.instance.PlayGroup("STOMACH_GURGLE");
+                SoundManager.instance.currentStomachGurgleTimer = SoundManager.instance.stomachGurgleTimer; 
+            }
+            else
+            {
+                SoundManager.instance.currentStomachGurgleTimer -= 1 * Time.deltaTime;
+            }
+        }
 
         // Updating bars on screen
         hungermeter.fillAmount = hungerpercent;

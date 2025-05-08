@@ -452,5 +452,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd6aa9e090a0d4d44b444e010a7883f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 0}
   controllerComponent: {fileID: 8616685848737228371}

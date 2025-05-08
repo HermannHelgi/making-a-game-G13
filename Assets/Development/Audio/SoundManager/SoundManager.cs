@@ -35,14 +35,20 @@ public class AudioMixerReference
     public AudioMixer mixer;
 }
 
+
+
 public class SoundManager : MonoBehaviour
 {   
+    
     public AudioMixer mainMixer;
     public List<SnapshotGroup> soundSnapshots = new();
     private AudioMixerSnapshot defaultSnapshot;
     private string currentScene;
 
     public static SoundManager instance;
+    public float currentStomachGurgleTimer = 15f;
+    
+    public float stomachGurgleTimer = 15f;
 
     public List<SoundGroup> soundGroups = new();
 
