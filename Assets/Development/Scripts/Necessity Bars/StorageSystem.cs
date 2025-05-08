@@ -337,12 +337,12 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
         if (active)
         {
             // Increase storage slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.UpArrow)) 
             {
                 selectStorageSlot(currentindex + 1);
             }
             // Decrease storage slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.DownArrow)) 
             {
                 selectStorageSlot(currentindex - 1);
             }

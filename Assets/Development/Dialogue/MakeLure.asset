@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b360467a1a45e464396a8062078c8386, type: 3}
+  m_Name: MakeLure
+  m_EditorClassIdentifier: 
+  dialoguename: MAKELURE
+  dialogue:
+  - "\u201CIt seems you\u2019ve gathered all the materials I asked for!\u201D "
+  - "\u201CWonderful! You\u2019ve been doing such a great job!\u201D "
+  - "\u201C...Though, there is the issue of the <i><b>flesh.</b></i>\u201D "
+  - "\u201CI\u2026 cannot use the hand you\u2019ve acquired.\u201D "
+  - "\u201CIt has been frozen for a long time. Too long.\u201D "
+  - "\u201CI need something more ripe, <i><b>more robust.</b></i>\u201D "
+  - "\u201CThankfully, I know what to do.\u201D "
+  - "\u201CYou see, the beast holds a ripe ingredient within its lair\u2026\u201D "
+  - "\u201C...One which it would never eat, for it is the only thing that remains
+    of its closest.\u201D "
+  - "\u201CI have no doubt the <i><b>ingredient</b></i> which lies there is pristine.\u201D "
+  - "\u201CHowever, walking into its lair is akin to bringing it food on a silver
+    platter.\u201D "
+  - "\u201CSo, I\u2019ve hatched a plan\u2026\u201D "
+  - "\u201CBring me some animal bones. Using those, and the <i><b>flesh</b></i> you\u2019ve
+    already found\u2026\u201D "
+  - "\u201C...I should be able to make a <i><b>lure</b></i> for the beast. One which
+    will distract it.\u201D "
+  - "\u201COnce made, bring the lure to the <i><b>Effigy</b></i> nearby.\u201D"
+  - "\u201CThe beast will be distracted by its scent, use that time to acquire the
+    final ingredient\u2026\u201D "
+  - "\u201C<i><b><color=\"red\">A human skull.</color></b></i>\u201D "
+  - "\u201CYou can do this sweetie\u2026\u201D "

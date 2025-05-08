@@ -54,8 +54,11 @@ public class PlayerInteractHandler : MonoBehaviour
     [Header("Storage system variables")]
     [Tooltip("The interact text which is shown on being able to open storage system.")]
     public string storageinteracttext;
-
     public bool highlighting = false;
+
+    [Header("Effigy variables")]
+    public string effigyInteractText;
+    public ItemScript lure;
 
     void Start()
     {
@@ -87,6 +90,7 @@ public class PlayerInteractHandler : MonoBehaviour
             var witchscript = hit.transform.GetComponent<WitchTradeScript>();
             var campfirescript = hit.transform.GetComponent<CampfireScript>();
             var storagescript = hit.transform.GetComponent<StorageSystem>();
+            var effigyScript = hit.transform.GetComponent<EffigyScript>();
             popuptext.gameObject.SetActive(false);
 
             if (interactableitemscript != null)
@@ -152,6 +156,11 @@ public class PlayerInteractHandler : MonoBehaviour
             else if (storagescript != null)
             {
                 popuptext.text = storageinteracttext;
+                popuptext.gameObject.SetActive(true);
+            }
+            else if (effigyScript != null && playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(lure))
+            {
+                popuptext.text = effigyInteractText;
                 popuptext.gameObject.SetActive(true);
             }
             else
@@ -245,6 +254,14 @@ public class PlayerInteractHandler : MonoBehaviour
                     inventoryoverlay.SetActive(false);
                     storagescript.initializeStorageWindow(playerinventoryobject, this.gameObject);
                     GameManager.instance.inMenu = true;
+                }
+
+                var effigyScript = hit.transform.GetComponent<EffigyScript>();
+                if (effigyScript != null && playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(lure))
+                {
+                    playerinventoryobject.GetComponent<PlayerInventory>().removeItemFromHotbar(lure);
+                    playerinventoryobject.GetComponent<PlayerInventory>().resetHotbarItems();
+                    effigyScript.activateLure();
                 }
             }
         }

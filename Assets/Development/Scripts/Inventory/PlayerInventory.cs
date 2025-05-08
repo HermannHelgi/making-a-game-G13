@@ -15,6 +15,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     public Color deselectedhotbarcolor = Color.gray;
     public Color selectedspritecolor = Color.white;
     public Color deselectedspritecolor = Color.white;
+    public Color deselectednumbercolor = Color.white;
     
     [Header("3D model variables")]
     public GameObject spawnlocation;
@@ -32,6 +33,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     public PlayerInteractHandler playerinteracthandler;
     public ItemScript thePotion;
     public PlayerDeathHandler playerDeathHandler;
+    public float maxConsumableTimer;
+    private float consumableTimer;
 
     [Header("Torch variables")]
     [Tooltip("ItemScript of the Torch, required for Wendigo AI and durability stuff.")]
@@ -76,6 +79,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             GameObject childObject = Instantiate(hotbarslotprefab);
             childObject.transform.SetParent(hotbarslotgrid.transform, false);
             childObject.GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
+            childObject.GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().text = (i+1).ToString();
+            childObject.GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = deselectednumbercolor;
             hotbargridchildren[i] = childObject;
         }
 
@@ -134,6 +139,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
         {
             hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = deselectedhotbarcolor;
             hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = deselectedspritecolor;
+            hotbargridchildren[i].GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = deselectednumbercolor;
         }
 
         consumableindicator.SetActive(false);
@@ -153,6 +159,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
         currentindex = index;
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().frame.GetComponent<Image>().color = selectedhotbarcolor;
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
+        hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = selectedspritecolor;
 
         if (hotbarinventory[currentindex] != null)
         {
@@ -160,6 +167,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             {
                 consumableindicator.SetActive(true);
                 consumableindicator.GetComponent<TextMeshProUGUI>().text = consumabletext;
+                consumableTimer = maxConsumableTimer;
                 necessitybargameobject.GetComponent<NecessityBars>().displayHungerIncrease(hotbarinventory[currentindex].hungergain);
             }
             else if (hotbarinventory[currentindex] == torch)
@@ -418,19 +426,35 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     void updateControls()
     {
         // Increase Hotbarslot, go right
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f ) 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) 
         {
             selectHotbar(currentindex + 1);
         }
         // Decrease Hotbarslot, go left
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0f ) 
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0f) 
         {
             selectHotbar(currentindex - 1);
+        }
+        
+        for (int i = 0; i < 9; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                int selectedIndex = i;
+                selectHotbar(selectedIndex);
+                break; 
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
+        }
+
+        if (consumableTimer > 0)
+        {
+            consumableTimer -= Time.deltaTime;
+            consumableindicator.GetComponent<TextMeshProUGUI>().alpha = consumableTimer / 2;
         }
 
         if (consumableindicator.activeSelf && Input.GetKeyDown(KeyCode.F))
@@ -445,8 +469,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
                     }
                 }
 
-
                 necessitybargameobject.GetComponent<NecessityBars>().increaseHunger(hotbarinventory[currentindex].hungergain);
+                necessitybargameobject.GetComponent<NecessityBars>().setSatiation(hotbarinventory[currentindex].satiation);
                 if (hotbarinventory[currentindex] == thePotion)
                 {
                     playerDeathHandler.playerDrankPotion();

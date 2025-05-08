@@ -69,6 +69,8 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     public string witchHighlightCampfire;
     public string witchInitiateExposition;
     public DialogueScriptableObject witchExposition;
+    public WitchTradeScript witchTradeScript;
+    public ItemScript[] unlockedItemsOnTutorialEnd;
 
 
 
@@ -198,6 +200,11 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < unlockedItemsOnTutorialEnd.Length; i++)
+        {
+            witchTradeScript.unlockItem(unlockedItemsOnTutorialEnd[i]);
         }
     }
 

@@ -84,9 +84,17 @@ public class PlayerDeathHandler : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void resetForMainMenu()
+    // Resets timescale to load new scene.
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void quitToMainMenu()
     {
-        resetForNewGameScene();
+        resetForMainMenu();
 
         SceneManager.LoadScene(mainMenuSceneName);
     }

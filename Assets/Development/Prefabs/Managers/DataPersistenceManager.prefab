@@ -58,11 +58,12 @@ MonoBehaviour:
   burnTimer: 0
   chestUnlocked: 0
   discoveredItems: 000000000000000000000000000000000000
+  unlockedItems: 01000000000000
   hasBeenCrafted: 00000000000000
   dialogueFlags: 00000000000000000000
   witchDialogueQueue: 
   playerInventory: ffffffffffffffffffffffffffffffffffffffffffffffff
-  chestInventory: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  chestInventory: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
   isNight: 0
   timeOfDay: 12
   tutorialinprogress: 1
