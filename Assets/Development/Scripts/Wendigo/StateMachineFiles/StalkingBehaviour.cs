@@ -58,6 +58,10 @@ public class StalkingBehaviour : WendigoBehaviour
     {
         // SkinnedMeshRenderer mesh = activeWendigo.GetComponent<SkinnedMeshRenderer>();
         // mesh.enabled = false;
+        if (activeWendigo == null)
+        {
+            return;
+        }
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
         if (mesh == null)
         {
@@ -72,9 +76,15 @@ public class StalkingBehaviour : WendigoBehaviour
 
     void ActivateWendigo()
     {   
+
+        if (activeWendigo == null)
+        {
+            return;
+        }
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
         // soundManager.PlayGroup("WENDIGO_STALKING");
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
+        // Debug.Log("the mesh: " + mesh);
         if (mesh == null)
         {
             Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");

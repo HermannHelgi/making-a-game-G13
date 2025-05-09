@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using UnityEngine;
 
@@ -77,7 +79,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         float c = Vector3.Dot(toTarget, toTarget);
         float t = SolveSmallestPositiveRoot(a, b, c);   
         Vector3 intercept = (t > 0f) ? target.position + v * t : target.position;
-
+        // Vector3 intercept;
         agent.SetDestination(intercept);
     }
 

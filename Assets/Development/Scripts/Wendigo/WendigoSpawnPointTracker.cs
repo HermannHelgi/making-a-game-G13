@@ -34,7 +34,8 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             foreach (GameObject obj in set)
             {
                 if (index == 0)
-                {
+                {   
+                    Debug.Log("Select random: "+ obj.name);
                     return obj;
                 }
                 index--;
@@ -126,6 +127,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
         }
         if (potentialSpawns.Count > 0)
         {   
+             
             return SelectRandom(potentialSpawns);
         }
         else 
@@ -138,13 +140,13 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     {   
         UpdateSpawnPositions(stalkPositions, minStalkDistance, maxStalkDistance);
         UpdateSpawnPositions(chasePositions, minChaseDistance, maxChaseDistance);
-        foreach(GameObject spawns in stalkPositions)
-        {
-            Debug.Log("stalkingpoint: " + spawns.name);
-        }
-        foreach(GameObject chases in chasePositions)
-        {
-            Debug.Log("chasepoint: " + chases.name);
-        }
+        // foreach(GameObject spawns in stalkPositions)
+        // {
+        //     Debug.Log("stalkingpoint: " + spawns.name);
+        // }
+        // foreach(GameObject chases in chasePositions)
+        // {
+        //     Debug.Log("chasepoint: " + chases.name);
+        // }
     }
 }
