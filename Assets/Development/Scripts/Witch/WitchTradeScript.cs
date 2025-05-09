@@ -207,6 +207,11 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
 
         foreach (GameObject bargainingSlots in tradeslotgridchildren)
         {
+            if (bargainingSlots == null)
+            {
+                continue;
+            }
+
             for (int i = 0; i < bargainingSlots.GetComponent<WitchBargainingSlotWrapper>().content.transform.childCount; i++)
             {
                 hotbarslots.Add(bargainingSlots.GetComponent<WitchBargainingSlotWrapper>().content.transform.GetChild(i).gameObject);

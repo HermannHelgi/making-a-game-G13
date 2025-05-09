@@ -31,9 +31,12 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if(!playerInteractHandler.highlighting)
+        if (playerInteractHandler != null)
         {
-            outlineHandler.enabled = false;
+            if(!playerInteractHandler.highlighting)
+            {
+                outlineHandler.enabled = false;
+            }
         }
     }
     public void loadData(GameData data)
@@ -51,6 +54,11 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
 
     public void saveData(ref GameData data)
     {
+        if (id == "")
+        {
+            return;
+        }
+
         if (data.interactableItemCounts.ContainsKey(id))
         {
             data.interactableItemCounts.Remove(id);
@@ -92,11 +100,26 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
                         newmodel.transform.position = gameObject.transform.position;
                         newmodel.transform.rotation = gameObject.transform.rotation;
                         newmodel.transform.localScale = gameObject.transform.localScale;
-                        gameObject.SetActive(false);
+
+                        if (id == "")
+                        {
+                            Destroy(gameObject);
+                        }
+                        else
+                        {
+                            gameObject.SetActive(false);
+                        }
                     }
                     else
                     {
-                        gameObject.SetActive(false);
+                        if (id == "")
+                        {
+                            Destroy(gameObject);
+                        }
+                        else
+                        {
+                            gameObject.SetActive(false);
+                        }
                     }
                 }
                 GameManager.instance.discovereditems[pickupitem.index] = true;
