@@ -76,6 +76,11 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
             }
         }
 
+        if (GameManager.instance.inMenu)
+        {
+            return;
+        }
+
         // Updating necessity bars
         if (firstpersoncontroller.sprint && !GameManager.instance.inMenu)
         {

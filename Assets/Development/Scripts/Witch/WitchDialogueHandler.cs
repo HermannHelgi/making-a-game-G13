@@ -68,11 +68,11 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
         // just checks the distance of the player and whether to turn off the text
         if (displayingmessage)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 runNextDialogue();
             }
-            else if (Input.GetKeyDown(KeyCode.Escape))
+            else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
             {
                 deinitializeDialogue();
             }
