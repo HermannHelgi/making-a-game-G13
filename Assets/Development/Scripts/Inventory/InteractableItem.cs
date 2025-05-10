@@ -90,6 +90,11 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
                 }
                 totalpickuptimes--;
                 
+                if (ObjectiveManager.instance != null)
+                {
+                    ObjectiveManager.instance.pickedUpItem(pickupitem);
+                }
+
                 if (totalpickuptimes <= 0)
                 {
                     if (replaceondepletion)

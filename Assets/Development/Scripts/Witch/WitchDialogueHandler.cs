@@ -95,6 +95,10 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 //// ...yes, so run that dialogue chain
 
                 runAudioForDialogue();
+                if (ObjectiveManager.instance != null)
+                {
+                    ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
+                }
                 currentdialoguechain = dialoguequeue.Dequeue();
                 currentindex = 0;
                 subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
@@ -114,6 +118,10 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                     ///// ...yes, so start the next one
 
                     runAudioForDialogue();
+                    if (ObjectiveManager.instance != null)
+                    {
+                        ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
+                    }
                     currentdialoguechain = dialoguequeue.Dequeue();
                     currentindex = 0;
                     subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
@@ -122,6 +130,11 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 else
                 {
                     ///// ...no, so stop.
+                    if (ObjectiveManager.instance != null)
+                    {
+                        ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
+                    }
+
                     currentdialoguechain = null;
                     if (TutorialManager.instance != null)
                     {

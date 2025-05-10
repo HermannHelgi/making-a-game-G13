@@ -114,7 +114,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     {
         if (currentlytrading)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 deinitializeTradeWindow();
             }
@@ -245,6 +245,10 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             hotbarslots.Clear();
         }
 
+        if (ObjectiveManager.instance != null)
+        {
+            ObjectiveManager.instance.craftedItem(craftableItems[currentindex]);
+        }
 
         if (craftableItems[currentindex] == campfirereference)
         {
