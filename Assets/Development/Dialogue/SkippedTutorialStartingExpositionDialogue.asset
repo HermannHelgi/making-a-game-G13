@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b360467a1a45e464396a8062078c8386, type: 3}
-  m_Name: StartingExpositionDialogue
+  m_Name: SkippedTutorialStartingExpositionDialogue
   m_EditorClassIdentifier: 
-  dialoguename: EXPOSITION
+  dialoguename: SKIPTUTORIALEXPOSITION
   dialogue:
   - "\u201COh, it\u2019s such a relief to see you walking around.\u201D "
   - "\u201CI wasn\u2019t sure you\u2019d survive the drag back to my cave.\u201D "
