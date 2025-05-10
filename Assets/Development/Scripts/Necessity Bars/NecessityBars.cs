@@ -2,6 +2,9 @@ using UnityEngine.UI;
 using UnityEngine;
 using StarterAssets;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using Unity.Mathematics;
 
 public class NecessityBars : MonoBehaviour, IDataPersistence
 {
@@ -50,8 +53,23 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
     private bool displayingincreaseinhunger;
     private float increaseinhunger;
 
+    public Volume globalvolume;
+    private Vignette vignette;
+    private float startingIntensity;
+    private float maxIntensity = 0.5f;
+
     void Awake()
     {
+        if (!globalvolume.profile.TryGet(out vignette))
+        {
+            Debug.Log("Warning You didn't assign the global volume parameter");
+        }
+        else
+        {
+            startingIntensity = vignette.intensity.value;
+        }
+ 
+
         hungerdisplayconsumablemeter.fillAmount = 0;
     }
 
@@ -135,22 +153,40 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
         }
 
         // I do this calculation constantly to avoid more complex logic. 
-        starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
+        //starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
         frostbiteoverhead.color = new Color(1, 1, 1, (1 - currenttemperature / frostbiteoverheaddisplaycutoff));
+
+
 
         //Yub more silly code for audio :)
         if((currenthunger / starvationoverheaddisplaycutoff) < 1)
         {
+            if(vignette.intensity.value < maxIntensity)
+            {
+                vignette.intensity.value += 0.1f * Time.deltaTime; 
+            }
+
             if(SoundManager.instance.currentStomachGurgleTimer <= 0)
             {
                 SoundManager.instance.PlayGroup("STOMACH_GURGLE");
-                SoundManager.instance.currentStomachGurgleTimer = SoundManager.instance.stomachGurgleTimer; 
+                SoundManager.instance.currentStomachGurgleTimer = SoundManager.instance.stomachGurgleTimer;
+
             }
             else
             {
                 SoundManager.instance.currentStomachGurgleTimer -= 1 * Time.deltaTime;
+
+            }
+
+        }
+        else
+        {
+            if(vignette.intensity.value >= startingIntensity)
+            {
+                vignette.intensity.value -= 0.1f * Time.deltaTime;
             }
         }
+        
 
         // Updating bars on screen
         hungermeter.fillAmount = hungerpercent;
