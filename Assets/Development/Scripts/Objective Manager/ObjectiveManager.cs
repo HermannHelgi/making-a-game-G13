@@ -9,6 +9,10 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     public GameObject objectivesTitle;
     public GameObject objectiveGrid;
     public GameObject objectiveChildPrefab;
+    public TextMeshProUGUI objectivesUpdated;
+    public float objectiveUpdateMaxTimer;
+    public float updateSpeed = 2;
+    private float objectiveUpdateTimer = 0;
 
     [Header("Objective strings and references")]
     public string makeCampfire;
@@ -260,6 +264,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
 
     private void spawnObjectiveChild(string line)
     {
+        objectiveUpdateTimer = objectiveUpdateMaxTimer;
         GameObject childObject = Instantiate(objectiveChildPrefab);
         childObject.transform.SetParent(objectiveGrid.transform, false);
         childObject.GetComponent<TextMeshProUGUI>().text = line;
@@ -274,6 +279,15 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
                 Destroy(objectiveGrid.transform.GetChild(i).gameObject);
                 break;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (objectiveUpdateTimer > 0)
+        {
+            objectiveUpdateTimer -= Time.deltaTime / updateSpeed;
+            objectivesUpdated.alpha = Mathf.Lerp(0, 1, objectiveUpdateTimer);
         }
     }
 }

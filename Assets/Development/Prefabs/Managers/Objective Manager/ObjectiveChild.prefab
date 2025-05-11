@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Collect a rare flower.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 38301de004c9c8f4882b1c19d4e036dd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ffc590f8639b79b41860ba8a998f63b3, type: 2}
   m_sharedMaterial: {fileID: 607930246002879526, guid: 38301de004c9c8f4882b1c19d4e036dd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_margin: {x: -658.68854, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
