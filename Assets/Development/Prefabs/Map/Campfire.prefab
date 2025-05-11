@@ -80,7 +80,7 @@ MonoBehaviour:
   sticksemplaced: 1
   burntimer: 0
   playerinrange: 0
-  oldtemperaturedrainrate: 0
+  oldtemperaturedrainrate: 1
 --- !u!1 &8940674102969960628
 GameObject:
   m_ObjectHideFlags: 0
