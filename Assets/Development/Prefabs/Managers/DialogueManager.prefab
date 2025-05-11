@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6fc41692346476943a1e0784dafc4d64, type: 2}
   - {fileID: 11400000, guid: a8ba67d35486d694ab966e87d2c88547, type: 2}
   - {fileID: 11400000, guid: df28cb65f080ba349bb96fab9c96a466, type: 2}
+  - {fileID: 11400000, guid: 657dd552cf7020a47b6c63f53d9af1ee, type: 2}
   indexForPotionDialogue: 040000000500000006000000
   winConditionText: {fileID: 11400000, guid: a8ba67d35486d694ab966e87d2c88547, type: 2}
   lure: {fileID: 11400000, guid: cf63ff3a163a0bb43830703d2a6492dd, type: 2}

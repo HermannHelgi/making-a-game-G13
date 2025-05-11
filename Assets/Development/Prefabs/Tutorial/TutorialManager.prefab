@@ -159,7 +159,7 @@ MonoBehaviour:
   maxlooktimer: 4
   tutorialboxfadeintime: 2
   backgroundalpha: 0.5
-  craftingBackgroundAlpha: 0.95
+  craftingBackgroundAlpha: 1
   tutorialinprogress: 0
   cannotcraft: 0
   cannottalk: 0
@@ -179,13 +179,13 @@ MonoBehaviour:
   hungerBar: {fileID: 0}
   craftingTutorialScreen: {fileID: 0}
   campfire: {fileID: 0}
-  explaincontrols: 'Welcome to the tutorial for Cold Bargain!\n\n   Press WASD to
-    move around and space to jump. \n Hold shift to run.\n Use the mouse to look
-    around.\n\n  If you wish to skip the tutorial, press Z now. '
+  explaincontrols: 'Welcome to Cold Bargain!\n\n   Press WASD to move around and
+    space to jump. \n Hold shift to run.\n Use the mouse to look around.\n\n  If
+    you wish to skip the tutorial, press Z now. '
   explaininteractbutton: "\\n\\nPress \u2018E\u2019 to interact with the environment."
-  explainhotbaranditems: 'You can scroll through your hotbar using the mouse wheel.\n\n
-    You can drop your selected item using Q.\n\n In addition, you can interact with
-    the held item using F. '
+  explainhotbaranditems: 'You can scroll through your hotbar using the mouse wheel.\n\n 
+    You can drop your selected item using Q.\n\n  In addition, you can use a held
+    item using F. '
   berry: {fileID: 11400000, guid: 4cf55cf16fb8e304c84e71e0b5215bcd, type: 2}
   explainnecessitybars: 'In the bottom right you can see your necessity bars.\n\n 
     These will slowly drain as time passes, once they become empty, you will die.\n
@@ -214,7 +214,8 @@ MonoBehaviour:
   witchHighlightCampfire: "\u201CThere, why don\u2019t you warm yourself up?\u201D"
   witchInitiateExposition: "\u201CNow that you\u2019re warm, come over, I have something
     I must tell you\u2026\u201D"
-  witchExposition: {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
+  witchExposition: {fileID: 11400000, guid: 657dd552cf7020a47b6c63f53d9af1ee, type: 2}
+  witchSkippedTutorialExposition: {fileID: 11400000, guid: bb6d74118958f5344b6a59af4af54aab, type: 2}
   witchTradeScript: {fileID: 0}
   unlockedItemsOnTutorialEnd:
   - {fileID: 11400000, guid: 4c77d007ee85f7e4d85c877cd94f6fe9, type: 2}
