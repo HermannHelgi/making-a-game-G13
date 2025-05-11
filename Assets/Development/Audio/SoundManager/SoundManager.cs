@@ -46,9 +46,6 @@ public class SoundManager : MonoBehaviour
     private string currentScene;
 
     public static SoundManager instance;
-    public float currentStomachGurgleTimer = 15f;
-    
-    public float stomachGurgleTimer = 15f;
 
     public List<SoundGroup> soundGroups = new();
 

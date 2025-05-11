@@ -58,6 +58,12 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
     private float startingIntensity;
     private float maxIntensity = 0.5f;
 
+    private float startStomachGurgleTimer = 15f;
+    private float startShiverTimer = 15f;
+    private float currentStomachGurgleTimer = 15f;
+    private float currentshiverTimer = 15f;
+
+
     void Awake()
     {
         if (!globalvolume.profile.TryGet(out vignette))
@@ -171,15 +177,15 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
                 vignette.intensity.value += 0.1f * Time.deltaTime; 
             }
 
-            if(SoundManager.instance.currentStomachGurgleTimer <= 0)
+            if(currentStomachGurgleTimer <= 0)
             {
                 SoundManager.instance.PlayGroup("STOMACH_GURGLE");
-                SoundManager.instance.currentStomachGurgleTimer = SoundManager.instance.stomachGurgleTimer;
+                currentStomachGurgleTimer = startStomachGurgleTimer;
 
             }
             else
             {
-                SoundManager.instance.currentStomachGurgleTimer -= 1 * Time.deltaTime;
+                currentStomachGurgleTimer -= 1 * Time.deltaTime;
 
             }
 
@@ -190,6 +196,21 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
             {
                 vignette.intensity.value -= 0.1f * Time.deltaTime;
             }
+        }
+        if((currenttemperature / frostbiteoverheaddisplaycutoff) < 1)
+        {
+
+           if(currentshiverTimer <= 0)
+            {
+                SoundManager.instance.PlayGroup("SHIVER");
+                currentshiverTimer = startShiverTimer;
+
+            }
+            else
+            {
+                currentshiverTimer -= 1 * Time.deltaTime;
+
+            }  
         }
         
 
