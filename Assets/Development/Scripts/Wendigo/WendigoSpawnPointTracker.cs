@@ -35,7 +35,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             {
                 if (index == 0)
                 {   
-                    Debug.Log("Select random: "+ obj.name);
+                    // Debug.Log("Select random: "+ obj.name);
                     return obj;
                 }
                 index--;

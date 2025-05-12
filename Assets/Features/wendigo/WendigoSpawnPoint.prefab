@@ -76,7 +76,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 191
   DopplerLevel: 1.96
-  MinDistance: 1
+  MinDistance: 1.0567503
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1
@@ -182,15 +182,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 327607519247408787, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.38
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 327607519247408787, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.456154
+      value: 3.85
       objectReference: {fileID: 0}
     - target: {fileID: 327607519247408787, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.51
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 327607519247408787, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -315,6 +315,14 @@ PrefabInstance:
     - target: {fileID: 3293287532501474558, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529207885697385974, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529207885697385974, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 3542239297788234609, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_Layer
@@ -462,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8633723466432675046, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8716242305811613319, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_Layer

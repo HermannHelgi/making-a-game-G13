@@ -91,13 +91,13 @@ public class WendigoRaycast : MonoBehaviour
             sawPlayerThisScan = ScanForPlayer();
             if (sawPlayerThisScan)
             {   
-                Debug.Log("Player detected!");
+                // Debug.Log("Player detected!");
                 detected = true;
                 loseSightTimer = 0;
             }
             else if(ListenForPlayer())
             {
-                Debug.Log("Player heard!");
+                // Debug.Log("Player heard!");
                 lastKnownPosition = target.transform.position;
                 detected = true;
                 loseSightTimer = 0;
@@ -111,7 +111,7 @@ public class WendigoRaycast : MonoBehaviour
             loseSightTimer += Time.deltaTime;
             if(loseSightTimer >= loseSightDelay)
             {
-                Debug.Log("Player Lost!");
+                // Debug.Log("Player Lost!");
                 detected = false;
             }
         }

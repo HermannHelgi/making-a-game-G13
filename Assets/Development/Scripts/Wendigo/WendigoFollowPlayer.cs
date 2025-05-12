@@ -135,7 +135,11 @@ public class WendigoFollowPlayer : MonoBehaviour
     }
 
     public void SpawnBehindPlayer(Vector3 spawnPoint, float sampleRadius=10.0f)
-    {
+    {   
+        if(spawnPoint == null)
+        {
+            return;
+        }
         if(NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
         {
             transform.position = spawnPoint;

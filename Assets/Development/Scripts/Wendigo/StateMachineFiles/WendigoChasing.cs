@@ -103,12 +103,19 @@ public class WendigoChasing : WendigoBehaviour
             if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
             {
                 Debug.Log("DISSAPEARS");
-                agent.enabled = false;
+                // agent.enabled = false;
                 transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
                 // isRetreating = true;
                 spawned = false;
                 isEnding = false;
                 
+            }
+            else if( Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 45f )
+            {
+                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+                // isRetreating = true;
+                spawned = false;
+                isEnding = false;  
             }
         }        
     }
