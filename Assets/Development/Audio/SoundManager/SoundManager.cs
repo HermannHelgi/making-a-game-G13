@@ -35,8 +35,11 @@ public class AudioMixerReference
     public AudioMixer mixer;
 }
 
+
+
 public class SoundManager : MonoBehaviour
 {   
+    
     public AudioMixer mainMixer;
     public List<SnapshotGroup> soundSnapshots = new();
     private AudioMixerSnapshot defaultSnapshot;
@@ -142,8 +145,6 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"[SoundManager] Sound group '{groupName}' not found or empty.");
         }
     }
-
-
     public void ChangeSoundsnapshot(string snapshotName, float timing)
     {
         var snapshot = soundSnapshots.Find(s => s.audioSnapshot != null && s.audioSnapshot.name == snapshotName);
@@ -159,6 +160,25 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"Snapshot '{snapshotName}' not found.");
         }
     }   
+
+    public void StopPlayGroup(string groupName)
+    {
+        SoundGroup group = soundGroups.Find(g => g.headerName == groupName);
+        if (group != null && group.sounds.Count > 0)
+        {
+
+            if(group.source.isPlaying)
+            {
+                group.source.Stop();
+            }
+
+        }
+        else
+        {
+            Debug.LogWarning($"[SoundManager] Sound group '{groupName}' not found or empty.");
+        }
+
+    }
 
     public void ExitSoundsnapshot(float timing)
     {   

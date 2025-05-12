@@ -9,17 +9,21 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     public Camera playerCamera;
     public LayerMask wendigoLayer;
     [Header("SpawnPoints distance")]
-    public float minSpawnDistance;
-    public float maxSpawnDistance;
+    public float minChaseDistance = 45f;
+    public float maxChaseDistance = 60f;
+    public float minStalkDistance = 20f;
+    public float maxStalkDistance = 40f;
     public Transform despawnPoint;
-    private HashSet<GameObject> spawnPositions;
+    private HashSet<GameObject> stalkPositions;
+    private HashSet<GameObject> chasePositions;
 
     void Start()
     {
     }
     void Awake()
     {
-        spawnPositions = new HashSet<GameObject>();
+        stalkPositions = new HashSet<GameObject>();
+        chasePositions = new HashSet<GameObject>();
     }
 
     private GameObject SelectRandom(HashSet<GameObject> set)
@@ -30,20 +34,21 @@ public class WendigoSpawnPointTracker : MonoBehaviour
             foreach (GameObject obj in set)
             {
                 if (index == 0)
-                {
+                {   
+                    Debug.Log("Select random: "+ obj.name);
                     return obj;
                 }
                 index--;
             }
         }
         return null;
-    }
+    }  
 
-
-    private void UpdateSpawnPositions()
+    private void UpdateSpawnPositions(HashSet<GameObject> spawns, float minDistance, float maxDistance)
     {
         HashSet<GameObject> toRemove = new HashSet<GameObject>();
-        foreach(GameObject spawn in spawnPositions)
+
+        foreach(GameObject spawn in spawns)
         {   
             // Debug.Log(spawn.transform.position);
             if(spawn == null)
@@ -51,26 +56,27 @@ public class WendigoSpawnPointTracker : MonoBehaviour
                 toRemove.Add(spawn);
             }
             float distance = Vector3.Distance(spawn.transform.position, playerCamera.transform.position);
-            if (distance < minSpawnDistance || distance > maxSpawnDistance)
+            if (distance < minDistance || distance > maxDistance)
             {   
                 toRemove.Add(spawn);
             }
         }
-        foreach(GameObject potentialRemove in toRemove)
+        foreach(GameObject remove in toRemove)
         {
-            spawnPositions.Remove(potentialRemove);
+            spawns.Remove(remove);
         }
 
-        foreach (Collider collision in Physics.OverlapSphere(transform.position, maxSpawnDistance, wendigoLayer))
+        foreach (Collider collision in Physics.OverlapSphere(transform.position, maxDistance, wendigoLayer))
         {   
             if(!GameObjectWithinFrustum(collision.gameObject, playerCamera))
             {   
-                spawnPositions.Add(collision.gameObject);
+                spawns.Add(collision.gameObject);
             }
         }
+        
     }
 
-    private bool GameObjectWithinFrustum(GameObject go, Camera camera, float offset=15.0f)
+    private bool GameObjectWithinFrustum(GameObject go, Camera camera, float offset=20.0f)
     {
         Vector3 dir = go.transform.position - camera.transform.position;
         dir.y = 0;
@@ -81,7 +87,7 @@ public class WendigoSpawnPointTracker : MonoBehaviour
     }
 
 
-    public bool GameObjectWithinFrustum(GameObject go, float offset=15.0f)
+    public bool GameObjectWithinFrustum(GameObject go, float offset=20.0f)
     {
         Vector3 dir = go.transform.position - playerCamera.transform.position;
         dir.y = 0;
@@ -91,24 +97,37 @@ public class WendigoSpawnPointTracker : MonoBehaviour
         return Vector3.Angle(dir.normalized , cameraForward) <= playerCamera.fieldOfView + offset;
     }
 
-    public GameObject SelectRandomSpawn()
-    {
+    public GameObject SelectRandomSpawn(bool chasing)
+    {   
+        HashSet<GameObject> currentSpawnPosition;
+        float currentMin;
+        if(chasing)
+        {
+            currentSpawnPosition = chasePositions;
+            currentMin = minChaseDistance;         
+        }
+        else
+        {
+            currentSpawnPosition = stalkPositions;
+            currentMin = minStalkDistance;
+        }
         HashSet<GameObject> potentialSpawns = new HashSet<GameObject>();
-        foreach (GameObject wendigo in spawnPositions)
+        foreach (GameObject wendigo in currentSpawnPosition)
         {
             Vector3 wendigoVector = wendigo.transform.position - playerCamera.transform.position;
             wendigoVector.y = 0;
-            if (wendigoVector.magnitude < minSpawnDistance)
+            if (wendigoVector.magnitude < currentMin)
             {
                 continue;
             }
-            if (GameObjectWithinFrustum(wendigo, playerCamera, 15f))
+            if (GameObjectWithinFrustum(wendigo, playerCamera, 35f))
             {
                 potentialSpawns.Add(wendigo);
             }
         }
         if (potentialSpawns.Count > 0)
         {   
+             
             return SelectRandom(potentialSpawns);
         }
         else 
@@ -119,7 +138,15 @@ public class WendigoSpawnPointTracker : MonoBehaviour
 
     void Update()
     {   
-        UpdateSpawnPositions();
-        // SelectRandomSpawn();
+        UpdateSpawnPositions(stalkPositions, minStalkDistance, maxStalkDistance);
+        UpdateSpawnPositions(chasePositions, minChaseDistance, maxChaseDistance);
+        // foreach(GameObject spawns in stalkPositions)
+        // {
+        //     Debug.Log("stalkingpoint: " + spawns.name);
+        // }
+        // foreach(GameObject chases in chasePositions)
+        // {
+        //     Debug.Log("chasepoint: " + chases.name);
+        // }
     }
 }

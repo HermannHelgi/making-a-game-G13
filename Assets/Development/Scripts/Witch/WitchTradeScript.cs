@@ -120,17 +120,17 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             }
 
             // Increase trading slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.DownArrow)) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) 
             {
                 selectCraftingSlot(currentindex + 1);
             }
             // Decrease trading slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.UpArrow)) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) 
             {
                 selectCraftingSlot(currentindex - 1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.E))
             {
                 craftItem();
             }
@@ -245,6 +245,10 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             hotbarslots.Clear();
         }
 
+        if (ObjectiveManager.instance != null)
+        {
+            ObjectiveManager.instance.craftedItem(craftableItems[currentindex]);
+        }
 
         if (craftableItems[currentindex] == campfirereference)
         {

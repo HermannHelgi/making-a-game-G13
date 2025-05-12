@@ -9,8 +9,7 @@ public class WendigoStateMachine : MonoBehaviour
     private WendigoChasing chasing;
     private WendigoBehaviour activeState = null;
     private WendigoBehaviour nextState = null;
-
-    public int maxPlayerSightings = 2;
+    public int maxWendigoSpawns = 3;
     public float maxSearchTime = 60.0f;
 
     void Start()
@@ -73,15 +72,15 @@ public class WendigoStateMachine : MonoBehaviour
             Debug.Log("Entering Resting State");
             SetNewState(resting);
         }
-        if (activeState == stalking && stalking.playerSightings >= maxPlayerSightings && stalking.inAggressionRange)
+        if (activeState == stalking && stalking.inAggressionRange)
         {
             Debug.Log("Entering Chasing State");
-            stalking.playerSightings = 0;
+            
             SetNewState(chasing);
         }
-        if (activeState == stalking && stalking.playerSightings >= maxPlayerSightings)
+        if (activeState == stalking && stalking.wendigoSpawns >= maxWendigoSpawns)
         {
-            stalking.playerSightings = 0;
+            
             Debug.Log("Entering Chasing State");
             SetNewState(chasing);
         }
@@ -90,12 +89,13 @@ public class WendigoStateMachine : MonoBehaviour
             Debug.Log("Entering resting State");
             SetNewState(resting);
         }
-        if (activeState == chasing && chasing.searchTime > maxSearchTime)
+        if (activeState == chasing && chasing.searchTime >= maxSearchTime)
         {   
   
             Debug.Log("Entering Stalking State");
             SetNewState(stalking);
         }
+        // if (GameManager.instance.)
         // if (// lure isn't placed && player in lair)
         // {
         //     SetNewState(chasing);

@@ -68,11 +68,11 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
         // just checks the distance of the player and whether to turn off the text
         if (displayingmessage)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 runNextDialogue();
             }
-            else if (Input.GetKeyDown(KeyCode.Escape))
+            else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
             {
                 deinitializeDialogue();
             }
@@ -95,6 +95,10 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 //// ...yes, so run that dialogue chain
 
                 runAudioForDialogue();
+                if (ObjectiveManager.instance != null)
+                {
+                    ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
+                }
                 currentdialoguechain = dialoguequeue.Dequeue();
                 currentindex = 0;
                 subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
@@ -114,6 +118,10 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                     ///// ...yes, so start the next one
 
                     runAudioForDialogue();
+                    if (ObjectiveManager.instance != null)
+                    {
+                        ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
+                    }
                     currentdialoguechain = dialoguequeue.Dequeue();
                     currentindex = 0;
                     subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
@@ -122,6 +130,11 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 else
                 {
                     ///// ...no, so stop.
+                    if (ObjectiveManager.instance != null)
+                    {
+                        ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
+                    }
+
                     currentdialoguechain = null;
                     if (TutorialManager.instance != null)
                     {

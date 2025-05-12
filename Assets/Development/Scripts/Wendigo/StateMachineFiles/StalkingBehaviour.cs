@@ -11,17 +11,17 @@ public class StalkingBehaviour : WendigoBehaviour
     public LayerMask obstacleLayer;
     public float spawnCooldown = 5.0f;
     public float wendigoRadius = 0.55f; 
-    public int playerSightings = 0;
+    public int wendigoSpawns = 0;
     public float sightThreshold = 2.0f;
-    public float aggressionRange = 5.0f;
+    public float aggressionRange = 3.0f;
     public float yOffsetForRaycast = 2.0f;
     public bool inAggressionRange = false;
-
     private GameObject activeWendigo = null;
     private float spawnTimer ;
     [SerializeField] private float sightTimer = 0.0f;
     private bool seen = false;
     public SoundManager soundManager;
+    public AudioClip spawnAudio;
 
     void Awake()
     {
@@ -32,6 +32,8 @@ public class StalkingBehaviour : WendigoBehaviour
         base.EnterState();
         inAggressionRange = false;
         spawnTimer = spawnCooldown;
+        wendigoSpawns = 0; 
+        
     }
 
     public override void ExitState()
@@ -48,7 +50,7 @@ public class StalkingBehaviour : WendigoBehaviour
     }
 
     public void DespawnWendigo()
-    {
+    {   
         DeActivateWendigo();
     }
 
@@ -56,6 +58,10 @@ public class StalkingBehaviour : WendigoBehaviour
     {
         // SkinnedMeshRenderer mesh = activeWendigo.GetComponent<SkinnedMeshRenderer>();
         // mesh.enabled = false;
+        if (activeWendigo == null)
+        {
+            return;
+        }
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
         if (mesh == null)
         {
@@ -70,9 +76,15 @@ public class StalkingBehaviour : WendigoBehaviour
 
     void ActivateWendigo()
     {   
+
+        if (activeWendigo == null)
+        {
+            return;
+        }
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
-        soundManager.PlayGroup("WENDIGO_STALKING");
+        // soundManager.PlayGroup("WENDIGO_STALKING");
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
+        // Debug.Log("the mesh: " + mesh);
         if (mesh == null)
         {
             Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");
@@ -80,6 +92,8 @@ public class StalkingBehaviour : WendigoBehaviour
         }
         mesh.enabled = true;
         sightTimer = 0.0f;
+        AudioSource spawnSound = mesh.GetComponentInParent<AudioSource>();
+        spawnSound.PlayOneShot(spawnAudio);
     }
 
     SkinnedMeshRenderer FindSkinnedMeshRenderer(GameObject obj)
@@ -131,7 +145,6 @@ public class StalkingBehaviour : WendigoBehaviour
                 {
                     if (Vector3.Distance(spawnPointTracker.playerCamera.transform.position, activeWendigo.transform.position) <= aggressionRange)
                     {
-                        playerSightings += 10;
                         inAggressionRange = true;
                     }
                     else
@@ -141,17 +154,19 @@ public class StalkingBehaviour : WendigoBehaviour
                         {   
                             soundManager.ChangeSoundsnapshot("SPOOKY", 0f);
                             soundManager.PlayGroup("WENDIGO_STARING");
+                            inAggressionRange = true;
                             
-                            playerSightings++;
-                            sightTimer = -sightThreshold * playerSightings/2;
+                            
                         }
                     }
                 }   
             }
             else if (!spawnPointTracker.GameObjectWithinFrustum(activeWendigo) && seen)
-            {   
+            {  
+                soundManager.StopPlayGroup("WENDIGO_STARING"); 
                 soundManager.ExitSoundsnapshot(0f);
                 seen = false;
+                sightTimer = 0f;
                 DeActivateWendigo();
             }
         }
@@ -164,7 +179,7 @@ public class StalkingBehaviour : WendigoBehaviour
             Transform parentTransform = activeWendigo.GetComponentInParent<Transform>();
             parentTransform.LookAt(spawnPointTracker.playerCamera.transform);
             activeWendigo.transform.forward = (spawnPointTracker.playerCamera.transform.position - activeWendigo.transform.position).normalized;
-            spawnPointTracker.SelectRandomSpawn();
+            spawnPointTracker.SelectRandomSpawn(false);
         }
 
         if (isActive)
@@ -173,15 +188,17 @@ public class StalkingBehaviour : WendigoBehaviour
             UpdateActiveWendigo();
             if(activeWendigo == null && spawnTimer < 0.0f)
             {
-                activeWendigo = spawnPointTracker.SelectRandomSpawn();
+                activeWendigo = spawnPointTracker.SelectRandomSpawn(false);
                 if (activeWendigo)
                 {   
                     Debug.Log("Activating wendigo");
                     ActivateWendigo();
+                    wendigoSpawns ++ ;
                 }
             }
 
         }
+
         else if (isEnding)
         {
             UpdateActiveWendigo();

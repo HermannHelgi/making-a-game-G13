@@ -54,6 +54,11 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
 
     public void saveData(ref GameData data)
     {
+        if (id == "")
+        {
+            return;
+        }
+
         if (data.interactableItemCounts.ContainsKey(id))
         {
             data.interactableItemCounts.Remove(id);
@@ -85,6 +90,11 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
                 }
                 totalpickuptimes--;
                 
+                if (ObjectiveManager.instance != null)
+                {
+                    ObjectiveManager.instance.pickedUpItem(pickupitem);
+                }
+
                 if (totalpickuptimes <= 0)
                 {
                     if (replaceondepletion)
@@ -95,11 +105,26 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
                         newmodel.transform.position = gameObject.transform.position;
                         newmodel.transform.rotation = gameObject.transform.rotation;
                         newmodel.transform.localScale = gameObject.transform.localScale;
-                        gameObject.SetActive(false);
+
+                        if (id == "")
+                        {
+                            Destroy(gameObject);
+                        }
+                        else
+                        {
+                            gameObject.SetActive(false);
+                        }
                     }
                     else
                     {
-                        gameObject.SetActive(false);
+                        if (id == "")
+                        {
+                            Destroy(gameObject);
+                        }
+                        else
+                        {
+                            gameObject.SetActive(false);
+                        }
                     }
                 }
                 GameManager.instance.discovereditems[pickupitem.index] = true;

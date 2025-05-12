@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguename: BARGAINWITHME
   dialogue:
-  - "\u201CAh, I see you have found some resources.\u201D "
+  - "\u201COh, it\u2019s such a relief to see you walking around.\u201D "
+  - "\u201CI wasn\u2019t sure you\u2019d survive the drag back to my cave.\u201D "
+  - "\u201CAfter all that tumbling, It's a miracle you survived!\u201D "
+  - "\u201C...Ah! I see you have found some resources.\u201D "
   - "\u201CI have many wares and items I can give in exchange.\u201D "
   - "\u201CCome, bargain with me.\u201D "

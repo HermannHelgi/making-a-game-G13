@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguename: MAKECAMPFIRE
   dialogue:
-  - "\u201CNow, how about we make you a little less cold?\u201D"
+  - "\u201CNow, how about we make you a little less cold?\u201D "
   - "\u201CWhy don\u2019t you scamper out and find some sticks and a stone so I can
     make a campfire for you?\u201D "
-  - "\u201CBe quick about it, you don\u2019t want to be outside at night.\u201D "
-  - "\u201CFor your own safety\u2026\u201D "
+  - "\u201CBe quick about it, you don\u2019t want to be outside at night for long\u2026\u201D "
+  - "\u201CYou see, there lurks a <b><i>monster</i></b> in these woods, a savage
+    and vicious one.\u201D "
+  - "\u201CAnd it seems, it has <b><i>marked</i></b> you as its prey.\u201D "
+  - "\u201CWhen night falls, it will come for you\u2026\u201D "
+  - "\u201CAnd no doubt, rip you to pieces, limb from <b><i>bloody limb</i></b>\u201D "
+  - "\u201C...\u201D"
+  - "\u201CSo, be careful, alright sweetie?\u201D "

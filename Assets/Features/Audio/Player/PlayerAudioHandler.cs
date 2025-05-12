@@ -4,14 +4,10 @@ using UnityEngine;
 public class PlayerAudioHandler : MonoBehaviour
 {
 
-    public SoundManager soundManager;
     public Component controllerComponent;
 
     private bool _walked;
-    void Awake()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -19,7 +15,7 @@ public class PlayerAudioHandler : MonoBehaviour
         _walked = controllerComponent.GetComponent<FirstPersonController>()._walked;
         if(_walked)
         {
-            soundManager.PlayGroup("PLAYER_WALKING");
+            SoundManager.instance.PlayGroup("PLAYER_WALKING");
         }
 
     }
