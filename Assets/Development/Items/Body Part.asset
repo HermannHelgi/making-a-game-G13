@@ -15,9 +15,11 @@ MonoBehaviour:
   itemname: BODY PART
   index: 7
   icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 7311236676027902326, guid: c51fb69793d816548a121827fe1d7ebc, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
+  satiation: 0
   unique: 1
+  craftingDescription: 

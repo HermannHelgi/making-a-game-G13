@@ -15,13 +15,14 @@ MonoBehaviour:
   itemname: LURE
   index: 16
   icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  model: {fileID: 8877748705870273310, guid: 99324ff6aa7eace47a87f9eb3a79233e, type: 3}
   craftingrecipe:
   - {fileID: 11400000, guid: 7833bf51c948bdf4e9cb6b97810ad90d, type: 2}
   - {fileID: 11400000, guid: 90b944351c5197a4aa4ef443178ea6e9, type: 2}
   onetimecraft: 1
   consumable: 0
   hungergain: 0
+  satiation: 0
   unique: 1
   craftingDescription: 'This item can be used to draw the monster''s attention away
     from you for a short while.\n\n To activate it, place it upon the effigy nearby. '
