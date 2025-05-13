@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
-
+using Unity.Cinemachine;
 using UnityEngine;
 
 
@@ -63,6 +63,7 @@ public class StalkingBehaviour : WendigoBehaviour
             return;
         }
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
+        Animator myAnimator = FindAnimator(activeWendigo);
         if (mesh == null)
         {
             Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");
@@ -72,6 +73,29 @@ public class StalkingBehaviour : WendigoBehaviour
         activeWendigo = null;
         spawnTimer = spawnCooldown;
         sightTimer = 0.0f;
+        myAnimator.SetBool("despawn", true);
+    }
+
+    Animator FindAnimator(GameObject activeWendigo)
+    {   
+        if( activeWendigo == null)
+        {
+            return null;
+        }
+        foreach(Transform child in activeWendigo.transform)
+        {
+            Animator myAnimator = child.GetComponent<Animator>();
+            if(myAnimator != null)
+            { 
+                return myAnimator;
+            }
+            Animator nesterAnimator = FindAnimator(child.gameObject);
+            if (nesterAnimator != null)
+            {
+                return nesterAnimator;
+            }
+        }
+        return null;
     }
 
     void ActivateWendigo()
@@ -84,6 +108,8 @@ public class StalkingBehaviour : WendigoBehaviour
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
         // soundManager.PlayGroup("WENDIGO_STALKING");
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
+        Animator myAnimator = FindAnimator(activeWendigo);
+        myAnimator.SetBool("isIdle", true);
         // Debug.Log("the mesh: " + mesh);
         if (mesh == null)
         {

@@ -23,8 +23,12 @@ public class WendigoChasing : WendigoBehaviour
     public SoundManager soundManager;
     public bool isRetreating = false;
     private float internalTimer = 0.0f;
+    public Animator animator;
 
-
+    private void Start()
+    {
+        // animator = GetComponent<Animator>();   
+    }
     public override void EnterState()
     {
         base.EnterState();
@@ -75,6 +79,7 @@ public class WendigoChasing : WendigoBehaviour
                     }
                     // wendigoFollowPlayer.justSpawned = false;
                     wendigoLookForPlayer.MarkPlayerSighting();
+                    animator.SetBool("isIdle",false );
                     
                 }
 
@@ -84,6 +89,7 @@ public class WendigoChasing : WendigoBehaviour
                     soundManager.PlayGroup("WENDIGO_KILL");
                     playerDeathHandler.die("You were slain by the monster!");
                     soundManager.ExitSoundsnapshot(0f);
+                    
                 }
             }
         }
@@ -98,7 +104,8 @@ public class WendigoChasing : WendigoBehaviour
             if (wendigoFollowPlayer.selectedRetreat == null)
             {
                 isRetreating = true;
-                agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);                
+                agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);   
+                             
             }
             if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
             {

@@ -13,21 +13,24 @@ public class WendigoLookForPlayer: MonoBehaviour
     public int numMarkers = 5;
     private Queue<Vector3> markers;
     public SoundManager soundManager;
+    public Animator myAnimator;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         markers = new Queue<Vector3>();
+        myAnimator = GetComponent<Animator>();
     }
 
     public void TrackFootsteps()
     {   
         smellTimer += Time.deltaTime;
+        myAnimator.SetBool("isIdle", true);
         if(smellTimer > trackingTimer)
         {   
             smellTimer = 0.0f;
             soundManager.PlayGroup("WENDIGO_TRACKING");
-
+            myAnimator.SetBool("isIdle", false);
             agent.SetDestination(markers.Dequeue()); 
         }
     }
