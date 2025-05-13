@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: BONES
   index: 8
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
+  icon: {fileID: 21300000, guid: d2e6671f8e2072f469d94c32260d6b7c, type: 3}
   model: {fileID: 564192501441622437, guid: 0a0d527907ea27e4ea7e05fe3896ae11, type: 3}
   craftingrecipe: []
   onetimecraft: 0
