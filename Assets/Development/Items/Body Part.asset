@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: BODY PART
   index: 7
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6cf109382222cba489f3af2dfe5787f5, type: 3}
+  model: {fileID: 3438801749706083727, guid: c8de70c613bc6ff48b96aa4cf845fd5e, type: 3}
   craftingrecipe: []
   onetimecraft: 0
   consumable: 0
   hungergain: 0
+  satiation: 0
   unique: 1
+  craftingDescription: 

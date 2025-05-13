@@ -343,7 +343,7 @@ public class LightingManager : MonoBehaviour, IDataPersistence
             //Search scene for light that fits criteria (directional)
             else
             {
-                Light[] lights = GameObject.FindObjectsOfType<Light>();
+                Light[] lights = GameObject.FindObjectsByType<Light>(FindObjectsSortMode.None);
                 foreach (Light light in lights)
                 {
                     if (light.type == LightType.Directional)

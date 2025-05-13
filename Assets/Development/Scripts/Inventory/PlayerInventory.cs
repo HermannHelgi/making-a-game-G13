@@ -172,19 +172,15 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             }
             else if (hotbarinventory[currentindex] == torch)
             {
-                if (currenttorchdurability <= 0)
-                {
-                    consumableindicator.SetActive(true);
-                    consumableindicator.GetComponent<TextMeshProUGUI>().text = refueltorchtext;
-                }
+                consumableindicator.SetActive(true);
+                consumableindicator.GetComponent<TextMeshProUGUI>().text = refueltorchtext;
+                consumableTimer = maxConsumableTimer;
             }
             else if (hotbarinventory[currentindex] == emberstone)
             {
-                if (currentemberstonedurability <= 0)
-                {
-                    consumableindicator.SetActive(true);
-                    consumableindicator.GetComponent<TextMeshProUGUI>().text = refuelemberstonetext;
-                }
+                consumableindicator.SetActive(true);
+                consumableindicator.GetComponent<TextMeshProUGUI>().text = refuelemberstonetext;
+                consumableTimer = maxConsumableTimer;
             }
         }
 
@@ -418,6 +414,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             GameObject droppedItem = Instantiate(droppeditemprefab);
             droppedItem.transform.position = droplocation.transform.position;
             droppedItem.GetComponent<InteractableItem>().pickupitem = hotbarinventory[currentindex];
+            droppedItem.GetComponent<InteractableItem>().playerInteractHandler = playerinteracthandler;
             removeItemFromHotbar(currentindex);
             selectHotbar(currentindex);
         }

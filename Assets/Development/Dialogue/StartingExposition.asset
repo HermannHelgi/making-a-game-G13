@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b360467a1a45e464396a8062078c8386, type: 3}
+  m_Name: StartingExposition
+  m_EditorClassIdentifier: 
+  dialoguename: STARTEXPOSITION
+  dialogue:
+  - "\u201C...Did you see the <b><i>beast</b></i> outside at all?\u201D "
+  - "\u201CI hope not. It\u2019s a terrifying and relentless thing.\u201D "
+  - "\u201CHowever, there is a silver lining to your\u2026 <i><b>predicament</b></i>,
+    as you just so happen to be talking to the only person who can help you!\u201D "
+  - "\u201CYou see, I\u2019m what some might call a <i><b>Witch</b></i>.\u201D "
+  - "\u201CI have defended myself from this <b><i>monster</i></b> for a long time,
+    and I have enchanted this cave to protect me from it, this safety extends to
+    you as well.\u201D "
+  - "\u201CHowever, this will not protect you from the elements, and I doubt you
+    wish to stay here for eternity\u2026\u201D "
+  - "\u201CSo! To end this predicament, I can brew a potion for you.\u201C "
+  - "\u201COne which will remove the <b><i>beast's mark</b></i>, and allow you to
+    escape.\u201D "
+  - "\u201CThus, I suggest a bargain.\u201D "
+  - "\u201CBring me the materials for the potion, and I will make it for you, simple
+    as that.\u201D "
+  - "\u201CAdditionally, if you happen to come across any other materials in the
+    woods then perhaps I can make some other necessities for your survival.\u201D "
+  - "\u201CNow, you\u2019ll need to collect a few things to make the potion. So,
+    pay attention now.\u201D "
+  - "\u201C<i><b>The 3 ingredients you need to find are:</b></i>\u201D "
+  - "\u201C<i><b>A bottle, one filled with liquid courage.</b></i>\u201D "
+  - "\u201C<i><b>A rare flower, one which shimmers in the pale moonlight.</b></i>\u201D "
+  - "\u201C<i><b>And finally,</b></i>\u201D "
+  - "\u201C<i><b><color=\"red\">The flesh of your own.</color></b></i>\u201D "
+  - "\u201C...don\u2019t think too much about that last bit, okay?\u201D "
+  - "\u201CNow, go on love, I believe in you!\u201D "
+  - "\u201CAnd remember\u2026\u201D "
+  - "\u201CThe beast comes out at <i><b>night.</b></i>\u201D "

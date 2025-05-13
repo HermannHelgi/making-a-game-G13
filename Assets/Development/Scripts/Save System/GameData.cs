@@ -60,6 +60,17 @@ public class GameData
     public bool teachingCampfire;
     public bool doingExposition;
 
+    public bool makeCampfireState;
+    public bool potionIngredientsState;
+    public bool collectFlowerState;
+    public bool collectBottleState;
+    public bool collectBodyPartState;
+    public bool createLureState;
+    public bool placeLureState;
+    public bool collectSkullState;
+    public bool createPotionState;
+    public bool drinkPotionState;
+
     public GameData()
     {
         playerPos = Vector3.zero;
@@ -105,5 +116,16 @@ public class GameData
         caveWallActive = false;
         caveWallColliderActive = false;
         walkColliderActive = false;
+
+        makeCampfireState = false;
+        potionIngredientsState = false;
+        collectFlowerState = false;
+        collectBottleState = false;
+        collectBodyPartState = false;
+        createLureState = false;
+        placeLureState = false;
+        collectSkullState = false;
+        createPotionState = false;
+        drinkPotionState = false;
     }
 }

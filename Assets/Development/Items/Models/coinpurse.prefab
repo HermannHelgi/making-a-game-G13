@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57cfe74ba5ad0b84481a861549f758ea, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4068882668306821350}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 57cfe74ba5ad0b84481a861549f758ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3130935375143802261}
   m_SourcePrefab: {fileID: 100100000, guid: 57cfe74ba5ad0b84481a861549f758ea, type: 3}
 --- !u!1 &6279131192267406343 stripped
 GameObject:
@@ -148,8 +151,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d80f684d1835a4fb7fdf9cfb81d289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   pickupitem: {fileID: 0}
   totalpickuptimes: 1
   dialoguetriggerforwitch: {fileID: 0}
   replaceondepletion: 0
   replacemodel: {fileID: 0}
+  playerInteractHandler: {fileID: 0}
+--- !u!114 &-3130935375143802261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279131192267406343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.81960785, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

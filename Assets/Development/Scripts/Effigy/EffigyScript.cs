@@ -8,6 +8,8 @@ public class EffigyScript : MonoBehaviour, IDataPersistence
     {
         GameManager.instance.lurePlaced = true;
         lureInWorld.SetActive(true);
+
+        ObjectiveManager.instance.placedLure();
     }
 
     public void loadData(GameData data)

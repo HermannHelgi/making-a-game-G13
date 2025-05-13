@@ -337,21 +337,22 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
         if (active)
         {
             // Increase storage slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.UpArrow)) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) 
             {
                 selectStorageSlot(currentindex + 1);
             }
             // Decrease storage slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.DownArrow)) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) 
             {
                 selectStorageSlot(currentindex - 1);
             }
             
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.E))
             {
                 moveItem();
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
+            
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
             {
                 deInitializeStorageWindow();
             }

@@ -1,6 +1,10 @@
 using UnityEngine.UI;
 using UnityEngine;
 using StarterAssets;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using Unity.Mathematics;
 
 public class NecessityBars : MonoBehaviour, IDataPersistence
 {
@@ -49,8 +53,29 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
     private bool displayingincreaseinhunger;
     private float increaseinhunger;
 
+    public Volume globalvolume;
+    private Vignette vignette;
+    private float startingIntensity;
+    private float maxIntensity = 0.5f;
+
+    private float startStomachGurgleTimer = 15f;
+    private float startShiverTimer = 15f;
+    private float currentStomachGurgleTimer = 15f;
+    private float currentshiverTimer = 15f;
+
+
     void Awake()
     {
+        if (!globalvolume.profile.TryGet(out vignette))
+        {
+            Debug.Log("Warning You didn't assign the global volume parameter");
+        }
+        else
+        {
+            startingIntensity = vignette.intensity.value;
+        }
+ 
+
         hungerdisplayconsumablemeter.fillAmount = 0;
     }
 
@@ -74,6 +99,11 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
             {
                 return;
             }
+        }
+
+        if (GameManager.instance.inMenu)
+        {
+            return;
         }
 
         // Updating necessity bars
@@ -134,8 +164,55 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
         }
 
         // I do this calculation constantly to avoid more complex logic. 
-        starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
+        //starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
         frostbiteoverhead.color = new Color(1, 1, 1, (1 - currenttemperature / frostbiteoverheaddisplaycutoff));
+
+
+
+        //Yub more silly code for audio :)
+        if((currenthunger / starvationoverheaddisplaycutoff) < 1)
+        {
+            if(vignette.intensity.value < maxIntensity)
+            {
+                vignette.intensity.value += 0.1f * Time.deltaTime; 
+            }
+
+            if(currentStomachGurgleTimer <= 0)
+            {
+                SoundManager.instance.PlayGroup("STOMACH_GURGLE");
+                currentStomachGurgleTimer = startStomachGurgleTimer;
+
+            }
+            else
+            {
+                currentStomachGurgleTimer -= 1 * Time.deltaTime;
+
+            }
+
+        }
+        else
+        {
+            if(vignette.intensity.value >= startingIntensity)
+            {
+                vignette.intensity.value -= 0.1f * Time.deltaTime;
+            }
+        }
+        if((currenttemperature / frostbiteoverheaddisplaycutoff) < 1)
+        {
+
+           if(currentshiverTimer <= 0)
+            {
+                SoundManager.instance.PlayGroup("SHIVER");
+                currentshiverTimer = startShiverTimer;
+
+            }
+            else
+            {
+                currentshiverTimer -= 1 * Time.deltaTime;
+
+            }  
+        }
+        
 
         // Updating bars on screen
         hungermeter.fillAmount = hungerpercent;
