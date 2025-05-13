@@ -1,42 +1,108 @@
-Start by downloading the unity hub ( https://unity.com/download ) and install the unity editor version 6 ( 6000.0.36f1 )  
+# READ ME
+
+Hello and welcome to our development environment for Cold Bargain.
+
+We made this game as a team of 5 students at Reykjavik University for a final project for our Computer Science BSc. degree.
+Over the course, the project is overseen by Steingerður Lóa and Kristín Bestla Þórsdóttir, our instructors, Ingólfur Halldórsson, our examiner, and Jonathan Pierce, our project owner.
+
+The project was submitted on May 16th, 2025.
+
+The team consists of:
+Ágúst Máni Þorsteinsson 
+Daði Rúnarsson
+Hermann Helgi Þrastarson
+Hugi Freyr Álfgeirsson
+Júlía Ósk Tómasdóttir
+
+
+This ReadMe includes the following:
+
+* Basic Information
+* System Requirements
+* Installation and Set-up Instructions 
+* Operations Manual
+* Game Manual
+
+## Basic Information
+
+Game Description: The project is a survival-horror game set in a cold, dark environment where you as the player have to survive the elements as well as the monster that hunts you. You must explore and collect special items located around the map to use them to bargain with a Witch for her to help you escape.
+
+Core Mechanics: Exploration, warmth and hunger management, item collection, enemy avoidance, bargaining, storing, time management, environmental storytelling.
+
+Target Platform: PC, macOS
+
+Engine and Tools Used: Unity 6, Visual Studio Code, GitHub, Git LFS, Krita, Blender, Audacity.
+
+## System Requirements
+
+Minimum: 
+OS: Windows 10 / MacOS 10.13 High Sierra
+RAM: 4 GB
+Storage Space: 500 MB 
+CPU: Dual-core 2.0 GHz
+GPU: Integrated (e.g. AMD or Intel)
+Resolution: 1280x720 minimum
+DirectX: Version 11 (Windows)
+
+Recommended:
+RAM: 8 GB
+CPU: Quad-core 2.5 GHz
+GPU: Dedicated GPU (e.g., NVIDIA GTX 1050)
+Resolution: 1920x1080
+
+Input: Keyboard & mouse
+
+
+## Installation and Set-up Instructions
+
+Start by downloading the Unity Hub ( https://unity.com/download ) and install the Unity Editor version 6 ( 6000.0.36f1 )  
 
 ![image.png](attachment:5e20bbee-41a8-4060-a897-02c0a4d2aada:image.png)
 
 ![image.png](attachment:bf4141e2-22a0-4d6c-9463-37b9ee9ba319:image.png)
 
-Create a folder on your computer where you would like to hold the repository and clone it from here
+Open a terminal and navigate to a folder where you'd like to store the repository.
+Use the command [git clone https://github.com/HermannHelgi/making-a-game-G13] 
 
-https://github.com/HermannHelgi/making-a-game-G13
-
-Once you have cloned the repo and have finished installing unity 6 then go into the unity hub → projects and click add. From there select the location of the repo.
+Once you have cloned the repo, open Unity Hub and Add Project from Disk. From there select the location of the repo.
 
 ![image.png](attachment:90f081c3-db43-48ee-9a75-8338954df878:image.png)
 
 ![Choose add project from disk](attachment:9365f349-09c7-46e3-8a92-b0f97c4c72b7:image.png)
 
-Choose add project from disk
+Launch the project from the Editor (Hub).
+Once you have the project open, navigate to X folder and open the X scene. Then you can hit Play the top of the scene window.
 
-The folder should look something like this
+Run through Itch.io:
 
-![image.png](attachment:92db6e8c-42dd-49a7-9697-22e5781d6df8:image.png)
+Open this link and follow the instructions on how to run the game through an application file:
+itch.io/krummigames/ColdBargain
 
-Press open and launch the project. Unity should create the rest of the files needed to run the unity editor.
 
-## Git flow
+## Operations Manual v.2
 
-We will be following Git flow, a workflow structure for git. https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+### Technical Architecture
 
-To do this we will have a main branch which will have a stable version of the game which is agreed upon by the group. the main branch will be used for versions we wish to use for playtests or demos.
+**Git flow**
 
-Then we will have the develop branch, a branch from the main branch. This branch will contain things which are still in development. The develop branch is a shared branch for the developers to merge features to and polish them or use them before joining to the main branch.
+We will be following Git flow, a workflow structure for git: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
-Then we will have Feature branches. These are branches branched from the develop branch. A feature branch is a branch created to implement a specific feature, once the feature is complete it merges onto the develop branch. 
+The structure is as follows: A Main branch which is only updated with stable release versions of the game throughout the development process; A development branch, which is updated once a feature is stable and completed and is ready to be implemented into the game to be integrated with other features. The development branch is used to prepare and test before pushing onto the Main branch; Feature branches that are created for each feature that will be implemented for the game, i.e. the inventory system.
 
 When creating a feature branch the branch name should be prefixed with feature/*. Example in command line “git checkout -b feature/player-controls” or “git branch feature/storage-system”
 
 If a name of a branch is more then one word then words should be separated by a dash -
 
-## Unity file structure
+<aside>
+⚠️
+Remember to periodically commit to prevent loss of data
+</aside>
+
+#### Script Overview: List of core scripts and their functions.
+
+Scene Structure: High-level layout of your Unity scenes
+
+**Unity File Structure**
 
 Within the Assets folder are three folders which help with git flow. 
 
@@ -48,9 +114,65 @@ Then there is the versions folder. This is the same as the main branch. Here fin
 
 ![image.png](attachment:f9b08c94-9ada-4818-9d76-0b9275619c18:image.png)
 
-<aside>
-⚠️
+**AI Architecture**
+State machines, NavMesh usage, predator-prey logic.
 
-Remember to periodically commit to prevent loss of data
+**Animation/Rigging**
+How characters and animals are animated.
 
-</aside>
+#### Art and Audio
+
+Visual Style: Brief description of your aesthetic choices (e.g., low-poly, hand-painted, stylized lighting).
+
+Assets: Mention if models, textures, or sounds were custom-made or sourced (include credits).
+
+https://assetstore.unity.com/packages/3d/environments/low-poly-snowy-lands-132172
+
+https://assetstore.unity.com/packages/3d/environments/fantasy/low-poly-ice-world-83909
+
+https://assetstore.unity.com/packages/3d/environments/low-poly-trees-and-vegetation-pack-265300
+
+https://assetstore.unity.com/packages/3d/environments/low-poly-woods-lifestyle-65306
+
+https://assetstore.unity.com/packages/3d/environments/landscapes/cross-plains-lowpoly-environment-by-unvik-3d-203644
+
+https://assetstore.unity.com/packages/3d/environments/fantasy/tent-pack-19370
+
+https://assetstore.unity.com/packages/2d/textures-materials/blood-splatter-decal-package-7518
+
+https://assetstore.unity.com/packages/3d/props/item-pack-survival-131598
+
+https://sketchfab.com/3d-models/stylized-sack-coinpurse-419a105395644219afea37b78d5c906b
+
+https://freesound.org/people/Gerent/sounds/558397/
+
+https://freesound.org/people/Benboncan/sounds/116663/
+
+https://freesound.org/people/13GPanska_Taborsky_Radovan/sounds/378134/
+
+https://freesound.org/people/straget/sounds/402809/
+
+https://freesound.org/people/Benboncan/sounds/63220/
+
+https://sketchfab.com/3d-models/low-poly-chest-ede8d988e3724ed395bc20419040d2da#download
+
+https://sketchfab.com/3d-models/free-pack-rocks-stylized-7c60b4d1b8ab4187965f30c5e0212fc0
+
+https://sketchfab.com/3d-models/low-poly-beer-bottle-d6a3307927254388a06b8d53aa847fcd
+
+https://sketchfab.com/3d-models/low-poly-vegetable-soup-d83903da681843128b4f8d9e92592be4
+
+https://poly.pizza/m/btWmPNVSKUc
+
+__**MISSING MODELS? skull/bones, hand? etc**__
+
+**Audio Systems:**
+Sound Manager
+
+### Testing and Debugging
+
+Testing Methods: How you tested gameplay, performance, and bug fixing.
+Known Issues: Any bugs or incomplete features.
+Playtesting Feedback: (If applicable) summaries or insights gained.
+
+## Future Improvements: What you'd add/fix with more time
