@@ -23,11 +23,9 @@ public class WendigoChasing : WendigoBehaviour
     public SoundManager soundManager;
     public bool isRetreating = false;
     private float internalTimer = 0.0f;
-    public Animator animator;
 
     private void Start()
     {
-        // animator = GetComponent<Animator>();   
     }
     public override void EnterState()
     {
@@ -51,10 +49,11 @@ public class WendigoChasing : WendigoBehaviour
                 spawnBehindTimer -= Time.deltaTime;
                 if (spawnBehindTimer < 0.0f)
                 {
-                    wendigoFollowPlayer.SpawnBehindPlayer();
-                    spawnBehindTimer = spawnBehindCooldown;
-                    spawned = true;
-
+                    if(wendigoFollowPlayer.SpawnBehindPlayer())
+                    {
+                        spawned = true;
+                        spawnBehindTimer = spawnBehindCooldown;
+                    }
                 }
             }
             else
@@ -79,8 +78,6 @@ public class WendigoChasing : WendigoBehaviour
                     }
                     // wendigoFollowPlayer.justSpawned = false;
                     wendigoLookForPlayer.MarkPlayerSighting();
-                    animator.SetBool("isIdle", false);
-                    animator.Play("Running");
 
                 }
 
@@ -132,11 +129,13 @@ public class WendigoChasing : WendigoBehaviour
     {
         spawnBehindTimer = spawnBehindCooldown;
         if (stalkingBehaviour.inAggressionRange)
-        {
+        {   
+
             Vector3 currentPosition = stalkingBehaviour.ReturnCurrentPosition();
             if (currentPosition != Vector3.zero)
             {
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
+                
                 spawned = true;
             }
         }

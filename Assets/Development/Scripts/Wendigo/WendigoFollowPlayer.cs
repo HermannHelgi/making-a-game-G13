@@ -25,6 +25,7 @@ public class WendigoFollowPlayer : MonoBehaviour
     public AudioClip audioClip;
     private float internalDelay;
     public AudioSource spawnAudioSource;
+    Animator myAnimator;
 
     private void Awake()
     {
@@ -48,6 +49,11 @@ public class WendigoFollowPlayer : MonoBehaviour
         if ( stalkingBehaviour == null)
         {
             stalkingBehaviour = FindAnyObjectByType<StalkingBehaviour>();
+        }
+
+        if (myAnimator == null)
+        {
+            myAnimator = GetComponentInChildren<Animator>();
         }
     }
 
@@ -73,7 +79,6 @@ public class WendigoFollowPlayer : MonoBehaviour
         Vector3 toTarget = target.position - transform.position;
         Vector3 v = target.GetComponent<CharacterController>().velocity;        // player velocity
         float speedSquared = agent.speed * agent.speed;
-
         float a = Vector3.Dot(v, v) - speedSquared;
         float b = 2f * Vector3.Dot(toTarget, v);
         float c = Vector3.Dot(toTarget, toTarget);
@@ -118,19 +123,19 @@ public class WendigoFollowPlayer : MonoBehaviour
         return -1f;                           
     }
 
-    public void SpawnBehindPlayer()
+    public bool SpawnBehindPlayer()
     {
         selectedRetreat = null;
-        // GameObject spawnPosition = null;
-
-        // spawnPosition = spawnPointTracker.SelectRandomSpawn(true);
-        // if(spawnPosition != null)
-        // {
-            
-        // }
-        
-        // Debug.Log("Spawn position "+ spawnPosition.transform.position);
-        SpawnBehindPlayer(spawnPointTracker.SelectRandomSpawn(true).transform.position);
+        GameObject potentialSpawn = spawnPointTracker.SelectRandomSpawn(true);
+        if(potentialSpawn != null)
+        {
+            SpawnBehindPlayer(potentialSpawn.transform.position);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
         
     }
 
@@ -169,4 +174,33 @@ public class WendigoFollowPlayer : MonoBehaviour
         }
     
     }
+
+    void Update()
+    {
+        float currentAgentForwardSpeed = Vector3.Dot(agent.velocity.normalized, agent.transform.forward) * agent.velocity.magnitude / agent.speed;
+        myAnimator.SetFloat("speed", currentAgentForwardSpeed);
+        // myAnimator.applyRootMotion = currentAgentForwardSpeed <= 0.1f;
+        
+        if(currentAgentForwardSpeed <= 0.1f)
+        {   
+            // myAnimator.applyRootMotion = true;
+            myAnimator.speed = 1f;
+
+        }
+        else if (currentAgentForwardSpeed > 0.1f && currentAgentForwardSpeed <= 0.5f)
+        {
+            // myAnimator.applyRootMotion = false;
+            myAnimator.speed = currentAgentForwardSpeed / 0.5f;
+        }
+        else if( currentAgentForwardSpeed > 0.5)
+        {
+            // myAnimator.applyRootMotion = false;
+            myAnimator.speed = currentAgentForwardSpeed;
+        }
+
+    }
+    // void OnAnimatorMove()
+    // {
+        
+    // }
 }
