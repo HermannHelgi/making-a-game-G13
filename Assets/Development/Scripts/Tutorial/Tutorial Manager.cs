@@ -309,6 +309,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
             {
                 DialogueManager.instance.SetDialogueFlags(witchSkippedTutorialExposition);
                 finishTutorial();
+                DataPersistenceManager.instance.saveGame();
             }
         }
         else if (interactwithwitch)
@@ -445,6 +446,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         else if (doingExposition)
         {
             finishTutorial();
+            DataPersistenceManager.instance.saveGame();
         }
     }
 

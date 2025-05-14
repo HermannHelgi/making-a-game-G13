@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: CHEST
   index: 13
-  icon: {fileID: 21300000, guid: df60b6daf22446b4a9dac255f6ae2c95, type: 3}
+  icon: {fileID: 21300000, guid: 15bb29318acb757448b87c5bc8f9976d, type: 3}
   model: {fileID: 0}
   craftingrecipe:
   - {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
@@ -23,6 +23,7 @@ MonoBehaviour:
   onetimecraft: 1
   consumable: 0
   hungergain: 0
+  satiation: 0
   unique: 0
   craftingDescription: The chest gives a convenient place to store extra gear, items
     and valuables.
