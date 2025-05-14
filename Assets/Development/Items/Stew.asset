@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: STEW
   index: 15
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4e900f39eead17e4db4afa86c1849248, type: 3}
+  model: {fileID: 6734716267793718404, guid: 4149b2211ee7e924aaf0150a746607d2, type: 3}
   craftingrecipe:
   - {fileID: 11400000, guid: 4cf55cf16fb8e304c84e71e0b5215bcd, type: 2}
   - {fileID: 11400000, guid: 1dd42a57e8498f74b80711d8aca05272, type: 2}

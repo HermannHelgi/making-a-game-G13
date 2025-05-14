@@ -35,8 +35,11 @@ public class AudioMixerReference
     public AudioMixer mixer;
 }
 
+
+
 public class SoundManager : MonoBehaviour
 {   
+    
     public AudioMixer mainMixer;
     public List<SnapshotGroup> soundSnapshots = new();
     private AudioMixerSnapshot defaultSnapshot;

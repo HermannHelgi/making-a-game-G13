@@ -69,6 +69,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     public string witchHighlightCampfire;
     public string witchInitiateExposition;
     public DialogueScriptableObject witchExposition;
+    public DialogueScriptableObject witchSkippedTutorialExposition;
     public WitchTradeScript witchTradeScript;
     public ItemScript[] unlockedItemsOnTutorialEnd;
 
@@ -306,7 +307,7 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                DialogueManager.instance.SetDialogueFlags(witchExposition);
+                DialogueManager.instance.SetDialogueFlags(witchSkippedTutorialExposition);
                 finishTutorial();
             }
         }
