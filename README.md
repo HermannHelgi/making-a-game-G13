@@ -63,7 +63,7 @@ Instalation instructions can be found within the game manual, along with informa
 
 To shortly summerize, head to our [itch.io](https://krummigames.itch.io/cold-bargain) page and download the game onto your device. From there you can launch and play the game.
 
-The Game manual can be found [here]() (need github link..)
+The Game manual can be found [Here](https://github.com/HermannHelgi/making-a-game-G13/blob/develop/Game%20Manual.pdf)
 
 
 ## Operations Manual
@@ -72,6 +72,6 @@ The Operations manual contains information for future developers. All infomation
 
 To shortly summerize, clone this repository and open the repository through the unity hub. Unity will handle generating the rest of the required files.
 
-The operations manual can be found [Here]() (need github link..)
+The operations manual can be found [Here](https://github.com/HermannHelgi/making-a-game-G13/blob/develop/Operations%20Manual.pdf)
 
 
