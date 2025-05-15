@@ -16,6 +16,7 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
     public GameObject storagecanvas;
     [Tooltip("The grid for which the storage slots of the inventory are displayed within.")]
     public GameObject inventoryslotgrid;
+    public float delayMaxTimer;
 
     [Header("Specific item variables")]
     [Tooltip("The Itemscript for the Torch item. Needed for specific references.")]
@@ -46,6 +47,7 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
     private GameObject playerinventoryobject;
     private GameObject torchdurabilitybar = null;
     private GameObject emberstonedurabilitybar = null;
+    private float delayTimer;
 
     void Awake()
     {
@@ -180,6 +182,7 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
 
         storagecanvas.SetActive(true);
         active = true;
+        delayTimer = delayMaxTimer;
         selectStorageSlot(0);
     }
 
@@ -334,24 +337,24 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if (active)
+        if (active && delayTimer <= 0)
         {
             // Increase storage slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 selectStorageSlot(currentindex + 1);
             }
             // Decrease storage slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 selectStorageSlot(currentindex - 1);
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.E))
             {
                 moveItem();
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.X))
             {
                 deInitializeStorageWindow();
@@ -366,6 +369,10 @@ public class StorageSystem : MonoBehaviour, IDataPersistence
             {
                 emberstonedurabilitybar.GetComponent<Image>().fillAmount = playerinventoryobject.GetComponent<PlayerInventory>().getEmberstoneDurability();
             }
+        }
+        else if (delayTimer > 0)
+        {
+            delayTimer -= Time.deltaTime;
         }
     }
 }
