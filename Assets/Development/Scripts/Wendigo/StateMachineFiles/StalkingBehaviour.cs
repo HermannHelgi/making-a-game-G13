@@ -78,11 +78,9 @@ public class StalkingBehaviour : WendigoBehaviour
             return;
         }
         redEyes.SetActive(false);
-        mesh.enabled = true;
         activeWendigo = null;
         spawnTimer = spawnCooldown;
         sightTimer = 0.0f;
-        myAnimator.SetBool("despawn", true);
     }
 
     Animator FindAnimator(GameObject activeWendigo)
@@ -117,7 +115,6 @@ public class StalkingBehaviour : WendigoBehaviour
         Debug.Log("activating wendigo at: " + activeWendigo.transform.position + "named " + activeWendigo.name);
         // soundManager.PlayGroup("WENDIGO_STALKING");
         SkinnedMeshRenderer mesh = FindSkinnedMeshRenderer(activeWendigo);
-        Animator myAnimaator = FindAnimator(activeWendigo);
         // Debug.Log("the mesh: " + mesh);
         if (mesh == null)
         {
@@ -133,7 +130,6 @@ public class StalkingBehaviour : WendigoBehaviour
         redEyes.SetActive(true);
         mesh.enabled = true;
         sightTimer = 0.0f;
-        myAnimaator.SetBool("isIdle", false);
         AudioSource spawnSound = mesh.GetComponentInParent<AudioSource>();
         spawnSound.PlayOneShot(spawnAudio);
     }
@@ -260,12 +256,10 @@ public class StalkingBehaviour : WendigoBehaviour
             }
             if (myAnimator != null)
             {
-                myAnimator.SetBool("isIdle", true);
                 // myAnimator.Play("Idle");
             }
             if (GameManager.instance.dangerZone)
             {
-                myAnimator.SetBool("isIdle", false);
                 DeActivateWendigo();
             }
 

@@ -4,6 +4,8 @@ using System.IO;
 
 public class FileDataHandler
 {
+    // Translates data to and from JSON format.
+
     private string dataDirPath = "";
     private string dataFileName = "";
 

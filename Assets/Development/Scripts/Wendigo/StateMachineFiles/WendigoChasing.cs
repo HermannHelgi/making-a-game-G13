@@ -145,26 +145,34 @@ public class WendigoChasing : WendigoBehaviour
                 isRetreating = true;
                 wendigoFollowPlayer.selectedRetreat = caveChaseSpot.gameObject;
             }
-            if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
+            if (!GameManager.instance.isNight)
             {
-                Debug.Log("DISSAPEARS");
-                // agent.enabled = false;
                 transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
-                // isRetreating = true;
-                spawned = false;
                 isEnding = false;
+            }
+            else
+            {
+                if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
+                {
+                    Debug.Log("DISSAPEARS");
+                    // agent.enabled = false;
+                    transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+                    // isRetreating = true;
+                    spawned = false;
+                    isEnding = false;
 
-            }
-            else if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 45f)
-            {
-                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
-                // isRetreating = true;
-                spawned = false;
-                isEnding = false;
-            }
+                }
+                else if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 45f)
+                {
+                    transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+                    // isRetreating = true;
+                    spawned = false;
+                    isEnding = false;
+                }
             }
         }
-    
+    }
+
 
 
     private IEnumerator PlayScream(float pause)
@@ -180,7 +188,7 @@ public class WendigoChasing : WendigoBehaviour
     {
         spawnBehindTimer = spawnBehindCooldown;
         if (stalkingBehaviour.inAggressionRange)
-        {   
+        {
 
             Vector3 currentPosition = stalkingBehaviour.ReturnCurrentPosition();
             if (currentPosition != Vector3.zero)
@@ -190,16 +198,19 @@ public class WendigoChasing : WendigoBehaviour
                 agent.isStopped = false;
                 myAnimator.ResetTrigger("scream");
                 spawned = true;
+                stalkingBehaviour.DespawnWendigo();
             }
         }
-        if(effigyBehavior.inAggressionRange || GameManager.instance.dangerZone)
+        if (effigyBehavior.inAggressionRange || GameManager.instance.dangerZone)
         {
             StartCoroutine(PlayScream(4f));
             myAnimator.ResetTrigger("scream");
             // myAnimator.SetBool("scream",false);
             spawned = true;
             agent.isStopped = false;
+            stalkingBehaviour.DespawnWendigo();
 
         }
     }
+    
 }

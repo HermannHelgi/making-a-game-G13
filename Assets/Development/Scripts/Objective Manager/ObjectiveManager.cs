@@ -52,6 +52,19 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     private bool createPotionState;
     private bool drinkPotionState;
 
+ /*
+
+    For future reference, this script is essentially a large state machine with incredibly simple boolean variables.
+    Depending on what the objective is and how it is supposed to be actived, the booleans respond to update the grid within the pause canvas of the player.
+    These booleans are activated and deactivated from several different sources, such as InteractableItem, WitchDialogueHandler, WitchTradeScript, and EffigyScript.
+    Only with the context of those scripts can this one be understood.
+
+    TL;DR, Go read the other scripts or else this will not make any sense.
+
+ */
+
+
+
     public void Awake()
     {
         instance = this;
@@ -145,6 +158,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     }
 
     public void pickedUpItem(ItemScript item)
+    // Called by Interactable Item script
     {
         if (item == flower && collectFlowerState)
         {
@@ -189,6 +203,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     }
 
     public void craftedItem(ItemScript item)
+    // Called by Witch Trade Script
     {
         if (makeCampfireState && item == campfire)
         {
@@ -217,6 +232,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     }
 
     public void finishedSpeakingWithWitch(DialogueScriptableObject dialogue)
+    // Called by Witch Dialogue Handler
     {
         if (dialogue == makeCampfireDialogue)
         {
@@ -251,6 +267,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     }
 
     public void placedLure()
+    // Called by Effigy script
     {
         if (placeLureState)
         {
@@ -263,6 +280,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     }
 
     private void spawnObjectiveChild(string line)
+    // Adds a child to the grid of the pause menu 
     {
         objectiveUpdateTimer = objectiveUpdateMaxTimer;
         GameObject childObject = Instantiate(objectiveChildPrefab);
@@ -271,6 +289,7 @@ public class ObjectiveManager : MonoBehaviour, IDataPersistence
     }
 
     private void removeObjectiveByString(string line)
+    // Removes a child from the grid of the pause menu based on the inputted string
     {
         for (int i = 0; i < objectiveGrid.transform.childCount; i++)
         {

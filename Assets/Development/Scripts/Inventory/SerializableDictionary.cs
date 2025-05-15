@@ -6,6 +6,8 @@ using UnityEngine;
 public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
     
+    // Used by the save system, simply a way to save a dictionary to JSON format.
+
     [SerializeField] private List<TKey> keys = new List<TKey>();
     [SerializeField] private List<TValue> values = new List<TValue>();
 

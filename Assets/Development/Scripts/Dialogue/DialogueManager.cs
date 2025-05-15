@@ -52,6 +52,7 @@ public class DialogueManager : MonoBehaviour, IDataPersistence
     }
 
     public void SetDialogueFlags(DialogueScriptableObject newdialogue)
+    // Main function of the Dialogue Manager. Used to send a new dialogue chain the the witch present in the scene.
     {
         for (int i = 0; i < allDialogue.Length; i++)
         {
