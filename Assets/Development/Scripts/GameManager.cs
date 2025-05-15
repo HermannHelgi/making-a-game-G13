@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [Header("Player variables.")]
     [Tooltip("A bool which says the player is in a deemed safe area")]
     public bool safeArea = false;
+    [Tooltip ("A bool which says the player is in an unsafe area")]
+    public bool dangerZone = false;
 
     [Header("Effigy variables.")]
     public bool lureCrafted = false;

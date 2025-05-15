@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using System.Threading;
+using System.Collections;
+// using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+// using UnityEngine.UIElements;
 
 
 public class WendigoChasing : WendigoBehaviour
@@ -15,6 +16,7 @@ public class WendigoChasing : WendigoBehaviour
     private float spawnBehindTimer = 0.0f;
     private bool spawned = false;
     public WendigoSpawnPointTracker wendigoSpawnPointTracker;
+    public WendigoEffigy effigyBehavior;
     public StalkingBehaviour stalkingBehaviour;
     public WendigoRaycast wendigoRaycasts;
     public WendigoFollowPlayer wendigoFollowPlayer;
@@ -23,8 +25,14 @@ public class WendigoChasing : WendigoBehaviour
     public SoundManager soundManager;
     public bool isRetreating = false;
     private float internalTimer = 0.0f;
+    public Animator myAnimator;
+    public Transform caveChaseSpot;
+    public Transform finalChaseSpot;
 
+    private void Start()
+    {
 
+    }
     public override void EnterState()
     {
         base.EnterState();
@@ -35,95 +43,156 @@ public class WendigoChasing : WendigoBehaviour
         wendigoLookForPlayer.MarkPlayerSighting();
         SpawnBehindPlayer();
         spawnBehindTimer = spawnBehindCooldown;
-        isRetreating = false; 
+        isRetreating = false;
     }
 
     public override void Run()
-    {   
+    {
         if (isActive)
-        {   
+        {
             if (!spawned)
-            {
+            {   
+                if(GameManager.instance.skullPickedUp)
+                {
+                    wendigoFollowPlayer.SpawnBehindPlayer(finalChaseSpot.transform.position);
+                    spawned = true;
+                }
+                if(GameManager.instance.lureCrafted && GameManager.instance.dangerZone && !GameManager.instance.lurePlaced)
+                {
+                    wendigoFollowPlayer.SpawnBehindPlayer(caveChaseSpot.transform.position);
+                    spawned = true;
+                }
                 spawnBehindTimer -= Time.deltaTime;
                 if (spawnBehindTimer < 0.0f)
-                {   
-                    wendigoFollowPlayer.SpawnBehindPlayer();
-                    spawnBehindTimer = spawnBehindCooldown;
-                    spawned = true;
-                    
+                {
+                    if(wendigoFollowPlayer.SpawnBehindPlayer())
+                    {
+                        spawned = true;
+                        spawnBehindTimer = spawnBehindCooldown;
+                    }
                 }
             }
             else
             {
-                if (!wendigoRaycasts.detected)
-                {   
+                if (GameManager.instance.skullPickedUp)
+                {
+                    Debug.Log("final chase!");
+                    internalTimer += Time.deltaTime;
+                    if (internalTimer <= 0.2)
+                    {
+                        wendigoFollowPlayer.FollowPlayer();
+                        internalTimer = 0;
+                    }
+                }
+                if (!wendigoRaycasts.detected && !GameManager.instance.skullPickedUp)
+                {
+                    if (!GameManager.instance.isNight)
+                    {
+                        isEnding = true;
+                    }
                     soundManager.ExitSoundsnapshot(1f);
                     searchTime += Time.deltaTime;
                     wendigoLookForPlayer.TrackFootsteps();
                 }
 
                 else if (wendigoRaycasts.detected)
-                {   
+                {
                     soundManager.ChangeSoundsnapshot("SPOOKY", 3f);
                     soundManager.PlayGroup("WENDIGO_FOLLOW");
                     searchTime = 0.0f;
                     internalTimer += Time.deltaTime;
-                    if(internalTimer <= 0.2)
+
+                    if (internalTimer <= 0.2)
                     {
                         wendigoFollowPlayer.FollowPlayer();
                         internalTimer = 0;
                     }
                     // wendigoFollowPlayer.justSpawned = false;
                     wendigoLookForPlayer.MarkPlayerSighting();
-                    
-                }
+
+                    }
 
                 if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
-                {   
+                {
                     soundManager.ChangeSoundsnapshot("SPOOKY", 1f);
                     soundManager.PlayGroup("WENDIGO_KILL");
                     playerDeathHandler.die("You were slain by the monster!");
                     soundManager.ExitSoundsnapshot(0f);
+
                 }
             }
         }
         else if (isEnding)
         {
             searchTime = 0;
-            if(!isRetreating)
+            if (!GameManager.instance.isNight)
+            {
+                wendigo.transform.position = caveChaseSpot.position;
+            }
+            else if (!isRetreating)
             {
                 wendigoFollowPlayer.Retreat();
-                
+
             }
             if (wendigoFollowPlayer.selectedRetreat == null)
             {
                 isRetreating = true;
-                agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);                
+                agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);
+
             }
             if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
             {
                 Debug.Log("DISSAPEARS");
-                agent.enabled = false;
+                // agent.enabled = false;
                 transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
                 // isRetreating = true;
                 spawned = false;
                 isEnding = false;
-                
+
             }
-        }        
+            else if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 45f)
+            {
+                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+                // isRetreating = true;
+                spawned = false;
+                isEnding = false;
+            }
+        }
     }
+
+    private IEnumerator PlayScream(float pause)
+    {
+        agent.isStopped = true;
+        myAnimator.SetTrigger("scream");
+        yield return new WaitForSeconds(pause);   // or use the state’s real length
+        agent.isStopped = false;
+    }
+
 
     private void SpawnBehindPlayer()
     {
         spawnBehindTimer = spawnBehindCooldown;
         if (stalkingBehaviour.inAggressionRange)
         {   
+
             Vector3 currentPosition = stalkingBehaviour.ReturnCurrentPosition();
-            if(currentPosition != Vector3.zero)
+            if (currentPosition != Vector3.zero)
             {
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
+                StartCoroutine(PlayScream(4f));
+                agent.isStopped = false;
+                myAnimator.ResetTrigger("scream");
                 spawned = true;
             }
+        }
+        if(effigyBehavior.inAggressionRange || GameManager.instance.dangerZone)
+        {
+            StartCoroutine(PlayScream(4f));
+            myAnimator.ResetTrigger("scream");
+            // myAnimator.SetBool("scream",false);
+            spawned = true;
+            agent.isStopped = false;
+
         }
     }
 }

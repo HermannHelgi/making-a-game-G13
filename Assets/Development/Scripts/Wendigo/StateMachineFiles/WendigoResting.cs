@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class WendigoResting : WendigoBehaviour
 {   
-    GameManager gameManager;
-    WendigoSpawnPointTracker wendigoSpawnPointTracker;
-    
+    public WendigoSpawnPointTracker wendigoSpawnPointTracker;
+    public WendigoEffigy wendigoEffigy;
+    public Transform caveArea;
+    public GameObject wendigo;   
+     
     public override void Run()
     {
         if (isActive)
         {
             transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.position;
-            if (gameManager.isNight == true && gameManager.safeArea == false)
-            {
-                isEnding = true;
+            if (GameManager.instance.isNight == true && GameManager.instance.safeArea == false)
+            {   
+                if(GameManager.instance.lureCrafted)
+                {   
+                    if(GameManager.instance.lurePlaced)
+                    {
+                        isEnding = true;
+                    }
+
+                }
+                else
+                {
+                    isEnding = true;
+                }
+                if(GameManager.instance.dangerZone)
+                {   
+                    wendigoEffigy.SpawnWendigo(caveArea);
+                    isEnding = true;
+                    wendigoEffigy.inAggressionRange = true;
+                }
             }
+            
         }
         if (isEnding)
         {
