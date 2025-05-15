@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: CAMPFIRE
   index: 12
-  icon: {fileID: 21300000, guid: 6bcbcdeadd4583b4294fd2ab73d7f14a, type: 3}
+  icon: {fileID: 21300000, guid: 853e1ade27a121b4888f2b26aa2362ba, type: 3}
   model: {fileID: 4723724190695760756, guid: 13d908788667d3a44919c02293d39417, type: 3}
   craftingrecipe:
   - {fileID: 11400000, guid: 8a1c13b3c3358b54f9ce66ca6e9a5eb9, type: 2}
@@ -23,6 +23,7 @@ MonoBehaviour:
   onetimecraft: 1
   consumable: 0
   hungergain: 0
+  satiation: 0
   unique: 0
   craftingDescription: 'The campfire generates heat when lit, allowing a person to
     regain their warmth.\n Sticks can be placed into the fire as fuel, elongating
