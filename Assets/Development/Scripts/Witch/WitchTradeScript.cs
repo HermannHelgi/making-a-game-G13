@@ -62,6 +62,9 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     public float paddingSize;
     public GameObject witchBargainingSlotPrefab;
 
+    [Header("Witch Animation Variables")]
+    public WitchAnimationHandler witchAnim;
+
     void Awake()
     {
         tradeslotgridchildren = new GameObject[craftableItems.Length];
@@ -461,6 +464,8 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             // This is a lot, won't lie
             // I made this with the assumption that the witch doesn't have access to these variables on scene load to reduce inter-prefab references and reduce work on the inspector side.
             // Its just a bunch of miscellaneous references, so don't worry bout it
+            witchAnim.EnterBargain();
+
             playerinventory = playerinventorycanvas;
             playerinventoryscript = playerinventoryscriptobject.GetComponent<PlayerInventory>();
             playerlook = playerlookscript.GetComponent<PlayerLookScript>();
@@ -498,6 +503,8 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
         {
             GameManager.instance.activateMenuCooldown();
         }
+
+        witchAnim.ExitBargain();
 
         playerlook.finishLook();
         wipeCraftingRecipeBoxes();

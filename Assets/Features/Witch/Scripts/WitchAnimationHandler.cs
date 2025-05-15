@@ -11,10 +11,14 @@ public class WitchAnimationHandler : MonoBehaviour
     string defaultEyesState = "eyesIdle 1";
     string defaultHeadState = "Hover";
 
+    public EyesTrackPlayer eyesTrackPlayer;
+    public GameObject playerCapsule;
+
     void Start()
     {
         headAnimator.Play(defaultHeadState);
         PlayFaceIdle();
+        eyesAnimator.enabled = false;
     }
 
     public void EnterBargain()
@@ -65,6 +69,14 @@ public class WitchAnimationHandler : MonoBehaviour
         if (eyesAnimator.enabled)
         {
             eyesAnimator.Play(defaultEyesState);
+        }
+    }
+
+    private void Update()
+    {
+        if (eyesAnimator.enabled == false)
+        {
+            eyesTrackPlayer.LookAtPlayer(playerCapsule.transform.position);
         }
     }
 }
