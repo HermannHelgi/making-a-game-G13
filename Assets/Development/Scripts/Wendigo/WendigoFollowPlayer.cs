@@ -156,7 +156,6 @@ public class WendigoFollowPlayer : MonoBehaviour
             Debug.Log("Spawning at : " + spawnPoint);
 
             spawnAudioSource.PlayOneShot(audioClip);
-            stalkingBehaviour.DespawnWendigo();
             
         }
     }
@@ -202,8 +201,5 @@ public class WendigoFollowPlayer : MonoBehaviour
         }
 
     }
-    // void OnAnimatorMove()
-    // {
-        
-    // }
+
 }
