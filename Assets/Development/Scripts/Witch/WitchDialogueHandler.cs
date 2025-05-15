@@ -8,8 +8,10 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
     [Header("Dialogue Variables")]
     public GameObject lerpposition;
     public int maxtimetolerp;
-
     public SoundManager soundManager;
+
+    [Header("Witch Animation Variables")]
+    public WitchAnimationHandler witchAnim;
 
     // Private stuff, mostly references to other objects...
     private GameObject subtitletextmesh;
@@ -161,6 +163,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
 
     void runAudioForDialogue()
     {
+        witchAnim.PlayTalking();
         soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
     }
 

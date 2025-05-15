@@ -15,6 +15,7 @@ public class WitchAnimationHandler : MonoBehaviour
     {
         headAnimator.Play(defaultHeadState);
         PlayFaceIdle();
+        eyesAnimator.enabled = false;
     }
 
     public void EnterBargain()
