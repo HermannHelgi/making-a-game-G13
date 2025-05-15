@@ -226,6 +226,10 @@ public class StalkingBehaviour : WendigoBehaviour
                 myAnimator.SetBool("isIdle", true);
                 myAnimator.Play("Idle");
             }
+            if (GameManager.instance.dangerZone)
+            {
+                DespawnWendigo();
+            }
 
         }
 

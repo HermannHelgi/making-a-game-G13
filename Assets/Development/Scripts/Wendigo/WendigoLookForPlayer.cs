@@ -21,13 +21,14 @@ public class WendigoLookForPlayer: MonoBehaviour
     }
 
     public void TrackFootsteps()
-    {   
+    {
         smellTimer += Time.deltaTime;
-        if(smellTimer > trackingTimer)
-        {   
+        
+        if (smellTimer > trackingTimer)
+        {
             smellTimer = 0.0f;
             soundManager.PlayGroup("WENDIGO_TRACKING");
-            agent.SetDestination(markers.Dequeue()); 
+            agent.SetDestination(markers.Dequeue());
         }
     }
 

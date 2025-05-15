@@ -69,20 +69,29 @@ public class WendigoStateMachine : MonoBehaviour
             Debug.Log("Final chase!");
             SetNewState(chasing);
         }
-        if(activeState == stalking && GameManager.instance.lureCrafted && !GameManager.instance.dangerZone)
-        {   
+        if (!GameManager.instance.isNight && GameManager.instance.dangerZone)
+        {
+            SetNewState(chasing);
+        }
+        if (activeState == stalking && GameManager.instance.lureCrafted && !GameManager.instance.dangerZone)
+        {
             Debug.Log("Lure Crafted");
             SetNewState(resting);
-        }
-        if (activeState == resting && GameManager.instance.isNight && !GameManager.instance.safeArea && !GameManager.instance.lureCrafted)
-        {
-            Debug.Log("Entering Stalking State");
-            SetNewState(stalking);
         }
         if(activeState == resting && GameManager.instance.dangerZone && !GameManager.instance.lurePlaced)
         {   
             Debug.Log("Premature skull theft attempt!");
             SetNewState(chasing);
+        }
+        if (activeState == stalking && GameManager.instance.dangerZone)
+        {
+            Debug.Log("Premature cave entry");
+            SetNewState(chasing);
+        }
+        if (activeState == resting && GameManager.instance.isNight && !GameManager.instance.safeArea && !GameManager.instance.lureCrafted)
+        {
+            Debug.Log("Entering Stalking State");
+            SetNewState(stalking);
         }
         if(activeState == stalking && GameManager.instance.safeArea)
         {

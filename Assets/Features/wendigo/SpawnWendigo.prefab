@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 2211603909087096003}
   - component: {fileID: 4406028796418075152}
   - component: {fileID: 3968345786090942754}
+  - component: {fileID: 1883998232294559836}
   m_Layer: 0
   m_Name: WendigoStateManager
   m_TagString: Untagged
@@ -790,6 +791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9eea7b0046aae14f9d481265cf0b710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wendigoSpawnPointTracker: {fileID: 0}
+  wendigoEffigy: {fileID: 0}
+  caveArea: {fileID: 0}
+  wendigo: {fileID: 0}
 --- !u!114 &2211603909087096003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +813,7 @@ MonoBehaviour:
   wendigo: {fileID: 8811182352756543286}
   agent: {fileID: 6272607490454002009}
   wendigoSpawnPointTracker: {fileID: 0}
+  effigyBehavior: {fileID: 0}
   stalkingBehaviour: {fileID: 3374757843067073041}
   wendigoRaycasts: {fileID: 1360384810458905577}
   wendigoFollowPlayer: {fileID: 7636369887513911490}
@@ -815,6 +821,9 @@ MonoBehaviour:
   playerDeathHandler: {fileID: 0}
   soundManager: {fileID: 0}
   isRetreating: 0
+  myAnimator: {fileID: 0}
+  caveChaseSpot: {fileID: 0}
+  finalChaseSpot: {fileID: 0}
 --- !u!114 &4406028796418075152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,6 +851,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWendigoSpawns: 3
   maxSearchTime: 60
+--- !u!114 &1883998232294559836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087358359539027844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e29819a4aaefa449a3409c3932bb3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wendigoEffigyPoint: {fileID: 0}
+  spawnLocation: {fileID: 0}
+  myAnimator: {fileID: 9048401100769081140}
+  cavePoint: {fileID: 0}
+  player: {fileID: 0}
+  agent: {fileID: 6272607490454002009}
+  spawner: {fileID: 7636369887513911490}
+  inAggressionRange: 0
 --- !u!1 &7260017146585314706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1579,11 @@ Transform:
 --- !u!4 &9015888694109863885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5973875073650002960, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
+  m_PrefabInstance: {fileID: 3456980303935501277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9048401100769081140 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5939062192971236585, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
   m_PrefabInstance: {fileID: 3456980303935501277}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &9204600873918485920 stripped

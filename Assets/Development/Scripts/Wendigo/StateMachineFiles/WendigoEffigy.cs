@@ -14,7 +14,6 @@ public class WendigoEffigy : WendigoBehaviour
     private bool reachedEffigy ;
     public NavMeshAgent agent;
     public WendigoFollowPlayer spawner;
-    public WendigoRaycast raycast;
     public bool inAggressionRange;
     private bool goingToEffigy = false;
 
@@ -77,7 +76,7 @@ public class WendigoEffigy : WendigoBehaviour
                 reachedEffigy = true;
             }
             if(GameManager.instance.skullPickedUp)
-            {   
+            {
                 isEnding = true;
             }
             // if(GameManager.instance.dangerZone)

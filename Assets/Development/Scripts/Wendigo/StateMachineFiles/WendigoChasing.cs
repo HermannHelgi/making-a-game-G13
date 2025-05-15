@@ -26,11 +26,12 @@ public class WendigoChasing : WendigoBehaviour
     public bool isRetreating = false;
     private float internalTimer = 0.0f;
     public Animator myAnimator;
+    public Transform caveChaseSpot;
     public Transform finalChaseSpot;
 
     private void Start()
     {
-        
+
     }
     public override void EnterState()
     {
@@ -58,7 +59,7 @@ public class WendigoChasing : WendigoBehaviour
                 }
                 if(GameManager.instance.lureCrafted && GameManager.instance.dangerZone && !GameManager.instance.lurePlaced)
                 {
-                    wendigoFollowPlayer.SpawnBehindPlayer(finalChaseSpot.transform.position);
+                    wendigoFollowPlayer.SpawnBehindPlayer(caveChaseSpot.transform.position);
                     spawned = true;
                 }
                 spawnBehindTimer -= Time.deltaTime;
@@ -73,8 +74,22 @@ public class WendigoChasing : WendigoBehaviour
             }
             else
             {
-                if (!wendigoRaycasts.detected)
+                if (GameManager.instance.skullPickedUp)
                 {
+                    Debug.Log("final chase!");
+                    internalTimer += Time.deltaTime;
+                    if (internalTimer <= 0.2)
+                    {
+                        wendigoFollowPlayer.FollowPlayer();
+                        internalTimer = 0;
+                    }
+                }
+                if (!wendigoRaycasts.detected && !GameManager.instance.skullPickedUp)
+                {
+                    if (!GameManager.instance.isNight)
+                    {
+                        isEnding = true;
+                    }
                     soundManager.ExitSoundsnapshot(1f);
                     searchTime += Time.deltaTime;
                     wendigoLookForPlayer.TrackFootsteps();
@@ -86,6 +101,7 @@ public class WendigoChasing : WendigoBehaviour
                     soundManager.PlayGroup("WENDIGO_FOLLOW");
                     searchTime = 0.0f;
                     internalTimer += Time.deltaTime;
+
                     if (internalTimer <= 0.2)
                     {
                         wendigoFollowPlayer.FollowPlayer();
@@ -94,7 +110,7 @@ public class WendigoChasing : WendigoBehaviour
                     // wendigoFollowPlayer.justSpawned = false;
                     wendigoLookForPlayer.MarkPlayerSighting();
 
-                }
+                    }
 
                 if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
                 {
@@ -109,7 +125,11 @@ public class WendigoChasing : WendigoBehaviour
         else if (isEnding)
         {
             searchTime = 0;
-            if (!isRetreating)
+            if (!GameManager.instance.isNight)
+            {
+                wendigo.transform.position = caveChaseSpot.position;
+            }
+            else if (!isRetreating)
             {
                 wendigoFollowPlayer.Retreat();
 
