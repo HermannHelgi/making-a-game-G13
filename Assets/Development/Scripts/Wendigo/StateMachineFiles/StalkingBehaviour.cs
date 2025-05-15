@@ -259,7 +259,7 @@ public class StalkingBehaviour : WendigoBehaviour
             if (myAnimator != null)
             {
                 myAnimator.SetBool("isIdle", true);
-                myAnimator.Play("Idle");
+                // myAnimator.Play("Idle");
             }
             if (GameManager.instance.dangerZone)
             {
