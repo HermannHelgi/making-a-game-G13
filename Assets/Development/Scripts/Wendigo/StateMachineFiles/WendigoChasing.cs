@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using System.Threading;
+using System.Collections;
+// using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+// using UnityEngine.UIElements;
 
 
 public class WendigoChasing : WendigoBehaviour
@@ -139,9 +140,17 @@ public class WendigoChasing : WendigoBehaviour
         }
     }
 
+    private IEnumerator PlayScream(float pause)
+    {
+        agent.isStopped = true;
+        myAnimator.SetTrigger("scream");
+        yield return new WaitForSeconds(pause);   // or use the state’s real length
+        agent.isStopped = false;
+    }
+
+
     private void SpawnBehindPlayer()
     {
-        float animationDelay = 3.0f;
         spawnBehindTimer = spawnBehindCooldown;
         if (stalkingBehaviour.inAggressionRange)
         {   
@@ -150,29 +159,19 @@ public class WendigoChasing : WendigoBehaviour
             if (currentPosition != Vector3.zero)
             {
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
-                myAnimator.SetBool("scream", true);
-                while(animationDelay < 0.0f)
-                {   
-                    animationDelay -= Time.deltaTime;
-                    // animationDelay --;
-                }
-                
-                myAnimator.SetBool("scream",false);
+                StartCoroutine(PlayScream(4f));
+                agent.isStopped = false;
+                myAnimator.ResetTrigger("scream");
                 spawned = true;
             }
         }
-        if(effigyBehavior.inAggressionRange)
+        if(effigyBehavior.inAggressionRange || GameManager.instance.dangerZone)
         {
-            agent.isStopped = true;
-            myAnimator.SetBool("scream", true);
-            
-            while(animationDelay < 0.0f)
-            {   
-                animationDelay -= Time.deltaTime;
-            }
-            
-            myAnimator.SetBool("scream",false);
+            StartCoroutine(PlayScream(4f));
+            myAnimator.ResetTrigger("scream");
+            // myAnimator.SetBool("scream",false);
             spawned = true;
+            agent.isStopped = false;
 
         }
     }
