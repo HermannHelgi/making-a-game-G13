@@ -13,6 +13,8 @@ public class DataPersistenceManager : MonoBehaviour
     public static DataPersistenceManager instance { get; private set;}
 
     [Header("Base variables")]
+    // These variables are essentially the base variables for a multitude of scripts at the start of a new game.
+    // Due to how this manager is made, it will essentially overwrite the base variables set in-editor.
     public Vector3 playerPos;
     public float currentHunger;
     public float currentTemperature;
@@ -20,35 +22,27 @@ public class DataPersistenceManager : MonoBehaviour
     public float emberstoneDurability;
     public bool torchActive;
     public bool emberstoneActive;
-
     public bool campfireUnlocked;
     public int coalStored;
     public int sticksEmplaced;
     public float burnTimer;
-
     public bool chestUnlocked;
     public List<bool> discoveredItems;
     public List<bool> unlockedItems;
     public List<bool> hasBeenCrafted;
-
     public List<bool> dialogueFlags;
     public List<int> witchDialogueQueue;
-
     public List<int> playerInventory;
     public List<int> chestInventory;
-
     public bool isNight;
     public float timeOfDay;
-
     public bool tutorialinprogress;
     public bool cannotcraft;
     public bool cannottalk;
     public bool inactiveNecessityBars;
-
     public bool caveWallActive;
     public bool caveWallColliderActive;
     public bool walkColliderActive;
-
     public bool wakingup;
 
     private void Awake()
@@ -69,6 +63,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void newGame()
     {
+        // Set base variables
         this.gameData = new GameData();
         gameData.playerPos = playerPos;
         gameData.emberstoneDurability = emberstoneDurability;

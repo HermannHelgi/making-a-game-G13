@@ -62,7 +62,6 @@ public class CampfireScript : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-
         if (burntimer > 0)
         {
             burntimer -= Time.deltaTime;

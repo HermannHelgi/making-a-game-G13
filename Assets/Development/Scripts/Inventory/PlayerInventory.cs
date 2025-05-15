@@ -161,6 +161,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().color = selectedspritecolor;
         hotbargridchildren[currentindex].GetComponent<HotbarSlotWrapper>().hotbarSlotNumber.GetComponent<TextMeshProUGUI>().color = selectedspritecolor;
 
+        // If the item can be intercated with, activate the text for the interaction
         if (hotbarinventory[currentindex] != null)
         {
             if (hotbarinventory[currentindex].consumable)
@@ -213,6 +214,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             {
                 hotbarinventory[index] = newItem;
                 hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = newItem.icon;
+
+                // Bunch of extra stuff if its a torch or emberstone
                 if (newItem == torch)
                 {
                     currenttorchdurability = maxtorchdurability;
@@ -325,6 +328,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             {
                 hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().sprite.GetComponent<Image>().sprite = hotbarinventory[index].icon;
 
+                // Bunch of extra stuff if its a torch or emberstone
                 if (hotbarinventory[index] == torch)
                 {
                     hotbargridchildren[index].GetComponent<HotbarSlotWrapper>().durabilitybar.SetActive(true);
@@ -352,6 +356,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     }
 
     public bool isHoldingItem(ItemScript item)
+    // Used by player interaction handler.
     {
         if (hotbarinventory[currentindex] == item)
         {
@@ -389,6 +394,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     }
 
     public void updateInventoryContents(ItemScript[] newinv)
+    // Used by the storage system, used to update the players new inventory after shuffling items around
     {
         for (int i = 0; i < maxhotbarsize; i++)
         {
@@ -399,6 +405,7 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     }
 
     void dropItem()
+    // Drop item
     {
         if (hotbarinventory[currentindex] == null)
         {
@@ -433,33 +440,38 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
             selectHotbar(currentindex - 1);
         }
         
+        // Check if player is trying to use numerical keys to hop to between slots
         for (int i = 0; i < 9; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 int selectedIndex = i;
                 selectHotbar(selectedIndex);
-                break; 
+                break;
             }
         }
 
+        // Drop item
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dropItem();
         }
 
+        // Used to display the consumable text in the player canvas and slowly fade out.
         if (consumableTimer > 0)
         {
             consumableTimer -= Time.deltaTime;
             consumableindicator.GetComponent<TextMeshProUGUI>().alpha = consumableTimer / 2;
         }
 
+        // Check if the player is trying to interact with an item within the inventory, such as eating
         if (consumableindicator.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
+            // Consumable check
             if (hotbarinventory[currentindex].consumable)
             {
                 if (TutorialManager.instance != null)
-                {   
+                {
                     if (TutorialManager.instance.tutorialinprogress)
                     {
                         TutorialManager.instance.playerConsumedFood();
@@ -475,6 +487,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
                 removeItemFromHotbar(currentindex);
                 necessitybargameobject.GetComponent<NecessityBars>().turnOffDisplayHungerIncrease();
             }
+
+            // Check if the player wants to refuel the torch
             else if (hotbarinventory[currentindex] == torch)
             {
                 bool check = removeItemFromHotbar(coal);
@@ -490,6 +504,8 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
                     playerinteracthandler.displayErrorMessage(failedtorefuel);
                 }
             }
+
+            // Check if the player wants to refuel the emberstone
             else if (hotbarinventory[currentindex] == emberstone)
             {
                 bool check = removeItemFromHotbar(coal);
@@ -509,13 +525,18 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
     }
 
     void updateDurabilityBars()
+    // Updates the durability bars of items within the players inventory.
     {
+        // Updates the torch
         if (hotbarinventory[currentindex] == torch)
         {
             if (currenttorchdurability > 0)
             {
+                // Decrement
                 currenttorchdurability -= 1 * Time.deltaTime;
                 torchdurabilitybar.GetComponent<Image>().fillAmount = currenttorchdurability / maxtorchdurability;
+
+                // If zero, turn off
                 if (currenttorchdurability <= 0)
                 {
                     GameManager.instance.torchactive = false;
@@ -527,12 +548,17 @@ public class PlayerInventory : MonoBehaviour, IDataPersistence
                 }
             }
         }
+
+        // Updates the emberstone
         if (emberstoneininventory)
         {
             if (currentemberstonedurability > 0)
             {
+                // Decrement
                 currentemberstonedurability -= 1 * Time.deltaTime;
                 emberstonedurabilitybar.GetComponent<Image>().fillAmount = currentemberstonedurability / maxemberstonedurability;
+
+                // If zero, turn off
                 if (currentemberstonedurability <= 0)
                 {
                     GameManager.instance.emberstoneactive = false;

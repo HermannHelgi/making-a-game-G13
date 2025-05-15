@@ -11,7 +11,6 @@ public class PlayerInteractHandler : MonoBehaviour
     [Tooltip("The gameobject in the scene which has the PlayerInventory script. Required for the script to function.")]
     public GameObject playerinventoryobject;
 
-
     [Header("Text pop-up variables")]
     [Tooltip("TextMeshPro element for the 'Press E to interact' text.")]
     public TextMeshProUGUI popuptext;
@@ -38,7 +37,9 @@ public class PlayerInteractHandler : MonoBehaviour
     public string bargainpopupstring;
     [Tooltip("The text that should be displayed on being able to talk with the witch in the wall.")]
     public string dialoguepopupstring;
+    [Tooltip("A reference to the player look script.")]
     public GameObject playerlookscript;
+    [Tooltip("The text that should be displayed to indicate the player can leave the meanu by pressing escape.")]
     public GameObject escapemessage;
 
     [Header("Campfire variables")]
@@ -57,7 +58,9 @@ public class PlayerInteractHandler : MonoBehaviour
     public bool highlighting = false;
 
     [Header("Effigy variables")]
+    [Tooltip("The displayed text on being able to interact with the effigy in game.")]
     public string effigyInteractText;
+    [Tooltip("Reference to the lure ItemScript.")]
     public ItemScript lure;
 
     void Start()
@@ -101,6 +104,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 highlighting = true;
             }
             else if (witchscript != null)
+            // Witch scripts, dialogue and bargaining
             {
                 if (witchscript.canTalk())
                 {
@@ -136,6 +140,7 @@ public class PlayerInteractHandler : MonoBehaviour
                 }
             }
             else if (campfirescript != null)
+            // Campfire
             {
                 if (playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(stick))
                 {
@@ -154,11 +159,13 @@ public class PlayerInteractHandler : MonoBehaviour
                 }
             }
             else if (storagescript != null)
+            // Storage system
             {
                 popuptext.text = storageinteracttext;
                 popuptext.gameObject.SetActive(true);
             }
             else if (effigyScript != null && playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(lure))
+            // Effigy
             {
                 popuptext.text = effigyInteractText;
                 popuptext.gameObject.SetActive(true);
@@ -177,6 +184,7 @@ public class PlayerInteractHandler : MonoBehaviour
     }
 
     void handleInteraction()
+    // Handles all interactions, such as the player interacting with the witch to start a dialogue.
     {
         if (GameManager.instance.inMenu)
         {
@@ -224,14 +232,17 @@ public class PlayerInteractHandler : MonoBehaviour
                         playerlookscript);
                 }
 
+                // Additional check for the campfire
                 var campfirescript = hit.transform.GetComponent<CampfireScript>();
                 if (campfirescript != null)
                 {
+                    // Player is trying to feed the flame
                     if (playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(stick))
                     {
                         playerinventoryobject.GetComponent<PlayerInventory>().removeItemFromHotbar(playerinventoryobject.GetComponent<PlayerInventory>().getCurrentIndex());
                         campfirescript.addFuel();
                     }
+                    // Player is trying to collect coal
                     else if (campfirescript.coalstored > 0)
                     {
                         ItemScript gatheredcoal = campfirescript.gatherCoal();
@@ -248,6 +259,7 @@ public class PlayerInteractHandler : MonoBehaviour
                     }
                 }
 
+                // Additional check for the storage system
                 var storagescript = hit.transform.GetComponent<StorageSystem>();
                 if (storagescript != null && !GameManager.instance.inMenu)
                 {
@@ -256,6 +268,7 @@ public class PlayerInteractHandler : MonoBehaviour
                     GameManager.instance.inMenu = true;
                 }
 
+                // Final check for effigy
                 var effigyScript = hit.transform.GetComponent<EffigyScript>();
                 if (effigyScript != null && playerinventoryobject.GetComponent<PlayerInventory>().isHoldingItem(lure))
                 {

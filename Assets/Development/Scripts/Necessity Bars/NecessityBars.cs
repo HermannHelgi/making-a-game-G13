@@ -93,6 +93,7 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        // If their supposed to be turned off by the tutorial
         if (TutorialManager.instance != null)
         {
             if (TutorialManager.instance.inactiveNecessityBars)
@@ -101,6 +102,7 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
             }
         }
 
+        // Necessity bars should not be active while the player is in another menu
         if (GameManager.instance.inMenu)
         {
             return;
@@ -167,9 +169,7 @@ public class NecessityBars : MonoBehaviour, IDataPersistence
         //starvationoverhead.color = new Color(1, 1, 1, (1 - currenthunger / starvationoverheaddisplaycutoff));
         frostbiteoverhead.color = new Color(1, 1, 1, (1 - currenttemperature / frostbiteoverheaddisplaycutoff));
 
-
-
-        //Yub more silly code for audio :)
+        // Some silly code for audio :)
         if((currenthunger / starvationoverheaddisplaycutoff) < 1)
         {
             if(vignette.intensity.value < maxIntensity)

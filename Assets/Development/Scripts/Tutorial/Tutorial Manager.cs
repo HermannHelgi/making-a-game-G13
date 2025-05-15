@@ -95,6 +95,19 @@ public class TutorialManager : MonoBehaviour, IDataPersistence
     private bool showingCraftingTutorialBox = false;
     private float craftingTutorialBoxTimer = 0;
 
+/*
+
+    For future reference, this script is essentially a large state machine with incredibly simple boolean variables.
+    Depending on what the tutorial stage you are in and how it is supposed to be actived, the booleans respond the tutorial and activate / deactivate certain systems.
+    These booleans are activated and deactivated from several different sources, such as InteractableItem, WitchDialogueHandler, WitchTradeScript, Tutorial Box Wrapper, and more.
+    Only with the context of those scripts can this one be understood.
+
+    TL;DR, Go read the other scripts or else this will not make any sense.
+
+*/
+
+
+
     void Awake()
     {
         instance = this;
