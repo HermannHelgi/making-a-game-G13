@@ -12,23 +12,24 @@ public class TreePlacerButtonEditor : Editor
 
         GUILayout.Space(10);
 
-        if (GUILayout.Button("🌲 Place Trees"))
+        if (GUILayout.Button("Place Trees"))
         {
             placer.PlaceTrees();
         }
 
-        if (GUILayout.Button("🧹 Clear Trees"))
+        if (GUILayout.Button("Clear Trees"))
         {
             placer.ClearTrees();
         }
 
-        if (GUILayout.Button("🎲 Randomize Again"))
+        if (GUILayout.Button("Randomize"))
         {
             placer.ClearTrees();
             placer.PlaceTrees();
         }
 
-        if (GUILayout.Button("💾 Save as Prefab"))
+        // this button tbh shouldnt be here cus prefabs might be HUGE
+        if (GUILayout.Button("Save as Prefab (careful)"))
         {
             SaveAsPrefab(placer.gameObject);
         }
