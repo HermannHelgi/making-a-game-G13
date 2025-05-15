@@ -15,6 +15,7 @@ public class WendigoChasing : WendigoBehaviour
     private float spawnBehindTimer = 0.0f;
     private bool spawned = false;
     public WendigoSpawnPointTracker wendigoSpawnPointTracker;
+    public WendigoEffigy effigyBehavior;
     public StalkingBehaviour stalkingBehaviour;
     public WendigoRaycast wendigoRaycasts;
     public WendigoFollowPlayer wendigoFollowPlayer;
@@ -23,9 +24,12 @@ public class WendigoChasing : WendigoBehaviour
     public SoundManager soundManager;
     public bool isRetreating = false;
     private float internalTimer = 0.0f;
+    public Animator myAnimator;
+    public Transform finalChaseSpot;
 
     private void Start()
     {
+        
     }
     public override void EnterState()
     {
@@ -45,7 +49,17 @@ public class WendigoChasing : WendigoBehaviour
         if (isActive)
         {
             if (!spawned)
-            {
+            {   
+                if(GameManager.instance.skullPickedUp)
+                {
+                    wendigoFollowPlayer.SpawnBehindPlayer(finalChaseSpot.transform.position);
+                    spawned = true;
+                }
+                if(GameManager.instance.lureCrafted && GameManager.instance.dangerZone && !GameManager.instance.lurePlaced)
+                {
+                    wendigoFollowPlayer.SpawnBehindPlayer(finalChaseSpot.transform.position);
+                    spawned = true;
+                }
                 spawnBehindTimer -= Time.deltaTime;
                 if (spawnBehindTimer < 0.0f)
                 {
@@ -127,6 +141,7 @@ public class WendigoChasing : WendigoBehaviour
 
     private void SpawnBehindPlayer()
     {
+        float animationDelay = 3.0f;
         spawnBehindTimer = spawnBehindCooldown;
         if (stalkingBehaviour.inAggressionRange)
         {   
@@ -135,9 +150,30 @@ public class WendigoChasing : WendigoBehaviour
             if (currentPosition != Vector3.zero)
             {
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
+                myAnimator.SetBool("scream", true);
+                while(animationDelay < 0.0f)
+                {   
+                    animationDelay -= Time.deltaTime;
+                    // animationDelay --;
+                }
                 
+                myAnimator.SetBool("scream",false);
                 spawned = true;
             }
+        }
+        if(effigyBehavior.inAggressionRange)
+        {
+            agent.isStopped = true;
+            myAnimator.SetBool("scream", true);
+            
+            while(animationDelay < 0.0f)
+            {   
+                animationDelay -= Time.deltaTime;
+            }
+            
+            myAnimator.SetBool("scream",false);
+            spawned = true;
+
         }
     }
 }

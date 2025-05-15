@@ -86,6 +86,7 @@ public class WendigoFollowPlayer : MonoBehaviour
         Vector3 intercept = (t > 0f) ? target.position + v * t : target.position;
         // Vector3 intercept;
         agent.SetDestination(intercept);
+        // soundManager.PlayGroup("WENDIGO_WALKING");
     }
 
     float SolveSmallestPositiveRoot(float a, float b, float c)
@@ -153,8 +154,7 @@ public class WendigoFollowPlayer : MonoBehaviour
             nextRepath = 0f;
             justSpawned = true;
             Debug.Log("Spawning at : " + spawnPoint);
-            // soundManager.PlayGroup("WENDIGO_STALKING");
-            // AudioSource source = GetComponent<AudioSource>();
+
             spawnAudioSource.PlayOneShot(audioClip);
             stalkingBehaviour.DespawnWendigo();
             
@@ -185,16 +185,19 @@ public class WendigoFollowPlayer : MonoBehaviour
         {   
             // myAnimator.applyRootMotion = true;
             myAnimator.speed = 1f;
+            // soundManager.PlayGroup("WENDIGO_WALKING");
 
         }
         else if (currentAgentForwardSpeed > 0.1f && currentAgentForwardSpeed <= 0.5f)
         {
             // myAnimator.applyRootMotion = false;
             myAnimator.speed = currentAgentForwardSpeed / 0.5f;
+            soundManager.PlayGroup("WENDIGO_WALKING");
         }
         else if( currentAgentForwardSpeed > 0.5)
         {
             // myAnimator.applyRootMotion = false;
+            soundManager.PlayGroup("WENDIGO_WALKING");
             myAnimator.speed = currentAgentForwardSpeed;
         }
 
