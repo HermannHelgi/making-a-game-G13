@@ -86,10 +86,7 @@ public class WendigoChasing : WendigoBehaviour
                 }
                 if (!wendigoRaycasts.detected && !GameManager.instance.skullPickedUp)
                 {
-                    if (!GameManager.instance.isNight)
-                    {
-                        isEnding = true;
-                    }
+
                     soundManager.ExitSoundsnapshot(1f);
                     searchTime += Time.deltaTime;
                     wendigoLookForPlayer.TrackFootsteps();
@@ -125,33 +122,15 @@ public class WendigoChasing : WendigoBehaviour
         else if (isEnding)
         {
             searchTime = 0;
-            if (!GameManager.instance.isNight)
-            {
-                wendigo.transform.position = caveChaseSpot.position;
-            }
-            else if (!isRetreating)
+            if (!isRetreating)
             {
                 wendigoFollowPlayer.Retreat();
             }
             if (wendigoFollowPlayer.selectedRetreat)
             {
                 isRetreating = true;
-
                 agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);
 
-            }
-            if (GameManager.instance.isNight && !wendigoFollowPlayer.selectedRetreat)
-            {
-                isRetreating = true;
-                wendigoFollowPlayer.selectedRetreat = caveChaseSpot.gameObject;
-            }
-            if (!GameManager.instance.isNight)
-            {
-                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
-                isEnding = false;
-            }
-            else
-            {
                 if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
                 {
                     Debug.Log("DISSAPEARS");
@@ -162,13 +141,20 @@ public class WendigoChasing : WendigoBehaviour
                     isEnding = false;
 
                 }
-                else if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 45f)
-                {
-                    transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
-                    // isRetreating = true;
-                    spawned = false;
-                    isEnding = false;
-                }
+
+            }
+            if (!wendigoFollowPlayer.selectedRetreat)
+            {
+                isRetreating = true;
+                wendigoFollowPlayer.selectedRetreat = caveChaseSpot.gameObject;
+            }
+            
+            if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 20f)
+            {
+                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+                // isRetreating = true;
+                spawned = false;
+                isEnding = false;
             }
         }
     }
