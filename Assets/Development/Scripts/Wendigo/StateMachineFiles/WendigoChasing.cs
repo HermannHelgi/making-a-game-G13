@@ -51,13 +51,13 @@ public class WendigoChasing : WendigoBehaviour
         if (isActive)
         {
             if (!spawned)
-            {   
-                if(GameManager.instance.skullPickedUp)
+            {
+                if (GameManager.instance.skullPickedUp)
                 {
                     wendigoFollowPlayer.SpawnBehindPlayer(finalChaseSpot.transform.position);
                     spawned = true;
                 }
-                if(GameManager.instance.lureCrafted && GameManager.instance.dangerZone && !GameManager.instance.lurePlaced)
+                if (GameManager.instance.lureCrafted && GameManager.instance.dangerZone && !GameManager.instance.lurePlaced)
                 {
                     wendigoFollowPlayer.SpawnBehindPlayer(caveChaseSpot.transform.position);
                     spawned = true;
@@ -65,7 +65,7 @@ public class WendigoChasing : WendigoBehaviour
                 spawnBehindTimer -= Time.deltaTime;
                 if (spawnBehindTimer < 0.0f)
                 {
-                    if(wendigoFollowPlayer.SpawnBehindPlayer())
+                    if (wendigoFollowPlayer.SpawnBehindPlayer())
                     {
                         spawned = true;
                         spawnBehindTimer = spawnBehindCooldown;
@@ -110,7 +110,7 @@ public class WendigoChasing : WendigoBehaviour
                     // wendigoFollowPlayer.justSpawned = false;
                     wendigoLookForPlayer.MarkPlayerSighting();
 
-                    }
+                }
 
                 if (wendigoRaycasts.detected && Vector3.Distance(wendigoRaycasts.target.transform.position, transform.parent.transform.position) < attackDistance)
                 {
@@ -132,13 +132,18 @@ public class WendigoChasing : WendigoBehaviour
             else if (!isRetreating)
             {
                 wendigoFollowPlayer.Retreat();
-
             }
-            if (!wendigoFollowPlayer.selectedRetreat)
+            if (wendigoFollowPlayer.selectedRetreat)
             {
                 isRetreating = true;
+
                 agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);
 
+            }
+            if (GameManager.instance.isNight && !wendigoFollowPlayer.selectedRetreat)
+            {
+                isRetreating = true;
+                wendigoFollowPlayer.selectedRetreat = caveChaseSpot.gameObject;
             }
             if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
             {
@@ -157,8 +162,10 @@ public class WendigoChasing : WendigoBehaviour
                 spawned = false;
                 isEnding = false;
             }
+            }
         }
-    }
+    
+
 
     private IEnumerator PlayScream(float pause)
     {
