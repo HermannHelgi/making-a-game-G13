@@ -78,11 +78,9 @@ public class StalkingBehaviour : WendigoBehaviour
             return;
         }
         redEyes.SetActive(false);
-        mesh.enabled = true;
         activeWendigo = null;
         spawnTimer = spawnCooldown;
         sightTimer = 0.0f;
-        myAnimator.SetBool("despawn", true);
     }
 
     Animator FindAnimator(GameObject activeWendigo)
