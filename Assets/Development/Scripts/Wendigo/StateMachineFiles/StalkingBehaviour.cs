@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -70,6 +71,14 @@ public class StalkingBehaviour : WendigoBehaviour
             return;
         }
         mesh.enabled = false;
+        GameObject redEyes = FindRedEyes(activeWendigo);
+        if (redEyes == null)
+        {
+            Debug.Log("No eyes on this guy");
+            return;
+        }
+        redEyes.SetActive(false);
+        mesh.enabled = true;
         activeWendigo = null;
         spawnTimer = spawnCooldown;
         sightTimer = 0.0f;
@@ -114,6 +123,13 @@ public class StalkingBehaviour : WendigoBehaviour
             Debug.LogError("SkinnedMeshRenderer not found on activeWendigo or its children!");
             return;
         }
+        GameObject redEyes = FindRedEyes(activeWendigo);
+        if (redEyes == null)
+        {
+            Debug.Log("No eyes on this guy");
+            return;
+        }
+        redEyes.SetActive(true);
         mesh.enabled = true;
         sightTimer = 0.0f;
         AudioSource spawnSound = mesh.GetComponentInParent<AudioSource>();
@@ -134,6 +150,25 @@ public class StalkingBehaviour : WendigoBehaviour
             if (nestedMesh != null)
             {
                 return nestedMesh;
+            }
+        }
+        return null;
+    }
+
+    GameObject FindRedEyes(GameObject obj)
+    {
+        foreach (Transform child in obj.transform)
+        {
+            Transform redEyes = child.Find("RedEyes");
+            if (redEyes != null)
+            {
+                return redEyes.gameObject;
+            }
+            // Recursively search deeper in the hierarchy
+            GameObject nestedRedEyes = FindRedEyes(child.gameObject);
+            if (nestedRedEyes != null)
+            {
+                return nestedRedEyes;
             }
         }
         return null;

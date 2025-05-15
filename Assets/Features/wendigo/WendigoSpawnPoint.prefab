@@ -212,6 +212,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 352376113340843395, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1134966346728948777, guid: f00aff5a493e3d54cb117bd4d8eda21b, type: 3}
       propertyPath: m_Name
       value: MaxWenPrefab
