@@ -119,11 +119,17 @@ public class LightingManager : MonoBehaviour, IDataPersistence
             {
                 if(TimeOfDay <= endOfNight || TimeOfDay >= startOfNight)
                 {
+                    
                     GameManager.instance.isNight = true;
-                    if(CycleDuration <= nightCycleDuration)
+                    if (GameManager.instance.lureCrafted && (TimeOfDay >= 0.0f && TimeOfDay <= 1.0f))
                     {
-                        CycleDuration += 6;
+                        CycleDuration = 1000.0f;
+                        TimeOfDay = 0.0f;
                     }
+                    if (CycleDuration <= nightCycleDuration)
+                        {
+                            CycleDuration += 6;
+                        }
                 }
                 else
                 {
