@@ -21,7 +21,10 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
     public bool replaceondepletion;
     public GameObject replacemodel;
 
+    [Tooltip("The Player Interact Handler within the scene.")]
     public PlayerInteractHandler playerInteractHandler;
+
+    // Private vars
     private Outline outlineHandler;
 
     void Start()
@@ -90,6 +93,7 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
                 }
                 totalpickuptimes--;
                 
+                // Sends what item was picked up to the ObjectiveManager, potentially updating the players objectives.
                 if (ObjectiveManager.instance != null)
                 {
                     ObjectiveManager.instance.pickedUpItem(pickupitem);
@@ -127,8 +131,11 @@ public class InteractableItem : MonoBehaviour, IDataPersistence
                         }
                     }
                 }
+
+                // Update discovered items.
                 GameManager.instance.discovereditems[pickupitem.index] = true;
 
+                // Calls the tutorial manager for tutorial indicators
                 if (TutorialManager.instance != null)
                 {
                     if (TutorialManager.instance.tutorialinprogress)
