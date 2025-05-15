@@ -12,6 +12,15 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
 
     [Header("Witch Animation Variables")]
     public WitchAnimationHandler witchAnim;
+    public DialogueScriptableObject craftPotion;
+
+    public DialogueScriptableObject bodyPart;
+    private bool bodyPartBool = false;
+    public DialogueScriptableObject bottle;
+    private bool bottleBool = false;
+    public DialogueScriptableObject flower;
+    private bool flowerBool = false;
+
 
     // Private stuff, mostly references to other objects...
     private GameObject subtitletextmesh;
@@ -87,6 +96,11 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
         // Here below are some comments to show the general flow of the dialogue management and what its doing in each step.
         // This function is essentially doing all the leg work for the actual text management and switching, so best make it clear
 
+        if (currentdialoguechain == craftPotion)
+        {
+            witchAnim.PlayCrazed();
+            witchAnim.PlayCrazedEyes();
+        }
 
         // Is there some dialogue chain which is already running?
         if (currentdialoguechain == null)
@@ -96,7 +110,6 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
             {
                 //// ...yes, so run that dialogue chain
 
-                runAudioForDialogue();
                 if (ObjectiveManager.instance != null)
                 {
                     ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
@@ -104,6 +117,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 currentdialoguechain = dialoguequeue.Dequeue();
                 currentindex = 0;
                 subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
+                runAudioForDialogue();
                 return true;
             }
             /// ...no dialogue exists, so leave.
@@ -119,7 +133,6 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                 {
                     ///// ...yes, so start the next one
 
-                    runAudioForDialogue();
                     if (ObjectiveManager.instance != null)
                     {
                         ObjectiveManager.instance.finishedSpeakingWithWitch(currentdialoguechain);
@@ -127,6 +140,7 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
                     currentdialoguechain = dialoguequeue.Dequeue();
                     currentindex = 0;
                     subtitletextmesh.GetComponent<TextMeshProUGUI>().text = currentdialoguechain.dialogue[currentindex];
+                    runAudioForDialogue();
                     return true;
                 }
                 else
@@ -163,7 +177,27 @@ public class WitchDialogueHandler : MonoBehaviour, IDataPersistence
 
     void runAudioForDialogue()
     {
-        witchAnim.PlayTalking();
+        
+        if (currentdialoguechain == bodyPart && !bodyPartBool)
+        {
+            witchAnim.PlaySmirk();
+            bodyPartBool = true;
+        }
+        else if (currentdialoguechain == flower && !flowerBool)
+        {
+            witchAnim.PlaySmirk();
+            flowerBool = true;
+        }
+        else if (currentdialoguechain == bottle && !bottleBool)
+        {
+            witchAnim.PlaySmirk();
+            bottleBool = true;
+        }
+        else if (currentdialoguechain != craftPotion)
+        {
+            witchAnim.PlayTalking();
+        }
+
         soundManager.PlayGroup("GRYLA_GENERIC_DIALOGUE");
     }
 
