@@ -26,22 +26,26 @@ public class BakePhysicsObject : MonoBehaviour
         }
 
         PrepareObjects();
+
+        // Simulate physics in Edit mode
         Physics.simulationMode = SimulationMode.Script;
         startTime = EditorApplication.timeSinceStartup;
         elapsed = 0f;
         isSimulating = true;
 
         EditorApplication.update += SimulateInEditor;
-        Debug.Log("Object drop started...");
+        Debug.Log("Dropping objects...");
 #endif
     }
 
     private void PrepareObjects()
     {
+
         rbList.Clear();
 
         foreach (Transform child in transform)
         {
+            // simulate physics for objects with rigidbodies)
             GameObject go = child.gameObject;
             Rigidbody rb = go.GetComponent<Rigidbody>();
             if (!rb) rb = go.AddComponent<Rigidbody>();
@@ -70,7 +74,7 @@ public class BakePhysicsObject : MonoBehaviour
         {
             EditorApplication.update -= SimulateInEditor;
             BakeResults();
-            Debug.Log("Object drop baked.");
+            Debug.Log("New object positions baked.");
         }
 #endif
     }
