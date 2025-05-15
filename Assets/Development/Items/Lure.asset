@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: LURE
   index: 16
-  icon: {fileID: 21300000, guid: 28fcb5c17ed197548af309f0b4b46022, type: 3}
-  model: {fileID: 8877748705870273310, guid: 99324ff6aa7eace47a87f9eb3a79233e, type: 3}
+  icon: {fileID: 21300000, guid: 1ffe7771a7b64f546b6e5e9dc37434f9, type: 3}
+  model: {fileID: 2277598093448522470, guid: 087308cf628586f4793180a283159604, type: 3}
   craftingrecipe:
   - {fileID: 11400000, guid: 7833bf51c948bdf4e9cb6b97810ad90d, type: 2}
   - {fileID: 11400000, guid: 90b944351c5197a4aa4ef443178ea6e9, type: 2}
