@@ -134,7 +134,7 @@ public class WendigoChasing : WendigoBehaviour
                 wendigoFollowPlayer.Retreat();
 
             }
-            if (wendigoFollowPlayer.selectedRetreat == null)
+            if (!wendigoFollowPlayer.selectedRetreat)
             {
                 isRetreating = true;
                 agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);
