@@ -10,8 +10,7 @@ public class PlayerDeathHandler : MonoBehaviour
     public string mainMenuSceneName;
     public bool playerhasdied = false;
 
-    public string winTitleMessage;
-    public string winMessage;
+    public string outroScene;
 
 
     [Header("References")]
@@ -62,17 +61,7 @@ public class PlayerDeathHandler : MonoBehaviour
 
     public void playerDrankPotion()
     {
-        GameManager.instance.inMenu = true;
-        playercontroller.GetComponent<FirstPersonController>().freezecamera = true;
-        Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        deathTitleTextMesh.text = winTitleMessage;
-        deathmessagetextmesh.text = winMessage;
-
-        uiplayercanvas.SetActive(false);
-        witchtradecanvas.SetActive(false);
-        deathscreen.SetActive(true);
+        SceneManager.LoadScene(outroScene);
     }
 
     public void resetForNewGameScene()
