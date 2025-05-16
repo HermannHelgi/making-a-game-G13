@@ -166,6 +166,7 @@ public class WendigoChasing : WendigoBehaviour
         agent.isStopped = true;
         myAnimator.SetTrigger("scream");
         yield return new WaitForSeconds(pause);   // or use the state’s real length
+        myAnimator.ResetTrigger("scream");   // optional, but do it here
         agent.isStopped = false;
     }
 
@@ -181,20 +182,17 @@ public class WendigoChasing : WendigoBehaviour
             {
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
                 StartCoroutine(PlayScream(4f));
-                agent.isStopped = false;
-                myAnimator.ResetTrigger("scream");
-                spawned = true;
                 stalkingBehaviour.DespawnWendigo();
+                spawned = true;
             }
         }
         if (effigyBehavior.inAggressionRange || GameManager.instance.dangerZone)
-        {
+        {   
+            
             StartCoroutine(PlayScream(4f));
-            myAnimator.ResetTrigger("scream");
+            stalkingBehaviour.DespawnWendigo();
             // myAnimator.SetBool("scream",false);
             spawned = true;
-            agent.isStopped = false;
-            stalkingBehaviour.DespawnWendigo();
 
         }
     }
