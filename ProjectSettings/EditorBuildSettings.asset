@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Features/Outro/Outro.unity
     guid: a4433a45f452b7047adfa30ee012d324
+  - enabled: 1
+    path: Assets/Features/Intro/IntroScene.unity
+    guid: 65913a4745bf8e3468180f85b56859fc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

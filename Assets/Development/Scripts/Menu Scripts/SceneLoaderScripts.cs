@@ -7,6 +7,7 @@ public class SceneLoaderScripts : MonoBehaviour
 
     [Header("Scene variables.")]
     public string sceneName;
+    public string introScene;
     public GameObject continueGame;
     [SerializeField] private string saveFileName;
     private FileDataHandler fileDataHandler;
@@ -43,7 +44,7 @@ public class SceneLoaderScripts : MonoBehaviour
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(introScene);
         }
     }
 
