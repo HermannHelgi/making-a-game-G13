@@ -126,36 +126,36 @@ public class WendigoChasing : WendigoBehaviour
             {
                 wendigoFollowPlayer.Retreat();
             }
-            if (wendigoFollowPlayer.selectedRetreat)
+            if (wendigoFollowPlayer.selectedRetreat != null)
             {
                 isRetreating = true;
+
                 agent.SetDestination(wendigoFollowPlayer.selectedRetreat.transform.position);
 
                 if (Vector3.Distance(transform.parent.transform.position, wendigoFollowPlayer.selectedRetreat.transform.position) <= 5f)
                 {
                     Debug.Log("DISSAPEARS");
                     // agent.enabled = false;
+                    agent.enabled = false;
                     transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
                     // isRetreating = true;
-                    spawned = false;
                     isEnding = false;
 
                 }
 
             }
-            if (!wendigoFollowPlayer.selectedRetreat)
+            if (wendigoFollowPlayer.selectedRetreat == null)
             {
                 isRetreating = true;
                 wendigoFollowPlayer.selectedRetreat = caveChaseSpot.gameObject;
             }
             
-            if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 20f)
-            {
-                transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
-                // isRetreating = true;
-                spawned = false;
-                isEnding = false;
-            }
+            // if (Vector3.Distance(transform.parent.transform.position, wendigoRaycasts.target.transform.position) >= 20f)
+            // {
+            //     transform.parent.transform.position = wendigoSpawnPointTracker.despawnPoint.transform.position;
+            //     // isRetreating = true;
+            //     isEnding = false;
+            // }
         }
     }
 
@@ -166,7 +166,6 @@ public class WendigoChasing : WendigoBehaviour
         agent.isStopped = true;
         myAnimator.SetTrigger("scream");
         yield return new WaitForSeconds(pause);   // or use the state’s real length
-        myAnimator.ResetTrigger("scream");   // optional, but do it here
         agent.isStopped = false;
     }
 
@@ -183,6 +182,7 @@ public class WendigoChasing : WendigoBehaviour
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
                 StartCoroutine(PlayScream(4f));
                 stalkingBehaviour.DespawnWendigo();
+                myAnimator.ResetTrigger("scream");   // optional, but do it here
                 spawned = true;
             }
         }
@@ -192,6 +192,7 @@ public class WendigoChasing : WendigoBehaviour
             StartCoroutine(PlayScream(4f));
             stalkingBehaviour.DespawnWendigo();
             // myAnimator.SetBool("scream",false);
+            myAnimator.ResetTrigger("scream");   // optional, but do it here
             spawned = true;
 
         }
