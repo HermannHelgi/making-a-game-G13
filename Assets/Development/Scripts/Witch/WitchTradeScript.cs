@@ -27,7 +27,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     public string itemcannotbecraftedstring;
     public GameObject lerppos;
     public int maxtimetolerp;
-
+    public float delayMaxTimer;
     public GameObject witchrecipegridspawner; 
     public TextMeshProUGUI itemnametextmesh;
     public TextMeshProUGUI crafttextmesh;
@@ -55,6 +55,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
     private PlayerInventory playerinventoryscript;
     private bool currentlytrading = false;
     private PlayerLookScript playerlook;
+    private float delayTimer;
 
     [Header("Scrollview Variables")]
     public RectTransform verticalLayoutGroup;
@@ -115,7 +116,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if (currentlytrading)
+        if (currentlytrading && delayTimer <= 0)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -123,12 +124,12 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             }
 
             // Increase trading slot, go right
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) 
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 selectCraftingSlot(currentindex + 1);
             }
             // Decrease trading slot, go left
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) 
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 selectCraftingSlot(currentindex - 1);
             }
@@ -137,6 +138,10 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             {
                 craftItem();
             }
+        }
+        else if (delayTimer > 0)
+        {
+            delayTimer -= Time.deltaTime;
         }
     }
 
@@ -465,6 +470,7 @@ public class WitchTradeScript : MonoBehaviour, IDataPersistence
             // I made this with the assumption that the witch doesn't have access to these variables on scene load to reduce inter-prefab references and reduce work on the inspector side.
             // Its just a bunch of miscellaneous references, so don't worry bout it
             witchAnim.EnterBargain();
+            delayTimer = delayMaxTimer;
 
             playerinventory = playerinventorycanvas;
             playerinventoryscript = playerinventoryscriptobject.GetComponent<PlayerInventory>();
