@@ -182,7 +182,6 @@ public class WendigoChasing : WendigoBehaviour
                 wendigoFollowPlayer.SpawnBehindPlayer(currentPosition);
                 StartCoroutine(PlayScream(4f));
                 stalkingBehaviour.DespawnWendigo();
-                myAnimator.ResetTrigger("scream");   // optional, but do it here
                 spawned = true;
             }
         }
@@ -192,7 +191,6 @@ public class WendigoChasing : WendigoBehaviour
             StartCoroutine(PlayScream(4f));
             stalkingBehaviour.DespawnWendigo();
             // myAnimator.SetBool("scream",false);
-            myAnimator.ResetTrigger("scream");   // optional, but do it here
             spawned = true;
 
         }
